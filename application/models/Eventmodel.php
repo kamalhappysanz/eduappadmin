@@ -55,13 +55,13 @@ Class Eventmodel extends CI_Model
           return $result->result();
         }
 		
-		function save_sub_event($event_id,$sub_event_name,$co_name)
+		function save_sub_event($event_id,$sub_event_name,$co_name,$status)
 		{
 		  $check_event="SELECT * FROM edu_event_coordinator WHERE sub_event_name='$sub_event_name'";
           $result=$this->db->query($check_event);
           if($result->num_rows()==0)
 		  {
-			  $query="INSERT INTO edu_event_coordinator(event_id,sub_event_name,co_name_id,status,created_at) VALUES ('$event_id','$sub_event_name','$co_name','A',NOW())";
+			  $query="INSERT INTO edu_event_coordinator(event_id,sub_event_name,co_name_id,status,created_at) VALUES ('$event_id','$sub_event_name','$co_name','$status',NOW())";
 			  
 			  $result=$this->db->query($query);
 			  

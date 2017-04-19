@@ -168,8 +168,9 @@ class Event extends CI_Controller {
 				 $event_id=$this->input->post('event_id');
 				 $sub_event_name=$this->input->post('sub_name');
 				 $co_name=$this->input->post('co_name');
+				 $status=$this->input->post('status');
 				//$data['teacher']=$this->Teachermodel->get_all_teacher1();
-				 $datas=$this->eventmodel->save_sub_event($event_id,$sub_event_name,$co_name);
+				 $datas=$this->eventmodel->save_sub_event($event_id,$sub_event_name,$co_name,$status);
 				 
 				if($datas['status']=='success')
 				{

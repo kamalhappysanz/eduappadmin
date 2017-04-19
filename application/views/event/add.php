@@ -127,7 +127,7 @@
 
     <a rel="tooltip" href="#myModal" data-id="<?php echo $rows->event_id; ?>" title="Add Coordinator" class="open-AddBookDialog btn btn-simple btn-warning btn-icon edit" style="color:#eb34ff;" data-toggle="modal" data-target="#addmodel"   >
 	<i class="fa fa-user-plus">  </i></a>
-
+						
 <a href="<?php echo base_url(); ?>event/view_sub_event/<?php echo $rows->event_id; ?>" rel="tooltip" title="View of Coordinator List" class="btn btn-xs btn-fill">View</a>
 
                                                <!-- <a rel="tooltip" title="Add " class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
@@ -152,21 +152,21 @@
 
  <div class="modal fade" id="addmodel" role="dialog" >
     <div class="modal-dialog">
-
+    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-
+		 
 		<!--  <a  style="margin-left: 500px;float: left;"  href="<?php //echo base_url(); ?>event/view_sub_event/<?php //echo $rows->event_id; ?>" rel="tooltip" title="view" class="btn btn-xs btn-fill">view</a>
 		 <form style="width:0px;margin:0px;" method="post" action=""></form> -->
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Add Coordinator</h4>
-
+		  
         </div>
         <div class="modal-body">
-
+       
                         <p id="msg" style="text-align:center;"></p>
-
+					 
                             <div class="content">
                                 <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="coordinatorform">
                                     <div class="form-group">
@@ -178,10 +178,10 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Coordinator Name</label>
                                         <div class="col-md-9">
-
+										
 										<select   id="co_name"  data-title="Select Teacher" class="selectpicker" data-style=" btn-block"  data-menu-style="dropdown-blue">
                                                     <?php
-
+													
 													$query = "SELECT * FROM edu_teachers ";
 				                                    $resultset = $this->db->query($query);
 													$teacher=$resultset->result();
@@ -189,17 +189,23 @@
                                                     <option value="<?php echo $row->teacher_id; ?>"><?php echo $row->name; ?></option>
 													<?php    }  ?>
                                                   </select>
-
+									
                                             <!-- <input type="text" name="co_name" placeholder="Coordinator Name" class="form-control"> -->
                                         </div>
                                     </div>
 									<div class="form-group">
-
+ <label class="col-md-3 control-label">Status</label>
                                         <div class="col-md-9">
+										 <select id="status" class="selectpicker form-control" data-title="Select Status"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+
+                                                  <option value="A">Active</option>
+                                                    <option value="DA">DE-Active</option>
+
+                                              </select>
 											 <input type="hidden" id="event_id"  class="form-control" value="<?php ?>"/>
                                         </div>
                                     </div>
-
+									
                                     <div class="form-group">
                                         <label class="col-md-3"></label>
                                         <div class="col-md-9">
@@ -210,26 +216,28 @@
                                 </form>
                             </div>
                         </div> <!-- end card -->
-
+                  
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+        </div>-->
       </div>
-
+      
     </div>
   </div>
 
   <script  type="text/javascript">
-
-
+  
+  
 function submitContactForm(){
     //alert("hi");
     var sub_name = $('#sub_event_name').val();
 	//alert(sub_name);
-
+	
     var co_name = $('#co_name').val();
     var event_id = $('#event_id').val();
+    var status = $('#status').val();
+	
     if(sub_name.trim() == '' ){
 		$('#msg').html('<span style="color:red;text-align:center;">Please enter sub event name</p>');
        // alert('Please enter sub event name.');
@@ -245,11 +253,16 @@ function submitContactForm(){
        // alert('Please select event .');
         $('#event_id').focus();
         return false;
+    }else if(status.trim() == '' ){
+	   $('#msg').html('<span style="color:red;text-align:center;">Please select status</p>');
+       // alert('Please select event .');
+        $('#status').focus();
+        return false;
     }else{
         $.ajax({
             type:'POST',
             url:'<?php echo base_url(); ?>event/create_sub_event',
-            data:'eventFrmSubmit=1&sub_name='+sub_name+'&co_name='+co_name+'&event_id='+event_id,
+            data:'eventFrmSubmit=1&sub_name='+sub_name+'&co_name='+co_name+'&event_id='+event_id+'&status='+status,
            /*  beforeSend: function () {
                 $('.submitBtn').attr("disabled","disabled");
                 $('.modal-body').css('opacity', '.5');
@@ -257,11 +270,11 @@ function submitContactForm(){
             success:function(msg){
                 if(msg == 'Added Successfully')
 				{
-
-					$('#msg').html('<span style="color:green;">Added Successfully</span>');
+                    
+					$('#msg').html(msg);
 					$('#coordinatorform')[0].reset();
-
-
+					
+					
                   //  $('.msg').html('<span style="color:green;">Added Successfully</p>');
                 }else{
 					 $("#msg").html(msg);
