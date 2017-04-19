@@ -97,13 +97,43 @@ var $table = $('#bootstrap-table');
       });
 
 function deleteLeave(id){
- $.ajax({
-          type: "POST",
-          url: "<?php echo base_url(); ?>leavemanage/deletedate",
-          data : {  id : id },
-          success: function(data){
-            alert(data)
-          }
-      });
+
+  swal({
+              title: "Are you sure?",
+              text: "You Want to Delete the this Date",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: '#DD6B55',
+              confirmButtonText: 'Yes, I am sure!',
+              cancelButtonText: "No, cancel it!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          },
+          function(isConfirm) {
+              if (isConfirm) {
+                $.ajax({
+                         type: "POST",
+                         url: "<?php echo base_url(); ?>leavemanage/deletedate",
+                         data : {  id : id },
+                         success: function(data){
+                           //alert(data)
+                         if(data=="success"){
+                           swal({title: "Good job", text: "Deleted Successfully!", type: "success"},
+                              function(){
+                                  location.reload();
+                              }
+                           );
+                         }else{
+                           sweetAlert("Oops...", "Something went wrong!", "error");
+                         }
+                         }
+                     });
+
+              } else {
+                  swal("Cancelled", "Process Cancel :)", "error");
+              }
+          });
+
+
 }
 </script>

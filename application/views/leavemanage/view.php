@@ -90,8 +90,8 @@
                     <td>
 
   <a href="<?php echo base_url(); ?>leavemanage/specialedit/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-  <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove"><i class="fa fa-remove"></i></a>
-                        </td>
+  <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" onclick="functionSpecial(<?php echo $rows->leave_id; ?>)" data-original-title="Remove"><i class="fa fa-remove"></i></a>
+</td>
                   </tr>
                   <?php $i++;  }  ?>
               </tbody>
@@ -188,4 +188,43 @@ var $table = $('#bootstrap-table');
 
 
             });
+
+function functionSpecial(id){
+  swal({
+              title: "Are you sure?",
+              text: "You Want to Delete the this Date",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: '#DD6B55',
+              confirmButtonText: 'Yes, I am sure!',
+              cancelButtonText: "No, cancel it!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          },
+          function(isConfirm) {
+              if (isConfirm) {
+                $.ajax({
+                         type: "POST",
+                         url: "<?php echo base_url(); ?>leavemanage/specialdate_delete",
+                         data : {  id : id },
+                         success: function(data){
+                           //alert(data)
+                         if(data=='success'){
+                           swal({title: "Good job", text: "Deleted Successfully!", type: "success"},
+                              function(){
+                                  location.reload();
+                              }
+                           );
+                         }else{
+                           sweetAlert("Oops...", "Something went wrong!", "error");
+                         }
+                         }
+                     });
+
+              } else {
+                  swal("Cancelled", "Process Cancel :)", "error");
+              }
+          });
+
+}
 </script>

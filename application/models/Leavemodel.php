@@ -159,5 +159,32 @@ Class Leavemodel extends CI_Model
                 return $res->result();
               }
 
+              function delete_leave_dates($leave_date_id){
+                 $query="DELETE FROM edu_holidays_list_history WHERE id='$leave_date_id'";
+                $res=$this->db->query($query);
+                if($res){
+                  $data= array("status" => "success");
+                  return $data;
+                }else{
+                  $data= array("status" => "failure");
+                  return $data;
+                }
+              }
+
+
+              function delete_specialleave_dates($leave_date_id){
+                 $query="DELETE  FROM edu_leavemaster WHERE leave_id ='$leave_date_id'";
+                $res=$this->db->query($query);
+                 $query2="DELETE  FROM edu_leaves WHERE leave_mas_id ='$leave_date_id'";
+                $res2=$this->db->query($query2);
+                if($res2){
+                  $data= array("status" => "success");
+                  return $data;
+                }else{
+                  $data= array("status" => "failure");
+                  return $data;
+                }
+              }
+
 }
 ?>
