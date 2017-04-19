@@ -35,13 +35,11 @@
 
 											    <label class="col-sm-2 control-label">Class </label>
                                             <div class="col-sm-4">
-											 <select name="class_name" class="selectpicker" data-title="Select class" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-
-
+								<select name="class_name" class="selectpicker" data-title="Select class" data-style="btn-default btn-block"  onchange="checknamefun(this.value)" data-menu-style="dropdown-blue">
                                        <?php foreach ($getall_class as $rows) {  ?>
                                       <option value="<?php echo $rows->class_sec_id; ?>"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></option>
                                         <?php      } ?>
-                                                  </select>
+                                </select>
                                             </div>
                                            <!--  <label class="col-sm-2 control-label">Exam Name</label>
                                            <div class="col-sm-4">
@@ -51,7 +49,7 @@
                                               <option value="<?php // echo $sect->exam_id; ?>"><?php  //echo $sect->exam_name; ?></option>
                                               <?php } ?>
                                           </select>
-
+getall_class
 
                                             </div>-->
 				                     </div>
@@ -62,16 +60,49 @@
 
                                             <label class="col-sm-2 control-label">Select Subject</label>
                                             <div class="col-sm-4">
-                                               <select name="subject_name" class="selectpicker" data-title="Select Subject" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                  <?php foreach ($sec as $sect) {  ?>
-                                              <option value="<?php  echo $sect->subject_id; ?>"><?php  echo $sect->subject_name; ?></option>
-                                              <?php } ?>
+                                               <select name="subject_name" id="sub_name" class="selectpicker" data-title="Select Subject" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+											  <?php
+											 /*  foreach ($getall_class as $rows) { 
+		    $sPlatform=$rows->class_sec_id;
+											  
+			$sQuery = "SELECT cm.class_sec_id,su.* FROM edu_classmaster AS cm, edu_subject AS su WHERE cm.class_sec_id='".$sPlatform."' ";
+			$objRs=$this->db->query($sQuery);
+		  //print_r($objRs);
+		  $row=$objRs->result();
+		  foreach ($row as $rows1)
+		  {
+		  $s= $rows1->class_sec_id;
+		 // $sec=$rows1->class;
+		  $clas=$rows1->subject_name;
+		  //$sec_name=$rows1->sec_name;
+		  $arryPlatform = explode(",", $sPlatform);
+		 $sPlatform_id  = trim($s);
+		 $sPlatform_name  = trim($sec);
+		 if (in_array($sPlatform_id, $arryPlatform )) { */
+  ?>
+          <?php
+               //   echo "<option  value=\"$sPlatform_id\" selected  />$clas &nbsp;&nbsp; </option>";
+             ?>
+                                <?php //} 
+		 // }}?>
+											   
+   <option id="sub_name" value="">Select</option> 
+                                                  <?php //foreach ($sec as $sect) {  ?>
+                                             <!-- <option value="<?php  //echo $sect->subject_id; ?>"><?php  //echo $sect->subject_name; ?></option> -->
+                                              <?php //} ?> 
                                           </select>
                                             </div>
 
                                             <label class="col-sm-2 control-label">Exam Date</label>
-                                           <div class="col-sm-4">
+                                           <div class="col-sm-2">
                   <input type="text" name="exam_date" class="form-control datepicker"  placeholder="Enter Exam Date" value="">
+				  </div>
+				    <div class="col-sm-2"> 
+					<select name="time" class="selectpicker" data-title="Select Time" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                   <option value="AM">AM</option>
+								   <option value="PM">PM</option>
+                    </select>
+				  
                                             </div>
 				                     </div>
 
@@ -146,7 +177,7 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $rows->subject_name; ?></td>
                                     <td><?php $date=date_create($rows->exam_date);
-echo date_format($date,"d-m-Y");  ?></td>
+echo date_format($date,"d-m-Y");  ?> ( <?php echo $rows->times; ?> ) </td>
                                     <td><?php echo $rows->class_name;?><?php echo $rows->sec_name; ?></td>
 									<td><?php echo $rows->notes; ?></td>
                                     <td>
@@ -172,16 +203,67 @@ echo date_format($date,"d-m-Y");  ?></td>
 
 
 </div>
+<script type="text/javascript">
+  function checknamefun(classid)
+   {   
+      $.ajax({
+			type:'post',
+			url:'<?php echo base_url(); ?>examination/checker',
+			data:{classid:classid},
 
+			success:function(test1)
+			{
+				
+				alert(test1);
+				if(test1!='')
+				{
+				    $('#sub_name').val(test1);
+					// checknamefun1(val);
+			        //$("#msg").html(test);
+				}
+				else{
+					alert("Admission Number not found");
+					//$("#msg").html(test);
+				}
+				
+			}
+	  });
+}
+
+</script>
+ <script type="text/javascript">  
+ /* function checknamefun(val)
+   {
+                      $(document).ready(function() {  
+                         $("#countriesDrp").change(function(){  
+                         /*dropdown post 
+                         $.ajax({  
+                            url:"<?php echo base_url(); ?>/examination/checker",  
+                            data: {id:  
+                               $(this).val()},  
+                            type: "POST",  
+                            success:function(data){  
+                            $("#cityDrp").html(data);  
+                         }  
+                      });  
+                   });  
+                })
+   }
+				;   */
+             </script>  
 <script type="text/javascript">
 
 $(document).ready(function () {
 
- $('#myformsection').validate({ // initialize the plugin
+ $('#examform').validate({ // initialize the plugin
      rules: {
 
 
-         yexam:{required:true },
+         exam_year:{required:true },
+		 exam_year:{required:true },
+		 exam_year:{required:true },
+		 exam_year:{required:true },
+		 exam_year:{required:true },
 
 
      },

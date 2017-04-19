@@ -76,6 +76,23 @@ class Examination extends CI_Controller
 	 		 }
 	 	}
 
+		 public function checker()  
+          {  
+			 
+			   $classid = $this->input->post('classid');  
+			  
+			  $data['sub']=$this->class_manage->get_subject($classid);
+			  
+              print_r($data['sub']);	  
+			  /* $output = null;  
+			  foreach ($data['sub'] as $row)  
+			  {  
+				 
+				  $output = "<option value='".$row->class_sec_id."'>".$row->subject_name."</option>";  
+			  }  
+			  echo $output;  */ 
+        }  
+	   
 
 		public function create()
 		{
@@ -179,17 +196,17 @@ class Examination extends CI_Controller
 				 $dateTime = new DateTime($exam_date);
 				 $formatted_date=date_format($dateTime,'Y-m-d' );
 
-				 //$class_name=$this->input->post('class_name');
+				 $time=$this->input->post('time');
 				 $notes=$this->input->post('notes');
 
-			 $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$formatted_date,$notes);
+$datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$formatted_date,$time,$notes);
 
 			 if($datas['status']=="success"){
 					$this->session->set_flashdata('msg','Added Successfully');
                     redirect('examination/add_exam_detail');
-				}else if($datas['status']=="Exam Already Added")
+				}else if($datas['status']=="Exam Already Exist")
 				{
-					$this->session->set_flashdata('msg','Exam Already Added');
+					$this->session->set_flashdata('msg','Exam Already Exist');
 					 redirect('examination/add_exam_detail');
 				}else{
 					$this->session->set_flashdata('msg','Failed to Add');
@@ -240,10 +257,12 @@ class Examination extends CI_Controller
 				 $exam_date=$this->input->post('exam_date');
 				 $dateTime = new DateTime($exam_date);
                  $formatted_date=date_format($dateTime,'Y-m-d' );
+				 
+				 $time=$this->input->post('time');
 
 				 $notes=$this->input->post('notes');
 
-				 $datas=$this->examinationmodel->update_exam_details($id,$exam_year,$class_name,$subject_name,$formatted_date,$notes);
+				 $datas=$this->examinationmodel->update_exam_details($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$notes);
 
 				 if($datas['status']=="success")
 					 {

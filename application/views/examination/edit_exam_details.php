@@ -19,7 +19,7 @@
 						   }
 						   ?>
                             <div class="content">
-                              <form method="post" action="<?php echo base_url(); ?>examination/update_exam_details" class="form-horizontal" enctype="multipart/form-data" id="examform">
+                              <form method="post" action="<?php echo base_url(); ?>examination/update_exam_details" class="form-horizontal" enctype="multipart/form-data" name="examform" id="examform">
 								 <fieldset>
                                         <div class="form-group">
 
@@ -132,8 +132,16 @@
                                             </div>
 
                                             <label class="col-sm-2 control-label">Exam Date</label>
-                                           <div class="col-sm-4">
+                                           <div class="col-sm-2">
                             <input type="text" name="exam_date" class="form-control datepicker"  placeholder="Enter Exam Date" value="<?php $date=date_create($rows->exam_date);echo date_format($date,"d-m-Y");?>">
+                                            </div>
+					 <div class="col-sm-2"> 
+					<select name="time" class="selectpicker" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                   <option value="AM">AM</option>
+								   <option value="PM">PM</option>
+                    </select>
+					<script language="JavaScript">document.examform.time.value="<?php echo $rows->times; ?>";</script>
+				  
                                             </div>
 				                     </div>
 
