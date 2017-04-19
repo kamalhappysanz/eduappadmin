@@ -56,53 +56,31 @@ getall_class
                                     </fieldset>
                                    <fieldset>
                                         <div class="form-group">
-             <input type="hidden" name="exam_id" class="form-control" placeholder="" >
+                                          <input type="hidden" name="exam_id" class="form-control" placeholder="" >
 
                                             <label class="col-sm-2 control-label">Select Subject</label>
                                             <div class="col-sm-4">
-                                               <select name="subject_name" id="sub_name" class="selectpicker" data-title="Select Subject" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-											  <?php
-											 /*  foreach ($getall_class as $rows) { 
-		    $sPlatform=$rows->class_sec_id;
-											  
-			$sQuery = "SELECT cm.class_sec_id,su.* FROM edu_classmaster AS cm, edu_subject AS su WHERE cm.class_sec_id='".$sPlatform."' ";
-			$objRs=$this->db->query($sQuery);
-		  //print_r($objRs);
-		  $row=$objRs->result();
-		  foreach ($row as $rows1)
-		  {
-		  $s= $rows1->class_sec_id;
-		 // $sec=$rows1->class;
-		  $clas=$rows1->subject_name;
-		  //$sec_name=$rows1->sec_name;
-		  $arryPlatform = explode(",", $sPlatform);
-		 $sPlatform_id  = trim($s);
-		 $sPlatform_name  = trim($sec);
-		 if (in_array($sPlatform_id, $arryPlatform )) { */
-  ?>
-          <?php
-               //   echo "<option  value=\"$sPlatform_id\" selected  />$clas &nbsp;&nbsp; </option>";
-             ?>
-                                <?php //} 
-		 // }}?>
-											   
-   <option id="sub_name" value="">Select</option> 
-                                                  <?php //foreach ($sec as $sect) {  ?>
-                                             <!-- <option value="<?php  //echo $sect->subject_id; ?>"><?php  //echo $sect->subject_name; ?></option> -->
-                                              <?php //} ?> 
-                                          </select>
+                                              <p id="ajaxres"></p>
+
+
+                                               <!-- <select name="subject_name" id="sub_name" class="selectpicker" data-title="Select Subject" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+
+
+                                                 <option id="sub_name" value="">Select</option>
+
+                                          </select> -->
                                             </div>
 
                                             <label class="col-sm-2 control-label">Exam Date</label>
                                            <div class="col-sm-2">
                   <input type="text" name="exam_date" class="form-control datepicker"  placeholder="Enter Exam Date" value="">
 				  </div>
-				    <div class="col-sm-2"> 
+				    <div class="col-sm-2">
 					<select name="time" class="selectpicker" data-title="Select Time" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                    <option value="AM">AM</option>
 								   <option value="PM">PM</option>
                     </select>
-				  
+
                                             </div>
 				                     </div>
 
@@ -204,53 +182,60 @@ echo date_format($date,"d-m-Y");  ?> ( <?php echo $rows->times; ?> ) </td>
 
 </div>
 <script type="text/javascript">
-  function checknamefun(classid)
-   {   
+function checknamefun(classid)
+   {
+     //alert(classid);
       $.ajax({
-			type:'post',
-			url:'<?php echo base_url(); ?>examination/checker',
-			data:{classid:classid},
+            type:'post',
+            url:'<?php echo base_url(); ?>examination/checker',
+            data:{classid:classid},
+            dataType: 'json',
 
-			success:function(test1)
-			{
-				
-				alert(test1);
-				if(test1!='')
-				{
-				    $('#sub_name').val(test1);
-					// checknamefun1(val);
-			        //$("#msg").html(test);
-				}
-				else{
-					alert("Admission Number not found");
-					//$("#msg").html(test);
-				}
-				
-			}
-	  });
+            success:function(test1)
+            {
+
+              var sub=test1.subject_name;
+
+              alert(sub);
+              alert(sub[1]);
+              //alert(sub.length);
+            //  $("#ajaxres").html(test1)
+            //  alert(test1.subject_id);
+               //var leng=test1.length;
+               //alert(leng);
+                  // for(i=0;i<=leng;i++)
+                  // {
+                  //   //alert(test1[$i]);
+                  //   $('#sub_name').val(test1[i]);
+                  //
+                  // }
+
+
+            }
+      });
 }
 
 </script>
- <script type="text/javascript">  
+ <script type="text/javascript">
  /* function checknamefun(val)
    {
-                      $(document).ready(function() {  
-                         $("#countriesDrp").change(function(){  
-                         /*dropdown post 
-                         $.ajax({  
-                            url:"<?php echo base_url(); ?>/examination/checker",  
-                            data: {id:  
-                               $(this).val()},  
-                            type: "POST",  
-                            success:function(data){  
-                            $("#cityDrp").html(data);  
-                         }  
-                      });  
-                   });  
+                      $(document).ready(function() {
+                         $("#countriesDrp").change(function(){
+                         /*dropdown post
+                         $.ajax({
+                            url:"<?php echo base_url(); ?>/examination/checker",
+                            data: {id:
+                               $(this).val()},
+                            type: "POST",
+                            success:function(data){
+                            $("#cityDrp").html(data);
+                         }
+                      });
+                   });
                 })
    }
 				;   */
-             </script>  
+             </script>
 <script type="text/javascript">
 
 $(document).ready(function () {

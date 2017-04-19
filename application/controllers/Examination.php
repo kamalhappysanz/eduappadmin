@@ -76,23 +76,16 @@ class Examination extends CI_Controller
 	 		 }
 	 	}
 
-		 public function checker()  
-          {  
-			 
-			   $classid = $this->input->post('classid');  
-			  
-			  $data['sub']=$this->class_manage->get_subject($classid);
-			  
-              print_r($data['sub']);	  
-			  /* $output = null;  
-			  foreach ($data['sub'] as $row)  
-			  {  
-				 
-				  $output = "<option value='".$row->class_sec_id."'>".$row->subject_name."</option>";  
-			  }  
-			  echo $output;  */ 
-        }  
-	   
+		      public function checker()
+          {
+			    $classid = $this->input->post('classid');
+			   $data=$this->class_manage->get_subject($classid);
+         //print_r($data);
+    echo  json_encode($data);
+
+
+        }
+
 
 		public function create()
 		{
@@ -257,7 +250,7 @@ $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject
 				 $exam_date=$this->input->post('exam_date');
 				 $dateTime = new DateTime($exam_date);
                  $formatted_date=date_format($dateTime,'Y-m-d' );
-				 
+
 				 $time=$this->input->post('time');
 
 				 $notes=$this->input->post('notes');
@@ -278,7 +271,7 @@ $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject
 		}
 	}
 
-		
+
 
 
 
