@@ -64,6 +64,38 @@ Class Class_manage extends CI_Model
          return $data;
        }
 
+        public function get_subject($classid)  
+       {  
+			  $query="SELECT cm.class_sec_id,cm.subject,su.* FROM edu_classmaster AS cm,edu_subject AS su WHERE  cm.subject=su.subject_id AND cm.class_sec_id='$classid'";
+			  $resultset=$this->db->query($query);
+			  $row=$resultset->result(); 
+			   foreach($row as $rows)
+			  {
+			   $id=$rows->subject;
+			   }
+			   $id=$rows->subject;
+			   $sQuery = "SELECT * FROM edu_subject";
+			   $objRs=$this->db->query($sQuery);
+			   
+			  $rows=$objRs->result();
+			  foreach ($rows as $rows1) {
+			  $s= $rows1->subject_id;
+			  $sec=$rows1->subject_name;
+			 
+			 $arryPlatform = explode(",", $id);
+		
+			 $sPlatform_id  = trim($s);
+			 $sPlatform_name  = trim($sec);
+			 if(in_array($sPlatform_id, $arryPlatform )) {
+				 $a=$sec;
+				  //echo $a;
+				 return $a;
+				  //print_r($a);
+			 }
+			 //return $a;
+		    
+		   }
+      }
 
-}
+	   }
 ?>
