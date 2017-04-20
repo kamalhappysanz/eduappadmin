@@ -196,46 +196,16 @@ function checknamefun(classid)
 
               var sub=test1.subject_name;
 
-              alert(sub);
+            //  alert(sub);
               alert(sub[1]);
               //alert(sub.length);
-            //  $("#ajaxres").html(test1)
-            //  alert(test1.subject_id);
-               //var leng=test1.length;
-               //alert(leng);
-                  // for(i=0;i<=leng;i++)
-                  // {
-                  //   //alert(test1[$i]);
-                  //   $('#sub_name').val(test1[i]);
-                  //
-                  // }
-
-
-            }
+             //$("#ajaxres")html("hello");
+          }
       });
 }
 
 </script>
- <script type="text/javascript">
- /* function checknamefun(val)
-   {
-                      $(document).ready(function() {
-                         $("#countriesDrp").change(function(){
-                         /*dropdown post
-                         $.ajax({
-                            url:"<?php echo base_url(); ?>/examination/checker",
-                            data: {id:
-                               $(this).val()},
-                            type: "POST",
-                            success:function(data){
-                            $("#cityDrp").html(data);
-                         }
-                      });
-                   });
-                })
-   }
-				;   */
-             </script>
+
 <script type="text/javascript">
 
 $(document).ready(function () {
