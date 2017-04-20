@@ -14,6 +14,7 @@ class Examination extends CI_Controller
 			$this->load->model('classmodel');
 			$this->load->model('class_manage');
 			$this->load->model('yearsmodel');
+			$this->load->model('teachermodel');
 
 		  $this->load->helper('url');
 		  $this->load->library('session');
@@ -63,6 +64,7 @@ class Examination extends CI_Controller
 			$datas['sec'] = $this->subjectmodel->getsubject();
 			$datas['class'] = $this->classmodel->getclass();
 			$datas['getall_class']=$this->class_manage->getall_class();
+			$datas['teacheres'] = $this->teachermodel->get_all_teacher1();
 
 			$user_type=$this->session->userdata('user_type');
 			 if($user_type==1)
@@ -77,14 +79,13 @@ class Examination extends CI_Controller
 	 	}
 
 		      public function checker()
-          {
+               {
 			    $classid = $this->input->post('classid');
-			   $data=$this->class_manage->get_subject($classid);
-         //print_r($data);
-    echo  json_encode($data);
+			    $data=$this->class_manage->get_subject($classid);
+                //print_r($data);
+                echo json_encode($data);
 
-
-        }
+               }
 
 
 		public function create()
@@ -163,16 +164,14 @@ class Examination extends CI_Controller
 					             else{
 									 $this->session->set_flashdata('msg','Failed To Updated');
 									 redirect('examination/add_exam');
-
 							}
 					}
-
 				}
 
 
 		public function add_exam_details()
 		{
-			$datas=$this->session->userdata();
+			 $datas=$this->session->userdata();
 			 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
 
@@ -182,17 +181,24 @@ class Examination extends CI_Controller
 			     //$exam_id=$this->input->post('exam_id');
 				 $exam_year=$this->input->post('exam_year');
 			     $class_name=$this->input->post('class_name');
-				 $subject_name=$this->input->post('subject_name');
+				
+				 $subject_name=$this->input->post('subject_id');
+
+				 //print_r($subject_name);exit;
 
 				 $exam_date=$this->input->post('exam_date');
 
-				 $dateTime = new DateTime($exam_date);
-				 $formatted_date=date_format($dateTime,'Y-m-d' );
-
+			   	 //$dateTime = new DateTime($exam_date);
+				 //$formatted_date=date_format($dateTime,'Y-m-d' );
+				// print_r($exam_date);exit;
+				 
 				 $time=$this->input->post('time');
-				 $notes=$this->input->post('notes');
+				//  print_r($time);exit;
+				
+				 $teacher_id=$this->input->post('teacher_id');
+				 //  print_r($notes);exit;
 
-$datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$formatted_date,$time,$notes);
+           $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$exam_date,$time,$teacher_id);
 
 			 if($datas['status']=="success"){
 					$this->session->set_flashdata('msg','Added Successfully');
@@ -253,9 +259,9 @@ $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject
 
 				 $time=$this->input->post('time');
 
-				 $notes=$this->input->post('notes');
+				 $teacher_id=$this->input->post('teacher_id');
 
-				 $datas=$this->examinationmodel->update_exam_details($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$notes);
+				 $datas=$this->examinationmodel->update_exam_details($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$teacher_id);
 
 				 if($datas['status']=="success")
 					 {
@@ -270,17 +276,6 @@ $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject
 			}
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 

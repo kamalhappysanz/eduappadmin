@@ -105,7 +105,7 @@
 
 
                                             <label class="col-sm-2 control-label">Select Subject</label>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-2">
                                                <select name="subject_name" class="selectpicker" data-title="Select Subject" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                   <?php
                           $tea_name=$rows->subject_id;
@@ -130,10 +130,37 @@
                                         ?>
                                   </select>
                                             </div>
-
-                                            <label class="col-sm-2 control-label">Exam Date</label>
-                                           <div class="col-sm-2">
+											<div class="col-sm-2">
                             <input type="text" name="exam_date" class="form-control datepicker"  placeholder="Enter Exam Date" value="<?php $date=date_create($rows->exam_date);echo date_format($date,"d-m-Y");?>">
+                                            </div>
+
+                                          <label class="col-sm-2 control-label">Teacher</label>
+                                           <div class="col-sm-2">
+										    <select name="teacher_id" class="selectpicker" data-title="Select Subject" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                                  <?php
+                          $tea_name=$rows->teacher_id;
+                          $sQuery = "SELECT * FROM edu_teachers ";
+                          $objRs=$this->db->query($sQuery);
+                          $row=$objRs->result();
+                          foreach ($row as $rows1)
+						  {
+								 $s= $rows1->teacher_id;
+								 $sec=$rows1->name;
+								 $arryPlatform = explode(",",$tea_name);
+								 $sPlatform_id  = trim($s);
+								 $sPlatform_name  = trim($sec);
+								 if (in_array($sPlatform_id, $arryPlatform ))
+								  {
+                                       echo "<option  value=\"$s\" selected  /> $sec &nbsp;&nbsp; </option>";
+                                  }
+                                 else {
+                                echo "<option value=\"$s\" />$sec &nbsp;&nbsp;</option>";
+                                 }
+                                      }
+                                        ?>
+                                  </select>
+								  
+                           
                                             </div>
 					 <div class="col-sm-2"> 
 					<select name="time" class="selectpicker" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -148,7 +175,7 @@
                                     </fieldset>
 
 
-								   <fieldset>
+								  <!-- <fieldset>
                                         <div class="form-group">
 
 
@@ -158,7 +185,7 @@
                                             </div>
 
                                         </div>
-                                    </fieldset>
+                                    </fieldset>-->
 
 
 									 <fieldset>
@@ -198,7 +225,7 @@
          subject_name:{required:true },
          exam_date:{required:true },
          class_name:{required:true },
-         notes:{required:true }
+         teacher_id:{required:true }
 
   },
      messages: {
@@ -206,7 +233,7 @@
            subject_name: "Select Subject",
            exam_date: "Enter Exam Date",
            class_name: "Select Class",
-           notes: "Enter Notes",
+           teacher_id: "Select Teachers",
 
 
          }

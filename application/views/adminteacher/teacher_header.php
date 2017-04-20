@@ -79,15 +79,15 @@ font-weight: 500;
 							</a>
 							<ul class="dropdown-menu dropdown-with-icons">
 								<li>
-									<a href="<?php echo base_url(); ?>">
+									<a href="<?php echo base_url(); ?>teacherprofile/profilepic">
 										<i class="pe-7s-tools"></i> Profile
 									</a>
 								</li>
-								<li>
-									<a href="<?php echo base_url(); ?>">
-										<i class="pe-7s-tools"></i> Setting
-									</a>
-								</li>
+								 <li>
+                           <a href="<?php echo base_url(); ?>adminlogin/profile">
+                           <i class="pe-7s-tools"></i> Setting
+                           </a>
+                        </li>
 								<li class="divider"></li>
 
 								<li>
