@@ -140,7 +140,7 @@
                                             <div class="col-sm-4">
                                                 <input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control">
                                             </div>
-                                              
+
 											   <label class="col-sm-2 control-label">Language Proposed</label>
                                             <div class="col-sm-4">
                                                 <select name="lang" class="selectpicker" data-title="Language Proposed" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -148,7 +148,7 @@
 					   <option value="Tamil">Tamil</option>
                                       </select>
                                             </div>
-											
+
                                         </div>
                                     </fieldset>
                                     <fieldset>
@@ -176,7 +176,7 @@
                                             </div>
                                         </div>
                                     </fieldset>
-									
+
 									<fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">School Studied</label>
@@ -185,11 +185,11 @@
 												<div class="col-md-4">
                                                         <input type="sch_name" placeholder="Name of last school" class="form-control">
                                                     </div>
-													
+
                                                     <div class="col-md-4">
-                                                      
+
 				<select name="class_name" class="selectpicker" data-title="Standard Last studied" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-				
+
                              <?php foreach ($class as $clas) {  ?>
                     <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
                              <?php } ?>
@@ -250,7 +250,7 @@ jQuery('#admissionmenu').addClass('collapse in');
 $('#admission').addClass('active');
 $('#admission1').addClass('active');
 
-/*  $('#admissionform').validate({ // initialize the plugin
+  $('#admissionform').validate({ // initialize the plugin
      rules: {
          admission_no:{required:true, number: true },
          admission_year:{required:true },
@@ -288,7 +288,7 @@ $('#admission1').addClass('active');
            mobile:"Enter the mobile Number",
           // student_pic:"Enter the Student Picture"
          }
- }); */
+ }); 
 });
 
 </script>
