@@ -50,6 +50,27 @@ class Teacherattendence extends CI_Controller {
 	 	}
 
 
+		public function attendence($class_id){
+
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			 if($user_type==2){
+			 $datas['res']=$this->teacherattendencemodel->get_studentin_class($class_id);
+			//  echo "<pre>";
+			//  print_r($datas['res']);exit;
+			 $this->load->view('adminteacher/teacher_header');
+			 $this->load->view('adminteacher/attendence/attendence',$datas);
+			 $this->load->view('adminteacher/teacher_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+
+
+
+
 
 
 

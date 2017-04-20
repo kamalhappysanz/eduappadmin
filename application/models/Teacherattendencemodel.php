@@ -55,6 +55,15 @@ Class Teacherattendencemodel extends CI_Model
        }
 
 
+       function get_studentin_class($class_id){
+         $query="SELECT * FROM edu_enrollment WHERE class_id='$class_id'";
+         $resultset=$this->db->query($query);
+         return $resultset->result();
+
+
+       }
+
+
 
 
 
