@@ -13,7 +13,7 @@
                             <form method="post" action="<?php echo base_url(); ?>examination/add_exam_details" class="form-horizontal" enctype="multipart/form-data" id="examform">
                                 <fieldset>
                                     <div class="form-group">
-
+<p id="msg" style="text-align:center;"></p>
                                         <label class="col-sm-2 control-label">Exam</label>
                                         <div class="col-sm-4">
 
@@ -36,9 +36,9 @@
 
                                         </div>
 
-                                        <label class="col-sm-2 control-label">Class </label>
+                                        <label class="col-sm-2 control-label">Class</label>
                                         <div class="col-sm-4">
-                                            <select name="class_name"  class="selectpicker" data-title="Select class" data-style="btn-default btn-block" onchange="checknamefun(this.value)" data-menu-style="dropdown-blue">
+                                            <select name="class_name"  class="selectpicker" data-title="Select class" onchange="checknamefun(this.value)" >
                                                 <?php foreach ($getall_class as $rows) {  ?>
                                                     <option value="<?php echo $rows->class_sec_id; ?>">
                                                         <?php echo $rows->class_name; ?>&nbsp; - &nbsp;
@@ -185,27 +185,29 @@
             type: 'post',
             url: '<?php echo base_url(); ?>examination/checker',
             data: {
-                classid: classid
+                classid:classid
             },
-            dataType: 'json',
+           dataType: 'json',
 
             success: function(test1) {
-				
-				//alert(test1);
-				
-                if (test1 !='') {
-                    //alert("hi");
+				//alert(test1.status);
+				//console.log(test1);
+				//var test=test1.status;
+				//alert(test);
+                if (test1.status=='Success') {
+                   
                     var sub = test1.subject_name;
+					//alert(sub.length);
                     var sub_id = test1.subject_id;
-                    var len = sub.length;
+                    var len=sub.length;
+					//alert(len);
                     var i;
                     var name = '';
                     var exam_date = '';
                     var exam_secction = '';
                     var teacher = '';
                     for (i = 0; i < len; i++) {
-                        //alert(sub.length);
-                        //$('#firstName').val(sub[i]);
+                       
                         name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
 
                         exam_date += '<input type="text" required id="datepicker1" placeholder="Ender Exam Date" name="exam_date[]" class="form-control datePick" value=""></br>';
@@ -221,8 +223,10 @@
 
                     }
                 } else {
-                    alert("Subject Not Found");
-                }
+					
+					$('#msg').html('<span style="color:red;text-align:center;">Subject Not Found</p>');
+                    //alert("Subject Not Found");
+                } 
             }
         });
     }

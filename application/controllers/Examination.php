@@ -80,11 +80,10 @@ class Examination extends CI_Controller
 
 		      public function checker()
                {
-			    $classid = $this->input->post('classid');
-			    $data=$this->class_manage->get_subject($classid);
-                //print_r($data);
-                echo json_encode($data);
-
+					 $classid = $this->input->post('classid');
+					//echo $classid;exit;
+					 $data=$this->class_manage->get_subject($classid);
+					 echo json_encode($data);
                }
 
 
