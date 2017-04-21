@@ -16,8 +16,29 @@ Class Teacherprofilemodel extends CI_Model
          return $resultset->result();
    }
   
- 
- 
+   function get_teacheruser($user_id)
+      {
+         $query="SELECT * FROM edu_users WHERE user_id='$user_id'";
+         $resultset=$this->db->query($query);
+         return $resultset->result();
+       }
+	   
+  function updateprofile($user_id,$oldpassword,$newpassword)
+  {
+         $checkpassword="SELECT user_id FROM edu_users WHERE user_password='$oldpassword' AND user_id='$user_id'";
+         $res=$this->db->query($checkpassword);
+         if($res->num_rows()==1)
+		 {
+           $query="UPDATE edu_users SET user_password='$newpassword',updated_date=NOW() WHERE user_id='$user_id'";
+           $ex=$this->db->query($query);
+            $data= array("status" => "success");
+           return $data;
+         }else{
+           $data= array("status" => "failure");
+          return $data;
+         }
+       }
+
  
   function teacherprofileupdate($user_id,$teachername,$email,$sex,$dob,$age,$nationality,$religion,$mobile,$community_class,$community,$address,$userFileName)
     {

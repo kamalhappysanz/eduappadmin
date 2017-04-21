@@ -195,7 +195,7 @@
 				//var test=test1.status;
 				//alert(test);
                 if (test1.status=='Success') {
-                   
+                 
                     var sub = test1.subject_name;
 					//alert(sub.length);
                     var sub_id = test1.subject_id;
@@ -207,7 +207,6 @@
                     var exam_secction = '';
                     var teacher = '';
                     for (i = 0; i < len; i++) {
-                       
                         name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
 
                         exam_date += '<input type="text" required id="datepicker1" placeholder="Ender Exam Date" name="exam_date[]" class="form-control datePick" value=""></br>';
@@ -220,11 +219,17 @@
                         $("#ajaxres1").html(exam_date);
                         $("#ajaxres2").html(exam_secction);
                         $("#ajaxres3").html(teacher);
-
+                        $('#msg').html('');
                     }
                 } else {
 					
 					$('#msg').html('<span style="color:red;text-align:center;">Subject Not Found</p>');
+
+					    $("#ajaxres").html('');
+                        $("#ajaxres1").html('');
+                        $("#ajaxres2").html('');
+                        $("#ajaxres3").html('');
+					//$('#examform')[0].reset();
                     //alert("Subject Not Found");
                 } 
             }

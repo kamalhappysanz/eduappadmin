@@ -84,7 +84,7 @@ font-weight: 500;
 									</a>
 								</li>
 								 <li>
-                           <a href="<?php echo base_url(); ?>adminlogin/profile">
+                           <a href="<?php echo base_url(); ?>teacherprofile/profile">
                            <i class="pe-7s-tools"></i> Setting
                            </a>
                         </li>

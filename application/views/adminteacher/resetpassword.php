@@ -21,7 +21,7 @@
                        }
                         ?>
                        <div class="content">
-                           <form action="<?php echo base_url(); ?>adminlogin/updateprofile" method="post" enctype="multipart/form-data" id="myformpass">
+                           <form action="<?php echo base_url(); ?>teacherprofile/updateprofile" method="post" enctype="multipart/form-data" id="myformpass">
                                <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
@@ -67,6 +67,10 @@
                                        </div>
                                    </div>
                                </div>
+
+
+
+
 
                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                <div class="clearfix"></div>
