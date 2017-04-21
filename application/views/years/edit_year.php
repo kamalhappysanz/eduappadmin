@@ -56,7 +56,7 @@
 </div>
 <script type="text/javascript">
       $().ready(function(){
-        jQuery('#yearsmenu').addClass('collapse in');
+
         $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
           icons: {
@@ -72,4 +72,9 @@
           }
        });
       });
+
+
+      $('#mastersmenu').addClass('collapse in');
+      $('#master').addClass('active');
+      $('#masters1').addClass('active');
   </script>

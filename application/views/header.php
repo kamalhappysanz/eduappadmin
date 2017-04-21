@@ -102,7 +102,25 @@
                      <p>Dashboard</p>
                   </a>
                </li>
-               <li id="years">
+               <li id="master">
+                  <a data-toggle="collapse" href="#mastersmenu" id="masters">
+                     <i class="pe-7s-date"></i>
+                     <p>Masters</p>
+                     <b class="caret"></b>
+                  </a>
+                  <div class="collapse" id="mastersmenu">
+                     <ul class="nav">
+                        <li id="masters1"><a href="<?php echo base_url();  ?>years/home">Academic Years</a></li>
+                        <li id="masters2"><a href="<?php echo base_url();  ?>years/terms">Academic Terms</a></li>
+                        <li id="masters3"><a href="<?php echo base_url(); ?>classadd/addclass">Class & Sections</a></li>
+                        <li id="masters4" ><a href="<?php echo base_url(); ?>subjectadd/addsubject">Subjects</a></li>
+                          <li id="masters5"><a href="<?php echo base_url(); ?>classmanage/home">Class Management </a></li>
+
+                     </ul>
+                  </div>
+               </li>
+
+               <!-- <li id="years">
                   <a data-toggle="collapse" href="#yearsmenu" id="years">
                      <i class="pe-7s-date"></i>
                      <p>Years & Terms</p>
@@ -112,11 +130,11 @@
                      <ul class="nav">
                         <li id="years1"><a href="<?php echo base_url();  ?>years/home">Add / View Years</a></li>
                         <li id="years2"><a href="<?php echo base_url();  ?>years/terms">Add / View Terms</a></li>
-                        <!-- <li><a href="<?php //echo base_url();  ?>years/view">View</a></li> -->
+
                      </ul>
                   </div>
-               </li>
-               <li  id="class">
+               </li> -->
+               <!-- <li  id="class">
                   <a data-toggle="collapse" href="#classmenu" id="">
                      <i class="pe-7s-note2"></i>
                      <p>Class/Section	</p>
@@ -129,8 +147,8 @@
                         <li id="class3"><a href="<?php echo base_url(); ?>classmanage/home">Class Management </a></li>
                      </ul>
                   </div>
-               </li>
-               <li id="subject">
+               </li> -->
+               <!-- <li id="subject">
                   <a data-toggle="collapse" href="#subjectmenu">
                      <i class="pe-7s-ribbon"></i>
                      <p>Subject	</p>
@@ -141,30 +159,31 @@
                         <li id="subject1" ><a href="<?php echo base_url(); ?>subjectadd/addsubject">Add / View Subject</a></li>
                      </ul>
                   </div>
-               </li>
+               </li> -->
                <li id="admission">
                   <a data-toggle="collapse" href="#admissionmenu">
                      <i class="pe-7s-add-user"></i>
-                     <p>Admission Students	</p>
+                     <p>Student's Admission	</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="admissionmenu">
                      <ul class="nav">
-                        <li id="admission1"><a href="<?php echo base_url(); ?>admission/home">Add Admission</a></li>
-                        <li id="admission2"><a href="<?php echo base_url(); ?>admission/view">List of Admission</a></li>
+                        <li id="admission1"><a href="<?php echo base_url(); ?>admission/home">Student Detail</a></li>
+                        <li id="admission2"><a href="<?php echo base_url(); ?>admission/view">Student Search</a></li>
+                        <li id="admission3"><a href="<?php echo base_url(); ?>parents/view">List of Parents</a></li>
                      </ul>
                   </div>
                </li>
                <li id="enroll">
                   <a data-toggle="collapse" href="#enrollmentmenu">
                      <i class="pe-7s-study"></i>
-                     <p>Enrollment Students	</p>
+                     <p>Registration	</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="enrollmentmenu">
                      <ul class="nav">
-                        <li id="enroll1"><a href="<?php echo base_url(); ?>enrollment/home">Add Enrollment</a></li>
-                        <li id="enroll2"><a href="<?php echo base_url(); ?>enrollment/view">List of Enrollment</a></li>
+                        <li id="enroll1"><a href="<?php echo base_url(); ?>enrollment/home">Student Registration</a></li>
+                        <li id="enroll2"><a href="<?php echo base_url(); ?>enrollment/view">List of Registration</a></li>
                      </ul>
                   </div>
                </li>
@@ -184,13 +203,15 @@
                <li id="event">
                   <a data-toggle="collapse" href="#eventmenu">
                      <i class="pe-7s-gym"></i>
-                     <p>Events</p>
+                     <p>Calender</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="eventmenu">
                      <ul class="nav">
                          <li id="event2"><a href="<?php echo base_url(); ?>event/create">Add / View Event</a></li>
                         <li id="event1"><a href="<?php echo base_url(); ?>event/home">Event Calender</a></li>
+                          <li id="leave1"><a href="<?php echo base_url(); ?>leavemanage/home">Leave Calender</a></li>
+
 
                         <!-- <li><a href="<?php echo base_url(); ?>event/view">View Event</a></li> -->
                      </ul>
@@ -264,7 +285,7 @@
                <li id="user">
                   <a data-toggle="collapse" href="#usermanagement">
                      <i class="pe-7s-plugin"></i>
-                     <p>User Management	</p>
+                     <p>Control Panel	</p>
                      <b class="caret"></b>
                   </a>
                   <div class="collapse" id="usermanagement">

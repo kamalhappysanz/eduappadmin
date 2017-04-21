@@ -20,7 +20,7 @@
                                           </select>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Section</label>
                                         <div class="col-md-8">
@@ -166,9 +166,9 @@
 
 
 $(document).ready(function () {
-  $('#classmenu').addClass('collapse in');
-  $('#class').addClass('active');
-  $('#class3').addClass('active');
+  $('#mastersmenu').addClass('collapse in');
+  $('#master').addClass('active');
+  $('#masters5').addClass('active');
  $('#myformclassmange').validate({ // initialize the plugin
      rules: {
 

@@ -65,7 +65,7 @@
 
 										 <label class="col-sm-2 control-label">Class </label>
                                             <div class="col-sm-4">
-								 <select multiple data-title="Select More Than one class" name="class_name" id="multiple-class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
+								 <select multiple  name="class_name" id="multiple-class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
 
 										<?php
 												$sPlatform=$rows->classmaster_id;
@@ -106,7 +106,7 @@
 
                                             <label class="col-sm-2 control-label">Select Subject</label>
                                             <div class="col-sm-2">
-                                               <select name="subject_name" class="selectpicker" data-title="Select Subject" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                               <select name="subject_name" class="selectpicker"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                   <?php
                           $tea_name=$rows->subject_id;
                           $sQuery = "SELECT * FROM edu_subject";
@@ -159,16 +159,16 @@
                                       }
                                         ?>
                                   </select>
-								  
-                           
+
+
                                             </div>
-					 <div class="col-sm-2"> 
+					 <div class="col-sm-2">
 					<select name="time" class="selectpicker" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                    <option value="AM">AM</option>
 								   <option value="PM">PM</option>
                     </select>
 					<script language="JavaScript">document.examform.time.value="<?php echo $rows->times; ?>";</script>
-				  
+
                                             </div>
 				                     </div>
 

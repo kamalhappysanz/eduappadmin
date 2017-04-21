@@ -123,9 +123,9 @@ echo date_format($date,"d-m-Y");  ?>" name="end_month" required class="form-cont
 
 <script type="text/javascript">
       $().ready(function(){
-jQuery('#yearsmenu').addClass('collapse in');
-$('#years').addClass('active');
-$('#years2').addClass('active');
+        $('#mastersmenu').addClass('collapse in');
+        $('#master').addClass('active');
+        $('#masters2').addClass('active');
         $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
           icons: {

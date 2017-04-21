@@ -178,9 +178,9 @@ var $table = $('#bootstrap-table');
 </script>
 <script type="text/javascript">
       $().ready(function(){
-jQuery('#yearsmenu').addClass('collapse in');
-$('#years').addClass('active');
-$('#years1').addClass('active');
+        $('#mastersmenu').addClass('collapse in');
+        $('#master').addClass('active');
+        $('#masters1').addClass('active');
         $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
           icons: {

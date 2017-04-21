@@ -47,9 +47,9 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
-jQuery('#subjectmenu').addClass('collapse in');
-$('#subject').addClass('active');
-$('#subject1').addClass('active');
+  $('#mastersmenu').addClass('collapse in');
+  $('#master').addClass('active');
+  $('#masters4').addClass('active');
 
   $('#myformsub').validate({ // initialize the plugin
       rules: {

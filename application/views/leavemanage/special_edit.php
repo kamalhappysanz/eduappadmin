@@ -91,7 +91,9 @@
 </div>
 
 <script type="text/javascript">
-
+$('#eventmenu').addClass('collapse in');
+$('#event').addClass('active');
+$('#leave1').addClass('active');
 $(document).ready(function () {
  $('#eventform').validate({ // initialize the plugin
      rules: {

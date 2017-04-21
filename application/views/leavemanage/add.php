@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Create Leave  </legend>
+                                <legend>Create Leave  <span><a href="<?php echo base_url(); ?>leavemanage/view" class="pull-right btn btn-wd" style="margin-top:-10px;">View Leaves</a></span></legend>
 
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
@@ -152,7 +152,9 @@
 </div>
 
 <script type="text/javascript">
-
+$('#eventmenu').addClass('collapse in');
+$('#event').addClass('active');
+$('#leave1').addClass('active');
 $(document).ready(function () {
   $('#leaves_name').hide();
   $('#leaves_date').hide();

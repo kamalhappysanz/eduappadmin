@@ -92,9 +92,9 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
-jQuery('#classmenu').addClass('collapse in');
-$('#class').addClass('active');
-$('#class2').addClass('active');
+  $('#mastersmenu').addClass('collapse in');
+  $('#master').addClass('active');
+  $('#masters3').addClass('active');
  $('#myformsection').validate({ // initialize the plugin
      rules: {
 

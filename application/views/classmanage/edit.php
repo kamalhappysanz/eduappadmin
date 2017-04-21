@@ -99,7 +99,7 @@
    </div>
 </div>
 <script type="text/javascript">
-$('#classmenu').addClass('collapse in');
-$('#class').addClass('active');
-$('#class3').addClass('active');
+$('#mastersmenu').addClass('collapse in');
+$('#master').addClass('active');
+$('#masters5').addClass('active');
 </script>

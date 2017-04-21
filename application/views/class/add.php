@@ -6,7 +6,7 @@
                    <div class="card">
                        <div class="header">
                            <h4 class="title">Add Class</h4>
-
+                           <p class="pull-right btn btn-wd" style="margin-top:-30px;"><a href="<?php echo base_url(); ?>sectionadd/addsection">Add / View Section</a></p>
                        </div>
 
                        <div class="content">
@@ -14,7 +14,7 @@
                                <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
-                                           <label>Name</label>
+                                           <label>Class</label>
                                            <input type="text" class="form-control"  placeholder="" name="classname" value="">
 
                                        </div>
@@ -91,11 +91,9 @@
 
 $(document).ready(function () {
 
-  $('#classmenu').addClass('collapse in');
-
-  $('#class').addClass('active');
-  $('#class1').addClass('active');
-  //jQuery('#classmenu').addClass('active');
+  $('#mastersmenu').addClass('collapse in');
+  $('#master').addClass('active');
+  $('#masters3').addClass('active');
 
  $('#myformclass').validate({ // initialize the plugin
      rules: {

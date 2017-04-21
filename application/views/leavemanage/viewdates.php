@@ -53,6 +53,9 @@
 </div>
 
 <script type="text/javascript">
+$('#eventmenu').addClass('collapse in');
+$('#event').addClass('active');
+$('#leave1').addClass('active');
 var $table = $('#bootstrap-table');
       $().ready(function(){
         //  jQuery('#enrollmentmenu').addClass('collapse in');

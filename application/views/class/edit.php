@@ -48,9 +48,9 @@
 
 $(document).ready(function () {
 
-  jQuery('#classmenu').addClass('collapse in');
-  $('#class').addClass('active');
-  $('#class1').addClass('active');
+  $('#mastersmenu').addClass('collapse in');
+  $('#master').addClass('active');
+  $('#masters3').addClass('active');
 
   $('#myformclass').validate({ // initialize the plugin
       rules: {

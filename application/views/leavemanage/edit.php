@@ -124,5 +124,7 @@
 
 <script type="text/javascript">
 
-
+$('#eventmenu').addClass('collapse in');
+$('#event').addClass('active');
+$('#leave1').addClass('active');
 </script>

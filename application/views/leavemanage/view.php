@@ -9,6 +9,10 @@
 <?php endif; ?>
     <div class="col-md-12">
       <div class="card">
+        <div class="header">
+            <legend>View  Leaves<span><a href="<?php echo base_url(); ?>leavemanage/home" class="pull-right btn btn-wd" style="margin-top:-10px;">Create Leaves</a></span></legend>
+
+        </div>
         <div class="content">
           <p>Regular Holiday</p>
           <table id="bootstrap-table" class="table">
@@ -227,4 +231,7 @@ function functionSpecial(id){
           });
 
 }
+$('#eventmenu').addClass('collapse in');
+$('#event').addClass('active');
+$('#leave1').addClass('active');
 </script>

@@ -180,9 +180,9 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
-jQuery('#yearsmenu').addClass('collapse in');
-$('#years').addClass('active');
-$('#years2').addClass('active');
+$('#mastersmenu').addClass('collapse in');
+$('#master').addClass('active');
+$('#masters2').addClass('active');
  $('#myformsection').validate({ // initialize the plugin
      rules: {
 
