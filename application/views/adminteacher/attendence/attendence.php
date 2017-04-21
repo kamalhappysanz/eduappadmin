@@ -6,7 +6,7 @@
 <div class="col-md-6">
                    <div class="card">
                        <div class="header">
-                           Table with Switches
+                           List Of Student in class
                        </div>
                        <div class="content table-full-width">
                            <table class="table table-striped">
