@@ -18,20 +18,30 @@
                             <div class="content">
                                 <form method="post" action="<?php echo base_url(); ?>enrollment/create" class="form-horizontal" enctype="multipart/form-data" id="admissionform">
 
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Admission Year</label>
-                                            <div class="col-sm-4">
-<input type="text" class="form-control" name="admit_year" id="admit_year" value="<?php echo $rows->admisn_year; ?>">
-                                           <!--     <select name="admit_year" class="selectpicker form-control" data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                  <option value="2017-2018">2017-2018</option>
-                                                  <option value="2018-2019">2018-2019</option>
-                                                    <option value="2019-2020">2019-2020</option>
-                                                </select> -->
-                                            </div>
+                                  <fieldset>
+                                              <div class="form-group">
+                                                  <label class="col-sm-2 control-label">Admission Year</label>
+                                                  <div class="col-sm-4">
+                                                      <?php
+                                                      $year=$rows->admisn_year;
+                                                      $query="SELECT * FROM edu_academic_year WHERE year_id='$year'";
+                                                      $objRs=$this->db->query($query);
+                                                      $row=$objRs->result();
+                                                      foreach ($row as $rows1)
+                                                        {
+                                                          $rows1->year_id;
+                                                          $fyear=$rows1->from_month;
+                                                          $month= strtotime($fyear);
+                                                          $eyear=$rows1->to_month;
+                                                          $month1= strtotime($eyear);
+                                                          }
+                                                      ?>
+                <input type="hidden" class="form-control" name="admit_year" id="admit_year" value="<?php echo $rows1->year_id; ?>">
+               <input type="text" class="form-control" name="admit_years" id="admit_years" readonly value="<?php echo date('Y',$month); ?> (To) <?php  echo date('Y',$month1); ?>">
+                                                  </div>
 
-                                        </div>
-                                    </fieldset>
+                                              </div>
+                                          </fieldset>
 
                                     <fieldset>
                                         <div class="form-group">
@@ -74,7 +84,7 @@
 
                                         </div>
                                     </fieldset>
-                                   
+
 
                                     <fieldset>
                                         <div class="form-group">

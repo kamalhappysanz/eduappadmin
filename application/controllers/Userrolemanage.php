@@ -131,7 +131,7 @@ public function get_user_parents($user_id)
 	if($user_type==1)
 	{
 		$this->load->view('header');
-		$this->load->view('userrole/edit_parents',$datas);
+		$this->load->view('userrole/edit_parent',$datas);
 		$this->load->view('footer');
 	}
 	else{
