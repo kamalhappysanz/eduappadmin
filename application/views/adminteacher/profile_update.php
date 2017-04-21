@@ -12,7 +12,7 @@
                  </div>
 
            <?php endif; ?>
-                           <h4 class="title">Edit Profile</h4>
+                           <h4 class="title">Edit Teacher Profile</h4>
                        </div>
                        <?php
                       // print_r($result);
@@ -21,12 +21,12 @@
                        }
                         ?>
                        <div class="content">
-                           <form action="<?php echo base_url(); ?>adminlogin/profileupdate" method="post" enctype="multipart/form-data">
+                           <form action="<?php echo base_url(); ?>teacherprofile/profileupdate" method="post" enctype="multipart/form-data" name="teacherform">
                                <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
-                                           <label>User Name</label>
-                          <input type="text" class="form-control" readonly placeholder="" name="name" value="<?php echo $rows->name; ?>">
+                                           <label>Profile Pic</label>
+                          <input type="file" name="teacher_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
                           <input type="hidden" class="form-control" readonly placeholder="" name="user_id" value="<?php echo $rows->teacher_id; ?>">
                           <input type="hidden" class="form-control" readonly placeholder="" name="user_pic_old" value="<?php echo $rows->profile_pic; ?>">
                           
@@ -66,7 +66,7 @@
                                </div>
 							   
 							   
-							                                  <div class="row">
+                        <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Date of birth</label>
@@ -99,6 +99,23 @@
                                        </div>
                                    </div>
                                </div>
+							   
+							   <div class="row">
+                                   <div class="col-md-5">
+                                       <div class="form-group">
+                                           <label>Community Class</label>
+                        <input type="text" placeholder="Community Class" name="community_class" class="form-control"  value="<?php echo $rows->community_class; ?>">
+                         
+                                       </div>
+                                   </div>
+
+                                   <div class="col-md-7">
+                                       <div class="form-group">
+                                           <label for="exampleInputEmail1"> Community</label>
+                                          <input type="text" placeholder="Community" name="community" class="form-control" value="<?php echo $rows->community; ?>">
+                                       </div>
+                                   </div>
+                               </div>
 							  
 							    <div class="row">
                                    <div class="col-md-5">
@@ -111,13 +128,18 @@
 
                                    <div class="col-md-7">
                                        <div class="form-group">
-                                           <label for="exampleInputEmail1"> Subject</label>
-                                             <select   name="subject"  class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
+                                           <label for="exampleInputEmail1">Subject</label>
+							
+										   
+										   
+                                             <select   name="subject" readonly class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
                                                     <?php foreach ($resubject as $rows3) {  ?>
                                                     <option value="<?php echo $rows3->subject_id; ?>"><?php echo $rows3->subject_name; ?></option>
                                               <?php      } ?>
-                                                  </select>
-												  <script language="JavaScript">document.teacherform.subject.value="<?php echo $rows->subject; ?>";</script>
+                                              </select>
+									 <script language="JavaScript">document.teacherform.subject.value="<?php echo $rows->subject; ?>";</script>
+									  <label for="exampleInputEmail1"> Enail</label>
+									  <input type="text" name="email"  class="form-control " id="email" placeholder="Email Address" onblur="checkMailStatus()"  value="<?php echo $rows->email; ?>"/>
                                        </div>
                                    </div>
                                </div>
@@ -125,12 +147,13 @@
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Class Teacher</label>
+						
                         <select   name="class_teacher"  class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
-                                                <?php foreach ($getall_class as $rows2) {  ?>
-                                                <option value="<?php echo $rows2->class_sec_id; ?>"><?php echo $rows2->class_name; ?>&nbsp; - &nbsp;<?php echo $rows2->sec_name; ?></option>
+                                       <?php foreach ($getall_class as $rows2) {  ?>
+                                  <option value="<?php echo $rows2->class_sec_id; ?>"><?php echo $rows2->class_name; ?>&nbsp; - &nbsp;<?php echo $rows2->sec_name; ?></option>
                                           <?php      } ?>
                                               </select>
-                                                  <script language="JavaScript">document.teacherform.class_teacher.value="<?php echo $rows->class_sec_id; ?>";</script>
+                                    <script language="JavaScript">document.teacherform.class_teacher.value="<?php echo $rows->class_sec_id; ?>";</script>
                          
                                        </div>
                                    </div>
@@ -155,38 +178,18 @@
                                      $sPlatform_id  = trim($s);
                                      $sPlatform_name  = trim($sec);
                                      if (in_array($sPlatform_id, $arryPlatform )) {
-                              //echo "<input type=\"checkbox\" name=\"chkPlatform[]\" value=\"$sPlatform_id\" checked />$sPlatform_name&nbsp;&nbsp;";
-                              // echo "<option  value=\"$sPlatform_id\" selected  />$sPlatform_name&nbsp;&nbsp; </option>";
                               ?>
-
                           <?php
-                                       echo "<option  value=\"$sPlatform_id\" selected  />$clas-$sec_name &nbsp;&nbsp; </option>";
+                                  echo "<option  value=\"$sPlatform_id\" selected  />$clas-$sec_name &nbsp;&nbsp; </option>";
                                    ?>
-
                                 <?php }
-                                 
-
                                       }
                                         ?>
-
                                   </select>
                                        </div>
                                    </div>
                                </div>
 							   
-							   
-					   
-                               <div class="row">
-                                   <div class="col-md-6">
-                                       <div class="form-group">
-                                         <label>Profile Pic</label>
-                                         <input type="file" class="form-control" placeholder="" value="" name="profile" onchange="loadFile(event)" accept="image/*" >
-                                       </div>
-                                   </div>
-                                   <div class="col-md-6">
-                                   </div>
-                               </div>
-
                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                <div class="clearfix"></div>
                            </form>
@@ -201,12 +204,8 @@
                        <div class="content">
                            <div class="author">
                                 <a href="#">
-								
                                <img class="avatar border-gray" id="output" src="<?php echo base_url(); ?>assets/teacher/profile/<?php echo $rows->profile_pic; ?>" alt="..."/>
-
-									
                                  <h4 class="title"><?php echo $rows->name;  ?><br />
-                                    
                                  </h4>
                                </a>
                            </div>

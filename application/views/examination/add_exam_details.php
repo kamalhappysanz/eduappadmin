@@ -190,7 +190,10 @@
             dataType: 'json',
 
             success: function(test1) {
-                if (test1 != '') {
+				
+				//alert(test1);
+				
+                if (test1 !='') {
                     //alert("hi");
                     var sub = test1.subject_name;
                     var sub_id = test1.subject_id;
