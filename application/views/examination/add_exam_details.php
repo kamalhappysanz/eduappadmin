@@ -112,16 +112,18 @@
                                     <div class="content">
                 
                                         <div class="fresh-datatables">
-										 <div class="col-sm-4">
-										
-                                            <select name="class_name" style="margin-top:30px;" class="selectpicker">
+					<form method="post" action="<?php echo base_url(); ?>examination/add_exam_detail" class="form-horizontal" enctype="multipart/form-data">
+										 <div class="col-sm-2" style="margin-top:15px;" >
+				                       <select name="class_name" data-title="Select class" style="margin-top:30px;" class="selectpicker" onchange="filterdetailsfun(this.value)">
                                                  <?php     foreach ($result1 as $rows)
-								             { ?> <option value=""><?php echo $rows->class_name;?>
+								             { ?> <option value="<?php echo $rows->classmaster_id; ?>"><?php echo $rows->class_name;?>
                                                                     <?php echo $rows->sec_name; ?></option>
 																	<?php } ?>
                                             </select>
-											
-                                        </div>
+											</div>
+											<div class="col-sm-2" style="margin-top:15px;">
+											<button type="submit" id="save" class="btn btn-info btn-fill center">Search </button>
+                                        </div></form>
                                             <table id="bootstrap-table" class="table">
 					
                                                 <thead>
@@ -167,7 +169,7 @@
                                                                     <?php echo $name; ?>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="<?php echo base_url(); ?>examination/edit_exam_details/<?php echo $rows->exam_detail_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                        <a href="<?php echo base_url(); ?>examination/edit_exam_details/<?php echo $rows->exam_detail_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                                                 </td>
 
                                                         </tr>
@@ -248,6 +250,67 @@
             }
         });
     }
+	
+	
+	
+	
+	/*  function filterdetailsfun(classid) {
+        alert(classid);
+		//exit;
+        $.ajax({
+            type: 'post',
+            url: '<?php echo base_url(); ?>examination/details_view',
+            data: {
+                classid:classid
+            },
+           dataType: 'json',
+
+            success: function(test1) {
+				//alert(test1.status);
+				//console.log(test1);
+				//var test=test1.status;
+				//alert(test);
+                if (test1.status=='Success') {
+                 
+                    var sub = test1.subject_name;
+					//alert(sub.length);
+                    var sub_id = test1.subject_id;
+                    var len=sub.length;
+					//alert(len);
+                    var i;
+                    var name = '';
+                    var exam_date = '';
+                    var exam_secction = '';
+                    var teacher = '';
+                    for (i = 0; i < len; i++) {
+                        name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
+
+                        exam_date += '<input type="text" required id="datepicker1" placeholder="Ender Exam Date" name="exam_date[]" class="form-control datePick" value=""></br>';
+
+                        exam_secction += '<select name="time[]" required class="form-control" data-title="Select Time" data-style="btn-default btn-block" data-menu-style="dropdown-blue"><option value="">Select</option><option value="AM">AM</option><option value="PM">PM</option></select></br>';
+
+                        teacher += '<select name="teacher_id[]" required id="teacher_id" class="form-control" ><option value="">Select Teacher</option><?php foreach ($teacheres as $rows) {  ?><option value="<?php echo $rows->teacher_id; ?>"><?php echo $rows->name; ?></option><?php  } ?></select></br>';
+
+                        $("#ajaxres").html(name);
+                        $("#ajaxres1").html(exam_date);
+                        $("#ajaxres2").html(exam_secction);
+                        $("#ajaxres3").html(teacher);
+                        $('#msg').html('');
+                    }
+                } else {
+					
+					$('#msg').html('<span style="color:red;text-align:center;">Subject Not Found</p>');
+
+					    $("#ajaxres").html('');
+                        $("#ajaxres1").html('');
+                        $("#ajaxres2").html('');
+                        $("#ajaxres3").html('');
+					//$('#examform')[0].reset();
+                    //alert("Subject Not Found");
+                } 
+            }
+        });
+    } */
 </script>
 
 <script type="text/javascript">

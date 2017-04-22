@@ -55,19 +55,19 @@
                   <div class="card">
 				  
                    <div class="content">
-                    <form method="post" action="<?php echo base_url(); ?>parents/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
+                    <form method="post" action="<?php echo base_url(); ?>homework/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
 					           <fieldset>
                                         <div class="form-group">
                                            <label class="col-sm-2 control-label">Type of Test</label>
                                            <div class="col-sm-10">
                                      <label class="radio radio-inline">
-                                       <input type="radio" data-toggle="radio" name="trn_cert" value="1">Class Test
+                                       <input type="radio" data-toggle="radio" name="test_type" value="Class-Test">Class Test
                                      </label>
 
 									<label class="radio ">
-										<input type="radio" data-toggle="radio" name="rec_sheet" value="2">Home Test
+										<input type="radio" data-toggle="radio" name="test_type" value="Home-Test">Home Test
 									</label>
-									 <input type="text" id="event_id"  class="form-control" value="<?php ?>"/>
+									 <input type="text" id="event_id" name="class_id"  class="form-control" value="<?php ?>"/>
                                            </div>
                                         </div>
                                </fieldset> 
@@ -85,7 +85,7 @@
 								 <div class="form-group">
                                             <label class="col-sm-2 control-label">Date</label>
                                             <div class="col-sm-6">
-                                              <input type="text" placeholder="Select Date" name="mobile" class="form-control datepicker" >
+                                              <input type="text" placeholder="Select Date" name="tet_date" class="form-control datepicker" >
                                             </div>
                                  </div>
                              </fieldset>
@@ -94,7 +94,6 @@
                                             <label class="col-sm-2 control-label">Details</label>
                                             <div class="col-sm-6">
 								 <textarea name="details" class="form-control" rows="4" cols="80"></textarea>
-                                             
                                             </div>
 
                                  </div>
@@ -122,11 +121,6 @@
 		  </div>
 		  </div>
 		  </div>
-		 
-		   
-		   
-		   
-		   
 		   
        </div>
      
@@ -159,9 +153,8 @@
 });
 
  */
-	  
-	 
-      $().ready(function(){
+
+     $().ready(function(){
  
         $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
@@ -177,7 +170,7 @@
               close: 'fa fa-remove'
           }
        });
-      });
+      }); 
 
   
 </script>

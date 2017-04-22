@@ -63,6 +63,7 @@ Class Homeworkmodel extends CI_Model
 			 $teacher_row=$resultset1->result();
 			  foreach($teacher_row as $teacher_rows){}
 			$teach_id=$teacher_rows->class_name;
+			
 			$sQuery = "SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.class FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
 			$objRs=$this->db->query($sQuery);
 			$row=$objRs->result();
@@ -94,6 +95,31 @@ Class Homeworkmodel extends CI_Model
 
 
        }
+	   
+	   function create($class_id,$user_id,$test_type,$title,$tet_date,$details)
+	   {
+		      $check_test_date="SELECT * FROM edu_homework WHERE test_date='$tet_date'";
+			  $result=$this->db->query($check_test_date);
+			  if($result->num_rows()==0)
+			  {
+			  $query="INSERT INTO edu_homework(class_id,teacher_id,hw_type,title,test_date,hw_details,created_at)VALUES('$class_id','$user_id','$test_type','$title','$tet_date','$details',NOW())";
+			  $resultset=$this->db->query($query);
+			  $data= array("status"=>"success");
+			  return $data;
+			  }else{
+					$data= array("status"=>"Test Date Already Exist");
+					return $data;
+				  }
+				   
+	   }
+	   
+	   function getall_details()
+	   {
+		  $query="SELECT * FROM edu_homework";
+          $result=$this->db->query($query);
+          return $result->result();
+	   }
+		   
 	   
 
 
