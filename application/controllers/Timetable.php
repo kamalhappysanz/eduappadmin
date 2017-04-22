@@ -124,15 +124,19 @@ class Timetable extends CI_Controller {
 		}
 
 
-		public function delete($class_sec_id){
+		public function delete(){
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
+			 $class_sec_id=$this->input->post('val');
 			$datas=$this->timetablemodel->delete_time($class_sec_id);
 		 if($user_type==1){
 			 if($datas['status']=="success"){
-			  $this->session->set_flashdata('msg', 'Deleted Successfully');
-			  redirect('/timetable/manage');
+				 echo "success";
+			  // $this->session->set_flashdata('msg', 'Deleted Successfully');
+			  // redirect('/timetable/manage');
+			}else{
+				echo "failure";
 			}
 		 }
 		 else{

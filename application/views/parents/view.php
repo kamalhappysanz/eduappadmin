@@ -16,7 +16,7 @@
                             <div class="content">
                                 <div class="fresh-datatables">
                                   <h4 class="title">List of Parents Details</h4>
-								  
+
                           <table id="bootstrap-table" class="table">
                               <thead>
                                 <th data-field="id" class="text-center">ID</th>
@@ -28,7 +28,7 @@
                               <tbody>
                                 <?php
                                 $i=1;
-                                foreach ($result as $rows) 
+                                foreach ($result as $rows)
 								 {
 									  $a=$rows->father_name;
 									  $b=$rows->guardn_name;
@@ -46,15 +46,15 @@
                                     <td>
                                      <!-- <a rel="tooltip" title="Add Enrollment" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
                                       <i class="fa fa-address-card-o" aria-hidden="true"></i> </a>-->
-                                        
-										
+
+
                                      <!--  <a href="<?php //echo base_url(); ?>parents/home/<?php //echo $rows->admission_id; ?>" rel="tooltip" title="Add Parent" class="btn btn-simple btn-info btn-icon table-action view" >
 										<i class="fa fa-user-plus" aria-hidden="true"></i></a> -->
-										
+
                                       <a href="<?php echo base_url(); ?>parents/edit_parents/<?php echo $rows->parent_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-									  
+
                                  <!--  <a href="#" rel="tooltip" title="Delete" class="btn btn-simple btn-danger btn-icon "><i class="fa fa-times"></i></a>-->
-									  
+
                                     </td>
                                   </tr>
                                   <?php $i++;  }  ?>
@@ -115,4 +115,7 @@
 
 
        });
+       $('#admissionmenu').addClass('collapse in');
+       $('#admission').addClass('active');
+       $('#admission3').addClass('active');
 </script>

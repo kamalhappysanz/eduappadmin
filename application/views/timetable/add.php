@@ -141,7 +141,7 @@ select{width:100px;}
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">&nbsp;</label>
                                     <div class="col-sm-10">
-                                           <button type="submit" class="btn btn-info btn-fill pull-right">Save</button>
+                                        <center>   <button type="submit" class="btn btn-info btn-fill col-md-2" style="padding:10px;">Save</button></center>
                                     </div>
 
                                 </div>
