@@ -138,7 +138,7 @@ font-weight: 500;
 										</a>
 										<div class="collapse" id="sectionmenu">
 											<ul class="nav">
-										<li><a href="<?php echo base_url(); ?>homework/get_all_class">Home Work</a></li>
+										<li><a href="<?php echo base_url(); ?>homework/home">Home Work</a></li>
 													<!-- <li><a href=""> Home Work</a></li>
 													<li><a href=""> Class Test</a></li> -->
 

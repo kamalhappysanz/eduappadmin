@@ -129,15 +129,19 @@
                                    <div class="col-md-7">
                                        <div class="form-group">
                                            <label for="exampleInputEmail1">Subject</label>
+							<?php 
+						  $tea_name=$rows->subject;
+                          $sQuery = "SELECT * FROM edu_subject WHERE subject_id='$tea_name'";
+                          $objRs=$this->db->query($sQuery);
+                          $row=$objRs->result();
+                          foreach ($row as $rows1)
+						  { 
+						    $sub=$rows1->subject_name;
+						  }
+							 ?>
 							
+		             <input type="text" readonly name="subject"  class="form-control" value="<?php echo $sub; ?>">  
 										   
-										   
-                                             <select   name="subject" readonly class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
-                                                    <?php foreach ($resubject as $rows3) {  ?>
-                                                    <option value="<?php echo $rows3->subject_id; ?>"><?php echo $rows3->subject_name; ?></option>
-                                              <?php      } ?>
-                                              </select>
-									 <script language="JavaScript">document.teacherform.subject.value="<?php echo $rows->subject; ?>";</script>
 									  <label for="exampleInputEmail1"> Enail</label>
 									  <input type="text" name="email"  class="form-control " id="email" placeholder="Email Address" onblur="checkMailStatus()"  value="<?php echo $rows->email; ?>"/>
                                        </div>
@@ -148,7 +152,7 @@
                                        <div class="form-group">
                                            <label>Class Teacher</label>
 						
-                        <select   name="class_teacher"  class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
+                        <select   name="class_teacher" disabled=""   class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
                                        <?php foreach ($getall_class as $rows2) {  ?>
                                   <option value="<?php echo $rows2->class_sec_id; ?>"><?php echo $rows2->class_name; ?>&nbsp; - &nbsp;<?php echo $rows2->sec_name; ?></option>
                                           <?php      } ?>
@@ -161,7 +165,7 @@
                                    <div class="col-md-7">
                                        <div class="form-group">
                                            <label for="exampleInputEmail1"> Class</label>
-                                           <select multiple  name="class_name[]" id="multiple-class" class="selectpicker" data-style="btn-block" onchange="select_class('classname')" data-menu-style="dropdown-blue">
+                                           <select multiple disabled=""  name="class_name[]" id="multiple-class" class="selectpicker" data-style="btn-block" onchange="select_class('classname')" data-menu-style="dropdown-blue">
 
                                         <?php
                                          $sPlatform=$rows->class_name;

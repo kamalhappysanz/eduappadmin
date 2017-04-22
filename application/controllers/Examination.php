@@ -8,8 +8,7 @@ class Examination extends CI_Controller
 	function __construct()
 	{
 		 parent::__construct();
-		  $this->load->model('examinationmodel');
-
+		    $this->load->model('examinationmodel');
 		    $this->load->model('subjectmodel');
 			$this->load->model('classmodel');
 			$this->load->model('class_manage');
@@ -60,6 +59,7 @@ class Examination extends CI_Controller
 
 	 		$datas['year'] = $this->examinationmodel->get_exam_details();
 			$datas['result'] = $this->examinationmodel->get_details_view();
+			$datas['result1'] = $this->examinationmodel->get_details_view1();
 
 			$datas['sec'] = $this->subjectmodel->getsubject();
 			$datas['class'] = $this->classmodel->getclass();
