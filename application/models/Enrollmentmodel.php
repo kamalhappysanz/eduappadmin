@@ -56,7 +56,7 @@ Class Enrollmentmodel extends CI_Model
 //Update enrollment
 
         function save_enrollment($admit_year,$admit_date,$name,$class,$status,$enroll_id){
-           $query="UPDATE edu_enrollment SET admit_year='$admit_year',admit_date='$admit_date',name='$name',class_id='$class',section='$section',status='$status' WHERE enroll_id='$enroll_id'";
+           $query="UPDATE edu_enrollment SET admit_year='$admit_year',admit_date='$admit_date',name='$name',class_id='$class',status='$status' WHERE enroll_id='$enroll_id'";
            $res=$this->db->query($query);
            if($res){
              $data= array("status" => "success");

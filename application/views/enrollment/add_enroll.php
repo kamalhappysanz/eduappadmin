@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Enrollment</legend>
+                                <legend>Registration</legend>
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">

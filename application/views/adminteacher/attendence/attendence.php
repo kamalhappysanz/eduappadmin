@@ -14,16 +14,19 @@
                                    <tr>
                                        <th class="text-center">#</th>
                                        <th>Name</th>
-                                       <th>Job Position</th>
+
                                        <th class="text-right">Salary</th>
                                        <th class="text-right">Active</th>
                                    </tr>
                                </thead>
                                <tbody>
+                                 <?php  $i=1; foreach($res as $rows){
+
+                                    ?>
                                    <tr>
-                                       <td class="text-center">1</td>
-                                       <td>Andrew Mike</td>
-                                       <td>Develop</td>
+                                       <td class="text-center"><?php echo $i;  ?></td>
+
+                                       <td><?php echo $rows->name;  ?></td>
                                        <td class="text-right">&euro; 99,225</td>
                                         <td class="text-right">
                                            <div class="switch"
@@ -33,46 +36,12 @@
                                            </div>
                                        </td>
                                    </tr>
-                                   <tr>
 
-                                       <td class="text-center">2</td>
-                                       <td>John Doe</td>
-                                       <td>Design</td>
-                                       <td class="text-right">&euro; 89,241</td>
-                                        <td class="text-right">
-                                           <div class="switch"
-                                                data-on-label=""
-                                                data-off-label="">
-                                                <input type="checkbox"/>
-                                           </div>
-                                       </td>
-                                   </tr>
-                                   <tr>
-                                       <td class="text-center">3</td>
-                                       <td>Alex Mike</td>
-                                       <td>Design</td>
-                                       <td class="text-right">&euro; 92,144</td>
-                                        <td class="text-right">
-                                           <div class="switch"
-                                                data-on-label=""
-                                                data-off-label="">
-                                                <input type="checkbox" checked/>
-                                           </div>
-                                       </td>
-                                   </tr>
-                                   <tr>
-                                       <td class="text-center">4</td>
-                                       <td>Mike Monday</td>
-                                       <td>Marketing</td>
-                                       <td class="text-right">&euro; 49,990</td>
-                                        <td class="text-right">
-                                           <div class="switch"
-                                                data-on-label=""
-                                                data-off-label="">
-                                                <input type="checkbox" checked/>
-                                           </div>
-                                       </td>
-                                   </tr>
+                            <?php
+                            $i++; }
+
+                            ?>
+
                                </tbody>
                            </table>
 
