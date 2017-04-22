@@ -12,68 +12,61 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="content">
-                                <div class="fresh-datatables">
-                          <table id="bootstrap-table" class="table">
-                              <thead>
-
-                                <th>S.no</th>
-								<th>Class/Section</th>
-                                <th>Teacher</th>
-								<th>Homework Type</th>
-								<th>Title</th>
-								<th>Test DATE</th>
-								<th>Details</th>
-								
-                                <th class="disabled-sorting text-right">Actions</th>
-                              </thead>
-                              <tbody>
-                                <?php
-                               $i=1;
-                              foreach ($result as $rows) {
-                                ?>
-                                  <tr>
-								     <td><?php   echo $i; ?></td>
-                                     <td><?php   echo $rows->class_id; ?></td>
-									 <td>
-									 <?php 
-									 $id=$rows->teacher_id;
-									 $query="SELECT * FROM edu_teachers WHERE teacher_id='$id'";
-									 $resultset=$this->db->query($query);
-                                     $row=$resultset->result();
-									 foreach($row as $rows1)
-									 {}
-										$name=$rows1->name;
+                            <div class="header">
+                                <h4 class="title">Marks Details Enter</h4>
+								<?php foreach($result as $res)
+									{
+										$sub=$res->subject_name;
+										$cls=$res->class_name;
+										$sec=$res->sec_name;
+										
+									}?>
 									
-									 ?>
-									 <?php    echo $name ; ?>
-									 </td>
-									 <td><?php    echo $rows->hw_type; ?></td>
-									  <td><?php   echo $rows->title; ?></td>
-									 <td><?php    echo $rows->test_date	 ; ?></td>
-									 <td><?php    echo $rows->hw_details; ?></td>
-									 
-									 	
-                                    <td class="text-right">
-								<!--	<a href="<?php // echo base_url(); ?>examination/add_exam_subject/<?php //echo $rows->exam_id; ?>" rel="tooltip" title="Added Exam Details" class="btn btn-simple btn-info btn-icon table-action view" >
-									<i class="fa fa-id-card-o" aria-hidden="true"></i></a>
+								 <p class="category"><b>Subject Name </b>= <?php echo $sub; ?> </br> <b>Class&Section Name </b>= <?php echo $cls; ?> - <?php echo $sec; ?> </p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>S.No</th>
+                                    	<th>Name</th>
+                                    	<th>Marks</th>
+                                    	<th>ReMarks</th>
+                                    	
+                                    </thead>
+		 <form method="post" action="<?php echo base_url(); ?>homework/marks" class="form-horizontal" enctype="multipart/form-data" id="markform">
+                                    <tbody>
+									<?php $i=1;
+									foreach($result as $res)
+									{
+										$sub=$res->subject_name;
+										$enr_id=$res->enroll_id;
+									?>
+									
+                                        <tr>
+                                        	<td><?php echo $i; ?></td>
+                                        	<td><?php echo $res->name; ?>
+											<input type="hidden" name="name" value="<?php echo $res->name; ?>"
+											<input type="hidden" name="enroll" value="<?php echo $enr_id; ?>"/>
+									         <input type="hidden" name="hwid" value="<?php echo $res->hw_id; ?>"/>
+									       </td>
+                                        	<td style="width:20%;"> 
+											<input type="text" name="marks[]" class="form-control"/>
+											</td>
+                                        	<td> <textarea name="remarks[]" class="form-control" rows="1" cols="03"></textarea></td>
+                                        	<td></td>
+                                        </tr>
+										
+                                   <?php $i++;  }?>
+                                    </tbody>
+									<div class="col-sm-10">
+                            <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
+							</div>
+								</form>
+                                </table>
 
- <a href="<?php echo base_url();  ?>years/edit_terms/<?php echo $rows->term_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>									-->
-
-                                     
-
-
-                                      </td>
-                                  </tr>
-                                  <?php $i++;  }  ?>
-                              </tbody>
-                          </table>
-
-
+                            </div>
                         </div>
-                            </div><!-- end content-->
-                        </div><!--  end card  -->
-                    </div> <!-- end col-md-12 -->
+                    </div><!-- end col-md-12 -->
                 </div> <!-- end row -->
 
             </div>
