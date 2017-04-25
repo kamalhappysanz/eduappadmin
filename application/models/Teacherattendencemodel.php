@@ -72,6 +72,52 @@ Class Teacherattendencemodel extends CI_Model
        }
 
 
+       function get_attendence_class($class_id,$student_id,$attendence_val,$a_taken){
+         $myArray1 = implode(',', $attendence_val);
+         $myArray = explode(',', $myArray1);
+         $sp=array_chunk($myArray,3);
+          $len=count($sp);
+          $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
+          $cur_d=$dateTime->format("y-m-d H:i:s");
+         for ($i=0; $i <$len ; $i++) {
+
+            $a_status= $sp[$i][0];
+            $stu_id= $sp[$i][1];
+            $a_day= $sp[$i][2];
+            echo  $query="INSERT INTO edu_attendance (class_id,student_id,a_status,a_day,a_val,abs_date,a_taken_by,created_at) VALUES('$class_id[$i]','$stu_id','$a_status','$a_day','1','$cur_d','$a_taken[$i]',NOW())";echo "<br>";
+
+        $resultset=$this->db->query($query);
+
+         }
+
+      if($resultset){
+        $data= array("status" =>"success");
+        return $data;
+      }else{
+        $data= array("status" =>"failure");
+        return $data;
+      }
+
+       }
+
+       function check_attendence($class_id){
+         $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
+         $cur_d=$dateTime->format("Y-m-d");
+         $a_day=$dateTime->format("A");
+         $check_attendence="SELECT * FROM edu_attendance WHERE class_id='$class_id' AND DATE_FORMAT(abs_date, '%Y-%m-%d')='$cur_d' AND a_day='$a_day'";
+          $get_att=$this->db->query($check_attendence);
+          if($get_att->num_rows()==0){
+            $data= array("status" =>"success");
+            return $data;
+
+          }else{
+            $data= array("status" =>"failure");
+            return $data;
+
+          }
+       }
+
+
 
 
 

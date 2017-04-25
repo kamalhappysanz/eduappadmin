@@ -56,18 +56,51 @@ class Teacherattendence extends CI_Controller {
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
-			 $datas['res']=$this->teacherattendencemodel->get_studentin_class($class_id);
-			//  echo "<pre>";
-			//  print_r($datas['res']);exit;
-			 $this->load->view('adminteacher/teacher_header');
-			 $this->load->view('adminteacher/attendence/attendence',$datas);
-			 $this->load->view('adminteacher/teacher_footer');
+				 $datas=$this->teacherattendencemodel->check_attendence($class_id);
+
+				 if($datas['status']=="success"){
+					 $datas['res']=$this->teacherattendencemodel->get_studentin_class($class_id);
+					$datas['class_id']=$class_id;
+					$this->load->view('adminteacher/teacher_header');
+					$this->load->view('adminteacher/attendence/attendence',$datas);
+					$this->load->view('adminteacher/teacher_footer');
+				 }else{
+					
+ 					$this->load->view('adminteacher/teacher_header');
+ 					$this->load->view('adminteacher/attendence/attendence',$datas);
+ 					$this->load->view('adminteacher/teacher_footer');
+		 }
 			 }
 			 else{
 					redirect('/');
 			 }
 		}
 
+		public function take_attendence(){
+
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			 if($user_type==2){
+			 $student_id=$this->input->post('student_id');
+			 $class_id=$this->input->post('class_id');
+			 $attendence_val=$this->input->post('attendence_val');
+			  $a_taken=$this->input->post('user_id');
+		   $datas=$this->teacherattendencemodel->get_attendence_class($class_id,$student_id,$attendence_val,$a_taken);
+			 print_r($datas['status']);exit;
+			 if($datas['status']=="success"){
+				 echo "success";
+			 }else{
+				  echo "failure";
+			 }
+			//  $this->load->view('adminteacher/teacher_header');
+			//  $this->load->view('adminteacher/attendence/attendence',$datas);
+			//  $this->load->view('adminteacher/teacher_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
 
 
 
