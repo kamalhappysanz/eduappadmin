@@ -36,9 +36,9 @@ select{width:100px;}
           <label class="col-sm-2 control-label">Select Year</label>
         <div class="col-sm-3">
           <select   name="year_id"  data-title="Select Year" class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
+            <?php foreach ($years as $rows) {  ?>
+            <option value="<?php echo $rows->year_id; ?>"><?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?></option>
+      <?php      } ?>
           </select>
         </div>
       </div>

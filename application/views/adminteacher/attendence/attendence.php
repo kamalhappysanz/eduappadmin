@@ -69,7 +69,12 @@ echo $dateTime->format("A");
                        </div>
                    </div>
                    <?php  } else{  ?>
-                    <p>Attendence Already  Taken</p>
+                     <div class="card-header" data-background-color="purple">
+	                        <h4 class="title">Sorry</h4>
+	                        <p class="category"><?php echo $status; ?> </p>
+	                    </div>
+
+                  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
                   <?php  } ?>
                </div>
 

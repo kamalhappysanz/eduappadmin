@@ -84,7 +84,7 @@ Class Teacherattendencemodel extends CI_Model
             $a_status= $sp[$i][0];
             $stu_id= $sp[$i][1];
             $a_day= $sp[$i][2];
-            echo  $query="INSERT INTO edu_attendance (class_id,student_id,a_status,a_day,a_val,abs_date,a_taken_by,created_at) VALUES('$class_id[$i]','$stu_id','$a_status','$a_day','1','$cur_d','$a_taken[$i]',NOW())";echo "<br>";
+            $query="INSERT INTO edu_attendance (class_id,student_id,a_status,a_day,a_val,abs_date,a_taken_by,created_at) VALUES('$class_id[$i]','$stu_id','$a_status','$a_day','1','$cur_d','$a_taken[$i]',NOW())";echo "<br>";
 
         $resultset=$this->db->query($query);
 
@@ -104,18 +104,53 @@ Class Teacherattendencemodel extends CI_Model
          $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
          $cur_d=$dateTime->format("Y-m-d");
          $a_day=$dateTime->format("A");
-         $check_attendence="SELECT * FROM edu_attendance WHERE class_id='$class_id' AND DATE_FORMAT(abs_date, '%Y-%m-%d')='$cur_d' AND a_day='$a_day'";
-          $get_att=$this->db->query($check_attendence);
-          if($get_att->num_rows()==0){
+          $check_leave="SELECT * FROM edu_leaves WHERE leave_date='$cur_d'";
+          $get_le=$this->db->query($check_leave);
+          if($get_le->num_rows()==0){
+            $check_reg_leave="SELECT * FROM edu_holidays_list_history WHERE leave_list_date='$cur_d'";
+            $get_re=$this->db->query($check_reg_leave);
+            if($get_re->num_rows()==0){
+              $check_attendence="SELECT * FROM edu_attendance WHERE class_id='$class_id' AND DATE_FORMAT(abs_date, '%Y-%m-%d')='$cur_d' AND a_day='$a_day'";
+               $get_att=$this->db->query($check_attendence);
+               if($get_att->num_rows()==0){
+                 $data= array("status" =>"success");
+                 return $data;
+
+               }else{
+                 $data= array("status" =>"attendence taken");
+                 return $data;
+
+               }
+               $data= array("status" =>"success");
+              // print_r($data);exit;
+              return $data;
+            }else{
+              $data= array("status" =>"regular");
+              //print_r($data);exit;
+              return $data;
+
+            }
             $data= array("status" =>"success");
             return $data;
-
           }else{
-            $data= array("status" =>"failure");
+            $data= array("status" =>"special");
             return $data;
 
           }
+
        }
+
+
+       function get_atten_val($class_id){
+         $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
+         $cur_d=$dateTime->format("Y-m-d");
+         $get_atten="SELECT ee.name,ea.a_status,ea.a_day ,ea.abs_date FROM edu_enrollment AS ee LEFT JOIN edu_attendance AS ea ON ee.enroll_id=ea.student_id
+WHERE ee.class_id='$class_id'";
+
+         $get_year=$this->db->query($get_atten);
+         return $get_year->result();
+       }
+
 
 
 
