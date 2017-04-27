@@ -12,17 +12,19 @@ class Homework extends CI_Controller
 		  $this->load->helper('url');
 		  $this->load->library('session');
 		  $this->load->model('class_manage');
+		  $this->load->model('subjectmodel');
+		
         }
          
        
 	public function home()
 	 {
-	 		 	$datas=$this->session->userdata();
-  	 		    $user_id=$this->session->userdata('user_id');
-				$user_type=$this->session->userdata('user_type');
+	 		 $datas=$this->session->userdata();
+  	 		 $user_id=$this->session->userdata('user_id');
+			 $user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
 			 $datas=$this->homeworkmodel->get_teacher_id($user_id);
-			 $datas['result'] = $this->homeworkmodel->getall_details();
+			 $datas['result'] = $this->homeworkmodel->getall_details($user_id);
 			 //print_r($datas);
 	 		 $this->load->view('adminteacher/teacher_header');
 			 $this->load->view('adminteacher/homework/add',$datas);
@@ -40,6 +42,7 @@ class Homework extends CI_Controller
   	 		    $user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 				$datas['result'] = $this->homeworkmodel->get_stu_details($hw_id);
+				//print_r($datas['result']);exit;
 			    if($user_type==2)
 			      {
 					 $this->load->view('adminteacher/teacher_header');
@@ -58,7 +61,7 @@ class Homework extends CI_Controller
 			$enroll=$this->input->post('enroll');
 			$hwid=$this->input->post('hwid');
 			$marks=$this->input->post('marks');
-			//print_r($marks);exit;
+			//print_r($enroll);exit;
 			$remarks=$this->input->post('remarks');
 			$datas = $this->homeworkmodel->enter_marks($enroll,$hwid,$marks,$remarks);
 			  if($datas['status']=="success")
@@ -112,8 +115,85 @@ class Homework extends CI_Controller
 		    $data=$this->class_manage->get_subject($classid);
 			echo json_encode($data);
 		}
+		
+		
+		public function edit_mark($hw_id)
+		{
+			    $datas=$this->session->userdata();
+  	 		    $user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				$datas['result']=$this->homeworkmodel->edit_details($hw_id);
+				$datas['resubject'] = $this->subjectmodel->getsubject();
+			    if($user_type==2)
+			      {
+					 $this->load->view('adminteacher/teacher_header');
+					 $this->load->view('adminteacher/homework/edit',$datas);
+					 $this->load->view('adminteacher/teacher_footer');
+				  }
+	 		   else{
+	 				redirect('/');
+	 		 }
+		}
 	
- 
+       public function update()
+	   {
+		    $enroll=$this->input->post('enroll');
+			$hwid=$this->input->post('hwid');
+			$marks=$this->input->post('marks');
+			//print_r($enroll);exit;
+			$remarks=$this->input->post('remarks');
+			$datas = $this->homeworkmodel->update_marks($enroll,$hwid,$marks,$remarks);
+			  if($datas['status']=="success")
+			  {
+				$this->session->set_flashdata('msg','Update Successfully');
+                redirect('homework/home',$datas);  
+			  }else{
+			   $this->session->set_flashdata('msg','Falid To Update');
+                redirect('homework/home',$datas);	  
+			  }
+			
+		   
+	   }
+	   
+	   public function edit_test($hw_id)
+	   {
+		        $datas=$this->session->userdata();
+  	 		    $user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				$datas['result']=$this->homeworkmodel->edit_test_details($hw_id);
+				
+			    if($user_type==2)
+			      {
+					 $this->load->view('adminteacher/teacher_header');
+					 $this->load->view('adminteacher/homework/edit_test',$datas);
+					 $this->load->view('adminteacher/teacher_footer');
+				  }
+	 		   else{
+	 				redirect('/');
+	 		 }
+	   }
+	   
+	   public function update_test()
+	   {
+		    $test_details=$this->input->post('test_details');
+		    $id=$this->input->post('id');
+		    $hw_type=$this->input->post('hw_type');
+			$title=$this->input->post('title');
+			$test_date=$this->input->post('test_date');
+			
+			$dateTime = new DateTime($test_date);
+			$formatted_date=date_format($dateTime,'Y-m-d' );
+			
+			$datas = $this->homeworkmodel->update_test_details($id,$hw_type,$title,$formatted_date,$test_details);
+			  if($datas['status']=="success")
+			  {
+				$this->session->set_flashdata('msg','Update Successfully');
+                redirect('homework/home',$datas);  
+			  }else{
+			   $this->session->set_flashdata('msg','Falid To Update');
+                redirect('homework/home',$datas);	  
+			  }
+	   }
 	
 	
 	

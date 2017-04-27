@@ -14,14 +14,10 @@ class Teacherprofile extends CI_Controller {
 
 
  }
-
-
 	public function home()
 	{
 
     }
-
-
 
 	public function profilepic()
 	{
@@ -29,6 +25,7 @@ class Teacherprofile extends CI_Controller {
 		 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
 		 $datas['result'] = $this->teacherprofilemodel->getuser($user_id);
+		 
 		 $datas['resubject'] = $this->subjectmodel->getsubject();
 		 $datas['getall_class']=$this->class_manage->getall_class();
 		if($user_type==1 || $user_type==2 || $user_type==3 ||$user_type==4 ){
@@ -81,14 +78,59 @@ class Teacherprofile extends CI_Controller {
 					 $this->session->set_flashdata('msg', 'Failed to update');
 					  redirect('teacherprofile/profilepic');
 				  }
-				 
-		          
-			
 		 }
 	}
 
 
+	public function profile()
+	{
+		 $datas=$this->session->userdata();
+		 $user_id=$this->session->userdata('user_id');
+		 $datas['result'] = $this->teacherprofilemodel->get_teacheruser($user_id);
+		 $user_type=$this->session->userdata('user_type');
+			// echo $user_type;exit;
+			 if($user_type==2){
+				$this->load->view('adminteacher/teacher_header',$datas);
+		        $this->load->view('adminteacher/resetpassword',$datas);
+		        $this->load->view('adminteacher/teacher_footer');
+				}
+				else{
+					 redirect('/');
+				}
+        }
 
+  public function updateprofile()
+  {
+	    $datas=$this->session->userdata();
+		$user_name=$this->session->userdata('user_name');
+		$user_type=$this->session->userdata('user_type');
+	 	if($user_type==2)
+		{
+		 		$user_id=$this->input->post('user_id');
+				//echo $user_id;exit;
+			
+						$name=$this->input->post('name');
+						$oldpassword=md5($this->input->post('oldpassword'));
+						$newpassword=md5($this->input->post('newpassword'));
+
+						 $user_password_old=$this->input->post('user_password_old');
+
+						$res=$this->teacherprofilemodel->updateprofile($user_id,$oldpassword,$newpassword);
+
+						if($res['status']=="success"){
+						 $this->session->set_flashdata('msg', 'Update Successfully');
+						  redirect('teacherprofile/profile');
+							
+					      }else{
+					 	        $this->session->set_flashdata('msg', 'Failed to update');
+								 redirect('teacherprofile/profile');
+					          }
+
+	 }
+	 else{
+			redirect('/');
+	 }
+  }
 
 	public function logout(){
 		$datas=$this->session->userdata();

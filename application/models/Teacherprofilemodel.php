@@ -11,7 +11,12 @@ Class Teacherprofilemodel extends CI_Model
   
   function getuser($user_id)
    {
-         $query="SELECT * FROM edu_teachers WHERE teacher_id='$user_id'";
+	    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+		$resultset=$this->db->query($query);
+		$row=$resultset->result();
+		foreach($row as $rows){}
+		$teacher_id=$rows->teacher_id;
+         $query="SELECT * FROM edu_teachers WHERE teacher_id='$teacher_id'";
          $resultset=$this->db->query($query);
          return $resultset->result();
    }

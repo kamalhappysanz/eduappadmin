@@ -148,8 +148,16 @@ font-weight: 500;
 								<li>
 										<a data-toggle="collapse" href="#componentsExamples">
 												<i class="pe-7s-plugin"></i>
-												<p>Examination Result	</p>
+												<p>Examination Result</p>
+												<b class="caret"></b>
 										</a>
+										<div class="collapse" id="componentsExamples">
+											<ul class="nav">
+										<li><a href="<?php echo base_url(); ?>examinationresult/home">Result</a></li>
+													
+
+											</ul>
+									</div>
 								</li>
 								<li>
 										<a data-toggle="collapse" href="#componentsExamples">
