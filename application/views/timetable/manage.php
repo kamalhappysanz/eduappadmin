@@ -49,6 +49,7 @@
 
                     <th data-field="id" class="text-center">S.No</th>
                   <th data-field="name" class="text-center" data-sortable="true">Class</th>
+                    <th data-field="name" class="text-center" data-sortable="true">Year</th>
                   <!-- <th data-field="Section" class="text-center" data-sortable="true">Section</th> -->
 
                   <th data-field="actions" class="td-actions text-center" data-events="operateEvents">Actions</th>
@@ -60,6 +61,7 @@
                         <td><?php echo $i;  ?></td>
 
                       <td><?php echo $rowsclass->class_name;  ?> &nbsp;-<?php echo $rowsclass->sec_name;  ?></td>
+                        <td><?php echo date('Y', strtotime($rowsclass->from_month));   ?> &nbsp;-<?php echo date('Y', strtotime($rowsclass->to_month));  ?></td>
                         <!-- <td></td> -->
 
                       <td>

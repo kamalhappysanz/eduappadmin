@@ -77,7 +77,7 @@ class Timetable extends CI_Controller {
 			 if($datas['status']=='Already'){
 				 $this->session->set_flashdata('msg', 'Time Table Already Assigned to this Class');
 				 redirect('timetable/home');
-			 }elseif($datas['status']=='Added'){
+			 }elseif($datas['status']=='success'){
 				 $this->session->set_flashdata('msg', 'Added Successfully');
 				redirect('timetable/manage');
 			 }

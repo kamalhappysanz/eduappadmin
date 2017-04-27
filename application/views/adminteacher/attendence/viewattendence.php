@@ -7,8 +7,8 @@
 
                    <div class="card">
                        <div class="header">
-                           List Of Student Absent in   <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?>
-                       </div>
+                           List Of Student Absent in   <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> -
+                         <?php  $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata')); echo   $cur_d=$dateTime->format("d-m-Y"); ?></div>
                        <?php // print_r($result);  ?>
                        <div class="content table-full-width">
 
@@ -17,9 +17,7 @@
                                    <tr>
                                        <th class="text-center">S.No</th>
                                        <th class="text-center">Name</th>
-                                        <th  data-field="email" class="text-center" data-sortable="true">Attendence Date</th>
-
-
+                                        <!-- <th  data-field="email" class="text-center" data-sortable="true">Attendence Date</th> -->
                                        <th class="text-center">Status</th>
                                    </tr>
                                </thead>
@@ -31,7 +29,7 @@
                                        <td class="text-center"><?php echo $i;  ?></td>
 
                                        <td class="text-center"><?php echo $rows->name; ?></td>
-                                       <td class="text-center"><?php echo date('d-m-Y', strtotime($rows->abs_date)); ?></td>
+                                       <!-- <td class="text-center"><?php echo date('d-m-Y', strtotime($rows->abs_date)); ?></td> -->
                                         <td class="text-center"><?php $stat=$rows->a_status;
                                           if(empty($stat)){ ?> <button class="btn btn-success btn-fill btn-wd">Present</button> <?php }else{ ?> <button class="btn btn-danger btn-fill btn-wd">Absent</button> <?php }
 

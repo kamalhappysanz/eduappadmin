@@ -46,7 +46,7 @@
                                         <td class="text-center">
                                            <div class="switch"
                                                 data-on-label=""
-                                                data-off-label="">
+                                                data-off-label="" onclick="addfunction()">
                                                 <input type="checkbox" name="attendence_val[]" value="A,<?php echo $rows->enroll_id; ?>,<?php
 $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 echo $dateTime->format("A");
@@ -82,3 +82,10 @@ echo $dateTime->format("A");
             </div>
         </div>
      </div>
+
+
+<script type="text/javascript">
+function addfunction(){
+  alert("hi");
+}
+</script>
