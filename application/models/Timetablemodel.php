@@ -63,9 +63,32 @@ INNER JOIN edu_academic_year AS a ON tt.year_id=a.year_id INNER JOIN edu_section
 
                 //GET ALL TIME TABLE
                 function view($class_sec_id){
-                   $query="SELECT tt.table_id,tt.class_id,tt.subject_id,s.subject_name,tt.teacher_id,t.name,tt.day,tt.period FROM edu_timetable AS tt LEFT JOIN edu_subject AS s ON tt.subject_id=s.subject_id LEFT JOIN edu_teachers AS t ON tt.teacher_id=t.teacher_id WHERE tt.class_id='$class_sec_id' ORDER BY tt.table_id ASC";
+                    $query="SELECT tt.table_id,tt.class_id,tt.subject_id,s.subject_name,tt.teacher_id,t.name,tt.day,tt.period FROM edu_timetable AS tt LEFT JOIN edu_subject AS s ON tt.subject_id=s.subject_id LEFT JOIN edu_teachers AS t ON tt.teacher_id=t.teacher_id WHERE tt.class_id='$class_sec_id' ORDER BY tt.table_id ASC";
                    $result=$this->db->query($query);
-                   return $result->result();
+                  if($result->num_rows()==0){
+                    $data= array("status" => "no data Found");
+                    return $data;
+                  }else{
+                    // $data= array("status" => "no data Found","data"=>$result->result());
+                    // return $data;
+                  return $result->result();
+                  }
+
+                }
+
+                function view_time($class_sec_id){
+                    $query="SELECT tt.table_id,tt.class_id,tt.subject_id,s.subject_name,tt.teacher_id,t.name,tt.day,tt.period FROM edu_timetable AS tt LEFT JOIN edu_subject AS s ON tt.subject_id=s.subject_id LEFT JOIN edu_teachers AS t ON tt.teacher_id=t.teacher_id WHERE tt.class_id='$class_sec_id' ORDER BY tt.table_id ASC";
+                   $result=$this->db->query($query);
+                   $time=$result->result();
+                  if($result->num_rows()==0){
+                    $data= array("status" => "no data Found");
+                    return $data;
+                  }else{
+                    $data= array("status" => "success","time"=>$time);
+                    return $data;
+                //  return $result->result();
+                  }
+
                 }
 
                 //Delete timetable
