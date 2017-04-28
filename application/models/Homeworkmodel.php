@@ -121,7 +121,7 @@ Class Homeworkmodel extends CI_Model
 	   
 	   function getall_details($user_id)
 	   {
-		   $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
 			$resultset=$this->db->query($query);
 			$row=$resultset->result();
 			 foreach($row as $rows){}

@@ -1,6 +1,12 @@
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
+	   <?php if($this->session->flashdata('msg')): ?>
+         <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×</button> <?php echo $this->session->flashdata('msg'); ?>
+         </div>
+         <?php endif; ?>
          <div class="row">
             <div class="col-md-10">
                <div class="card">
@@ -28,6 +34,8 @@
             </div>
          </div>
          <!-- row -->
+		 
+	
      
          <!-- end row -->
         
