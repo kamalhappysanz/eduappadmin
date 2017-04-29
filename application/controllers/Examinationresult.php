@@ -66,18 +66,46 @@ class Examinationresult extends CI_Controller
 			  $cls_masid=$this->input->get('var1');
 			  $exam_id=$this->input->get('var2');
 			  //echo $cls_masid;echo $exam_id;exit;
-			  
-			  $datas=$this->examinationresultmodel->getall_subname($user_id,$cls_masid,$exam_id);
+
+			 // $datas['sub']=$this->examinationresultmodel->getall_subname($user_id,$cls_masid,$exam_id);
 			  $datas['stu']=$this->examinationresultmodel->getall_stuname($user_id,$cls_masid,$exam_id);
 			  $datas['result']=$this->examinationresultmodel->getall_exam_details($exam_id);
 			  $datas['res']=$this->examinationresultmodel->getall_cls_sec_stu($user_id,$cls_masid,$exam_id);
-			 //echo '<pre>';print_r($datas['sub']);
-			//echo '<pre>';print_r($datas['stu']); exit;
+			 // echo '<pre>';print_r($datas['sub']);
+			 // echo '<pre>';print_r($datas['stu']); exit;
 			
 			 if($user_type==2)
 			    { 
 				 $this->load->view('adminteacher/teacher_header');
 			     $this->load->view('adminteacher/examination_result/marks',$datas);
+	 		     $this->load->view('adminteacher/teacher_footer');
+				}else{
+					 redirect('/');
+				}
+
+		}
+		
+		public function exam_mark_details_cls_teacher()
+		{
+			 $datas=$this->session->userdata();
+  	 		  $user_id=$this->session->userdata('user_id');
+			  $user_type=$this->session->userdata('user_type');
+				
+			  $cls_masid=$this->input->get('var1');
+			  $exam_id=$this->input->get('var2');
+			  //echo $cls_masid;echo $exam_id;exit;
+			  
+			  $datas=$this->examinationresultmodel->getall_subname($user_id,$cls_masid,$exam_id);
+			  $datas['stu']=$this->examinationresultmodel->getall_stuname($user_id,$cls_masid,$exam_id);
+			  $datas['result']=$this->examinationresultmodel->getall_exam_details($exam_id);
+			  $datas['marks1']=$this->examinationresultmodel->getall_marks_details1($user_id,$cls_masid);
+			  //echo '<pre>';print_r($datas);
+			 //echo '<pre>';print_r($datas['stu']); exit;
+			
+			 if($user_type==2)
+			    { 
+				 $this->load->view('adminteacher/teacher_header');
+			     $this->load->view('adminteacher/examination_result/class_marks',$datas);
 	 		     $this->load->view('adminteacher/teacher_footer');
 				}else{
 					 redirect('/');
@@ -105,11 +133,9 @@ class Examinationresult extends CI_Controller
 			  $sutid=$this->input->post('sutid');
 			  $teaid=$this->input->post('teaid');
 			  $marks=$this->input->post('marks');
-			  //echo $examid;
-			 // echo $subid;
-			 // print_r($sutid);
-			 //echo $teaid;
-			 // print_r($marks);exit;
+			  //echo $exam_id;
+			  //echo $subid;print_r($sutid);echo $teaid;print_r($marks);exit;
+			
 		   $datas=$this->examinationresultmodel->exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks);
 		   //print_r($datas['marks']);exit;
 			 if($datas['status']="success")
@@ -128,7 +154,10 @@ class Examinationresult extends CI_Controller
 			$datas=$this->session->userdata();
   	 		$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
+			
+			
 			$datas['marks']=$this->examinationresultmodel->getall_marks_details($user_id);
+			//echo '<pre>';print_r($datas['marks']);
 			if($user_type==2)
 			    { 
 				 $this->load->view('adminteacher/teacher_header');

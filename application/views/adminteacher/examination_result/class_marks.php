@@ -1,0 +1,111 @@
+<div class="main-panel">
+
+ <div class="content">
+            <div class="container-fluid">
+			<?php if($this->session->flashdata('msg')): ?>
+         <div class="alert alert-success">
+   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+       ×</button> <?php echo $this->session->flashdata('msg'); ?>
+         </div>
+       <?php endif; ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Enter Exam Mark </h4>
+                                <p class="category"></p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
+                                <table class="table table-hover table-striped">
+								<?php if(!empty($result))
+									  { foreach($result as $exam)
+								         {}
+									        $id=$exam->exam_id;
+											//echo $id;
+											 }else{ echo "";}
+									         
+											   /* if(!empty($stu))
+										       { foreach($stu as $row)
+									            { 
+												 $tname=$row->enroll_id;}
+												 $su=$row->subject;
+												 $clsid=$row->class_teacher;
+											   }else{ echo "";} */
+                                  ?>
+								
+								<input type="hidden" name="examid" value="<?php echo $id; ?>"/>
+                                    <thead>
+									 <th>Sno</th>
+                                     <th>Name</th>
+								<?php
+  								      if($status=="Success")
+									  { 
+                                       $cnt= count($subject_name);
+                                     for($i=0;$i<$cnt;$i++)
+									 { ?>
+										<th> <?php echo $subject_name[$i]; ?> <?php //echo $subject_id[$i]; ?></th>
+									<?php  }
+									}else{  ?>
+									 <th style="color:red;">Subject Not Found</th>
+									 <?php  }?> 
+                                    </thead>
+									<?php foreach($marks1 as $mark)
+									      { }
+										    $tecid=$mark->teacher_id;
+										    //echo"<br>";
+                                     ?>
+                                    <tbody>
+										<?php 
+										$i=1;
+										foreach($stu as $sname)
+									      {  $sid=$sname->subject_id;
+										     // echo $sid;?>
+										<tr>
+										<td><?php echo $i;?></td>
+										<td style="">
+										<?php echo $sname->name; ?>
+										<input type="hidden" name="sutid[]" value="<?php echo $sname->enroll_id; ?>" />
+										<input type="hidden" name="teaid" value="<?php echo $tecid; ?>" />
+                                        <input type="hidden" name="clsmastid" value="<?php echo $sname->class_id; ?>" />
+										</td>
+										  <?php 
+  								      if($status=="Success")
+									   {
+                                       $cnt= count($subject_name);
+                                         for($i=0;$i<$cnt;$i++)
+									      {  //echo $subject_id[$i];
+									         // echo $sid;
+									     if($subject_id[$i]==$sid)
+											  {
+								            //echo $subject_id[$i];?>
+										<td><input type="hidden" required name="subid" value="<?php echo $subject_id[$i];?>" class="form-control"/>
+										<input style="width:60%;" type="text" required name="marks1[]" value="<?php echo $sname->marks;?>" class="form-control"/></td>	
+									  <?php }else{?>
+										  <td><input type="hidden" required name="subid" value="<?php echo $subject_id[$i];?>" class="form-control"/><input style="width:60%;" type="text"  name="marks[]" value="<?php //echo $sname->marks;?>" class="form-control"/></td>
+									  <?php } } }?>
+										</tr>
+										<?php  $i++; } ?>
+										<tr>
+										
+										 <td><div class="col-sm-10">
+                                             <button type="submit" class="btn btn-info btn-fill center">Save</button>
+                                          </div> </td>
+										 
+										</tr>
+
+                                    </tbody>
+                                </table>
+								
+								</form>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+	</div>	

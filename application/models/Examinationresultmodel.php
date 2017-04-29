@@ -91,9 +91,10 @@ Class Examinationresultmodel extends CI_Model
 			$teacher_id=$rows->teacher_id;
 			//echo $teacher_id;exit;
 			$sql="SELECT t.*,su.*,en.* FROM edu_subject AS su,edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND t.subject=su.subject_id AND en.class_id='$cls_masid'";
+			
 			$res=$this->db->query($sql);
-			$rows=$res->result();
-			return $rows;
+			$result=$res->result();
+			return $result;
 
 	   }
 	  
@@ -153,11 +154,15 @@ Class Examinationresultmodel extends CI_Model
 			foreach($row as $rows){}
 			$teacher_id=$rows->teacher_id;
 			//echo $teacher_id;exit;
-		    $sql="SELECT t.teacher_id,t.class_teacher,t.name,t.subject,en.enroll_id,en.name,en.admisn_no FROM edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND en.class_id='$cls_masid'";
-			$res=$this->db->query($sql);
+		    //$sql="SELECT t.teacher_id,t.class_teacher,t.name,t.subject,en.enroll_id,en.name,en.admisn_no,en.class_id FROM edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND en.class_id='$cls_masid'";
+			
+			echo $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
+			$res=$this->db->query($sql); 
 			$rows=$res->result();
 			return $rows;
 	   }
+	   
+
 	   
 	   function exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks)
 	   {
@@ -193,6 +198,19 @@ Class Examinationresultmodel extends CI_Model
 			$resultset=$this->db->query($sql);
 			return $resultset->result();
 	 }
-	   
+	   function getall_marks_details1($user_id,$cls_masid)
+	   {
+		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+			$resultset=$this->db->query($query);
+			$row=$resultset->result();
+			//foreach($row as $rows){}
+			//$teacher_id=$rows->teacher_id;
+            			
+			//$sql="SELECT subject_id,classmaster_id,marks FROM edu_exam_marks WHERE classmaster_id='$cls_masid'  ";
+			//$resultset=$this->db->query($sql);
+			//$res=$resultset->result();
+			//$datas=array("status"=>"success","marks"=>$res);
+		    return $row;
+	   }
 	   
 } 

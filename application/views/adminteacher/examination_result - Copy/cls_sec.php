@@ -1,12 +1,6 @@
 <div class="main-panel">
    <div class="content">
       <div class="container-fluid">
-	  <?php if($this->session->flashdata('msg')): ?>
-         <div class="alert alert-success">
-   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-       ×</button> <?php echo $this->session->flashdata('msg'); ?>
-         </div>
-       <?php endif; ?>
          <div class="row">
             <div class="col-md-10">
                <div class="card">
@@ -37,28 +31,16 @@
                         <div class="col-md-2">
                            <p>No Records Found</p>
                         </div>
-                        <?php  }else{?>
+                        <?php  }  else{   ?>
                         <?php   $cnt= count($class_id);
-						        
-                           for($i=0;$i<$cnt;$i++){ 
-						   if($class_id[$i]==$cls_id){
-						  // echo $class_id[$i];
-						   //echo $cls_id;
+                           for($i=0;$i<$cnt;$i++){
                            ?>
                         <div class="col-md-2">
-                           <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $class_id[$i]; ?>&var2=<?php if(empty($result))
-						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>" 
-						   onclick="changeText(<?php echo $class_id[$i]; ?>)"class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a>
-                        </div>
-						   <?php  }else{?>
-						   
-						   <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details?var1=<?php echo $class_id[$i]; ?>&var2=<?php if(empty($result))
 						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>" 
 						   onclick="changeText(<?php echo $class_id[$i]; ?>)"class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a>
                         </div>
-						 <?php   }
-						   } }  ?>
+                        <?php  } }  ?>
 						
                      </div>
                   </div>
