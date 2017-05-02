@@ -56,12 +56,15 @@ class Examination extends CI_Controller
 		{
 	 		$datas=$this->session->userdata();
 	 		$user_id=$this->session->userdata('user_id');
-
-	 		$datas['year'] = $this->examinationmodel->get_exam_details();
-			$class_name = $this->input->post('class_name');
-			$datas['result'] = $this->examinationmodel->get_details_view($class_name);
+                
+		   $class_name = $this->input->post('class_id');
+		   $datas['filter'] = $this->examinationmodel->search_details_view($class_name);
+		  // print_r($datas['filter']);exit;
 			
+	 		$datas['year'] = $this->examinationmodel->get_exam_details();
 			$datas['result1'] = $this->examinationmodel->get_details_view1();
+						
+			$datas['result'] = $this->examinationmodel->get_details_view();
 
 			$datas['sec'] = $this->subjectmodel->getsubject();
 			$datas['class'] = $this->classmodel->getclass();
@@ -277,9 +280,7 @@ class Examination extends CI_Controller
 			}
 		}
 	}
-
-
-
+	
 
 
  }

@@ -16,7 +16,7 @@
 
                                         <label class="col-sm-2 control-label">Exam</label>
                                         <div class="col-sm-4">
-
+<input type="hidden" name="admit_date" class="form-control datepicker" placeholder="Enrollment Date"/>
                                             <select name="exam_year" class="selectpicker" data-title="Select Exam Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <?php foreach ($year as $sect)
 												  {
@@ -112,16 +112,23 @@
                                     <div class="content">
 
                                         <div class="fresh-datatables">
-										 <div class="col-sm-4">
-
-                                            <select name="class_name" style="margin-top:30px;" class="selectpicker">
-                                                 <?php     foreach ($result1 as $rows)
-								             { ?> <option value=""><?php echo $rows->class_name;?>
-                                                                    <?php echo $rows->sec_name; ?></option>
-																	<?php } ?>
+										  <form method="post" action="<?php echo base_url(); ?>examination/add_exam_detail" class="form-horizontal" enctype="multipart/form-data">
+										 <div class="col-sm-2">
+                                            <select name="class_id" style="margin-top:30px;" class="selectpicker">
+											<option>Select</option>
+                                       <?php  foreach ($result1 as $rows)
+								          { ?> 
+									 <option value="<?php echo $rows->classmaster_id; ?>"><?php echo $rows->class_name;?>
+                                     <?php echo $rows->sec_name; ?></option>
+										<?php } ?>
                                             </select>
 
                                         </div>
+										 <div class="col-sm-4">
+                                            <button type="submit" id="save" class="btn btn-info btn-fill center">Search </button>
+                                        </div>
+										</form>
+										
                                             <table id="bootstrap-table" class="table">
 
                                                 <thead>
@@ -136,7 +143,67 @@
                                                 <tbody>
                                                     <?php
                                 $i=1;
-                                foreach ($result as $rows)
+								if(!empty($filter)){
+								foreach($filter as $sea)
+								{
+									?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php echo $i; ?>
+                                                            </td>
+															<?php 
+															$sub=$sea->subject_id;
+															$subname="SELECT * FROM edu_subject WHERE subject_id='$sub' ";
+															$resub=$this->db->query($subname);
+															$ressub=$resub->result();
+															 foreach($ressub as $row1)
+															 {
+																 $subname=$row1->subject_name;
+															 } 
+															?>
+                                                            <td>
+                                                                <?php echo $subname; ?>
+                                                            </td>
+                                                            <td>
+                                                     <?php $date=date_create($sea->exam_date);
+                                                       echo date_format($date,"d-m-Y");  ?> (<?php echo $sea->times; ?> ) </td>
+                                                            <?php
+															$cid=$sea->classmaster_id;
+                                                     $cls="SELECT cm.class,cm.section,cm.class_sec_id,c.*,s.* FROM edu_classmaster as cm,edu_class AS c,edu_sections as s WHERE cm.class_sec_id='$cid' AND cm.section=s.sec_id  AND cm.class=c.class_id";
+                                                     $cls=$this->db->query($cls);
+													 $clsres=$cls->result();
+													 foreach($clsres as $row2)
+													  {
+														$clsname=$row2->class_name;
+														$secname=$row2->sec_name;
+													  } 													 
+															?>
+															
+															
+															<td>
+                                                                <?php echo $clsname;?>
+                                                                    <?php echo $secname; ?>
+                                                            </td>
+                                                            <?php
+									 $id=$sea->teacher_id;
+									 $query = "SELECT * FROM edu_teachers WHERE teacher_id='$id' ";
+									 $resultset = $this->db->query($query);
+									 $res=$resultset->result();
+									 foreach($res as $row)
+									 {
+										 $name=$row->name;
+									 } 
+									?>
+                                                                <td>
+                                                                    <?php echo $name; ?>
+                                                                </td>
+                                                                <td>
+                           <a href="<?php echo base_url(); ?>examination/edit_exam_details/<?php echo $sea->exam_detail_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+                                                                </td>
+
+                                                        </tr>
+								<?php $i++;  } }else{
+									      foreach ($result as $rows)
 								 {
                                 ?>
                                                         <tr>
@@ -171,7 +238,7 @@
                                                                 </td>
 
                                                         </tr>
-                                                        <?php $i++;  }  ?>
+								<?php $i++;  } } ?>
                                                 </tbody>
                                             </table>
 
@@ -220,9 +287,10 @@
                     var exam_secction = '';
                     var teacher = '';
                     for (i = 0; i < len; i++) {
+						
                         name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
 
-                        exam_date += '<input type="text" required id="datepicker1" placeholder="Ender Exam Date" name="exam_date[]" class="form-control datePick" value=""></br>';
+                        exam_date += '<input type="text" id="datepicker" name="exam_date[]" class="form-control datepicker" placeholder="Enter The Exam Date"/></br>';
 
                         exam_secction += '<select name="time[]" required class="form-control" data-title="Select Time" data-style="btn-default btn-block" data-menu-style="dropdown-blue"><option value="">Select</option><option value="AM">AM</option><option value="PM">PM</option></select></br>';
 
@@ -248,9 +316,13 @@
             }
         });
     }
+	
+	
 </script>
 
 <script type="text/javascript">
+
+
     $(document).ready(function() {
 
         $('#examform').validate({ // initialize the plugin
@@ -317,35 +389,34 @@
         $('#exammenu').addClass('collapse in');
         $('#exam').addClass('active');
         $('#exam1').addClass('active');
-
-
-
-        /*$('#datepicker').datepicker({
-           format: 'DD-MM-YYYY',
-           icons: {
-               time: "fa fa-clock-o",
-               date: "fa fa-calendar",
-               up: "fa fa-chevron-up",
-               down: "fa fa-chevron-down",
-               previous: 'fa fa-chevron-left',
-               next: 'fa fa-chevron-right',
-               today: 'fa fa-screenshot',
-               clear: 'fa fa-trash',
-               close: 'fa fa-remove'
-           }
-        }); */
+//$("#datepicker").attr('data-uk-datepicker','{format:"DD.MM.YYYY"}');
+       $('#datepicker').datetimepicker({
+          format: 'DD-MM-YYYY',
+          icons: {
+              time: "fa fa-clock-o",
+              date: "fa fa-calendar",
+              up: "fa fa-chevron-up",
+              down: "fa fa-chevron-down",
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-screenshot',
+              clear: 'fa fa-trash',
+              close: 'fa fa-remove'
+          }
+       }); 
     });
-
-
-	$(function(){
+/* $('.datepicker').datepicker();
+$('#dp').attr('data-uk-datepicker','{format:"DD.MM.YYYY"}');*/
+/* 
+	 $(function(){
     $(document).on("focusin",".datePick", function () {
-		//alert("hi");
-       $(this).datepicker({
+	//alert("hi");
+       $('#dp').datepicker({
             dateFormat: "dd/mm/yy",
             changeMonth: true,
             changeYear: true,
-            onClose: function () { $(this).valid(); }
-        });
+            onClose: function (){$(this).valid(); }
+        }); 
     });
-	    });
+	    });   */
 </script>
