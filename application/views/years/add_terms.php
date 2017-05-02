@@ -108,15 +108,16 @@
                               foreach ($terms as $rows) {
 
 								     $yrdata=$rows->from_date;
-                                     $month= strtotime($yrdata);
+                                     $month4= strtotime($yrdata);
 
 									 $endmonth=$rows->to_date;
-									 $month1= strtotime($endmonth);
+									 $month5= strtotime($endmonth);
                                 ?>
                                   <tr>
 								   <td><?php  echo $i; ?></td>
 								   <?php
                                           $tea_name=$rows->year_id;
+										  
 										  $sQuery = "SELECT * FROM edu_academic_year ";
 										  $objRs=$this->db->query($sQuery);
 										  $row=$objRs->result();
@@ -124,7 +125,7 @@
 										  {
 												 $s= $rows1->year_id;
 												 $fyear=$rows1->from_month;
-												$month= strtotime($fyear);
+												 $month= strtotime($fyear);
 												 $sec=date('Y',$month);
 
 												 $eyear=$rows1->to_month;
@@ -146,8 +147,8 @@
 
 
 
-                                    <td><?php  echo date('M-Y',$month); ?></td>
-									 <td><?php  echo date('M-Y',$month1) ; ?></td>
+                                    <td><?php  echo date('M-Y',$month4); ?></td>
+									 <td><?php  echo date('M-Y',$month5) ; ?></td>
 									 <td><?php  echo $rows->term_name; ?></td>
                                     <td class="text-right">
 								<!--	<a href="<?php // echo base_url(); ?>examination/add_exam_subject/<?php //echo $rows->exam_id; ?>" rel="tooltip" title="Added Exam Details" class="btn btn-simple btn-info btn-icon table-action view" >

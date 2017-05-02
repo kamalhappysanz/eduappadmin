@@ -75,11 +75,11 @@ Class Yearsmodel extends CI_Model
 		 }
 
 
-		 function update_terms($terms_id,$year_id,$terms,$from_month,$end_month)
+		 function update_terms($terms_id,$year_id,$terms,$formatted_date,$formatted_date1)
 		 {
 			 //UPDATE `edu_terms` SET `term_id`=[value-1],`year_id`=[value-2],`from_date`=[value-3],`to_date`=[value-4],`term_name`=[value-5],`status`=[value-6],`created_date`=[value-7] WHERE 1
 
-			 $query="UPDATE edu_terms SET year_id='$year_id',from_date='$from_month',to_date='$end_month',term_name='$terms' WHERE 	term_id='$terms_id'";
+			 $query="UPDATE edu_terms SET year_id='$year_id',from_date='$formatted_date',to_date='$formatted_date1',term_name='$terms' WHERE term_id='$terms_id'";
 		     $res=$this->db->query($query);
 		//return $res->result();
 				if($res){

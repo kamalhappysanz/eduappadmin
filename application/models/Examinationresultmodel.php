@@ -156,7 +156,7 @@ Class Examinationresultmodel extends CI_Model
 			//echo $teacher_id;exit;
 		    //$sql="SELECT t.teacher_id,t.class_teacher,t.name,t.subject,en.enroll_id,en.name,en.admisn_no,en.class_id FROM edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND en.class_id='$cls_masid'";
 			
-			echo $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
+		     $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
 			$res=$this->db->query($sql); 
 			$rows=$res->result();
 			return $rows;
@@ -211,6 +211,42 @@ Class Examinationresultmodel extends CI_Model
 			//$res=$resultset->result();
 			//$datas=array("status"=>"success","marks"=>$res);
 		    return $row;
+	   }
+	   
+	   function edit_marks_details($user_id,$subid,$clsmasid)
+	   {
+		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+			$resultset=$this->db->query($query);
+			$row=$resultset->result();
+			foreach($row as $rows){}
+			$teacher_id=$rows->teacher_id;
+			
+			$sql="SELECT m.*,en.enroll_id,en.admit_year,en.name,en.class_id,en.admisn_no FROM edu_exam_marks AS m,edu_enrollment AS en WHERE m.subject_id='$subid' AND m.classmaster_id='$clsmasid' AND m.teacher_id='$teacher_id' AND en.class_id='$clsmasid' AND en.enroll_id=m.stu_id ";
+			$resultset=$this->db->query($sql);
+			$res=$resultset->result();
+			return $res;
+
+	   }
+	   function update_marks_details($teaid,$clsmastid,$exam_id,$subid,$marks,$sutid)
+	   {
+		   $count_name = count($marks);
+		  echo $count_name;
+           for($i=0;$i<$count_name;$i++)
+		   {
+			$sutid1=$sutid[$i];
+			//print_r($enroll);
+			 $subid1=$subid;
+			 $clsmastid1=$clsmastid;
+			 $teaid1=$teaid;
+			 $examid1=$exam_id;
+			$marks1=$marks[$i];
+			print_r($marks1);
+		   $update="UPDATE edu_exam_marks SET marks='$marks1',updated_at=NOW() WHERE exam_id='$examid1' AND teacher_id='$teaid1' AND classmaster_id='$clsmastid1' AND subject_id='$subid1' AND stu_id='$sutid1'";
+		   $resultset=$this->db->query($update);
+		   
+		  }
+		    $datas=array("status"=>"success");
+		    return $datas;
 	   }
 	   
 } 

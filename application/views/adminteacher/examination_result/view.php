@@ -27,7 +27,7 @@
                               <?php
                                  $i=1;
                                  foreach ($marks as $rows)
-								 {
+								 {//echo $rows->exam_marks_id;
                                   ?>
                               <tr>
                                  <td><?php echo $i; ?></td>
@@ -54,8 +54,7 @@
 								 ?> </td>
                                  
                                  <td>
-                                    <a href="" rel="tooltip" title="edit Mark Details" class="btn btn-simple btn-info btn-icon table-action view" >
-                                    <i class="fa fa-edit"></i></a>
+                                    <a href="<?php echo base_url(); ?>examinationresult/exam_mark_edit_details?var1=<?php echo $rows->subject_id; ?>&var2=<?php echo $rows->classmaster_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" ><i class="fa fa-edit"></i></a>
 									</td>
                               </tr>
                               <?php $i++;  }  ?>

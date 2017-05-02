@@ -153,7 +153,8 @@ font-weight: 500;
 										</a>
 										<div class="collapse" id="componentsExamples">
 											<ul class="nav">
-										<li><a href="<?php echo base_url(); ?>examinationresult/home">Result</a></li>
+										<li><a href="<?php echo base_url(); ?>examinationresult/home">Add Exam Marks</a></li>
+										<li><a href="<?php echo base_url(); ?>examinationresult/marks_details_view">Edit Exam Marks</a></li>
 													
 
 											</ul>

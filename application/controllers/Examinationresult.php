@@ -87,7 +87,7 @@ class Examinationresult extends CI_Controller
 		
 		public function exam_mark_details_cls_teacher()
 		{
-			 $datas=$this->session->userdata();
+			  $datas=$this->session->userdata();
   	 		  $user_id=$this->session->userdata('user_id');
 			  $user_type=$this->session->userdata('user_type');
 				
@@ -167,6 +167,56 @@ class Examinationresult extends CI_Controller
 					 redirect('/');
 				}
 			
+		}
+		
+		public function exam_mark_edit_details()
+		{
+			  $datas=$this->session->userdata();
+  	 		  $user_id=$this->session->userdata('user_id');
+			  $user_type=$this->session->userdata('user_type');
+				
+			  $subid=$this->input->get('var1');
+			  
+			  $clsmasid=$this->input->get('var2');
+			  //echo $subid;echo $clsmasid;
+			  $datas['edit']=$this->examinationresultmodel->edit_marks_details($user_id,$subid,$clsmasid);
+			 //  echo '<pre>';print_r($datas['edit']);exit;
+			if($user_type==2)
+			    { 
+				 $this->load->view('adminteacher/teacher_header');
+			     $this->load->view('adminteacher/examination_result/edit_mark',$datas);
+	 		     $this->load->view('adminteacher/teacher_footer');
+				}else{
+					 redirect('/');
+				}
+			
+		}
+		
+		public function update_marks_details()
+		{
+			  $datas=$this->session->userdata();
+  	 		  $user_id=$this->session->userdata('user_id');
+			  $user_type=$this->session->userdata('user_type');
+			  
+			  $exam_id=$this->input->post('examid');
+			  $clsmastid=$this->input->post('clsmastid');
+			  $subid=$this->input->post('subid');
+			  $sutid=$this->input->post('sutid');
+			 // print_r($sutid);exit;
+			  $teaid=$this->input->post('teaid');
+			  $marks=$this->input->post('marks');
+			  //echo $exam_id;echo $subid;print_r($sutid);echo $teaid;print_r($marks);exit;
+			  $datas=$this->examinationresultmodel->update_marks_details($teaid,$clsmastid,$exam_id,$subid,$marks,$sutid);
+			 // print_r($datas);exit;
+			  if($datas['status']="success")
+			  {
+				$this->session->set_flashdata('msg','Updated Successfully');
+                redirect('examinationresult/marks_details_view',$datas);
+			   //redirect('add_test');		
+			  }else{
+				$this->session->set_flashdata('msg','Falid To Updated');
+                redirect('examinationresult/marks_details_view',$datas);
+			}
 		}
 		
  }
