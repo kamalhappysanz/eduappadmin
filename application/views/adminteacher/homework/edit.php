@@ -10,7 +10,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Update Marks Details </h4>
+                                <h4 class="title">Update Marks Details <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
 								<?php foreach ($result as $rows)
 									{} ?>
 									<?php

@@ -86,7 +86,7 @@ Class Communicationmodel extends CI_Model
 
 	 function communication_update($id,$title,$notes,$date,$teacher,$class_name)
 	 {
-	$query="UPDATE edu_communication SET commu_title='$title',commu_details='$notes',commu_date='$date',teacher_id='$teacher',class_id='$class_name' WHERE commu_id='$id'";
+	  $query="UPDATE edu_communication SET commu_title='$title',commu_details='$notes',commu_date='$date',teacher_id='$teacher',class_id='$class_name' WHERE commu_id='$id'";
 	 $res=$this->db->query($query);
 	 if($res){
 				 $data= array("status" => "success");
@@ -96,8 +96,35 @@ Class Communicationmodel extends CI_Model
 				 return $data;
 			   }
 	 }
+      
+	   function user_leaves()
+	   {
+		   $query="SELECT * FROM edu_user_leave ORDER BY leave_id desc";
+		   $resultset=$this->db->query($query);
+           $result= $resultset->result();
+		   return $result;
+		   
+	   }
 
+	  
+	   function edit_leave($leave_id)
+	   {
+		 $que="SELECT * FROM edu_user_leave WHERE leave_id='$leave_id'";
+		 $resultset1=$this->db->query($que);
+		 $row=$resultset1->result();
+		 return $row;
+	 	 
+	   }
+	 
+	   function update_leave($leave_id,$status)
+	   {
+       echo $query1="UPDATE edu_user_leave SET status='$status',updated_at=NOW() WHERE leave_id='$leave_id'"; 
+        $resultset=$this->db->query($query1);
+		//$row=$resultset->result();
+		$data= array("status"=>"success");
+		return $data;		
 
+	   }
 
 
 }

@@ -3,7 +3,7 @@
       <div class="col-md-12">
          <div class="card">
             <div class="header">
-               <legend>Update Test Details</legend>
+               <legend>Update Test Details <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></legend>
             </div>
             <?php if($this->session->flashdata('msg')): ?>
             <div class="alert alert-success">

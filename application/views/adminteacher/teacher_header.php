@@ -131,12 +131,12 @@ font-weight: 500;
 								</li>
 
 								<li>
-										<a data-toggle="collapse" href="#sectionmenu">
+										<a data-toggle="collapse" href="#homeworknmenu">
 												<i class="pe-7s-flag"></i>
 												<p>Home Work	</p>
 												<b class="caret"></b>
 										</a>
-										<div class="collapse" id="sectionmenu">
+										<div class="collapse" id="homeworknmenu">
 											<ul class="nav">
 										<li><a href="<?php echo base_url(); ?>homework/home">Home Work</a></li>
 													<!-- <li><a href=""> Home Work</a></li>
@@ -146,17 +146,15 @@ font-weight: 500;
 									</div>
 								</li>
 								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
+										<a data-toggle="collapse" href="#examinationmenu">
 												<i class="pe-7s-plugin"></i>
 												<p>Examination Result</p>
 												<b class="caret"></b>
 										</a>
-										<div class="collapse" id="componentsExamples">
+										<div class="collapse" id="examinationmenu">
 											<ul class="nav">
 										<li><a href="<?php echo base_url(); ?>examinationresult/home">Add Exam Marks</a></li>
 										<li><a href="<?php echo base_url(); ?>examinationresult/marks_details_view">Edit Exam Marks</a></li>
-													
-
 											</ul>
 									</div>
 								</li>
@@ -173,10 +171,17 @@ font-weight: 500;
 										</a>
 								</li>
 								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
+										<a data-toggle="collapse" href="#communicationmenu">
 												<i class="pe-7s-plugin"></i>
-												<p>Communication	</p>
+												<p>Communication</p>
+												<b class="caret"></b>
 										</a>
+										<div class="collapse" id="communicationmenu">
+											<ul class="nav">
+										<li><a href="<?php echo base_url(); ?>teachercommunication/home">Add Leaves </a></li>
+										
+											</ul>
+									</div>
 								</li>
 								<li>
 										<a data-toggle="collapse" href="#componentsExamples">

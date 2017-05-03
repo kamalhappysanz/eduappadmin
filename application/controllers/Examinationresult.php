@@ -137,15 +137,18 @@ class Examinationresult extends CI_Controller
 			  //echo $subid;print_r($sutid);echo $teaid;print_r($marks);exit;
 			
 		   $datas=$this->examinationresultmodel->exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks);
-		   //print_r($datas['marks']);exit;
-			 if($datas['status']="success")
+		   //print_r($datas);
+			 if($datas['status']=="success")
 			  {
 				$this->session->set_flashdata('msg','Added Successfully');
                 redirect('examinationresult/marks_details_view',$datas);
 			   //redirect('add_test');		
+			  }else if($datas['status']=="Already Added"){
+				  $this->session->set_flashdata('msg','Already Added');
+                   redirect('examinationresult/marks_details_view',$datas);
 			  }else{
 				$this->session->set_flashdata('msg','Falid To Added');
-                redirect('examinationresult/home',$datas);
+                redirect('examinationresult/marks_details_view',$datas);
 			}
 		}
 		

@@ -13,7 +13,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Marks Details Enter</h4>
+                                <h4 class="title">Marks Details Enter</h4><button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
 								<?php if(empty($result))
 									{
 										echo "No Student Added";

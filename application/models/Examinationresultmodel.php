@@ -106,7 +106,7 @@ Class Examinationresultmodel extends CI_Model
 			foreach($row as $rows){}
 			$teacher_id=$rows->teacher_id;
 
-			$query="SELECT cm.class_sec_id,cm.subject,su.* FROM edu_classmaster AS cm,edu_subject AS su WHERE  cm.subject=su.subject_id AND cm.class_sec_id='$cls_masid'";
+			 $query="SELECT cm.class_sec_id,cm.subject,su.* FROM edu_classmaster AS cm,edu_subject AS su WHERE  cm.subject=su.subject_id AND cm.class_sec_id='$cls_masid'";
             $resultset=$this->db->query($query);
 			$row=$resultset->result();
 			 //print_r($row);exit;
@@ -132,8 +132,7 @@ Class Examinationresultmodel extends CI_Model
 						   $arryPlatform = explode(",",$id);
 						   $sPlatform_id  = trim($s);
 						   $sPlatform_name  = trim($sec);
-						   
-						   
+
 						   if(in_array($sPlatform_id,$arryPlatform))
 							   {
 								  $sub_name[]=$sec;
@@ -156,7 +155,7 @@ Class Examinationresultmodel extends CI_Model
 			//echo $teacher_id;exit;
 		    //$sql="SELECT t.teacher_id,t.class_teacher,t.name,t.subject,en.enroll_id,en.name,en.admisn_no,en.class_id FROM edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND en.class_id='$cls_masid'";
 			
-		     $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
+		    echo $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
 			$res=$this->db->query($sql); 
 			$rows=$res->result();
 			return $rows;
@@ -166,7 +165,8 @@ Class Examinationresultmodel extends CI_Model
 	   
 	   function exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks)
 	   {
-		   
+		    
+                   
 		   $count_name = count($marks);
 		 // echo $count_name; exit;
            for($i=0;$i<$count_name;$i++)
@@ -178,14 +178,21 @@ Class Examinationresultmodel extends CI_Model
 			$teaid1=$teaid;
 			$examid1=$exam_id;
 			$marks1=$marks[$i];
-
-		  $query="INSERT INTO edu_exam_marks(exam_id,teacher_id,subject_id,stu_id,classmaster_id,marks,created_at)VALUES('$examid1','$teaid1','$subid1','$sutid1','$clsmastid1','$marks1',NOW())";
-		  $resultset=$this->db->query($query);
-		  }
-		  $datas=array("status"=>"success");
-		  return $datas;
-		  
-	 }
+			
+			$check="SELECT * FROM edu_exam_marks WHERE exam_id='$examid1' AND subject_id='$subid1' AND classmaster_id='$clsmastid1'";
+            $result1=$this->db->query($check);
+            if($result1->num_rows()==0)
+			{
+			  $query="INSERT INTO edu_exam_marks(exam_id,teacher_id,subject_id,stu_id,classmaster_id,marks,created_at)VALUES('$examid1','$teaid1','$subid1','$sutid1','$clsmastid1','$marks1',NOW())";
+			  $resultset=$this->db->query($query);
+			  $datas=array("status"=>"success");
+		      return $datas;
+		    }else{
+				$data= array("status"=>"Already Added");
+                 return $data;
+			}
+	      }
+	   }
 	 function getall_marks_details($user_id)
 	 {
 		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";

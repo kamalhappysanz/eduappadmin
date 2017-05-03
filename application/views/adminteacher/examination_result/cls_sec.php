@@ -11,7 +11,7 @@
             <div class="col-md-10">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Teacher Class & Section</h4>
+                     <h4 class="title">Teacher Class & Section <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
                   </div>
 				  
 				  <?php  

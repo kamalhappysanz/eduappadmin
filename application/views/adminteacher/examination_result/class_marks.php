@@ -12,7 +12,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Enter Exam Mark </h4>
+                                <h4 class="title">Enter Exam Mark <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
@@ -87,23 +87,16 @@
 										</tr>
 										<?php  $i++; } ?>
 										<tr>
-										
 										 <td><div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Save</button>
                                           </div> </td>
-										 
 										</tr>
-
                                     </tbody>
                                 </table>
-								
 								</form>
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
             </div>
