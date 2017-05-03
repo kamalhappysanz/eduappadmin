@@ -11,6 +11,7 @@ class Teachertimetable extends CI_Controller {
 			$this->load->model('timetablemodel');
 			$this->load->model('class_manage');
 		  $this->load->helper('url');
+			$this->load->model('subjectmodel');
 		  $this->load->library('session');
 
 
@@ -55,18 +56,20 @@ class Teachertimetable extends CI_Controller {
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
+			$data['subres'] = $this->timetablemodel->get_subject_class($class_sec_id);
 			$datas['restime']=$this->timetablemodel->view_time($class_sec_id);
-		echo "<pre>";print_r($datas['status']);exit;
 		 if($user_type==2){
-			 if($datas['status']=="success"){
-					 print_r($datas);exit;
-					$this->load->view('adminteacher/teacher_header');
-	 			 $this->load->view('adminteacher/timetable/view',$datas);
-	 			 $this->load->view('adminteacher/teacher_footer');
-			 }else {
-				 print_r($datas['status']);exit;
+			 if($datas['restime']['st']=="no data Found"){
+				 $data=$datas['restime'];
 				 $this->load->view('adminteacher/teacher_header');
 				 $this->load->view('adminteacher/timetable/nodata');
+				 $this->load->view('adminteacher/teacher_footer');
+			 }else {
+				 $data['restime']=$datas['restime']['time'];
+				 $data['class_id']=$class_sec_id;
+				 $data['user_id']=$user_id;$data['user_type']=$user_type;
+				 $this->load->view('adminteacher/teacher_header');
+				 $this->load->view('adminteacher/timetable/view',$data);
 				 $this->load->view('adminteacher/teacher_footer');
 			 }
 
@@ -74,6 +77,30 @@ class Teachertimetable extends CI_Controller {
 		 else{
 			 redirect('/');
 		 }
+		}
+
+		public function  review(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==2){
+			$class_id=$this->input->post('class_id');
+			$user_id=$this->input->post('user_id');
+			$subject_id=$this->input->post('subject_id');
+			$user_type=$this->input->post('user_type');
+		 	$cur_date1=$this->input->post('cur_date');
+			$cls_date = new DateTime($cur_date1);
+			$cur_date= $cls_date->format('Y-m-d h:i:s');
+			 $comments=$this->input->post('comments');
+			 $data=$this->timetablemodel->save_review($class_id,$user_id,$user_type,$subject_id,$cur_date,$comments);
+			 if($data['status']=="success"){
+				 echo "success";
+			 }else{
+				 echo "failure";
+			 }
+			}else{
+				redirect('/');
+			}
 		}
 
 

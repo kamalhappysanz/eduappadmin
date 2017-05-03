@@ -63,7 +63,12 @@ INNER JOIN edu_academic_year AS a ON tt.year_id=a.year_id INNER JOIN edu_section
 
                 //GET ALL TIME TABLE
                 function view($class_sec_id){
-                    $query="SELECT tt.table_id,tt.class_id,tt.subject_id,s.subject_name,tt.teacher_id,t.name,tt.day,tt.period FROM edu_timetable AS tt LEFT JOIN edu_subject AS s ON tt.subject_id=s.subject_id LEFT JOIN edu_teachers AS t ON tt.teacher_id=t.teacher_id WHERE tt.class_id='$class_sec_id' ORDER BY tt.table_id ASC";
+                  $get_year="SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
+                  $result1=$this->db->query($get_year);
+                  foreach($result1->result() as $res){}
+                  $year_id=  $res->year_id;
+                     $query="SELECT tt.table_id,tt.class_id,tt.subject_id,s.subject_name,tt.teacher_id,t.name,tt.day,tt.period FROM edu_timetable AS tt LEFT JOIN edu_subject AS s ON tt.subject_id=s.subject_id LEFT JOIN edu_teachers AS t ON tt.teacher_id=t.teacher_id WHERE tt.class_id='$class_sec_id' AND tt.year_id='$year_id' ORDER BY tt.table_id ASC";
+
                    $result=$this->db->query($query);
                   if($result->num_rows()==0){
                     $data= array("status" => "no data Found");
@@ -81,16 +86,66 @@ INNER JOIN edu_academic_year AS a ON tt.year_id=a.year_id INNER JOIN edu_section
                    $result=$this->db->query($query);
                    $time=$result->result();
                   if($result->num_rows()==0){
-                    $data= array("status" => "no data Found");
+                    $data= array("st" => "no data Found");
                     return $data;
                   }else{
-                    $data= array("status" => "success","time"=>$time);
+                    $data= array("st" => "success","time"=>$time);
                     return $data;
-                //  return $result->result();
+                // return $result->result();
                   }
 
                 }
 
+                function get_subject_class($class_sec_id){
+                  //echo $class_sec_id;
+                        $query="SELECT * FROM edu_classmaster WHERE class_sec_id='$class_sec_id'";
+                        $result=$this->db->query($query);
+                        foreach($result->result() as $rows){}
+                        $sPlatform=   $rows->subject;
+                        $sQuery = "SELECT * FROM edu_subject";
+                        $objRs=$this->db->query($sQuery);
+                         //print_r($objRs);
+                        $row=$objRs->result();
+                        foreach ($row as $rows1) {
+                        $s= $rows1->subject_id;
+                        $sec=$rows1->subject_name;
+                        $arryPlatform = explode(",", $sPlatform);
+                        $sPlatform_id  = trim($s);
+                        $sPlatform_name  = trim($sec);
+                        if(in_array($sPlatform_id, $arryPlatform )) {
+                          $sub_id[]=$s;
+                          $sub_name[]=$sec;
+                        //  $sec_n[]=$sec_name;
+                        }
+                          }
+                          if(empty($sub_id)){
+                            $data= array("status" =>"No Record Found");
+                            return $data;
+                          }else{
+
+                            $data= array("subject_id" => $sub_id,"subject_name"=>$sub_name,"status"=>"success");
+                            return $data;
+                          }
+
+
+              }
+
+
+              //Save Review
+
+              function save_review($class_id,$user_id,$user_type,$subject_id,$cur_date,$comments){
+               $query="INSERT INTO edu_timetable_review (time_date,class_id,subject_id,user_type,user_id,comments,status,created_at,update_at) VALUES ('$cur_date','$class_id','$subject_id','$user_type','$user_id','$comments','A',NOW(),NOW())";
+                 $resultset=$this->db->query($query);
+                 if($resultset){
+                   $data= array("status" => "success");
+                   return $data;
+                 }else{
+                   $data= array("status" => "failure");
+                   return $data;
+                 }
+
+
+              }
                 //Delete timetable
 
                 function delete_time($class_sec_id){
