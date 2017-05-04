@@ -1,8 +1,17 @@
 <div class="main-panel">
 <div class="content">
+
+
 <div class="">
-  <h5>List of Event You have Been Allocated as Co-Ordinator</h5>
+  <!-- <h5>List of Event You have Been Allocated as Co-Ordinator</h5> -->
+  <div class="row">
+    <div class="container" style="padding-right:110px;padding-bottom:20px;">
+      <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right">Go Back</button>
+    </div>
+  </div>
 <div class="row">
+
+
 <?php $sat=$res['status'];  if($sat=="success"){
 //  print_r($res['event_li']);
 foreach($res['event_li'] as $rows){
@@ -23,7 +32,7 @@ $e_year = $event_date->format('Y');
               </time>
               <!-- <img alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" /> -->
               <div class="info">
-              <a href="<?php echo base_url(); ?>teacherevent/view_event/<?php echo $rows->event_id; ?>">  <h2 class="title"><?php echo $rows->event_name;  ?></h2></a>
+             <p class="" style="padding-top:30px;padding-left:20px;"><?php echo $rows->sub_event_name;  ?></p>
               </div>
             </li>
 
@@ -31,48 +40,13 @@ $e_year = $event_date->format('Y');
           <!-- </ul> -->
         </div>
         <?php  } } else{  ?>
-          <div class="col-md-6"><p>NO Event Allocated for you</p></div>
+          <div class="col-md-6"><p>NO Event Found</p></div>
       <?php   } ?>
 
       </div>
     </div>
 
 
-    <div class="">
-      <h5>List of All Events </h5>
-    <div class="row">
-      <?php $sat=$event_all['status'];  if($sat=="success"){
-        //print_r($event_all['event_li']);
-        foreach($event_all['event_li'] as $rows){
-          $event_date = new DateTime($rows->event_date);
-          $e_date = $event_date->format('d');
-          $e_mon = $event_date->format('M');
-          $e_year = $event_date->format('Y');
-          ?>
-            <div class="col-sm-6">
-              <ul class="event-list" >
-                <li>
-                  <time datetime="<?php $rows->event_date ?>">
-                    <span class="day"><?php echo $e_date; ?></span>
-                    <span class="month"><?php echo $e_mon; ?></span>
-                    <span class="year"><?php echo $e_year; ?></span>
-
-                  </time>
-                  <!-- <img alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" /> -->
-                  <div class="info">
-                  <a href="<?php echo base_url(); ?>teacherevent/view_event/<?php echo $rows->event_id; ?>"> <h2 class="title"><?php echo $rows->event_name;  ?></h2></a>
-                  </div>
-                </li>
-
-
-              </ul>
-            </div>
-            <?php } } else{  ?>
-              <div class="col-md-6"><p>NO Event Found</p></div>
-          <?php   } ?>
-
-          </div>
-        </div>
 
 
 

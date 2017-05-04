@@ -79,7 +79,7 @@ class Teachertimetable extends CI_Controller {
 		 }
 		}
 
-		public function  review(){
+		public function review(){
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
@@ -102,6 +102,24 @@ class Teachertimetable extends CI_Controller {
 				redirect('/');
 			}
 		}
+
+
+		public function reviewview(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				$datas['res']=$this->timetablemodel->view_review($user_id);
+				//echo "<pre>"; print_r($datas['res']);exit;
+			 if($user_type==2){
+			 $this->load->view('adminteacher/teacher_header');
+			 $this->load->view('adminteacher/timetable/review',$datas);
+			 $this->load->view('adminteacher/teacher_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+
 
 
 

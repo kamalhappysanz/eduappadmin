@@ -7,12 +7,9 @@ class Teacherevent extends CI_Controller {
 	function __construct() {
 		 parent::__construct();
 
-			$this->load->model('teacherattendencemodel');
-			$this->load->model('timetablemodel');
-			$this->load->model('class_manage');
-		  $this->load->helper('url');
-			$this->load->model('subjectmodel');
-		  $this->load->library('session');
+			$this->load->model('teachereventmodel');
+			$this->load->helper('url');
+			$this->load->library('session');
 
 
  }
@@ -40,10 +37,10 @@ class Teacherevent extends CI_Controller {
   	 		$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
-			 $datas=$this->teacherattendencemodel->get_teacher_id($user_id);
-			 //print_r($datas);
-	 		 $this->load->view('adminteacher/teacher_header');
-			 $this->load->view('adminteacher/event/eventview');
+			 $datas['res']=$this->teachereventmodel->get_teacher_event($user_id);
+			 $datas['event_all']=$this->teachereventmodel->get_teacher_allevent();
+			 $this->load->view('adminteacher/teacher_header');
+			 $this->load->view('adminteacher/event/eventview',$datas);
 	 		 $this->load->view('adminteacher/teacher_footer');
 	 		 }
 	 		 else{
@@ -51,7 +48,22 @@ class Teacherevent extends CI_Controller {
 	 		 }
 	 	}
 
-
+		public function view_event($event_id){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			 if($user_type==2){
+			 $datas['res']=$this->teachereventmodel->get_teacher_in_event($event_id);
+			//  echo "<pre>";
+			//  print_r( $datas['res']);exit;
+			 $this->load->view('adminteacher/teacher_header');
+			 $this->load->view('adminteacher/event/event_list',$datas);
+			 $this->load->view('adminteacher/teacher_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
 
 
 

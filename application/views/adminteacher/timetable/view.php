@@ -18,7 +18,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="header">
-          <legend>Time Table <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></legend>
+          <legend>Time Table<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> <a href="<?php echo base_url(); ?>teachertimetable/reviewview" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go To Review</a></legend>
 
       </div>
 
@@ -180,8 +180,15 @@ $('#timetablereviewform').validate({ // initialize the plugin
            data: $('#timetablereviewform').serialize(),
            success: function(response) {
                if(response=="success"){
-                 swal("Success!", "Thanks for Your Note!", "success");
+                //  swal("Success!", "Thanks for Your Note!", "success");
                   $('#timetablereviewform')[0].reset();
+                  swal({
+           title: "Wow!",
+           text: "Message!",
+           type: "success"
+       }, function() {
+           window.location = "<?php echo base_url(); ?>teachertimetable/reviewview";
+       });
                }else{
                  sweetAlert("Oops...", "Something went wrong!", "error");
                }
