@@ -1,27 +1,28 @@
 <div class="main-panel">
+    
+	
 <div class="content">
        <div class="container-fluid">
            <div class="row">
                <div class="col-md-8">
                    <div class="card">
-                       <div class="header">
+                       <div class="header"> 
                            <h4 class="title">Add Year </h4>
-
                        </div>
 
                        <div class="content">
                            <form method="post" action="<?php echo base_url(); ?>years/create" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
 
                                  <fieldset>
+								  
                                       <div class="form-group">
                                           <label class="col-sm-2 control-label">FROM YEAR</label>
                                           <div class="col-sm-4">
-                                              <input type="text" name="from_month" id="from_year" class="form-control datepicker" required value="">
-
+                                              <input id="test" value="" name="from_month"  class="form-control" required >
                                           </div>
                                           <label class="col-sm-2 control-label">TO YEAR</label>
                                           <div class="col-sm-4">
-                                              <input type="text" name="end_month" id="to_year" required class="form-control datepicker"  />
+                                              <input  value="" name="end_month" id="to_year" required class="form-control"  />
                                           </div>
 
                                       </div>
@@ -54,14 +55,9 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="content">
-
                                 <div class="fresh-datatables">
-
-
-
                           <table id="bootstrap-table" class="table">
                               <thead>
-
                                 <th>S.no</th>
                                 <th>FROM YEAR</th>
 								<th>To YEAR</th>
@@ -70,31 +66,24 @@
                               <tbody>
                                 <?php
                                 $i=1;
-
                                 foreach ($result as $rows)
 								{
 								 $yrdata=$rows->from_month;
                                  $month= strtotime($yrdata);
-
 								 $endmonth=$rows->to_month;
 								 $month1= strtotime($endmonth);
-
-   ?>
+                                 ?>
                                   <tr>
                                     <td><?php  echo $i; ?></td>
                                     <td><?php  echo date('M-Y',$month); ?></td>
-									 <td><?php echo date('M-Y',$month1); ?></td>
+									<td><?php echo date('M-Y',$month1); ?></td>
                                     <td class="text-right">
-
                              <a href="<?php echo base_url(); ?>years/edit_years/<?php echo $rows->year_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-
-
                                       </td>
                                   </tr>
                                   <?php $i++;  }  ?>
                               </tbody>
                           </table>
-
 
                         </div>
                             </div><!-- end content-->
@@ -114,7 +103,11 @@
 <script type="text/javascript">
 
  $(document).ready(function () {
-
+ // create DatePicker from input HTML element
+            $("#test").kendoDatePicker();
+            //DISABLE inputs
+            $("#datepicker").attr("readonly",true); 
+			 
  $('#myformsection').validate({ // initialize the plugin
      rules: {
          from_year:{required:true }
@@ -167,25 +160,3 @@ var $table = $('#bootstrap-table');
 
       });
 </script>
-<script type="text/javascript">
-      $().ready(function(){
-        $('#mastersmenu').addClass('collapse in');
-        $('#master').addClass('active');
-        $('#masters1').addClass('active');
-        $('.datepicker').datetimepicker({
-          format: 'DD-MM-YYYY',
-		 // minDate: new Date(),
-          icons: {
-              time: "fa fa-clock-o",
-              date: "fa fa-calendar",
-              up: "fa fa-chevron-up",
-              down: "fa fa-chevron-down",
-              previous: 'fa fa-chevron-left',
-              next: 'fa fa-chevron-right',
-              today: 'fa fa-screenshot',
-              clear: 'fa fa-trash',
-              close: 'fa fa-remove'
-          }
-       });
-      });
-  </script>

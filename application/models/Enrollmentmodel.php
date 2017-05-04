@@ -9,13 +9,13 @@ Class Enrollmentmodel extends CI_Model
 
   }
 
-//CREATE ADMISSION
+//CREATE ADMISSION   ad_enrollment
 
-        function ad_enrollment($admit_year,$admit_date,$admisn_no,$name,$class){
+        function ad_enrollment($admission_id,$admit_year,$formatted_date,$admisn_no,$name,$class){
           $check_email="SELECT * FROM edu_enrollment WHERE admisn_no='$admisn_no'";
           $result=$this->db->query($check_email);
           if($result->num_rows()==0){
-            $query="INSERT INTO edu_enrollment (admit_year,admit_date,admisn_no,name,class_id,created_at,status) VALUES ('$admit_year','$admit_date','$admisn_no','$name','$class',NOW(),'A')";
+            $query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,created_at,status) VALUES ('$admission_id','$admit_year','$formatted_date','$admisn_no','$name','$class',NOW(),'A')";
             $resultset=$this->db->query($query);
 
 			$query2="UPDATE edu_admission SET enrollment='1' WHERE admisn_no='$admisn_no'";
@@ -66,9 +66,8 @@ Class Enrollmentmodel extends CI_Model
              return $data;
            }
         }
-
-
-       function de_enroll($enroll_id){
+       function de_enroll($enroll_id)
+	   {
          $query="UPDATE edu_enrollment SET status='DA' WHERE enroll_id='$enroll_id'";
          $res=$this->db->query($query);
          $data= array("status" => "De Active Successfully");
@@ -77,11 +76,11 @@ Class Enrollmentmodel extends CI_Model
 
 	    function getData($admisno)
 		{
-		  $query = "select name from edu_admission WHERE admisn_no='".$admisno."'";
+		  $query = "select name,admission_id from edu_admission WHERE admisn_no='".$admisno."'";
      	  $resultset = $this->db->query($query);
 		  foreach ($resultset->result() as $rows)
 		  {
-		   echo $rows->name;exit;
+		   echo $rows->name;echo $rows->admission_id;exit;
 		  }
 
 		}

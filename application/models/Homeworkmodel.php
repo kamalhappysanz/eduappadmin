@@ -98,7 +98,7 @@ Class Homeworkmodel extends CI_Model
 	   
 	   function create($class_id,$user_id,$test_type,$title,$subject_name,$formatted_date,$details)
 	   {
-		      $check_test_date="SELECT * FROM edu_homework WHERE test_date='$tet_date' AND subject_id='$subject_name'";
+		      $check_test_date="SELECT * FROM edu_homework WHERE test_date='$formatted_date' AND subject_id='$subject_name'";
 			  $result=$this->db->query($check_test_date);
 			  if($result->num_rows()==0)
 			  {

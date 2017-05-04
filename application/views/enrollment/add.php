@@ -68,7 +68,7 @@
                                             <label class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-4">
                                                 <p id="msg" name="name">  </p>
-												<input type="text" name="name" id="name"  class="form-control">
+												<input type="text" name="name" id="name" class="form-control">
 
                                             </div>
 
@@ -206,6 +206,7 @@ $(document).ready(function () {
 				if(test!='')
 				{
 				    $('#name').val(test);
+					$('#name1').val(test);
 					 checknamefun1(val);
 			        //$("#msg").html(test);
 				}

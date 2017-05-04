@@ -12,6 +12,17 @@
       <link href="<?php echo base_url(); ?>assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
       <!--  CSS for Demo Purpose, don't include it in your project     -->
       <link href="<?php echo base_url(); ?>assets/css/demo.css" rel="stylesheet" />
+	  
+	  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common.min.css"/>
+      <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.rtl.min.css"/>
+      <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.silver.min.css"/>
+      <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.mobile.all.min.css"/>
+      <script src="<?php echo base_url(); ?>assets/js/jquery-1.12.4.min.js" type="text/javascript"></script>
+	  <script src="<?php echo base_url(); ?>assets/js/kendo.all.min.js" type="text/javascript"></script>
+	
+
+  
+  
       <!--     Fonts and icons     -->
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
       <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -20,6 +31,10 @@
       <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+	  
+	  
+	  
+	   
       <!--  Forms Validations Plugin -->
       <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
@@ -273,6 +288,7 @@
                      <ul class="nav">
                        <li id="communication1"><a href="<?php echo base_url(); ?>communication/add_communication">Add Communications </a></li>
                        <li id="communication2"><a href="<?php echo base_url(); ?>communication/view">View Communications </a></li>
+					   <li id="communication3"><a href="<?php echo base_url(); ?>communication/view_user_leaves">View User Leaves </a></li>
                      </ul>
                   </div>
                </li>
