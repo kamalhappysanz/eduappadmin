@@ -13,7 +13,7 @@
                <div class="card">
                   <div class="content">
                      <div class="fresh-datatables">
-					 <h4 class="title">Marks Details</h4>
+					 <h4 class="title">Marks Details<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4> 
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>

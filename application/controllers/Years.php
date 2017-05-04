@@ -251,7 +251,7 @@ class Years extends CI_Controller {
 								$dateTime = new DateTime($end_month);
 				                $formatted_date1=date_format($dateTime,'Y-m-d' );
 
-								$datas=$this->yearsmodel->update_terms($terms_id,$year_id,$terms,$formatted_date,$formatted_date1);
+					$datas=$this->yearsmodel->update_terms($terms_id,$year_id,$terms,$formatted_date,$formatted_date1);
 
 								 if($datas['status']=="success")
 				                     {
