@@ -87,7 +87,7 @@ class Years extends CI_Controller {
 
 				$datas=$this->yearsmodel->add_years($formatted_date,$formatted_date1);
 
-				 //print_r($datas['status']);exit;
+				// print_r($datas['status']);exit;
 			    //print_r($data['exam_name']);exit;
 
 				if($datas['status']=="success"){
@@ -96,6 +96,9 @@ class Years extends CI_Controller {
 				}else if($datas['status']=="Already Exist The Year And Dates Are Same")
 				{
 					$this->session->set_flashdata('msg','Already Exist The Year And Dates Are Same');
+					redirect('years/home');
+				}else if($datas['status']=="The From Year Must be Grater Than To Year"){
+					$this->session->set_flashdata('msg','The From Year Must be Grater Than To Year');
 					redirect('years/home');
 				}else{
 					$this->session->set_flashdata('msg','Failed to Add');
@@ -214,17 +217,18 @@ class Years extends CI_Controller {
 				                $formatted_date1=date_format($dateTime,'Y-m-d' );
 
 								$datas=$this->yearsmodel->update_years($year_id,$formatted_date,$formatted_date1);
-
-								 if($datas['status']=="success")
-				                     {
-										$this->session->set_flashdata('msg','Updated Successfully');
-										redirect('years/home');
-				                     }
-					             else{
-									 $this->session->set_flashdata('msg','Failed To Updated');
-									redirect('years/home');
-
+                              if($datas['status']=="success"){
+								$this->session->set_flashdata('msg','Updated Successfully');
+								redirect('years/home');
+							}else if($datas['status']=="The From Year Must be Grater Than To Year")
+							{
+								$this->session->set_flashdata('msg','The From Year Must be Grater Than To Year');
+								redirect('years/home');
+							}else{
+								$this->session->set_flashdata('msg','Failed To Updated');
+								redirect('years/home');
 							}
+								
 					}
 
 			 }

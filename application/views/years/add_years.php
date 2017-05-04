@@ -27,12 +27,9 @@
                                       </div>
                                   </fieldset>
                                         <div class="form-group">
-
-
 											<label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-4">
 											<input type="submit" id="save" class="btn btn-info btn-fill center"  value="Save">
-
                                             </div>
 
                                             </div>
@@ -116,26 +113,20 @@
 
 <script type="text/javascript">
 
-/* $(document).ready(function () {
+ $(document).ready(function () {
 
  $('#myformsection').validate({ // initialize the plugin
      rules: {
-
-
-         yexam:{required:true },
-
-
+         from_year:{required:true }
+		 to_year:{required:true },
      },
      messages: {
-
-
-           yexam: "Please Enter Section Name"
-
-
+           from_year:"Please Enter From Year",
+		   to_year:"Please Enter To Year"
          }
  });
 });
- */
+ 
 var $table = $('#bootstrap-table');
       $().ready(function(){
           $table.bootstrapTable({
@@ -183,6 +174,7 @@ var $table = $('#bootstrap-table');
         $('#masters1').addClass('active');
         $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
+		 // minDate: new Date(),
           icons: {
               time: "fa fa-clock-o",
               date: "fa fa-calendar",

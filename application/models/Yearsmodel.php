@@ -9,13 +9,25 @@ Class Yearsmodel extends CI_Model
 
   }
 
-		 function add_years($from_month,$end_month)
+		 function add_years($formatted_date,$formatted_date1)
 		 {
-			 $check_month="SELECT * FROM  edu_academic_year WHERE from_month='$from_month' OR to_month='$end_month' OR '$from_month'='$end_month'";
-			 $result=$this->db->query($check_month);
+			  //echo $from_month;
+			 // echo $end_month;
+			  // $from_month;
+              $fy = date('Y',strtotime($formatted_date));
+              //echo $fy;
+			  $ty = date('Y',strtotime($formatted_date1));
+              //echo $ty;
+              if($fy<$ty && $fy=$ty)
+			  {
+			     $check_month="SELECT * FROM edu_academic_year WHERE DATE_FORMAT(from_month,'%Y')='$fy' AND DATE_FORMAT(to_month,'%Y')='$ty' ";
+			   // exit;
+			   //SELECT * FROM  edu_academic_year WHERE from_month='$from_month' AND to_month='$end_month' OR '$from_month'='$end_month'
+			 
+			  $result=$this->db->query($check_month);
 			  if($result->num_rows()==0)
 			  {
-			  $query="INSERT INTO edu_academic_year(from_month,to_month,status,created_date)VALUES('$from_month','$end_month','A',NOW())";
+			  $query="INSERT INTO edu_academic_year(from_month,to_month,status,created_date)VALUES('$formatted_date','$formatted_date1','A',NOW())";
 			  $resultset=$this->db->query($query);
 			  $data= array("status"=>"success");
 			  return $data;
@@ -23,6 +35,10 @@ Class Yearsmodel extends CI_Model
 					$data= array("status"=>"Already Exist The Year And Dates Are Same");
 					return $data;
 				  }
+			  }else{
+				    $data= array("status"=>"The From Year Must be Grater Than To Year");
+					return $data;
+			  }
 		 }
 
 		 function add_terms($year_id,$terms,$formatted_date,$formatted_date1)
@@ -44,7 +60,7 @@ Class Yearsmodel extends CI_Model
 
 		 function edit_year($year_id)
 		 {
-			 $query1="SELECT * FROM   edu_academic_year WHERE year_id='$year_id'";
+			 $query1="SELECT * FROM  edu_academic_year WHERE year_id='$year_id'";
              $res=$this->db->query($query1);
              return $res->result();
 		 }
@@ -59,19 +75,29 @@ Class Yearsmodel extends CI_Model
 
 
 
-		 function update_years($year_id,$from_month,$end_month)
+		 function update_years($year_id,$formatted_date,$formatted_date1)
 		 {
-
-			 $query="UPDATE edu_academic_year SET from_month='$from_month',to_month='$end_month' WHERE 	year_id='$year_id'";
-		     $res=$this->db->query($query);
-		//return $res->result();
-				if($res){
-				 $data= array("status" => "success");
-				 return $data;
-			   }else{
-				 $data= array("status" => "Failed to Update");
-				 return $data;
-			   }
+             $fy = date('Y',strtotime($formatted_date));
+			 $ty = date('Y',strtotime($formatted_date1));
+             if($fy<$ty && $fy=$ty)
+			 {
+			  /* $check_month="SELECT * FROM edu_academic_year WHERE DATE_FORMAT(from_month,'%Y')='$fy' AND DATE_FORMAT(to_month,'%Y')='$ty' ";
+			  $result=$this->db->query($check_month);
+			  if($result->num_rows()==0)
+			  { */
+			   $query="UPDATE edu_academic_year SET from_month='$formatted_date',to_month='$formatted_date1' WHERE year_id='$year_id'";
+		        $res=$this->db->query($query);
+			    $data= array("status"=>"success");
+			  return $data;
+			  }else{
+					$data= array("status"=>"The From Year Must be Grater Than To Year");
+					return $data;
+				  }
+			  /* }else{
+				    $data= array("status"=>"The From Year Must be Grater Than To Year");
+					return $data;
+			  } */
+				
 		 }
 
 
