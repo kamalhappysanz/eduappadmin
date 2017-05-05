@@ -100,13 +100,7 @@ $(document).ready(function () {
   $('#master').addClass('active');
   $('#masters4').addClass('active');
 
-  var elmt = document.getElementById('subjectname');
 
-  elmt.addEventListener('keydown', function (event) {
-      if (elmt.value.length === 0 && event.which === 32) {
-          event.preventDefault();
-      }
-  });
 
 
  $('#myformsub').validate({ // initialize the plugin

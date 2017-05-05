@@ -51,13 +51,6 @@ $(document).ready(function () {
   $('#master').addClass('active');
   $('#masters3').addClass('active');
 
-  var elmt = document.getElementById('sectionname');
-
-  elmt.addEventListener('keydown', function (event) {
-      if (elmt.value.length === 0 && event.which === 32) {
-          event.preventDefault();
-      }
-  });
 
   $('#myformsection').validate({ // initialize the plugin
       rules: {

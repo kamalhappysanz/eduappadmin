@@ -68,6 +68,10 @@
           }
        });
       });
+      $("input").on("keypress", function(e) {
+          if (e.which === 32 && !this.value.length)
+              e.preventDefault();
+      });
   </script>
 
 </html>

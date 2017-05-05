@@ -228,13 +228,7 @@
 
   <script  type="text/javascript">
 
-var elmt = document.getElementById('event_name');
 
-elmt.addEventListener('keydown', function (event) {
-    if (elmt.value.length === 0 && event.which === 32) {
-        event.preventDefault();
-    }
-});
 
 function submitContactForm(){
     //alert("hi");
