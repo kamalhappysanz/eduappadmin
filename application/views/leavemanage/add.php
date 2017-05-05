@@ -234,6 +234,7 @@ function functionleave(){
                url: "<?php echo base_url(); ?>leavemanage/add",
                data: $("#eventform").serialize(),
                success: function(data){
+                 alert(data);
                  if(data=="success"){
                    swal({
                       title: "Success!",

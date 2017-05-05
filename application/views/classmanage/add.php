@@ -169,15 +169,18 @@ $(document).ready(function () {
   $('#mastersmenu').addClass('collapse in');
   $('#master').addClass('active');
   $('#masters5').addClass('active');
+
  $('#myformclassmange').validate({ // initialize the plugin
      rules: {
 
           class_name:{required:true },
+          "subject[]":{required:true },
          section_name:{required:true },
      },
      messages: {
            class_name: "Select Class Name",
-           section_name:"Select Section Name"
+           section_name:"Select Section Name",
+           "subject[]":"Select Subjects To Class"
 
          }
  });

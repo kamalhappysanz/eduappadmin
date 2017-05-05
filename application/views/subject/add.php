@@ -99,11 +99,17 @@ $(document).ready(function () {
   $('#mastersmenu').addClass('collapse in');
   $('#master').addClass('active');
   $('#masters4').addClass('active');
+
+  $.validator.addMethod("noSpace", function(value, element)   { //Code used for blank space Validation
+      return value.indexOf(" ") < 0 && value != "";
+      }, "No space please and don't leave it empty");
+
+
  $('#myformsub').validate({ // initialize the plugin
      rules: {
 
 
-         subjectname:{required:true },
+         subjectname:{required:true, noSpace: true },
 
 
      },

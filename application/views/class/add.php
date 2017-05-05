@@ -104,7 +104,7 @@ $(document).ready(function () {
 
 
          classname:{required:true,
-      noSpace: true },
+           noSpace: true },
 
 
      },

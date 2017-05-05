@@ -34,8 +34,10 @@ Class Leavemodel extends CI_Model
 
         }
 
-                $query="INSERT INTO edu_leavemaster (leave_year,leave_type,status,created_at,updated_at) VALUES ('$years','$leave_type','$leave_status',NOW(),NOW())";
+                 $query="INSERT INTO edu_leavemaster (leave_year,leave_type,status,created_at,updated_at) VALUES ('$years','$leave_type','$leave_status',NOW(),NOW())";
+
                 $resultset1 = $this->db->query($query);
+
                 $leave_mas_id=$this->db->insert_id();
 
                 $query1="INSERT INTO edu_leaves(leaves_name,leave_date,days,week,leave_mas_id,status,created_at,updated_at) VALUES('$leave_name','$leave_date','$days','$weeks','$leave_mas_id','$leave_status',NOW(),NOW())";
@@ -73,8 +75,9 @@ Class Leavemodel extends CI_Model
               //Regular Holiday
 
               function get_regular(){
-                $query="SELECT * FROM edu_holidays_list_history AS lm INNER JOIN edu_leavemaster AS c ON lm.leave_id=c.leave_id GROUP BY leave_masid";
+                $query="SELECT lm.leave_type,lm.leave_year,el.week,lm.status,lm.leave_id,el.id ,el.days FROM edu_leavemaster AS lm LEFT JOIN edu_leaves AS el ON lm.leave_id=el.leave_mas_id WHERE lm.leave_type='Regular Holiday' ORDER BY lm.leave_id DESC";
                 $res=$this->db->query($query);
+                //print_r($res->result());exit;
                 return $res->result();
               }
 
@@ -95,7 +98,8 @@ Class Leavemodel extends CI_Model
 
               //Special Leave
               function get_special_leave_id($id){
-              $query="SELECT * FROM edu_leavemaster AS lm INNER JOIN edu_leaves AS c  ON lm.leave_id=c.leave_mas_id WHERE lm.leave_type='Special Holiday' AND leave_id ='$id'";
+               $query="SELECT * FROM edu_leavemaster AS lm INNER JOIN edu_leaves AS c  ON lm.leave_id=c.leave_mas_id WHERE lm.leave_type='Special Holiday' AND c.id ='$id'";
+
                 $res=$this->db->query($query);
                 return $res->result();
               }
@@ -118,8 +122,10 @@ Class Leavemodel extends CI_Model
               }
 
 
-              function udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$days,$weeks,$leave_status){
-                $query="UPDATE edu_leavemaster SET leave_year='$years',status='$leave_status',updated_at=NOW() WHERE leave_id='$leave_id'";
+              function udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$days,$weeks,$leave_mas_id,$leave_status){
+
+                 $query="UPDATE edu_leavemaster SET leave_year='$years',status='$leave_status',updated_at=NOW() WHERE leave_id='$leave_id'";
+
                 $resultset1 = $this->db->query($query);
 
                 $query1="UPDATE edu_leaves SET days='$days',week='$weeks',status='$leave_status',updated_at=NOW() WHERE leave_mas_id='$leave_mas_id'";

@@ -27,15 +27,15 @@
               <tbody>
                 <?php
                 $i=1;
-                //print_r($regular);
+              // print_r($regular);
                 foreach ($regular as $rows) {
 
                 ?>
                   <tr>
                     <td><?php echo $i; ?></td>
                       <td><?php echo $rows->leave_year; ?></td>
-                      <td><?php echo $rows->day; ?></td>
-                        <td><?php echo $rows->on_week; ?></td>
+                      <td><?php echo $rows->days; ?></td>
+                        <td><?php echo $rows->week; ?></td>
                       <td><?php  if($rows->status=='A'){ ?>
                         <button class="btn btn-success btn-fill btn-wd">Active</button>
                     <?php  }else{  ?>
@@ -45,7 +45,7 @@
                       <!-- <a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)"><i class="fa fa-image"></i>
                         </a> -->
                       <a href="<?php echo base_url(); ?>leavemanage/edit/<?php echo $rows->id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-                      <a href="<?php echo base_url(); ?>leavemanage/viewdates/<?php echo $rows->leave_masid; ?>" rel="tooltip" title="View Dates" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                      <a href="<?php echo base_url(); ?>leavemanage/viewdates/<?php echo $rows->leave_id; ?>" rel="tooltip" title="View Dates" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-list-ol" aria-hidden="true"></i></a>
 
 
 

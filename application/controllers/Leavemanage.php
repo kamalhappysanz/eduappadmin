@@ -55,7 +55,9 @@ class Leavemanage extends CI_Controller {
 				$years=$this->input->post('years');
 				$days=$this->input->post('days');
 				$weeks=$this->input->post('weeks');
-				$leave_date=$this->input->post('leave_date');
+				 $leave_date=$this->input->post('leave_date');
+
+
 				$leave_name=$this->input->post('leave_name');
 				$leave_status=$this->input->post('leave_status');
 				$datas=$this->leavemodel->create_leave($leave_type,$years,$days,$weeks,$leave_date,$leave_name,$leave_status);
@@ -179,7 +181,7 @@ class Leavemanage extends CI_Controller {
 			$weeks=$this->input->post('weeks');
 			$leave_mas_id=$this->input->post('leave_masid');
 
-			$leave_status=$this->input->post('leave_status');
+			echo $leave_status=$this->input->post('leave_status');
 
 			$datas=$this->leavemodel->udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$days,$weeks,$leave_mas_id,$leave_status);
 			if($datas['status']=="success"){
