@@ -24,7 +24,7 @@
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Name</label>
-                                           <input type="text" class="form-control"  placeholder="" name="sectionname" value="<?php  echo $rows->sec_name; ?>">
+                                           <input type="text" class="form-control"  placeholder="" name="sectionname" id="sectionname" value="<?php  echo $rows->sec_name; ?>">
                                             <input type="hidden" class="form-control"  placeholder="" name="sec_id" value="<?php  echo $rows->sec_id; ?>">
 
                                        </div>
@@ -50,15 +50,20 @@ $(document).ready(function () {
   $('#mastersmenu').addClass('collapse in');
   $('#master').addClass('active');
   $('#masters3').addClass('active');
-  $.validator.addMethod("noSpace", function(value, element)   { //Code used for blank space Validation
-      return value.indexOf(" ") < 0 && value != "";
-      }, "No space please and don't leave it empty");
+
+  var elmt = document.getElementById('sectionname');
+
+  elmt.addEventListener('keydown', function (event) {
+      if (elmt.value.length === 0 && event.which === 32) {
+          event.preventDefault();
+      }
+  });
 
   $('#myformsection').validate({ // initialize the plugin
       rules: {
 
 
-          sectionname:{required:true,noSpace: true },
+          sectionname:{required:true },
 
 
       },

@@ -95,9 +95,16 @@ var loadFile = function(event) {
  var output = document.getElementById('output');
  output.src = URL.createObjectURL(event.target.files[0]);
 };
-$.validator.addMethod("noSpace", function(value, element)   { //Code used for blank space Validation
-    return value.indexOf(" ") < 0 && value != "";
-    }, "No space please and don't leave it empty");
+
+
+
+  var elmt = document.getElementById('sname');
+
+  elmt.addEventListener('keydown', function (event) {
+      if (elmt.value.length === 0 && event.which === 32) {
+          event.preventDefault();
+      }
+  });
 
 $('#profileedit').validate({ // initialize the plugin
     rules: {

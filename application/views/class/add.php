@@ -15,7 +15,7 @@
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Class</label>
-                                           <input type="text" class="form-control"  placeholder="" name="classname" value="">
+                                           <input type="text" class="form-control"  placeholder="" id="classname" name="classname" value="">
 
                                        </div>
                                    </div>
@@ -95,16 +95,20 @@ $(document).ready(function () {
   $('#master').addClass('active');
   $('#masters3').addClass('active');
 
-  $.validator.addMethod("noSpace", function(value, element)   { //Code used for blank space Validation
-      return value.indexOf(" ") < 0 && value != "";
-      }, "No space please and don't leave it empty");
+  var elmt = document.getElementById('classname');
+
+  elmt.addEventListener('keydown', function (event) {
+      if (elmt.value.length === 0 && event.which === 32) {
+          event.preventDefault();
+      }
+  });
 
  $('#myformclass').validate({ // initialize the plugin
      rules: {
 
 
-         classname:{required:true,
-           noSpace: true },
+         classname:{required:true
+           },
 
 
      },
