@@ -50,7 +50,7 @@ Class Eventmodel extends CI_Model
 
 
         function getall_act_event(){
-          $query="SELECT event_date as start,event_name as title FROM edu_events";
+          $query="SELECT event_date as start,event_name as title,event_details as description FROM edu_events";
           $result=$this->db->query($query);
           return $result->result();
         }

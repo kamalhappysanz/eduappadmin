@@ -95,13 +95,7 @@ $(document).ready(function () {
   $('#master').addClass('active');
   $('#masters3').addClass('active');
 
-  var elmt = document.getElementById('classname');
 
-  elmt.addEventListener('keydown', function (event) {
-      if (elmt.value.length === 0 && event.which === 32) {
-          event.preventDefault();
-      }
-  });
 
  $('#myformclass').validate({ // initialize the plugin
      rules: {
