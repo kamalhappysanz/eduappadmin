@@ -37,7 +37,7 @@ class Adminlogin extends CI_Controller {
 	 $result = $this->login->login($email,$password);
 	 $msg=$result['msg'];
 	//echo  $msg1=$result['status'];exit;
-	 
+
 			if($result['status']=='DA'){
 				$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
 				$this->session->set_flashdata('msg', ' Account Deactivated');
@@ -227,7 +227,8 @@ class Adminlogin extends CI_Controller {
 			$user_type=$this->session->userdata('user_type');
 		 	if($user_type==1 || $user_type==2 || $user_type==3 ||$user_type==4 ){
 				$user_id=$this->input->post('user_id');
-				$name=$this->input->post('name');
+				$name=$this->input->post('sname');
+
 			  $user_pic_old=$this->input->post('user_pic_old');
 			  $profile = $_FILES["profile"]["name"];
 				$userFileName = time().'-'.$profile;
