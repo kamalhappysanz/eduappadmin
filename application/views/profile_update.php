@@ -21,7 +21,7 @@
                        }
                         ?>
                        <div class="content">
-                           <form action="<?php echo base_url(); ?>adminlogin/profileupdate" method="post" enctype="multipart/form-data">
+                           <form action="<?php echo base_url(); ?>adminlogin/profileupdate" method="post" id="profileedit" enctype="multipart/form-data">
                                <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
@@ -36,7 +36,7 @@
                                    <div class="col-md-7">
                                        <div class="form-group">
                                            <label for="exampleInputEmail1"> Name</label>
-                                           <input type="text" class="form-control" name="name" placeholder="Email" value="<?php echo $rows->name; ?>">
+                                           <input type="text" class="form-control" name="sname" placeholder="" value="<?php echo $rows->name; ?>">
                                        </div>
                                    </div>
                                </div>
@@ -95,4 +95,22 @@ var loadFile = function(event) {
  var output = document.getElementById('output');
  output.src = URL.createObjectURL(event.target.files[0]);
 };
+$.validator.addMethod("noSpace", function(value, element)   { //Code used for blank space Validation
+    return value.indexOf(" ") < 0 && value != "";
+    }, "No space please and don't leave it empty");
+
+$('#profileedit').validate({ // initialize the plugin
+    rules: {
+        sname:{required:true,noSpace: true },
+
+
+    },
+    messages: {
+
+
+          sname: "Please Enter  Name"
+
+
+        }
+});
 </script>

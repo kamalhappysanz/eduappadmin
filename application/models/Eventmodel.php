@@ -27,7 +27,7 @@ Class Eventmodel extends CI_Model
        //GET ALL TERMS
 
         function getall_events(){
-          $query="SELECT * FROM edu_events";
+          $query="SELECT * FROM edu_events ORDER BY event_id DESC";
           $result=$this->db->query($query);
           return $result->result();
         }
@@ -47,14 +47,14 @@ Class Eventmodel extends CI_Model
             return $data;
           }
         }
-		
+
 
         function getall_act_event(){
           $query="SELECT event_date as start,event_name as title FROM edu_events";
           $result=$this->db->query($query);
           return $result->result();
         }
-		
+
 		function save_sub_event($event_id,$sub_event_name,$co_name,$status)
 		{
 		  $check_event="SELECT * FROM edu_event_coordinator WHERE sub_event_name='$sub_event_name'";
@@ -62,9 +62,9 @@ Class Eventmodel extends CI_Model
           if($result->num_rows()==0)
 		  {
 			  $query="INSERT INTO edu_event_coordinator(event_id,sub_event_name,co_name_id,status,created_at) VALUES ('$event_id','$sub_event_name','$co_name','$status',NOW())";
-			  
+
 			  $result=$this->db->query($query);
-			  
+
 			 if($result){
               $data= array("status" => "success");
                return $data;
@@ -76,8 +76,8 @@ Class Eventmodel extends CI_Model
 			  $data= array("status" => "Event Name Already Exist");
             return $data;
 		  }
-		
-	}	
+
+	}
     function view_sub_event($event_id)
 	{
 		  $query="SELECT * FROM edu_event_coordinator WHERE event_id='$event_id'";
@@ -87,22 +87,22 @@ Class Eventmodel extends CI_Model
 		  /* foreach($res as $row)
 		  {
 			  $a=$row->co_name_id;
-		  } 
+		  }
 		  return $a; */
 	}
-	
+
 	function edit_sub_event($co_id)
 	{
 		  $query="SELECT * FROM edu_event_coordinator WHERE co_id='$co_id'";
 		  $result=$this->db->query($query);
           $res=$result->result();
 		  return $res;
-		
+
 	}
 	function update_sub_event($event_id,$co_id,$sub_event_name,$co_name,$status)
 	{
 		 $query="UPDATE edu_event_coordinator SET sub_event_name='$sub_event_name',co_name_id='$co_name',status='$status',updated_at=NOW() WHERE co_id='$co_id' AND event_id='$event_id'";
-		
+
 		 $result=$this->db->query($query);
           if($result){
             $data= array("status" => "success");
