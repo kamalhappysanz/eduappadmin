@@ -45,19 +45,13 @@
                                         <div class="form-group">
                                           <label class="col-sm-2 control-label">Admission No</label>
                                           <div class="col-sm-4">
-
-	<!-- <select name="admisn_no" class="selectpicker form-control" onkeyup="checknamefun(this.value) data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-	<option value="">Select Admission No</option>
-                                                 <?php //foreach ($admisn as $rows) {
-                                                       //  $admisn_no=$rows->admisn_no;
-												?>
-                                                <option value="<?php //echo $rows->admisn_no; ?>"><?php //echo $admisn_no; ?></option>
-												<?php// } ?>
-
-                                                </select> -->
-
-            <input type="text" class="form-control" name="admisn_no" id="admission_no" onkeyup="checknamefun(this.value)">
-                 <p id="msg1" style="color:red;"></p>  <p id="msg2" style="color:green;"></p>
+                                         <select name="admisn_no" id="admission_no" onchange="checknamefun(this.value)" class="selectpicker form-control" data-title="Select Admission Number" >
+                                                    <?php foreach ($admisno as $row) {  ?>
+                                                <option value="<?php echo $row->admisn_no; ?>"><?php echo $row->admisn_no; ?></option>
+                                              <?php      } ?>
+                                                  </select>
+            <!-- <input type="hidden" class="form-control" name="admisn_no" id="admission_no" onkeyup="checknamefun(this.value)"> 
+                 <p id="msg1" style="color:red;"></p>  <p id="msg2" style="color:green;"></p>-->
                                           </div>
 
                                         </div>
@@ -68,8 +62,7 @@
                                             <label class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-4">
                                                 <p id="msg" name="name">  </p>
-												<input type="text" name="name" id="name" class="form-control">
-
+								<input type="text" name="name" id="name"  class="form-control">
                                             </div>
 
                                         </div>
@@ -98,37 +91,16 @@
                                               <?php      } ?>
                                                   </select>
 												  
-											
-											
-                                             <!-- <select name="class" class="selectpicker form-control" data-title="Select Class" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                <?php foreach ($clas as $rows) { ?>
-                                                  <option value="<?php echo $rows->class_id; ?>"><?php echo $rows->class_name; ?></option>
-                                              <?php  } ?>
-                                                </select> -->
                                             </div>
 
                                         </div>
                                     </fieldset>
-                                  <!--    <fieldset>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Section</label>
-                                            <div class="col-sm-4">
-                                              <select name="section" class="selectpicker form-control" data-title="Select Section" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                <?php //foreach ($sec as $rows) { ?>
-                                                  <option value="<?php //echo $rows->sec_id; ?>"><?php //echo $rows->sec_name; ?></option>
-                                              <?php  //} ?>
-                                              </select>
-                                            </div>
-
-                                        </div>
-                                    </fieldset>-->
-
-
+                                
                                     <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
-                                                   <button type="submit" class="btn btn-info btn-fill center">Save </button>
+                                        <button type="submit" id="save1" class="btn btn-info btn-fill center">Save </button>
                                             </div>
 
                                         </div>
@@ -157,7 +129,7 @@ $(document).ready(function () {
      },
      messages: {
           // admit_year: "Enter Admission Year",
-           admisn_no: "Enter Admission No",
+           admisn_no: "Select Admission No",
            admit_date: "Select Admission Date",
            name: "Enter Name",
             admit_date: "Select The Date",
@@ -194,7 +166,7 @@ $(document).ready(function () {
 
 <script type="text/javascript">
    function checknamefun(val)
-   {//alert(val);
+   { //alert(val);
       $.ajax({
 			type:'post',
 			url:'<?php echo base_url(); ?>/enrollment/checker',
@@ -212,12 +184,13 @@ $(document).ready(function () {
 				}
 				else{
 					alert("Admission Number not found");
+					$("#save1").hide();
 					//$("#msg").html(test);
+					
 				}
 			}
 	  });
 }
-
 </script>
 
 <script type="text/javascript">

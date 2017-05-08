@@ -11,19 +11,15 @@ Class Yearsmodel extends CI_Model
 
 		 function add_years($formatted_date,$formatted_date1)
 		 {
-			  //echo $from_month;
-			 // echo $end_month;
-			  // $from_month;
+			 
               $fy = date('Y',strtotime($formatted_date));
-              echo $fy;
+              //echo $fy;
 			  $ty = date('Y',strtotime($formatted_date1));
-              echo $ty;//exit;
+              //echo $ty;//exit;
               if($fy<$ty && $fy!=$ty )
 			  { 
 			     $check_month="SELECT * FROM edu_academic_year WHERE DATE_FORMAT(from_month,'%Y')='$fy' AND DATE_FORMAT(to_month,'%Y')='$ty' ";
-			   // exit;
-			   //SELECT * FROM  edu_academic_year WHERE from_month='$from_month' AND to_month='$end_month' OR '$from_month'='$end_month'
-			 
+
 			  $result=$this->db->query($check_month);
 			  if($result->num_rows()==0)
 			  {
