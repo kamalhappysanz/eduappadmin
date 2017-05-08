@@ -129,20 +129,23 @@ class Years extends CI_Controller {
 
 			    $end_month=$this->input->post('end_month');
 
-				$dateTime = new DateTime($end_month);
-				$formatted_date1=date_format($dateTime,'Y-m-d' );
+				$dateTime1 = new DateTime($end_month);
+				$formatted_date1=date_format($dateTime1,'Y-m-d' );
 
 				 $datas=$this->yearsmodel->add_terms($year_id,$terms,$formatted_date,$formatted_date1);
 
-				 //print_r($datas['status']);exit;
+				//print_r($datas['status']);exit;
 			    //print_r($data['exam_name']);exit;
 
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg','Added Successfully');
 					redirect('years/terms');
-				}else if($datas['status']=="Already Exist The Terms And Dates Are Same")
+				}else if($datas['status']=="Already Exist the terms at the same year")
 				{
-					$this->session->set_flashdata('msg','Already Exist The Terms And Dates Are Same');
+					$this->session->set_flashdata('msg','Already Exist the terms at the same year');
+					redirect('years/terms');
+				}else if($datas['status']=="Must be graterthan the from-date to to-date"){
+					$this->session->set_flashdata('msg','Must be graterthan the from-date to to-date');
 					redirect('years/terms');
 				}else{
 					$this->session->set_flashdata('msg','Failed to Add');

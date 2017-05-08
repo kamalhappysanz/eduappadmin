@@ -36,7 +36,6 @@
                                           <div class="col-sm-4">
                                          <input type="text" name="terms" required class="form-control" value="">
 
-
                                           </div>
 
                                       </div>

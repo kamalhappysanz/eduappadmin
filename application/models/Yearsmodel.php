@@ -39,18 +39,28 @@ Class Yearsmodel extends CI_Model
 
 		 function add_terms($year_id,$terms,$formatted_date,$formatted_date1)
 		 {
-			 $check_month="SELECT * FROM edu_terms WHERE from_date='$formatted_date' OR to_date='$formatted_date1' OR term_name='$terms'";
-			$result=$this->db->query($check_month);
-			  if($result->num_rows() == 0)
+			  $fd = date('Y-m',strtotime($formatted_date));
+              //echo $fy;
+			  $td = date('Y-m',strtotime($formatted_date1));
+              //echo $ty;echo $year_id; 
+			 if($fd<$td && $fd!=$td)
+			  { 
+			 $check_month="SELECT * FROM edu_terms  WHERE DATE_FORMAT(from_date,'%Y-%m')='$fd' AND DATE_FORMAT(to_date,'%Y-%m')='$td' AND term_name='$terms'";
+			 $result=$this->db->query($check_month); 
+			 if($result->num_rows()==0)
 			  {
 			  $query="INSERT INTO edu_terms(year_id,from_date,to_date,term_name,status,created_date)VALUES('$year_id','$formatted_date','$formatted_date1','$terms','A',NOW())";
 			  $resultset=$this->db->query($query);
 			  $data= array("status"=>"success");
 			  return $data;
 			  }else{
-					$data= array("status"=>"Already Exist The Terms And Dates Are Same");
+					$data= array("status"=>"Already Exist the terms at the same year");
 					return $data;
 				  }
+			  }else{
+				    $data= array("status"=>"Must be graterthan the from-date to to-date");
+					return $data;
+			  }	  
 
 		 }
 
