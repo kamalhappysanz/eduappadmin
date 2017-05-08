@@ -40,10 +40,12 @@ class Enrollment extends CI_Controller {
 	 		 $user_id=$this->session->userdata('user_id');
 			 $datas['result'] = $this->yearsmodel->getall_years();
 
-			  $datas['admisn'] = $this->admissionmodel->get_all_admission();
+			$datas['admisn'] = $this->admissionmodel->get_all_admission();
 	 		$datas['clas'] = $this->classmodel->getclass();
 			$datas['sec'] = $this->sectionmodel->getsection();
 			$datas['getall_class']=$this->class_manage->getall_class();
+			$datas['admisno']=$this->admissionmodel->get_enrollment_admisno();
+			//print_r($datas['admisno']);exit;
 			
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==1){
@@ -210,7 +212,6 @@ class Enrollment extends CI_Controller {
 
 		 }
 
-
           public function checker1()
 		   {
 			 $admisno = $this->input->post('admisno');
@@ -225,11 +226,6 @@ class Enrollment extends CI_Controller {
 						echo "Add Enrollment";
 					 }
 		  }
-
-
-
-
-
 
 
 }

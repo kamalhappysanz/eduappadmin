@@ -15,8 +15,15 @@ Class Enrollmentmodel extends CI_Model
           $check_email="SELECT * FROM edu_enrollment WHERE admisn_no='$admisn_no'";
           $result=$this->db->query($check_email);
           if($result->num_rows()==0){
-            $query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,created_at,status) VALUES ('$admission_id','$admit_year','$formatted_date','$admisn_no','$name','$class',NOW(),'A')";
+			  $admisn="select name,admission_id from edu_admission WHERE admisn_no='".$admisn_no."'";
+     	      $resultset = $this->db->query($admisn);
+		      foreach ($resultset->result() as $rows)
+		      {}
+		        $admisnid=$rows->admission_id;
+				//echo $admisnid;
+            $query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,created_at,status) VALUES ('$admisnid','$admit_year','$formatted_date','$admisn_no','$name','$class',NOW(),'A')";
             $resultset=$this->db->query($query);
+			
 
 			$query2="UPDATE edu_admission SET enrollment='1' WHERE admisn_no='$admisn_no'";
 			$resultset=$this->db->query($query2);
@@ -80,10 +87,23 @@ Class Enrollmentmodel extends CI_Model
      	  $resultset = $this->db->query($query);
 		  foreach ($resultset->result() as $rows)
 		  {
-		   echo $rows->name;echo $rows->admission_id;exit;
+		   echo $rows->name;
+		   //echo $rows->admission_id;
+		   exit;
 		  }
 
 		}
+		
+		/* function getid($admisno)
+		{
+		  $query = "select name,admission_id from edu_admission WHERE admisn_no='".$admisno."'";
+     	  $resultset = $this->db->query($query);
+		  foreach ($resultset->result() as $rows)
+		  {
+		   //echo $rows->name;echo 
+		   $rows->admission_id;exit;
+		  }
+		} */
 
 		function getData1($admisno)
 		{

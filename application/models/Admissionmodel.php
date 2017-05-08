@@ -112,7 +112,13 @@ Class Admissionmodel extends CI_Model
 					$resultset = $this->db->query($query);
 					return  count($resultset->result());
 		   }
-
+  function get_enrollment_admisno()
+  {
+	   $sql="SELECT admisn_no FROM edu_admission WHERE enrollment=0";
+	   $res=$this->db->query($sql);
+	   return $res->result();
+	  
+  }
 
 }
 ?>
