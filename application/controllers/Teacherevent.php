@@ -48,6 +48,21 @@ class Teacherevent extends CI_Controller {
 	 		 }
 	 	}
 
+		public function calender(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			 if($user_type==2){
+			
+			 $this->load->view('adminteacher/teacher_header');
+			 $this->load->view('adminteacher/event/teachercalender',$datas);
+			 $this->load->view('adminteacher/teacher_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+
 		public function view_event($event_id){
 				$datas=$this->session->userdata();
 				$user_id=$this->session->userdata('user_id');
@@ -64,6 +79,7 @@ class Teacherevent extends CI_Controller {
 					redirect('/');
 			 }
 		}
+
 
 
 

@@ -159,17 +159,20 @@ font-weight: 500;
 									</div>
 								</li>
 								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
+										<a data-toggle="collapse" href="#calendermenu">
 												<i class="pe-7s-plugin"></i>
 												<p>Calender	</p>
+												<b class="caret"></b>
 										</a>
+										<div class="collapse" id="calendermenu">
+											<ul class="nav">
+												<li><a href="<?php echo base_url(); ?>teacherevent/calender">Calender</a></li>
+												<li><a href="<?php echo base_url(); ?>teacherevent/home">List of Event</a></li>
+
+											</ul>
+									</div>
 								</li>
-								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
-												<i class="pe-7s-plugin"></i>
-												<p>Event	</p>
-										</a>
-								</li>
+
 								<li>
 										<a data-toggle="collapse" href="#communicationmenu">
 												<i class="pe-7s-plugin"></i>
@@ -178,16 +181,24 @@ font-weight: 500;
 										</a>
 										<div class="collapse" id="communicationmenu">
 											<ul class="nav">
-										<li><a href="<?php echo base_url(); ?>teachercommunication/home">Add Leaves </a></li>
-										
+										<li><a href="<?php echo base_url(); ?>teachercommunication/home">Apply Leaves </a></li>
+
 											</ul>
 									</div>
 								</li>
 								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
+										<a data-toggle="collapse" href="#timetable">
 												<i class="pe-7s-plugin"></i>
 												<p>Time Table	</p>
+													<b class="caret"></b>
 										</a>
+										<div class="collapse" id="timetable">
+											<ul class="nav">
+										<li><a href="<?php echo base_url(); ?>teachertimetable/home">Time Table</a></li>
+										<li><a href="<?php echo base_url(); ?>teachertimetable/reviewview">Reviews</a></li>
+											</ul>
+									</div>
+
 								</li>
             </ul>
     	</div>

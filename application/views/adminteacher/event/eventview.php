@@ -25,7 +25,7 @@ $e_year = $event_date->format('Y');
               <div class="info">
               <a href="<?php echo base_url(); ?>teacherevent/view_event/<?php echo $rows->event_id; ?>">
                  <h2 class="title"><?php echo $rows->event_name;  ?></h2>
-                 
+
                </a>
               </div>
             </li>
