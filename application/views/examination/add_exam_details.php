@@ -1,3 +1,10 @@
+<style>
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{height: 20px;width: 22px;padding: 5px 5px 5px 5px;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{border: none !important;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{border-radius: initial !important;}
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 <div class="main-panel">
     <div class="content">
         <div class="container-fluid">
@@ -117,7 +124,7 @@
                                             <select name="class_id" style="margin-top:30px;" class="selectpicker">
 											<option>Select</option>
                                        <?php  foreach ($result1 as $rows)
-								          { ?> 
+								          { ?>
 									 <option value="<?php echo $rows->classmaster_id; ?>"><?php echo $rows->class_name;?>
                                      <?php echo $rows->sec_name; ?></option>
 										<?php } ?>
@@ -128,7 +135,7 @@
                                             <button type="submit" id="save" class="btn btn-info btn-fill center">Search </button>
                                         </div>
 										</form>
-										
+
                                             <table id="bootstrap-table" class="table">
 
                                                 <thead>
@@ -151,7 +158,7 @@
                                                             <td>
                                                                 <?php echo $i; ?>
                                                             </td>
-															<?php 
+															<?php
 															$sub=$sea->subject_id;
 															$subname="SELECT * FROM edu_subject WHERE subject_id='$sub' ";
 															$resub=$this->db->query($subname);
@@ -159,7 +166,7 @@
 															 foreach($ressub as $row1)
 															 {
 																 $subname=$row1->subject_name;
-															 } 
+															 }
 															?>
                                                             <td>
                                                                 <?php echo $subname; ?>
@@ -176,10 +183,10 @@
 													  {
 														$clsname=$row2->class_name;
 														$secname=$row2->sec_name;
-													  } 													 
+													  }
 															?>
-															
-															
+
+
 															<td>
                                                                 <?php echo $clsname;?>
                                                                     <?php echo $secname; ?>
@@ -192,7 +199,7 @@
 									 foreach($res as $row)
 									 {
 										 $name=$row->name;
-									 } 
+									 }
 									?>
                                                                 <td>
                                                                     <?php echo $name; ?>
@@ -258,6 +265,7 @@
     </div>
 
 </div>
+
 <script type="text/javascript">
     function checknamefun(classid) {
         //alert(classid);
@@ -287,17 +295,17 @@
                     var exam_secction = '';
                     var teacher = '';
                     for (i = 0; i < len; i++) {
-						
+
                         name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
 
-                        exam_date += '<input type="text" id="datepicker" name="exam_date[]" class="form-control datepicker" placeholder="Enter The Exam Date"/></br>';
+                        exam_date += '<input type="text"  name="exam_date[]"  class="form-control datepicker"   placeholder="Enter The Exam Date"/></br>';
 
                         exam_secction += '<select name="time[]" required class="form-control" data-title="Select Time" data-style="btn-default btn-block" data-menu-style="dropdown-blue"><option value="">Select</option><option value="AM">AM</option><option value="PM">PM</option></select></br>';
 
                         teacher += '<select name="teacher_id[]" required id="teacher_id" class="form-control" ><option value="">Select Teacher</option><?php foreach ($teacheres as $rows) {  ?><option value="<?php echo $rows->teacher_id; ?>"><?php echo $rows->name; ?></option><?php  } ?></select></br>';
 
                         $("#ajaxres").html(name);
-                        $("#ajaxres1").html(exam_date);
+                        $("#ajaxres1").html(exam_date).find('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
                         $("#ajaxres2").html(exam_secction);
                         $("#ajaxres3").html(teacher);
                         $('#msg').html('');
@@ -316,12 +324,15 @@
             }
         });
     }
-	
-	
+
+
 </script>
 
 <script type="text/javascript">
+ function myFunction(){
+   $( "#datepicker" ).datepicker();
 
+ }
 
     $(document).ready(function() {
 
@@ -388,9 +399,9 @@
     $().ready(function() {
         $('#exammenu').addClass('collapse in');
         $('#exam').addClass('active');
-        $('#exam1').addClass('active');
+        $('#exam2').addClass('active');
 //$("#datepicker").attr('data-uk-datepicker','{format:"DD.MM.YYYY"}');
-       $('#datepicker').datetimepicker({
+       $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
           icons: {
               time: "fa fa-clock-o",
@@ -403,20 +414,7 @@
               clear: 'fa fa-trash',
               close: 'fa fa-remove'
           }
-       }); 
+       });
     });
-/* $('.datepicker').datepicker();
-$('#dp').attr('data-uk-datepicker','{format:"DD.MM.YYYY"}');*/
-/* 
-	 $(function(){
-    $(document).on("focusin",".datePick", function () {
-	//alert("hi");
-       $('#dp').datepicker({
-            dateFormat: "dd/mm/yy",
-            changeMonth: true,
-            changeYear: true,
-            onClose: function (){$(this).valid(); }
-        }); 
-    });
-	    });   */
+
 </script>

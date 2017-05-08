@@ -8,6 +8,7 @@
 </div>
 
 </body>
+
 <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
 <script src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
 
