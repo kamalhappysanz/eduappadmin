@@ -53,7 +53,7 @@ class Teacherevent extends CI_Controller {
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
-			
+
 			 $this->load->view('adminteacher/teacher_header');
 			 $this->load->view('adminteacher/event/teachercalender',$datas);
 			 $this->load->view('adminteacher/teacher_footer');
@@ -61,6 +61,27 @@ class Teacherevent extends CI_Controller {
 			 else{
 					redirect('/');
 			 }
+		}
+
+		public function todolist(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+		 if($user_type==2){
+			 	$to_do_date=$this->input->post('to_do_date');
+ 				$to_do_list=$this->input->post('to_do_list');
+ 				$to_do_notes=$this->input->post('to_do_notes');
+ 		 		$to_user=$user_id;
+				$datas=$this->teachereventmodel->save_to_do_list($to_do_date,$to_do_list,$to_do_notes,$to_user);
+				if($datas['status']=="success"){
+					echo "success";
+				}else{
+					echo "failed";
+				}
+		 }
+		 else{
+				redirect('/');
+		 }
 		}
 
 		public function view_event($event_id){
@@ -78,6 +99,16 @@ class Teacherevent extends CI_Controller {
 			 else{
 					redirect('/');
 			 }
+		}
+
+		public function view_all_reminder()
+		{
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			$data['reg']=$this->teachereventmodel->view_all_reminder($user_id);
+			//$s= unset($data);
+			echo json_encode($data['reg']);
 		}
 
 
