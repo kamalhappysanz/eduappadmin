@@ -49,17 +49,34 @@ Class Timetablemodel extends CI_Model
                   $get_year="SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
                   $result1=$this->db->query($get_year);
                   foreach($result1->result() as $res){}
-                   $year_id=  $res->year_id;
+                  $year_id=$res->year_id;
 
-                  $query="SELECT tt.class_id AS timid,cm.class_sec_id,cm.class,cm.section,c.class_id,tt.year_id,a.from_month,a.to_month,c.class_name,s.sec_name
+
+                   $query="SELECT tt.class_id AS timid,cm.class_sec_id,cm.class,cm.section,c.class_id,tt.year_id,a.from_month,a.to_month,c.class_name,s.sec_name
 FROM edu_timetable AS tt  INNER JOIN edu_classmaster AS cm ON tt.class_id=cm.class_sec_id INNER JOIN edu_class AS c ON cm.class=c.class_id
 INNER JOIN edu_academic_year AS a ON tt.year_id=a.year_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE tt.year_id='$year_id' GROUP BY c.class_name";
                   $result=$this->db->query($query);
+                  // echo "<pre>";
+                  // print_r($result->result());exit;
                   return $result->result();
 
 
                 }
 
+                function getall_years(){
+                  $get_year="SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
+                  $result1=$this->db->query($get_year);
+                  if($result1->num_rows()==0){
+                    $data= array("status" => "no data Found");
+                    return $data;
+                  }else{
+                    $all_year= $result1->result();
+                    $data= array("status" => "success","all_years"=>$all_year);
+                    return $data;
+                    //print_r($all_year);
+                  }
+
+                }
 
                 //GET ALL TIME TABLE
                 function view($class_sec_id){
