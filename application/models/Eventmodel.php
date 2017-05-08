@@ -84,11 +84,7 @@ Class Eventmodel extends CI_Model
 		  $result=$this->db->query($query);
           $res=$result->result();
 		  return $res;
-		  /* foreach($res as $row)
-		  {
-			  $a=$row->co_name_id;
-		  }
-		  return $a; */
+		  
 	}
 
 	function edit_sub_event($co_id)
@@ -102,13 +98,13 @@ Class Eventmodel extends CI_Model
 	function update_sub_event($event_id,$co_id,$sub_event_name,$co_name,$status)
 	{
 		 $query="UPDATE edu_event_coordinator SET sub_event_name='$sub_event_name',co_name_id='$co_name',status='$status',updated_at=NOW() WHERE co_id='$co_id' AND event_id='$event_id'";
-
+            
 		 $result=$this->db->query($query);
           if($result){
-            $data= array("status" => "success");
+            $data= array("status"=>"success","eventid"=>$event_id);
             return $data;
           }else{
-            $data= array("status" => "failed");
+            $data= array("status"=>"failed");
             return $data;
           }
 	}
