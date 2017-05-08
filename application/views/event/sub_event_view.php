@@ -31,7 +31,7 @@
                                       <th data-field="no" class="text-center" data-sortable="true">Sub Event Name</th>
                                 <th data-field="name" class="text-center" data-sortable="true">Coordinator Name</th>
 
-                               <!-- <th data-field="status" class="text-center" data-sortable="true"></th>-->
+                                <th data-field="status" class="text-center" data-sortable="true">Status</th>
                                 <th data-field="Section" class="text-center" data-sortable="true">Action</th>
 
 
@@ -43,23 +43,26 @@
 									$co_id=$rows->co_id;
 									$a=$rows->event_id;
 									$b=$rows->co_name_id;
-									
 									$query="SELECT c.*,e.event_name,e.event_id,t.teacher_id,t.name FROM edu_event_coordinator as c, edu_events as e, edu_teachers as t  WHERE e.event_id='$a' AND t.teacher_id='$b'";
 									 $result=$this->db->query($query);
                                       $res=$result->result();
 									  foreach($res as $row)
-									  {
-									  }
+									  {}
                                 ?>
                                   <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $row->event_name; ?></td>
                                     <td><?php echo $rows->sub_event_name; ?></td>
 									<td><?php echo $row->name; ?></td>
+									<td>
+									<?php if($rows->status=='A') {?>
+									<button class="btn btn-success btn-fill btn-wd">Active</button>
+									<?php }else{?>
+									<button class="btn btn-danger btn-fill btn-wd">Deactive</button>
+									<?php } //echo $rows->status; ?> 
+									</td>
                                     <td>
-                                     
                                       <a href="<?php echo base_url(); ?>event/sub_event_edit/<?php echo $rows->co_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
-									  
                                     </td>
                                   </tr>
                                   <?php $i++;  } ?>
