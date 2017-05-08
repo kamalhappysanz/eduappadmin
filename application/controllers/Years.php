@@ -82,8 +82,8 @@ class Years extends CI_Controller {
                 $dateTime = new DateTime($from_month);
 				$formatted_date=date_format($dateTime,'Y-m-d' );
 
-				$dateTime = new DateTime($end_month);
-				$formatted_date1=date_format($dateTime,'Y-m-d' );
+				$dateTime1 = new DateTime($end_month);
+				$formatted_date1=date_format($dateTime1,'Y-m-d' );
 
 				$datas=$this->yearsmodel->add_years($formatted_date,$formatted_date1);
 
