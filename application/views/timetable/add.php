@@ -33,13 +33,21 @@ select{width:100px;}
   <div class="row">
     <fieldset>
         <div class="form-group">
-          <label class="col-sm-2 control-label">Select Year</label>
+          <label class="col-sm-2 control-label">Current Year</label>
         <div class="col-sm-3">
-          <select   name="year_id"  data-title="Select Year" class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
-            <?php foreach ($years as $rows) {  ?>
-            <option value="<?php echo $rows->year_id; ?>"><?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?></option>
-      <?php      } ?>
-          </select>
+          <?php  $status=$years['status']; if($status=="success"){
+            foreach($years['all_years'] as $rows){}
+              ?>
+            <input type="hidden" name="year_id"  value="<?php  echo $rows->year_id; ?>">
+            <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
+
+        <?php   }else{  ?>
+          <input type="text" name="year_id"  class="form-control" value="" readonly="">
+
+      <?php     } ?>
+
+
+
         </div>
       </div>
     </fieldset>
@@ -63,7 +71,7 @@ select{width:100px;}
             <div class="form-group">
               <label class="col-sm-2 control-label">Select class</label>
                 <div class="col-sm-3">
-                  <select   name="class_id"  data-title="Select Class" class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
+                  <select   name="class_id" id="class_id"  data-title="Select Class" class="selectpicker"  data-style="btn-block"  data-menu-style="dropdown-blue">
                     <?php foreach ($getall_class as $rows) {  ?>
                     <option value="<?php echo $rows->class_sec_id; ?>"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></option>
               <?php      } ?>
@@ -160,6 +168,11 @@ select{width:100px;}
 
 <script type="text/javascript">
 
+
+function getSubject(){
+ var class_id=$('#class_id').val();
+ alert(class_id);
+}
 
 $(document).ready(function () {
 $('#timetablemenu').addClass('collapse in');

@@ -40,13 +40,14 @@ class Timetable extends CI_Controller {
 	 		 	$datas=$this->session->userdata();
   	 		$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
-				$datas['getall_class1']=$this->timetablemodel->view_class_timetable();
-				//print_r($datas['getall_class1']);exit;
-
+				// $datas['getall_class1']=$this->timetablemodel->view_class_timetable();
+				// print_r($datas['getall_class1']);exit;
 				$datas['getall_class']=$this->class_manage->getall_class();
 				$datas['subres'] = $this->subjectmodel->getsubject();
 				$datas['teacheres'] = $this->teachermodel->get_all_teacher();
-  			$datas['years'] = $this->yearsmodel->getall_years();
+  			$datas['years'] = $this->timetablemodel->getall_years();
+				// echo "<pre>";
+				 //print_r($datas['years']['all_years']);
 				$datas['resterms'] = $this->yearsmodel->getall_terms();
 			 if($user_type==1){
 	 		 $this->load->view('header');
@@ -95,7 +96,7 @@ class Timetable extends CI_Controller {
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			$datas['getall_class1']=$this->timetablemodel->view_class_timetable();
-			//echo "<pre>";print_r($datas['restime']);exit;
+			//echo "<pre>";print_r($datas['getall_class1']);exit;
 		 if($user_type==1){
 			 $this->load->view('header');
 			$this->load->view('timetable/manage',$datas);
