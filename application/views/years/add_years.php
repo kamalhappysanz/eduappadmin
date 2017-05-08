@@ -17,12 +17,14 @@
 								  
                                       <div class="form-group">
                                           <label class="col-sm-2 control-label">FROM YEAR</label>
-                                          <div class="col-sm-4">
-                                              <input id="test" value="" name="from_month"  class="form-control" required >
+                                          <div class="col-sm-4"> 
+										  <input type="text" name="from_month" id="from_year" class="form-control datepicker" required value="">
+                                        <!--<input id="test" value="" name="from_month" class="form-control" required >-->
                                           </div>
                                           <label class="col-sm-2 control-label">TO YEAR</label>
                                           <div class="col-sm-4">
-                                              <input  value="" name="end_month" id="to_year" required class="form-control"  />
+										   <input type="text" name="end_month" id="to_year" required class="form-control datepicker"  />
+                                  <!--<input  value="" name="end_month" id="to_year" required class="form-control"  />-->
                                           </div>
 
                                       </div>
@@ -102,11 +104,11 @@
 
 <script type="text/javascript">
 
- $(document).ready(function () {
+ /* $(document).ready(function () {
  // create DatePicker from input HTML element
             $("#test").kendoDatePicker();
             //DISABLE inputs
-            $("#datepicker").attr("readonly",true); 
+            $("#datepicker").attr("readonly",true);  */
 			 
  $('#myformsection').validate({ // initialize the plugin
      rules: {
@@ -160,3 +162,24 @@ var $table = $('#bootstrap-table');
 
       });
 </script>
+<script type="text/javascript">
+      $().ready(function(){
+        $('#mastersmenu').addClass('collapse in');
+        $('#master').addClass('active');
+        $('#masters1').addClass('active');
+        $('.datepicker').datetimepicker({
+          format: 'DD-MM-YYYY',
+          icons: {
+              time: "fa fa-clock-o",
+              date: "fa fa-calendar",
+              up: "fa fa-chevron-up",
+              down: "fa fa-chevron-down",
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-screenshot',
+              clear: 'fa fa-trash',
+              close: 'fa fa-remove'
+          }
+       });
+      });
+  </script>
