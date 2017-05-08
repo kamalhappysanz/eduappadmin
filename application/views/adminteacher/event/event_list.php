@@ -33,6 +33,8 @@ $e_year = $event_date->format('Y');
               <!-- <img alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" /> -->
               <div class="info">
              <p class="" style="padding-top:30px;padding-left:20px;"><?php echo $rows->sub_event_name;  ?></p>
+             <p class="" style=";padding-left:20px;"><b>Event Incharge</b> &nbsp; <?php echo $rows->name;  ?></p>
+
               </div>
             </li>
 
