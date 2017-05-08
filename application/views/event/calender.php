@@ -1,4 +1,9 @@
-
+<style>
+.fc-month-button{
+	display: none;
+	}
+.fc-basicWeek-button{display: none;} .fc-basicDay-button{display: none;}
+	</style>
 
 	<div class="main-panel">
 
@@ -51,7 +56,7 @@ $('#event1').addClass('active');
 		 textColor: 'black'
 	 },
 	 {
-		 url: '/feed2.php',
+		 url: '<?php echo base_url() ?>event/get_all_regularleave',
 		 color: 'blue',
 		 textColor: 'white'
 	 }

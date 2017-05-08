@@ -113,5 +113,11 @@ Class Eventmodel extends CI_Model
           }
 	}
 
+  function get_all_regularleave(){
+    $query="SELECT eh.leave_list_date AS start,lm.leave_type AS title,lm.leave_type AS description FROM edu_holidays_list_history AS eh  LEFT OUTER JOIN edu_leavemaster AS lm ON lm.leave_id=eh.leave_masid";
+    $result=$this->db->query($query);
+    return $result->result();
+  }
+
 }
 ?>

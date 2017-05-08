@@ -153,10 +153,17 @@ class Event extends CI_Controller {
 		public function getall_act_event()
 		{
 			$data['res']=$this->eventmodel->getall_act_event();
-			//$s= unset($data);
+
 			echo json_encode($data['res']);
 		}
 
+		public function get_all_regularleave()
+		{
+
+			$data['reg']=$this->eventmodel->get_all_regularleave();
+			//$s= unset($data);
+			echo json_encode($data['reg']);
+		}
 
      public function create_sub_event()
 	{
@@ -171,25 +178,25 @@ class Event extends CI_Controller {
 				 $status=$this->input->post('status');
 				//$data['teacher']=$this->Teachermodel->get_all_teacher1();
 				 $datas=$this->eventmodel->save_sub_event($event_id,$sub_event_name,$co_name,$status);
-				 
+
 				if($datas['status']=='success')
 				{
 					echo "Added Successfully";
 					//$this->session->set_flashdata('msg', 'Added Successfully');
 					//redirect('event/create');
-					
+
 				}else if($datas['status']=="Event Name Already Exist")
 				{
 					echo "Event Name Already Exist";
 					//$this->session->set_flashdata('msg', 'Sub Event Name Already Exist');
 					//redirect('event/create');
-					
+
 				}	else{
 					  echo "Failed to Add";
 					//$this->session->set_flashdata('msg', 'Failed to Add');
 					//redirect('event/create');
 				}
-			 
+
     	}
   }
 
@@ -242,9 +249,9 @@ class Event extends CI_Controller {
 							 $sub_event_name=$this->input->post('sub_event_name');
 							 $co_name=$this->input->post('co_name');
                              $status=$this->input->post('status');
-							
+
 							 $datas=$this->eventmodel->update_sub_event($event_id,$co_id,$sub_event_name,$co_name,$status);
-							 
+
 							 if($datas['status']=="success"){
 							 $this->session->set_flashdata('msg', 'Updated  Successfully');
 							redirect('event/create');
