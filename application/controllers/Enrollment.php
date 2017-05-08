@@ -63,6 +63,7 @@ class Enrollment extends CI_Controller {
 	 		$datas=$this->session->userdata();
 	 		$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
+			$datas['years'] = $this->yearsmodel->getall_years();
 
 	 		$datas['clas'] = $this->classmodel->getclass();
 			$datas['sec'] = $this->sectionmodel->getsection();

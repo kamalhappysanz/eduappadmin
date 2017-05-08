@@ -15,7 +15,7 @@ Class Admissionmodel extends CI_Model
           $check_number="SELECT * FROM edu_admission WHERE mobile='$mobile'";
           $res_number=$this->db->query($check_number);
           if($res_number->num_rows()>=1){
-            $data= array("status" => "Already Number Exist");
+            $data= array("status" => "Already Mobile Number Exist");
             return $data;
           }
 
@@ -36,7 +36,7 @@ Class Admissionmodel extends CI_Model
 					$aname=$row->name;
                  } */
 				 
-			$sql="SELECT count(*) AS student FROM edu_admission" ;
+			 $sql="SELECT count(*) AS student FROM edu_admission" ;
 			 // $resultsql=$this->db->query($sql);
 			   $resultsql=$this->db->query($sql);
                $result1= $resultsql->result();
@@ -47,7 +47,7 @@ Class Admissionmodel extends CI_Model
             $stude_insert="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,student_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5(123),'$userFileName','3','$insert_id',NOW(),NOW(),'A')";
             $resultset=$this->db->query($stude_insert);
 			
-          $data=array("status" => "success","last_id" => $insert_id);
+          $data=array("status" => "success","last_id"=>$insert_id);
            return $data;
           }else{
             $data= array("status" => "Email Already Exist");

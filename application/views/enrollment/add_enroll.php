@@ -22,22 +22,18 @@
                                               <div class="form-group">
                                                   <label class="col-sm-2 control-label">Admission Year</label>
                                                   <div class="col-sm-4">
-                                                      <?php
-                                                      $year=$rows->admisn_year;
-                                                      $query="SELECT * FROM edu_academic_year WHERE year_id='$year'";
-                                                      $objRs=$this->db->query($query);
-                                                      $row=$objRs->result();
-                                                      foreach ($row as $rows1)
-                                                        {
-                                                          $rows1->year_id;
-                                                          $fyear=$rows1->from_month;
-                                                          $month= strtotime($fyear);
-                                                          $eyear=$rows1->to_month;
-                                                          $month1= strtotime($eyear);
-                                                          }
-                                                      ?>
-                <input type="hidden" class="form-control" name="admit_year" id="admit_year" value="<?php echo $rows1->year_id; ?>">
-               <input type="text" class="form-control" name="admit_years" id="admit_years" readonly value="<?php echo date('Y',$month); ?> (To) <?php  echo date('Y',$month1); ?>">
+                                                    <select name="admit_year" class="selectpicker form-control" data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                                 <?php foreach ($years as $row) {
+                                                         $fyear=$row->from_month;
+													     $month= strtotime($fyear);
+													// echo $rows->year_id;
+													$eyear=$row->to_month;
+													$month1= strtotime($eyear);
+												?>
+                                                <option value="<?php echo $row->year_id; ?>"><?php echo date('Y',$month); ?> (To) <?php  echo date('Y',$month1); ?></option>
+												<?php } ?>
+
+                                                </select>
                                                   </div>
 
                                               </div>

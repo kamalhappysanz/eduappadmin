@@ -22,25 +22,7 @@
                      }
 					 ?>
 					 
-					 <script type="text/javascript">
-    $(function () {
-        $("#choose").change(function () {
-            if ($(this).val() == "parents") {
-                $("#stuparents").show();
-				$("#stuguardian").hide();
-				$("#msg").hide();
-				$("#msg1").hide();
-				
-            } else {
-                $("#stuguardian").show();
-				 $("#stuparents").hide();
-				 $("#msg").hide();
-				$("#msg1").hide();
-				
-            }
-        });
-    });
-</script>
+
                             <div class="content">
                                 <form method="post" action="<?php echo base_url(); ?>parents/update_parents" class="form-horizontal" enctype="multipart/form-data" id="admissionform" name="formadmission">
                                    <fieldset>
@@ -66,7 +48,7 @@
 											</div>
 										<label class="col-sm-2 control-label">Student Name</label>
 										<div class="col-sm-4">
-				 <select multiple name="teacher[]" disabled="" class="selectpicker form-control"  >
+				 <select multiple name="teacher[]"  class="selectpicker form-control"  >
 
                      <?php
                           $tea_name=$rows->	admission_id;
@@ -366,4 +348,24 @@ $(document).ready(function () {
          }
  });
 }); 
+
+
+    $(function () {
+        $("#choose").change(function () {
+            if ($(this).val() == "parents") {
+                $("#stuparents").show();
+				$("#stuguardian").hide();
+				$("#msg").hide();
+				$("#msg1").hide();
+				
+            } else {
+                $("#stuguardian").show();
+				 $("#stuparents").hide();
+				 $("#msg").hide();
+				$("#msg1").hide();
+				
+            }
+        });
+    });
+
 </script>

@@ -224,7 +224,7 @@
 	                     <input type="hidden" name="admission_no" class="form-control" placeholder=""  value="<?php echo $result; ?>">
 							<input type="text" required name="cell" placeholder="Enter Your Mobile Number" class="form-control" onkeyup="checkcellfun(this.value)" value="">
 							
-							<p id="msg1" style="color:red;"> </p>
+							<p id="msg1"> </p>
 							
 						</div>
 						<label class="col-sm-2 control-label">&nbsp;</label>
@@ -632,16 +632,18 @@
 			data:'cell='+val,
 			success:function(test)
 			{
-				if(test=="Mobile Number Not Found")
+				if(test=="Mobile Number Available")
 				{
 				/* alert(test); */
-			        $("#msg1").html(test);
-			        $("#save1").hide();
+			        $("#msg1").html('<span style="color:green;">Mobile Number Available</span>');
+			        $("#save1").show();
+					
 				}
 				else{
 					/* alert(test); */
-					$("#msg1").html(test);
-			        $("#save1").show();
+					$("#msg1").html('<span style="color:red;">Mobile Number Not Available</span>');
+			        $("#save1").hide();
+					
 				}
 
 			}

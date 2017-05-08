@@ -59,6 +59,7 @@ class Admission extends CI_Controller {
 		 	if($user_type==1){
 				
 			 $admission_year=$this->input->post('admission_year');
+			 //echo $admission_year;exit; 
 			 $admission_no=$this->input->post('admission_no');
 			 $emsi_num=$this->input->post('emsi_num');
 			 $admission_date=$this->input->post('admission_date');
@@ -103,17 +104,17 @@ class Admission extends CI_Controller {
 				$emsi_num=$this->input->post('emsi_num');
 				
 				$datas=$this->admissionmodel->ad_create($admission_year,$admission_no,$emsi_num,$formatted_date,$name,$sex,$dob_date,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$language,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet);
-			 //  print_r($datas['last_id']);exit;
-               //  print_r$data['admisn_no'] ; exit;
+			     //print_r($datas['status']); print_r($datas['last_id']);exit;
+               //print_r$data['admisn_no'] ; exit;
        
-				if($datas['last_id']!=''){
+				if($datas['status']=="success"){
 					$id=$datas['last_id'];
 					//$this->session->set_flashdata('msg', 'Added Successfully');
 					redirect('/parents/home/'.$id.'');
 				}else if($datas['status']=="Email Already Exist"){
 					$this->session->set_flashdata('msg', 'Email Already Exist');
 					redirect('admission/home');
-				}	else if($datas['status']=="Already Number Exist"){
+				}	else if($datas['status']=="Already Mobile Number Exist"){
 					$this->session->set_flashdata('msg', 'Already Number Exist');
 					redirect('admission/home');
 				}else{

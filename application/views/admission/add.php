@@ -21,21 +21,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Admission Year</label>
                                             <div class="col-sm-4">
-
-                                                <select name="admission_year" class="selectpicker form-control" data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-												<?php foreach ($result as $rows)
-												     {
-                                                         $fyear=$rows->from_month;
-													     $month= strtotime($fyear);
-													// echo $rows->year_id;
-													$eyear=$rows->to_month;
-													$month1= strtotime($eyear);
-
-												?>
-                                                <option value="<?php echo $rows->year_id; ?>"><?php echo date('Y',$month); ?> (To) <?php  echo  date('Y',$month1); ?></option>
-												<?php } ?>
-
-                                                </select>
+ <input type="text" name="admission_year"  class="form-control datepicker1" placeholder="Select Admission Year"/>
+                                                
                                             </div>
                                             <label class="col-sm-2 control-label">Admission No</label>
                                             <div class="col-sm-4">
@@ -250,7 +237,7 @@ jQuery('#admissionmenu').addClass('collapse in');
 $('#admission').addClass('active');
 $('#admission1').addClass('active');
 
-  $('#admissionform').validate({ // initialize the plugin
+  /* $('#admissionform').validate({ // initialize the plugin
      rules: {
          admission_no:{required:true, number: true },
          admission_year:{required:true },
@@ -288,7 +275,7 @@ $('#admission1').addClass('active');
            mobile:"Enter the mobile Number",
           // student_pic:"Enter the Student Picture"
          }
- }); 
+ }); */ 
 });
 
 </script>
@@ -337,6 +324,23 @@ $('#admission1').addClass('active');
               close: 'fa fa-remove'
           }
        });
+	   
+	    $('.datepicker1').datetimepicker({
+          format: 'YYYY',
+		  maxDate: new Date(),
+          icons: {
+              time: "fa fa-clock-o",
+              date: "fa fa-calendar",
+              up: "fa fa-chevron-up",
+              down: "fa fa-chevron-down",
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-screenshot',
+              clear: 'fa fa-trash',
+              close: 'fa fa-remove'
+          }
+       });
+	   
       });
   </script>
 

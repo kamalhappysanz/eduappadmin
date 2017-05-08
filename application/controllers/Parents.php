@@ -295,8 +295,8 @@ class Parents extends CI_Controller {
               public function cellchecker()
 			  {
 				    $cell = $this->input->post('cell');
-					$numrows = $this->parentsmodel->checkcellnum($cell);
-					if ($numrows>0) 
+					$numrows1 = $this->parentsmodel->checkcellnum($cell);
+					if ($numrows1!='') 
 				     {
 						echo "Mobile Number Available";
 					 } 
