@@ -45,7 +45,8 @@ class Enrollment extends CI_Controller {
 			$datas['sec'] = $this->sectionmodel->getsection();
 			$datas['getall_class']=$this->class_manage->getall_class();
 			$datas['admisno']=$this->admissionmodel->get_enrollment_admisno();
-			//print_r($datas['admisno']);exit;
+			$datas['years']=$this->enrollmentmodel->get_current_years();
+			//print_r($datas['years']);exit;
 			
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==1){
@@ -68,7 +69,7 @@ class Enrollment extends CI_Controller {
 	 		$datas['clas'] = $this->classmodel->getclass();
 			$datas['sec'] = $this->sectionmodel->getsection();
 			$datas['getall_class']=$this->class_manage->getall_class();
-
+            $datas['years']=$this->enrollmentmodel->get_current_years();
 		    $datas['res']=$this->enrollmentmodel->add_enrollment($admisn_no);
 
 			if($user_type==1)

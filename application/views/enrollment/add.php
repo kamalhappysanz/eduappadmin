@@ -22,20 +22,30 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Admission Year</label>
                                             <div class="col-sm-4">
+<?php  $status=$years['status']; if($status=="success"){
+            foreach($years['all_years'] as $rows){}
+              ?>
+            <input type="hidden" name="year_id"  value="<?php  echo $rows->year_id; ?>">
+            <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
 
-                      <select name="admit_year" class="selectpicker form-control" data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                 <?php foreach ($result as $rows) {
+        <?php   }else{  ?>
+          <input type="text" name="year_id"  class="form-control" value="" readonly="">
+
+      <?php     } ?>
+
+                      <!--<select name="admit_year" class="selectpicker form-control" data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                                 <?php /* foreach ($result as $rows) {
                                                          $fyear=$rows->from_month;
 													     $month= strtotime($fyear);
 													// echo $rows->year_id;
 													$eyear=$rows->to_month;
-													$month1= strtotime($eyear);
+													$month1= strtotime($eyear); */
 
 												?>
-                                                <option value="<?php echo $rows->year_id; ?>"><?php echo date('Y',$month); ?> (To) <?php  echo date('Y',$month1); ?></option>
-												<?php } ?>
+                                                <option value="<?php// echo $rows->year_id; ?>"><?php ///echo date('Y',$month); ?> (To) <?php  //echo date('Y',$month1); ?></option>
+												<?php //} ?>
 
-                                                </select>
+                                                </select>-->
                                             </div>
 
                                         </div>
@@ -203,7 +213,7 @@ $(document).ready(function () {
 
 			success:function(test1)
 			{
-				//alert(test);
+				//alert(test1);
 				if(test1=="Already Enrollment Added")
 				{
 

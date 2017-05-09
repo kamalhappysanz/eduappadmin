@@ -42,8 +42,23 @@ Class Enrollmentmodel extends CI_Model
 		   $query="SELECT * FROM edu_admission WHERE admisn_no='$admisn_no'";
 		    $res=$this->db->query($query);
             return $res->result();
-
 	   }
+	   
+	    function get_current_years()
+		{
+		  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
+		  $result1=$this->db->query($get_year);
+		  if($result1->num_rows()==0){
+			$data= array("status" => "no data Found");
+			return $data;
+		  }else{
+			$all_year= $result1->result();
+			$data= array("status" => "success","all_years"=>$all_year);
+			return $data;
+			//print_r($all_year);
+		  }
+
+		}
 
        //GET ALL Admission Form
 

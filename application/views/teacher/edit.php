@@ -127,7 +127,7 @@
                                                 <option value="<?php echo $rows2->class_sec_id; ?>"><?php echo $rows2->class_name; ?>&nbsp; - &nbsp;<?php echo $rows2->sec_name; ?></option>
                                           <?php      } ?>
                                               </select>
-                                                  <script language="JavaScript">document.teacherform.class_teacher.value="<?php echo $rows->class_sec_id; ?>";</script>
+     <script language="JavaScript">document.teacherform.class_teacher.value="<?php echo $rows->class_teacher; ?>";</script>
 
                                             </div>
                                         <label class="col-sm-2 control-label">Class </label>

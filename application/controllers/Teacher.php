@@ -134,8 +134,8 @@ class Teacher extends CI_Controller {
 
 		public function get_teacher_id($teacher_id){
 			$datas=$this->session->userdata();
-		 $user_id=$this->session->userdata('user_id');
-		  $datas['getall_class']=$this->class_manage->getall_class();
+		    $user_id=$this->session->userdata('user_id');
+		    $datas['getall_class']=$this->class_manage->getall_class();
 		 	$datas['res']=$this->teachermodel->get_teacher_id($teacher_id);
 			$datas['resubject'] = $this->subjectmodel->getsubject();
 			//echo "<pre>";print_r(	$datas['res']);exit;

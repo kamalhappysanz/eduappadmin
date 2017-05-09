@@ -22,7 +22,17 @@
                                               <div class="form-group">
                                                   <label class="col-sm-2 control-label">Admission Year</label>
                                                   <div class="col-sm-4">
-                                                    <select name="admit_year" class="selectpicker form-control" data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+												  <?php  $status=$years['status']; if($status=="success"){
+            foreach($years['all_years'] as $rows){}
+              ?>
+            <input type="hidden" name="year_id"  value="<?php  echo $rows->year_id; ?>">
+            <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
+
+        <?php   }else{  ?>
+          <input type="text" name="year_id"  class="form-control" value="" readonly="">
+
+      <?php     } ?>
+                                                   <!-- <select name="admit_year" class="selectpicker form-control" data-title="Select Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                  <?php foreach ($years as $row) {
                                                          $fyear=$row->from_month;
 													     $month= strtotime($fyear);
@@ -33,7 +43,7 @@
                                                 <option value="<?php echo $row->year_id; ?>"><?php echo date('Y',$month); ?> (To) <?php  echo date('Y',$month1); ?></option>
 												<?php } ?>
 
-                                                </select>
+                                                </select>-->
                                                   </div>
 
                                               </div>

@@ -22,57 +22,21 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Admission Year</label>
                                             <div class="col-sm-4">
-
-											
-				<select name="admit_year" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-											
-											<?php
-		    $sPlatform=$rows->admit_year;
-			$sQuery = "SELECT * FROM edu_academic_year";
+         <?php
+		    $yid=$rows->admit_year;
+			$sQuery = "SELECT * FROM edu_academic_year WHERE year_id='$yid'";
 			$objRs=$this->db->query($sQuery);
-		  //print_r($objRs);
-		  $row=$objRs->result();
-		  foreach ($row as $rows1)
-		  {
-		  $s= $rows1->year_id;
-		 
-		 
-		 $fyear=$rows1->from_month;
-		 $month= strtotime($fyear);											 
-		 $clas=date('Y',$month);
-		 
-		 $eyear=$rows1->to_month;
-		 $month1= strtotime($eyear);
-													
-		 $sec_name=date('Y',$month1);
-		  
-		  
-		  $arryPlatform = explode(",", $sPlatform);
-		 $sPlatform_id  = trim($s);
-		 $sPlatform_name  = trim($sec);
-		 if (in_array($sPlatform_id, $arryPlatform )) {
-  ?>
-          <?php
-                  echo "<option  value=\"$sPlatform_id\" selected  />$clas-$sec_name &nbsp;&nbsp; </option>";
-             ?>
-
-                                <?php }
-                                  else {
-                                echo "<option value=\"$sPlatform_id\" />$clas-$sec_name &nbsp;&nbsp;</option>";
-                                 }
-                                      }
-                                        ?>
-
-                                  </select>
-								  
-								  
-                                               <!-- <select name="admit_year" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                  <option value="2017-2018">2017-2018</option>
-                                                  <option value="2018-2019">2018-2019</option>
-                                                    <option value="2019-2020">2019-2020</option>
-                                                </select> -->
-                                                  <script language="JavaScript">document.enrollform.admit_year.value="<?php echo $rows->admit_year; ?>";</script>
-                                            </div>
+			$row=$objRs->result();
+		   foreach ($row as $rows1)
+		   { $fy=$rows1->from_month;
+		     $ty=$rows1->to_month;
+			 $fy=date_create($rows1->from_month);
+			 $ty=date_create($rows1->to_month);
+             
+		   }
+            ?> <input type="hidden" class="form-control" name="admit_year" value="<?php echo $yid; ?>" >
+          <input type="text" class="form-control"  value="<?php echo date_format($fy,"Y"); ?>- <?php echo date_format($ty,"Y"); ?>" readonly="">
+		   </div>
 
                                         </div>
                                     </fieldset>
