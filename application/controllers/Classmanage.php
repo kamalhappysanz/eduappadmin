@@ -107,11 +107,11 @@ class Classmanage extends CI_Controller {
 				$datas=$this->class_manage->save_cs($class_sec_id,$class,$section,$subject);
 			//	print_r($datas);exit;
 				if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'Successfully Added');
+						$this->session->set_flashdata('msg', 'Successfully Updated');
 						redirect('classmanage/home');
 				}
-				elseif($datas['status']=="Already Exist"){
-					$this->session->set_flashdata('msg', 'Already Added ');
+				elseif($datas['status']=="alreadySaved"){
+					$this->session->set_flashdata('msg', 'Already Saved');
 						redirect('classmanage/home');
 				}
 				else{

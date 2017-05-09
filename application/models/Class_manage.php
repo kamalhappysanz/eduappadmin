@@ -41,19 +41,19 @@ Class Class_manage extends CI_Model
 
 
        function save_cs($class_sec_id,$class,$section,$subject){
-        //   $query="SELECT * FROM edu_classmaster WHERE class='$class' AND section='$section' AND subject ='$subject'";
-        //  $resultset=$this->db->query($query);
-        //  $resultset->num_rows();
-        //  if($resultset->num_rows()==0){
-          $query="UPDATE edu_classmaster SET class='$class',section='$section',subject='$subject' WHERE class_sec_id='$class_sec_id'";
-         $resultset=$this->db->query($query);
-         if($resultset){
-         $data= array("status" => "success");
-          return $data;
-         }else{
-            $data= array("status" => "Already Saved");
-            return $data;
-          }
+                $check_class="SELECT * FROM edu_classmaster WHERE class='$class' AND section='$section'";
+               $resultset=$this->db->query($check_class);
+               if($resultset->num_rows()==0){
+                 $query="UPDATE edu_classmaster SET class='$class',section='$section',subject='$subject' WHERE class_sec_id='$class_sec_id'";
+                 $resultset=$this->db->query($query);
+                 if($resultset){
+                 $data= array("status" => "success");
+                  return $data;
+                 }
+               }else{
+                 $data= array("status" => "alreadySaved");
+                 return $data;
+               }
        }
 
 
@@ -83,7 +83,7 @@ Class Class_manage extends CI_Model
 					   $sQuery = "SELECT * FROM edu_subject";
 					   $objRs=$this->db->query($sQuery);
 					   $rows=$objRs->result();
-					   foreach ($rows as $rows1) 
+					   foreach ($rows as $rows1)
 					   {
 						   $s= $rows1->subject_id;
 						   $sec=$rows1->subject_name;
