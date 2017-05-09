@@ -178,32 +178,20 @@ class Examination extends CI_Controller
 			 $datas=$this->session->userdata();
 			 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
-
 			 if($user_type==1)
 			  {
-
 			     //$exam_id=$this->input->post('exam_id');
 				 $exam_year=$this->input->post('exam_year');
 			     $class_name=$this->input->post('class_name');
-				
 				 $subject_name=$this->input->post('subject_id');
-
 				 //print_r($subject_name);exit;
-
-				 $exam_date=$this->input->post('exam_date');
-
-			   	 //$dateTime = new DateTime($exam_date);
-				 //$formatted_date=date_format($dateTime,'Y-m-d' );
-				// print_r($exam_date);exit;
-				 
+			     $exam_date=$this->input->post('exam_date');
+			     //print_r($exam_date);exit;
 				 $time=$this->input->post('time');
-				//  print_r($time);exit;
-				
+				 //print_r($time);exit;
 				 $teacher_id=$this->input->post('teacher_id');
-				 //  print_r($notes);exit;
-
+				 //print_r($notes);exit;
            $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$exam_date,$time,$teacher_id);
-
 			 if($datas['status']=="success"){
 					$this->session->set_flashdata('msg','Added Successfully');
                     redirect('examination/add_exam_detail');
@@ -213,12 +201,11 @@ class Examination extends CI_Controller
 					 redirect('examination/add_exam_detail');
 				}else{
 					$this->session->set_flashdata('msg','Failed to Add');
-					 redirect('examination/add_exam_detail');
+					redirect('examination/add_exam_detail');
 				}
-
 		}
 		else{
-					redirect('/');
+			 redirect('/');
 			 }
 		}
 
@@ -226,10 +213,8 @@ class Examination extends CI_Controller
 		{
 		             $datas=$this->session->userdata();
 					 $user_id=$this->session->userdata('user_id');
-
 					 $datas['res']=$this->examinationmodel->edit_exam_details($exam_detail_id);
-
-					// $datas['result'] = $this->examinationmodel->get_details_view();
+					 //$datas['result'] = $this->examinationmodel->get_details_view();
 					 //echo "<pre>";print_r(	$datas['res']);exit;
 					 $user_type=$this->session->userdata('user_type');
 					if($user_type==1)
@@ -245,7 +230,6 @@ class Examination extends CI_Controller
 
 		public function update_exam_details()
 		{
-
 		 $datas=$this->session->userdata();
 		 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
@@ -260,7 +244,7 @@ class Examination extends CI_Controller
 				 $exam_date=$this->input->post('exam_date');
 				 $dateTime = new DateTime($exam_date);
                  $formatted_date=date_format($dateTime,'Y-m-d' );
-
+				 
 				 $time=$this->input->post('time');
 
 				 $teacher_id=$this->input->post('teacher_id');
@@ -275,11 +259,25 @@ class Examination extends CI_Controller
 				 else{
 					 $this->session->set_flashdata('msg','Failed To Updated');
 					 redirect('examination/add_exam_detail');
-
-
 			}
 		}
 	}
+	
+	public function subcheck()
+	 {
+		 $classid=$this->input->post('classid');
+		 $resultset=$this->examinationmodel->check_add_exam($classid);
+		
+		if ($resultset > 0)
+		 {
+			echo "Already Exam Added";
+		 }
+		else
+		 {
+			echo "Add Exam";
+		 }
+		  
+	 }
 	
 
 

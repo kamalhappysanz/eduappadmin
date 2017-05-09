@@ -13,7 +13,6 @@
                     <div class="card">
                         <div class="header">
                             <h4 class="title">Examination Calender</h4>
-
                         </div>
 
                         <div class="content">
@@ -27,9 +26,8 @@
                                             <select name="exam_year" class="selectpicker" data-title="Select Exam Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <?php foreach ($year as $sect)
 												  {
-													  $fyear=$sect->from_month;
+													$fyear=$sect->from_month;
     												$month= strtotime($fyear);
-
 													$eyear=$sect->to_month;
 													$month1= strtotime($eyear);
 													  ?>
@@ -45,7 +43,7 @@
 
                                         <label class="col-sm-2 control-label">Class</label>
                                         <div class="col-sm-4">
-                                            <select name="class_name"  class="selectpicker" data-title="Select class" onchange="checknamefun(this.value)" >
+           <select name="class_name"  class="selectpicker" data-title="Select class" onchange="checksubject(this.value)" >
                                                 <?php foreach ($getall_class as $rows) {  ?>
                                                     <option value="<?php echo $rows->class_sec_id; ?>">
                                                         <?php echo $rows->class_name; ?>&nbsp; - &nbsp;
@@ -59,7 +57,7 @@
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-group">
-                         <p id="msg" style="text-align:center;"></p>
+                         <p id="msg" style="text-align:center;"></p><p id="msg1" style="text-align:center;"></p>
                                         <label class="col-sm-2 control-label"></label>
                                         <div class="col-sm-2">
                                             <div id="ajaxres"></div>
@@ -119,7 +117,7 @@
                                     <div class="content">
 
                                         <div class="fresh-datatables">
-										  <form method="post" action="<?php echo base_url(); ?>examination/add_exam_detail" class="form-horizontal" enctype="multipart/form-data">
+	<form method="post" action="<?php echo base_url(); ?>examination/add_exam_detail" class="form-horizontal" enctype="multipart/form-data">
 										 <div class="col-sm-2">
                                             <select name="class_id" style="margin-top:30px;" class="selectpicker">
 											<option>Select</option>
@@ -132,7 +130,7 @@
 
                                         </div>
 										 <div class="col-sm-4">
-                                            <button type="submit" id="save" class="btn btn-info btn-fill center">Search </button>
+                                            <button type="submit" id="save" class="btn btn-info btn-fill center">Search</button>
                                         </div>
 										</form>
 
@@ -267,8 +265,36 @@
 </div>
 
 <script type="text/javascript">
+
+function checksubject(val)
+   { //alert(val);
+      $.ajax({
+			type:'post',
+			url:'<?php echo base_url(); ?>examination/subcheck',
+			data:'classid='+val,
+			success:function(test)
+			{
+				//alert(test);exit;
+				if(test=="Already Exam Added")
+				{
+			        $("#msg1").html(test); 
+					$('#msg').html('');
+					$("#ajaxres").html('');
+                    $("#ajaxres1").html('');
+                    $("#ajaxres2").html('');
+                    $("#ajaxres3").html('');
+				}
+				else{
+					checknamefun(val);
+					$("#msg1").html('');
+				}
+			}
+	  });
+}
+
+
     function checknamefun(classid) {
-        //alert(classid);
+        //alert(classid);exit;
         $.ajax({
             type: 'post',
             url: '<?php echo base_url(); ?>examination/checker',
@@ -283,7 +309,6 @@
 				//var test=test1.status;
 				//alert(test);
                 if (test1.status=='Success') {
-
                     var sub = test1.subject_name;
 					//alert(sub.length);
                     var sub_id = test1.subject_id;
@@ -295,7 +320,6 @@
                     var exam_secction = '';
                     var teacher = '';
                     for (i = 0; i < len; i++) {
-
                         name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
 
                         exam_date += '<input type="text"  name="exam_date[]"  class="form-control datepicker"   placeholder="Enter The Exam Date"/></br>';
@@ -309,22 +333,20 @@
                         $("#ajaxres2").html(exam_secction);
                         $("#ajaxres3").html(teacher);
                         $('#msg').html('');
+						
                     }
                 } else {
-
 					$('#msg').html('<span style="color:red;text-align:center;">Subject Not Found</p>');
-
 					    $("#ajaxres").html('');
                         $("#ajaxres1").html('');
                         $("#ajaxres2").html('');
                         $("#ajaxres3").html('');
-					//$('#examform')[0].reset();
-                    //alert("Subject Not Found");
+					   //$('#examform')[0].reset();
+                       //alert("Subject Not Found");
                 }
             }
         });
     }
-
 
 </script>
 
@@ -417,4 +439,7 @@
        });
     });
 
+</script>
+<script type="text/javascript">
+  
 </script>

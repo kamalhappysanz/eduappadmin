@@ -17,8 +17,6 @@ Class Examinationmodel extends CI_Model
 
 	  function get_details_view()
 	   {
-		   
-		   
 		 $query="select ex.exam_detail_id,ex.subject_id,ex.exam_date,ex.times,ex.classmaster_id,cm.	class_sec_id,ex.teacher_id,s.subject_name,c.class_name,se.sec_name  FROM edu_exam_details AS ex,edu_classmaster AS cm,edu_subject AS s,edu_class AS c,edu_sections AS se WHERE  ex.subject_id=s.subject_id AND ex.classmaster_id=cm.	class_sec_id AND c.class_id =cm.class AND se.sec_id=cm.section";
 		 
          $resultset=$this->db->query($query);
@@ -71,6 +69,7 @@ Class Examinationmodel extends CI_Model
                     $exam_years=$exam_year;
                     $class_id=$class_name;
                     $subject_id=$subject_name[$i];
+
                     $exam_dates=$exam_date[$i];
                     $times=$time[$i];
                     $tea_id=$teacher_id[$i];
@@ -132,6 +131,14 @@ Class Examinationmodel extends CI_Model
          $data= array("status" => "Failed to Update");
          return $data;
        }
+	}
+	
+	function check_add_exam($classid)
+	{
+		$sql="SELECT * FROM edu_exam_details WHERE classmaster_id='$classid'";
+		$res1=$this->db->query($sql);
+		return count($res1->result());
+		
 	}
 
 
