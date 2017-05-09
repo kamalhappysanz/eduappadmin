@@ -28,7 +28,7 @@
                                           <div class="col-sm-4">
                                               <input type="text" name="leave_type" class="form-control" placeholder="" readonly="" value="<?php echo $rows->leave_type; ?>"/>
                                               <input type="hidden" name="leave_id" class="form-control" placeholder="" readonly="" value="<?php echo $rows->leave_id; ?>"/>
-                                                <input type="hidden" name="leave_masid" class="form-control" placeholder="" readonly="" value="<?php echo $rows->leave_masid; ?>"/>
+                                                <input type="hidden" name="leave_masid" class="form-control" placeholder="" readonly="" value="<?php echo $rows->leave_mas_id; ?>"/>
                                           </div>
 
                                       </div>
@@ -62,7 +62,7 @@
                                               <option value="Friday">Friday</option>
                                               <option value="Saturday">Saturday</option>
                                             </select>
-                                            <script language="JavaScript">document.leaveform.days.value="<?php echo $rows->day; ?>";</script>
+                                            <script language="JavaScript">document.leaveform.days.value="<?php echo $rows->days; ?>";</script>
                                           </div>
                                       </div>
                                   </fieldset>
@@ -77,7 +77,7 @@
                                               <option value="4">4</option>
                                               <option value="5">5</option>
                                             </select>
-                                              <script language="JavaScript">document.leaveform.weeks.value="<?php echo $rows->on_week; ?>";</script>
+                                              <script language="JavaScript">document.leaveform.weeks.value="<?php echo $rows->week; ?>";</script>
                                           </div>
                                       </div>
                                   </fieldset>

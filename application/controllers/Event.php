@@ -251,14 +251,13 @@ class Event extends CI_Controller {
                              $status=$this->input->post('status');
 
 							 $datas=$this->eventmodel->update_sub_event($event_id,$co_id,$sub_event_name,$co_name,$status);
-                              //print_r($datas['eventid']);exit;
+
 							 if($datas['status']=="success"){
-								 $event_id=$datas['eventid'];
 							 $this->session->set_flashdata('msg', 'Updated  Successfully');
-							redirect('event/view_sub_event/'.$event_id.'');
+							redirect('event/create');
 						 }else{
 							 $this->session->set_flashdata('msg', 'Failed to Add');
-							redirect('event/view_sub_event/'.$event_id.'');
+							redirect('event/create');
 						 }
 			}
 			}

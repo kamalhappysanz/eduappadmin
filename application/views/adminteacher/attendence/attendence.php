@@ -85,7 +85,7 @@ echo $dateTime->format("A");
 
 
 <script type="text/javascript">
-function addfunction(){
-  alert("hi");
-}
+// function addfunction(){
+//   alert("hi");
+// }
 </script>

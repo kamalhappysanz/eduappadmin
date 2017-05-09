@@ -109,7 +109,7 @@ class Leavemanage extends CI_Controller {
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 				$datas['res']=$this->leavemodel->get_leave_id($id);
-
+				//print_r($datas['res']);
 			 if($user_type==1){
 			 $this->load->view('header');
 			 $this->load->view('leavemanage/edit',$datas);
@@ -181,7 +181,7 @@ class Leavemanage extends CI_Controller {
 			$weeks=$this->input->post('weeks');
 			$leave_mas_id=$this->input->post('leave_masid');
 
-			echo $leave_status=$this->input->post('leave_status');
+			 $leave_status=$this->input->post('leave_status');
 
 			$datas=$this->leavemodel->udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$days,$weeks,$leave_mas_id,$leave_status);
 			if($datas['status']=="success"){
