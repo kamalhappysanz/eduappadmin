@@ -81,7 +81,7 @@ Class Enrollmentmodel extends CI_Model
            $query="UPDATE edu_enrollment SET admit_year='$admit_year',admit_date='$admit_date',name='$name',class_id='$class',status='$status' WHERE enroll_id='$enroll_id' AND admisn_no='$admisn_no'";
            $res=$this->db->query($query);
 		   
-		   $query1="UPDATE edu_admission SET name='$name',admisn_date='$admit_date' WHERE admisn_no='$admisn_no'";
+		   $query1="UPDATE edu_admission SET name='$name' WHERE admisn_no='$admisn_no'";
            $res1=$this->db->query($query1);
 		   
 		   $query2="UPDATE edu_users SET name='$name' WHERE student_id='$admission_id'";

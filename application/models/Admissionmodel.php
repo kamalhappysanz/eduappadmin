@@ -86,8 +86,11 @@ Class Admissionmodel extends CI_Model
        $query="UPDATE edu_admission SET admisn_year='$admission_year',admisn_no='$admission_no',admisn_date='$admission_date',name='$name',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',mother_tongue='$mother_tongue',mobile='$mobile',email='$email',student_pic='$userFileName' WHERE admission_id='$admission_id'";
        $res=$this->db->query($query);
 		  
-		    $query6="UPDATE edu_users SET name='$name',user_pic='$userFileName',updated_date=NOW() WHERE student_id='$admission_id' ";
+	$query6="UPDATE edu_users SET name='$name',user_pic='$userFileName',updated_date=NOW() WHERE student_id='$admission_id' ";
 	        $res=$this->db->query($query6);
+			
+			$query7="UPDATE edu_enrollment SET name='$name' WHERE admisn_no='$admission_no' ";
+	        $res=$this->db->query($query7);
 
          if($res){
          $data= array("status" => "success");
