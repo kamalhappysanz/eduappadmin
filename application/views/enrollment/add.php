@@ -25,11 +25,11 @@
 <?php  $status=$years['status']; if($status=="success"){
             foreach($years['all_years'] as $rows){}
               ?>
-            <input type="hidden" name="year_id"  value="<?php  echo $rows->year_id; ?>">
+            <input type="text" name="year_id"  value="<?php  echo $rows->year_id; ?>">
             <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
 
         <?php   }else{  ?>
-          <input type="text" name="year_id"  class="form-control" value="" readonly="">
+          <input type="text" name=""  class="form-control" value="" readonly="">
 
       <?php     } ?>
 

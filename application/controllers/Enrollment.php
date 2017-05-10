@@ -89,7 +89,7 @@ class Enrollment extends CI_Controller {
 			 //$datas['result'] = $this->classmodel->getclass();
 			$user_type=$this->session->userdata('user_type');
 		 if($user_type==1){
-			 $admit_year=$this->input->post('admit_year');
+			 $admit_year=$this->input->post('year_id');
 
 			 $admit_date=$this->input->post('admit_date');
 	         $dateTime = new DateTime($admit_date);
@@ -167,14 +167,13 @@ class Enrollment extends CI_Controller {
 			  $admit_date=$this->input->post('admit_date');
 			  $dateTime = new DateTime($admit_date);
 			  $formatted_date=date_format($dateTime,'Y-m-d' );
-			 
-			 
 			 $enroll_id=$this->input->post('enroll_id');
+			 $admisn_no=$this->input->post('admisn_no');
 			 $name=$this->input->post('name');
 			 $class=$this->input->post('class_name');
 			 //$section=$this->input->post('section');
 			 $status=$this->input->post('status');
-			 $datas=$this->enrollmentmodel->save_enrollment($admit_year,$formatted_date,$name,$class,$status,$enroll_id);
+			 $datas=$this->enrollmentmodel->save_enrollment($admit_year,$formatted_date,$name,$class,$status,$enroll_id,$admisn_no);
 			 if($datas['status']=="success"){
 				 $this->session->set_flashdata('msg', 'Update Successfully');
 				 redirect('enrollment/view');

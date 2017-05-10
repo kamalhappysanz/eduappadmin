@@ -60,7 +60,7 @@ Class Enrollmentmodel extends CI_Model
 
 		}
 
-       //GET ALL Admission Form
+       //GET ALL Admission Form get_enrollmentid
 
        function get_all_enrollment(){
          $query="SELECT e.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_enrollment as e,edu_classmaster as cm, edu_sections as s,edu_class as c WHERE e.class_id=cm.class_sec_id and cm.class=c.class_id and cm.section=s.sec_id ORDER BY enroll_id DESC";
@@ -77,9 +77,13 @@ Class Enrollmentmodel extends CI_Model
 
 //Update enrollment
 
-        function save_enrollment($admit_year,$admit_date,$name,$class,$status,$enroll_id){
-           $query="UPDATE edu_enrollment SET admit_year='$admit_year',admit_date='$admit_date',name='$name',class_id='$class',status='$status' WHERE enroll_id='$enroll_id'";
+        function save_enrollment($admit_year,$admit_date,$name,$class,$status,$enroll_id,$admisn_no){
+           $query="UPDATE edu_enrollment SET admit_year='$admit_year',admit_date='$admit_date',name='$name',class_id='$class',status='$status' WHERE enroll_id='$enroll_id' AND admisn_no='$admisn_no'";
            $res=$this->db->query($query);
+		   
+		   $query1="UPDATE edu_admission SET name='$name',admisn_date='$admit_date' WHERE admisn_no='$admisn_no'";
+           $res1=$this->db->query($query1);
+
            if($res){
              $data= array("status" => "success");
              return $data;
