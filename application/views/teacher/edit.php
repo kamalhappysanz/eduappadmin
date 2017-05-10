@@ -27,7 +27,7 @@
                                           </div>
                                           <label class="col-sm-2 control-label">Email</label>
                                           <div class="col-sm-4">
-                                              <input type="text" name="email" readonly="" class="form-control " id="email" placeholder="Email Address" onblur="checkMailStatus()"  value="<?php echo $rows->email; ?>"/>
+                                              <input type="text" name="email" readonly="" class="form-control " id="email" placeholder="Email Address"  value="<?php echo $rows->email; ?>"/>
                                           </div>
 
                                       </div>
@@ -277,21 +277,4 @@ $('#teacher2').addClass('active');
 });
 
 </script>
-<script type="text/javascript">
-function checkMailStatus(){
-    //alert("came");
-var email=$("#email").val();// value in field email
-alert(email);
-$.ajax({
-        type:'post',
-        url:'check_email',// put your real file name
-        data:{email: email},
-        success:function(msg){
-        alert(msg); // your message will come here.
-        }
- });
-}
 
-
-
-</script>
