@@ -12,7 +12,7 @@ Class Classmodel extends CI_Model
 //GET ALL CLASS
 
        function getclass(){
-         $query="SELECT * FROM edu_class";
+         $query="SELECT * FROM edu_class ORDER BY class_id DESC";
          $resultset=$this->db->query($query);
          return $resultset->result();
        }

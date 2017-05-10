@@ -34,7 +34,7 @@ Class Communicationmodel extends CI_Model
 
 	 function view()
 	 {
-		 $query="SELECT * FROM edu_communication";
+		 $query="SELECT * FROM edu_communication ORDER BY commu_id DESC";
          $res=$this->db->query($query);
          $result1=$res->result();
 		 return $result1;

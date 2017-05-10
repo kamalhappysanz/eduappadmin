@@ -26,11 +26,8 @@
 							   <button type="button" id="teacher" onclick="myFunction()" class="btn btn-info btn-fill ">Teachers</button>
 							   <button type="button" id="classes" onclick="myFunction1()" class="btn btn-info btn-fill ">Classes</button>
                               </div>
-
                            </div>
                         </fieldset>
-
-
 
 						 <fieldset>
                            <div class="form-group">
@@ -50,14 +47,8 @@
                                           <?php      } ?>
                                        </select></div>
                               </div>
-
-
                            </div>
                         </fieldset>
-
-
-
-
 
                         <fieldset>
                            <div class="form-group">

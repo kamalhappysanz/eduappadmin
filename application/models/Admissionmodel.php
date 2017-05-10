@@ -57,7 +57,7 @@ Class Admissionmodel extends CI_Model
 
        //GET ALL Admission Form
        function get_all_admission(){
-         $query="SELECT * FROM  edu_admission ORDER BY updated_at DESC";
+         $query="SELECT * FROM  edu_admission ORDER BY admission_id DESC";
          $res=$this->db->query($query);
          return $res->result();
        }

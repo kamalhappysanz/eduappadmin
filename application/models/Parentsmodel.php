@@ -59,10 +59,10 @@ Class Parentsmodel extends CI_Model
 
        }
 	   
-       //GET ALL Admission Form
+       //GET ALL Admission Form WHERE status='A'
       function get_all_parents_details()
 	  {
-         $query3="SELECT * FROM edu_parents WHERE status='A'";
+         $query3="SELECT * FROM edu_parents ORDER BY parent_id DESC ";
          $res=$this->db->query($query3);
          return $res->result();
        }

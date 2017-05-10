@@ -63,14 +63,14 @@ Class Enrollmentmodel extends CI_Model
        //GET ALL Admission Form
 
        function get_all_enrollment(){
-         $query="SELECT e.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_enrollment as e,edu_classmaster as cm, edu_sections as s,edu_class as c WHERE e.class_id=cm.class_sec_id and cm.class=c.class_id and cm.section=s.sec_id";
+         $query="SELECT e.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_enrollment as e,edu_classmaster as cm, edu_sections as s,edu_class as c WHERE e.class_id=cm.class_sec_id and cm.class=c.class_id and cm.section=s.sec_id ORDER BY enroll_id DESC";
          $res=$this->db->query($query);
          return $res->result();
        }
 
 
        function get_enrollmentid($admisn_no){
-          $query="SELECT * FROM edu_enrollment WHERE admisn_no='$admisn_no'";
+         $query="SELECT * FROM edu_enrollment WHERE admisn_no='$admisn_no'";
          $res=$this->db->query($query);
          return $res->result();
        }
@@ -109,17 +109,6 @@ Class Enrollmentmodel extends CI_Model
 
 		}
 		
-		/* function getid($admisno)
-		{
-		  $query = "select name,admission_id from edu_admission WHERE admisn_no='".$admisno."'";
-     	  $resultset = $this->db->query($query);
-		  foreach ($resultset->result() as $rows)
-		  {
-		   //echo $rows->name;echo 
-		   $rows->admission_id;exit;
-		  }
-		} */
-
 		function getData1($admisno)
 		{
 		   $query = "select name from edu_enrollment WHERE admisn_no='".$admisno."'";

@@ -26,40 +26,24 @@
                                             <label class="col-sm-2 control-label">Exam</label>
                                             <div class="col-sm-4">
 									<input type="hidden" name="id" value="<?php echo $rows->exam_detail_id; ?>">
-											  <select name="exam_year" class="selectpicker" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-
-                                    <?php
-										  $tea_name=$rows->exam_id;
-										  $sQuery = "SELECT ed.*,ex.exam_id,ex.exam_year,ex.exam_name,ea.year_id,ea.from_month,ea.to_month FROM edu_examination AS ex,edu_academic_year AS ea,edu_exam_details AS ed WHERE ed.exam_id=ex.exam_id AND ex.exam_year=ea.year_id";
-										  $objRs=$this->db->query($sQuery);
-										  $row=$objRs->result();
-										  foreach ($row as $rows1)
-										  {
-											     $id=$rows1->exam_id;
-												 $s= $rows1->from_month;
-												 $month= strtotime($s);
-												 $ye=date('Y',$month);
-
-												 $tm=$rows1->to_month;
-												 $tm1= strtotime($tm);
-												 $ye1=date('Y',$tm1);
-
-												 $sec=$rows1->exam_name;
-
-												 $arryPlatform = explode(",",$tea_name);
-												 $sPlatform_id  = trim($s);
-												 $sPlatform_name  = trim($sec);
-												 if (in_array($sPlatform_id,$arryPlatform ))
-												  {
-													   echo "<option  value=\"$id\" selected  />$ye-$ye1($sec)</option>";
-												  }
-												 else {
-												echo "<option value=\"$id\" /> $ye-$ye1($sec) </option>";
-												 }
-													  }
-                                        ?>
-
-                                          </select>
+										
+										  <?php 
+										  $exdate=$rows->exam_id;
+										  $sql="SELECT ed.exam_id,ex.exam_year,ex.exam_name,ex.exam_id,y.* FROM edu_exam_details AS ed, edu_examination AS ex,edu_academic_year AS y WHERE ed.exam_id='$exdate' AND ex.exam_id='$exdate' AND ex.exam_year=y.year_id GROUP BY ed.exam_id";
+										  $res=$this->db->query($sql);
+										  $rowsr=$res->result();
+										  foreach ($rowsr as $row1)
+										  {}
+										  $a=$row1->from_month;
+										  $fyear= strtotime($a);
+										  $fy=date('Y',$fyear);
+										  
+										  $b=$row1->to_month;
+										  $tyear= strtotime($b);
+										  $ty=date('Y',$tyear);
+										  
+										  $c=$row1->exam_name;?>
+				 <input type="text" readonly class="form-control" value="<?php echo $fy;?>-<?php echo $ty;?>(<?php echo $c;?>)">
 
                                             </div>
 
