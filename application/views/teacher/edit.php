@@ -20,9 +20,11 @@
 
                                   <fieldset>
                                       <div class="form-group">
+									   
                                           <label class="col-sm-2 control-label">Name</label>
                                           <div class="col-sm-4">
                                               <input type="text" name="name" class="form-control" value="<?php echo $rows->name; ?>">
+											  <input type="hidden" placeholder="Community" name="teacher_id" class="form-control" value="<?php echo $rows->teacher_id; ?>">
 
                                           </div>
                                           <label class="col-sm-2 control-label">Email</label>
@@ -93,7 +95,7 @@
                                             <div class="col-sm-4">
                                                 <input type="text" placeholder="Community" name="community" class="form-control" value="<?php echo $rows->community; ?>">
                                                 <input type="hidden" placeholder=" " name="old_pic" class="form-control" value="<?php echo $rows->profile_pic; ?>">
-                                                  <input type="hidden" placeholder="Community" name="teacher_id" class="form-control" value="<?php echo $rows->teacher_id; ?>">
+                                                 
                                             </div>
 
                                         </div>
