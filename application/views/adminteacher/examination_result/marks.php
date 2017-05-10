@@ -12,7 +12,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Enter Exam Mark <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
+                                <h4 class="title">Enter Exam Marks <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
@@ -25,13 +25,13 @@
 											//echo $id;
 											 }else{ echo "";}
 									           //echo $id; 
-											  /*  if(!empty($stu))
+											   /* if(!empty($stu))
 										       { foreach($stu as $row)
 									            { 
 												 $tname=$row->enroll_id;
 												 $su=$row->subject;
 												 $clsid=$row->class_teacher;}
-											   }else{ echo "";} */
+											   }else{ echo "";}  */
                                   ?>
 								
 								<input type="hidden" name="examid" value="<?php echo $id; ?>"/>
@@ -41,7 +41,7 @@
 									 <?php 
                                       if(empty($res))
 									  {?>
-										  <p style="padding:15px;">Subject Not Found </p>
+										  <p style="padding:15px;">Student Not Found </p>
 									 <?php  }else{
 										foreach($res as $row)
 										      { }?>

@@ -90,7 +90,7 @@ Class Examinationresultmodel extends CI_Model
 			foreach($row as $rows){}
 			$teacher_id=$rows->teacher_id;
 			//echo $teacher_id;exit;
-			$sql="SELECT t.*,su.*,en.* FROM edu_subject AS su,edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND t.subject=su.subject_id AND en.class_id='$cls_masid'";
+		    $sql="SELECT t.teacher_id,t.name,t.subject,t.class_teacher,su.*,en.* FROM edu_subject AS su,edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND t.subject=su.subject_id AND en.class_id='$cls_masid'";
 			
 			$res=$this->db->query($sql);
 			$result=$res->result();
@@ -132,7 +132,6 @@ Class Examinationresultmodel extends CI_Model
 						   $arryPlatform = explode(",",$id);
 						   $sPlatform_id  = trim($s);
 						   $sPlatform_name  = trim($sec);
-
 						   if(in_array($sPlatform_id,$arryPlatform))
 							   {
 								  $sub_name[]=$sec;
@@ -166,9 +165,8 @@ Class Examinationresultmodel extends CI_Model
 	   function exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks)
 	   {
 		    
-                   
 		   $count_name = count($marks);
-		 // echo $count_name; exit;
+		    //echo $count_name; exit;
            for($i=0;$i<$count_name;$i++)
 		   {
 			$sutid1=$sutid[$i];
@@ -178,20 +176,25 @@ Class Examinationresultmodel extends CI_Model
 			$teaid1=$teaid;
 			$examid1=$exam_id;
 			$marks1=$marks[$i];
-			
-			$check="SELECT * FROM edu_exam_marks WHERE exam_id='$examid1' AND subject_id='$subid1' AND classmaster_id='$clsmastid1'";
+			/* $check="SELECT * FROM edu_exam_marks WHERE exam_id='$examid1' AND subject_id='$subid1' AND classmaster_id='$clsmastid1'";
             $result1=$this->db->query($check);
             if($result1->num_rows()==0)
-			{
+			{  */
 			  $query="INSERT INTO edu_exam_marks(exam_id,teacher_id,subject_id,stu_id,classmaster_id,marks,created_at)VALUES('$examid1','$teaid1','$subid1','$sutid1','$clsmastid1','$marks1',NOW())";
-			  $resultset=$this->db->query($query);
-			  $datas=array("status"=>"success");
-		      return $datas;
-		    }else{
+			  $resultset1=$this->db->query($query);
+		     /* }else{
 				$data= array("status"=>"Already Added");
                  return $data;
-			}
+			}  */
 	      }
+		  if($resultset1){
+		  $data= array("status" => "success");
+		  return $data;}
+		  else{
+			$data= array("status" => "failure");
+			return $data;
+		  }		  
+		  
 	   }
 	 function getall_marks_details($user_id)
 	 {
@@ -237,7 +240,7 @@ Class Examinationresultmodel extends CI_Model
 	   function update_marks_details($teaid,$clsmastid,$exam_id,$subid,$marks,$sutid)
 	   {
 		   $count_name = count($marks);
-		  echo $count_name;
+		    //echo $count_name;
            for($i=0;$i<$count_name;$i++)
 		   {
 			$sutid1=$sutid[$i];
@@ -246,14 +249,20 @@ Class Examinationresultmodel extends CI_Model
 			 $clsmastid1=$clsmastid;
 			 $teaid1=$teaid;
 			 $examid1=$exam_id;
-			$marks1=$marks[$i];
-			print_r($marks1);
+			 $marks1=$marks[$i];
+			//print_r($marks1);
 		   $update="UPDATE edu_exam_marks SET marks='$marks1',updated_at=NOW() WHERE exam_id='$examid1' AND teacher_id='$teaid1' AND classmaster_id='$clsmastid1' AND subject_id='$subid1' AND stu_id='$sutid1'";
 		   $resultset=$this->db->query($update);
-		   
 		  }
-		    $datas=array("status"=>"success");
-		    return $datas;
+		  if($resultset){
+		  $data= array("status" => "success");
+		  return $data;}
+		  else{
+			$data= array("status" => "failure");
+			return $data;
+		  }
+		  
+		    
 	   }
 	   
 } 

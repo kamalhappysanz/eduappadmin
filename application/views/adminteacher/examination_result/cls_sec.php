@@ -40,9 +40,11 @@
                         <?php  }else{?>
                         <?php   $cnt= count($class_id);
 						        
-                           for($i=0;$i<$cnt;$i++){ 
-						   if($class_id[$i]==$cls_id){
-						  // echo $class_id[$i];
+                         for($i=0;$i<$cnt;$i++)
+						  { 
+						   if($class_id[$i]==$cls_id)
+						   {
+						   //echo $class_id[$i];
 						   //echo $cls_id;
                            ?>
                         <div class="col-md-2">
@@ -80,7 +82,6 @@
                                         <th>ID</th>
                                     	<th>Name</th>
                                     	<th id="ajaxres"></th>
-										
                                     </thead>
                                     <tbody>
                                         <tr>
@@ -90,23 +91,12 @@
                                         	<td>Niger</td>
                                         	<td>Oud-Turnhout</td>
                                         </tr>
-                                      
-                                        
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>-->
-		 
-		 
-		 
-		 
-		 
-       
          <!-- end row -->
          <!--<div id="test" style="display: none" >  </div>-->
    
@@ -197,8 +187,7 @@
        }
     });
    });
-</script>
-<script type="text/javascript">
+
   /*  function changeText(id) 
    {
     //$('#myModal').modal('show');
