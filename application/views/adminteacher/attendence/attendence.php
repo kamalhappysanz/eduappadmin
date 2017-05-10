@@ -33,13 +33,15 @@
 
                                  foreach($res as $rows){
 
+
                                     ?>
                                    <tr>
                                        <td class="text-center"><?php echo $i;  ?></td>
-
-       <td class="text-center"><?php echo $rows->name;  ?> <input type="hidden" name="student_id[]" value="<?php echo $rows->enroll_id; ?>">
-         <input type="hidden" name="class_id[]" value="<?php echo $class_id; ?>">
-          <input type="hidden" name="user_id[]" value="<?php echo $user_id=$this->session->userdata('user_id'); ?>">
+                                       <input type="hidden" name="student_count" value="<?php echo count($res); ?>">
+       <td class="text-center"><?php echo $rows->name;  ?>
+         <input type="hidden" name="student_id[]" value="<?php echo $rows->enroll_id; ?>">
+         <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
+          <input type="hidden" name="user_id" value="<?php echo $user_id=$this->session->userdata('user_id'); ?>">
 
                                        </td>
 

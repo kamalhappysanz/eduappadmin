@@ -73,8 +73,11 @@ class Teacherattendence extends CI_Controller {
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
-				 $datas=$this->teacherattendencemodel->check_attendence($class_id);
+				  $datas=$this->teacherattendencemodel->check_attendence($class_id);
 				 //print_r($datas);exit;
+
+				 $datas=$this->teacherattendencemodel->get_cur_year();
+				 print_r($datas);exit;
 				 if($datas['status']=="success"){
 					 $datas['res']=$this->teacherattendencemodel->get_studentin_class($class_id);
 					$datas['class_id']=$class_id;
@@ -91,8 +94,13 @@ class Teacherattendence extends CI_Controller {
 					 $this->load->view('adminteacher/teacher_header');
 					 $this->load->view('adminteacher/attendence/attendence',$datas);
 					 $this->load->view('adminteacher/teacher_footer');
-				 }else if($datas['status']=="attendence taken"){
+				 }else if($datas['status']=="taken"){
 					 $datas['status']="Attendece already Taken for This Class";
+					 $this->load->view('adminteacher/teacher_header');
+					 $this->load->view('adminteacher/attendence/attendence',$datas);
+					 $this->load->view('adminteacher/teacher_footer');
+				 }else if($datas['status']=="noYearfound"){
+					 $datas['status']="No Academic  Year found";
 					 $this->load->view('adminteacher/teacher_header');
 					 $this->load->view('adminteacher/attendence/attendence',$datas);
 					 $this->load->view('adminteacher/teacher_footer');
@@ -114,12 +122,20 @@ class Teacherattendence extends CI_Controller {
 				$datas=$this->session->userdata();
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
+				$get_cur_year=$this->teacherattendencemodel->get_cur_year();
+
 			 if($user_type==2){
-			 $student_id=$this->input->post('student_id');
+
+			 $student_count=$this->input->post('student_count');
+			  $get_academic=$get_cur_year['cur_year'];
+
+			  $student_id=$this->input->post('student_id');
 			 $class_id=$this->input->post('class_id');
 			 $attendence_val=$this->input->post('attendence_val');
-			  $a_taken=$this->input->post('user_id');
-		   $datas=$this->teacherattendencemodel->get_attendence_class($class_id,$student_id,$attendence_val,$a_taken);
+			 //print_r($attendence_val);
+			 $a_taken=$this->input->post('user_id');
+
+		   $datas=$this->teacherattendencemodel->get_attendence_class($class_id,$student_id,$attendence_val,$a_taken,$student_count,$get_academic);
 			 //print_r($datas['status']);exit;
 			 if($datas['status']=="success"){
 				 echo "success";
