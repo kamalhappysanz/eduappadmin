@@ -168,12 +168,13 @@ class Enrollment extends CI_Controller {
 			  $dateTime = new DateTime($admit_date);
 			  $formatted_date=date_format($dateTime,'Y-m-d' );
 			 $enroll_id=$this->input->post('enroll_id');
+			 $admission_id=$this->input->post('admission_id');
 			 $admisn_no=$this->input->post('admisn_no');
 			 $name=$this->input->post('name');
 			 $class=$this->input->post('class_name');
 			 //$section=$this->input->post('section');
 			 $status=$this->input->post('status');
-			 $datas=$this->enrollmentmodel->save_enrollment($admit_year,$formatted_date,$name,$class,$status,$enroll_id,$admisn_no);
+			 $datas=$this->enrollmentmodel->save_enrollment($admit_year,$formatted_date,$name,$class,$status,$enroll_id,$admisn_no,$admission_id);
 			 if($datas['status']=="success"){
 				 $this->session->set_flashdata('msg', 'Update Successfully');
 				 redirect('enrollment/view');

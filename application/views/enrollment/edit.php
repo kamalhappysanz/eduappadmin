@@ -34,7 +34,7 @@
 			 $ty=date_create($rows1->to_month);
              
 		   }
-            ?> <input type="hidden" class="form-control" name="admit_year" value="<?php echo $yid; ?>" >
+            ?> <input type="text" class="form-control" name="admit_year" value="<?php echo $yid; ?>" >
           <input type="text" class="form-control"  value="<?php echo date_format($fy,"Y"); ?>- <?php echo date_format($ty,"Y"); ?>" readonly="">
 		   </div>
 
@@ -47,6 +47,7 @@
                                           <div class="col-sm-4">
                                               <input type="text" class="form-control" name="admisn_no" id="admission_no" value="<?php echo $rows->admisn_no; ?>" readonly="">
                                               <input type="hidden" class="form-control" name="enroll_id" id="admission_no" value="<?php echo $rows->enroll_id; ?>" readonly="">
+											  <input type="hidden" class="form-control" name="admission_id" id="admission_no" value="<?php echo $rows->admission_id; ?>" readonly="">
                                           </div>
 
                                         </div>
