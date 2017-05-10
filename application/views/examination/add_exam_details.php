@@ -23,7 +23,7 @@
                                         <label class="col-sm-2 control-label">Exam</label>
                                         <div class="col-sm-4">
 <input type="hidden" name="admit_date" class="form-control datepicker" placeholder="Enrollment Date"/>
-                                            <select name="exam_year" class="selectpicker" data-title="Select Exam Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                            <select name="exam_year" id="exam_year" onchange="checksubject(this.value)" class="selectpicker" data-title="Select Exam Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <?php foreach ($year as $sect)
 												  {
 													$fyear=$sect->from_month;
@@ -43,7 +43,7 @@
 
                                         <label class="col-sm-2 control-label">Class</label>
                                         <div class="col-sm-4">
-           <select name="class_name"  class="selectpicker" data-title="Select class" onchange="checksubject(this.value)" >
+           <select name="class_name"  id="class_name" class="selectpicker" data-title="Select class" onchange="checksubject(this.value)" >
                                                 <?php foreach ($getall_class as $rows) {  ?>
                                                     <option value="<?php echo $rows->class_sec_id; ?>">
                                                         <?php echo $rows->class_name; ?>&nbsp; - &nbsp;
@@ -266,15 +266,23 @@
 
 <script type="text/javascript">
 
-function checksubject(val)
-   { //alert(val);
+function checksubject(exam_year,class_name)
+   { //alert(val);exit;
+   var exam_year = document.getElementById('exam_year');
+   var class_name = document.getElementById('class_name');
+
+   var eid = exam_year.value; 
+   var cid = class_name.value;
+   //alert(eid);alert(cid);
+   if(eid!='' && cid!=''){
+	   //alert(eid);alert(cid);exit;'code=' + code + '&userid=' + userid
       $.ajax({
 			type:'post',
 			url:'<?php echo base_url(); ?>examination/subcheck',
-			data:'classid='+val,
+			data:'clsmasid=' + eid + '&examid=' + cid,
 			success:function(test)
 			{
-				//alert(test);exit;
+				//alert(test);
 				if(test=="Already Exam Added")
 				{
 			        $("#msg1").html(test); 
@@ -285,21 +293,22 @@ function checksubject(val)
                     $("#ajaxres3").html('');
 				}
 				else{
-					checknamefun(val);
 					$("#msg1").html('');
+					//alert(cid);
+					checknamefun(cid);
 				}
 			}
 	  });
+   }
 }
 
-
-    function checknamefun(classid) {
+    function checknamefun(cid) {
         //alert(classid);exit;
         $.ajax({
             type: 'post',
             url: '<?php echo base_url(); ?>examination/checker',
             data: {
-                classid:classid
+                classid:cid
             },
            dataType: 'json',
 
@@ -322,14 +331,14 @@ function checksubject(val)
                     for (i = 0; i < len; i++) {
                         name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
 
-                        exam_date += '<input type="text"  name="exam_date[]"  class="form-control datepicker"   placeholder="Enter The Exam Date"/></br>';
+                        exam_date += '<input type="text"  name="exam_dates[]"  class="form-control datepicker"   placeholder="Enter The Exam Date"/></br>';
 
                         exam_secction += '<select name="time[]" required class="form-control" data-title="Select Time" data-style="btn-default btn-block" data-menu-style="dropdown-blue"><option value="">Select</option><option value="AM">AM</option><option value="PM">PM</option></select></br>';
 
                         teacher += '<select name="teacher_id[]" required id="teacher_id" class="form-control" ><option value="">Select Teacher</option><?php foreach ($teacheres as $rows) {  ?><option value="<?php echo $rows->teacher_id; ?>"><?php echo $rows->name; ?></option><?php  } ?></select></br>';
 
                         $("#ajaxres").html(name);
-                        $("#ajaxres1").html(exam_date).find('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
+                        $("#ajaxres1").html(exam_date).find('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
                         $("#ajaxres2").html(exam_secction);
                         $("#ajaxres3").html(teacher);
                         $('#msg').html('');
@@ -353,7 +362,6 @@ function checksubject(val)
 <script type="text/javascript">
  function myFunction(){
    $( "#datepicker" ).datepicker();
-
  }
 
     $(document).ready(function() {

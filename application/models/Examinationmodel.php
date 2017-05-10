@@ -59,7 +59,7 @@ Class Examinationmodel extends CI_Model
           }
     }
 
-	 function add_exam_details($exam_year,$class_name,$subject_name,$exam_date,$time,$teacher_id)
+	 function add_exam_details($exam_year,$class_name,$subject_name,$exdate,$time,$teacher_id)
 	 {
 		        $count_name = count($subject_name);
 				//echo $count_name; exit;
@@ -70,7 +70,7 @@ Class Examinationmodel extends CI_Model
                     $class_id=$class_name;
                     $subject_id=$subject_name[$i];
 
-                    $exam_dates=$exam_date[$i];
+                    $exam_dates=$exdate[$i];
                     $times=$time[$i];
                     $tea_id=$teacher_id[$i];
 					
@@ -133,9 +133,9 @@ Class Examinationmodel extends CI_Model
        }
 	}
 	
-	function check_add_exam($classid)
+	function check_add_exam($classid,$examid)
 	{
-		$sql="SELECT * FROM edu_exam_details WHERE classmaster_id='$classid'";
+		$sql="SELECT * FROM edu_exam_details WHERE classmaster_id='$examid' AND exam_id='$classid'";
 		$res1=$this->db->query($sql);
 		return count($res1->result());
 		

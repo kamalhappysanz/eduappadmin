@@ -185,13 +185,16 @@ class Examination extends CI_Controller
 			     $class_name=$this->input->post('class_name');
 				 $subject_name=$this->input->post('subject_id');
 				 //print_r($subject_name);exit;
-			     $exam_date=$this->input->post('exam_date');
-			     //print_r($exam_date);exit;
+			     $exdate=$this->input->post('exam_dates');
+				/*  print_r($exam_date);
+				 $edate=new DateTime($exam_date);
+                 $exdate=date_format($edate,'Y-m-d' );
+			    exit; */
 				 $time=$this->input->post('time');
 				 //print_r($time);exit;
 				 $teacher_id=$this->input->post('teacher_id');
 				 //print_r($notes);exit;
-           $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$exam_date,$time,$teacher_id);
+           $datas=$this->examinationmodel->add_exam_details($exam_year,$class_name,$subject_name,$exdate,$time,$teacher_id);
 			 if($datas['status']=="success"){
 					$this->session->set_flashdata('msg','Added Successfully');
                     redirect('examination/add_exam_detail');
@@ -265,10 +268,11 @@ class Examination extends CI_Controller
 	
 	public function subcheck()
 	 {
-		 $classid=$this->input->post('classid');
-		 $resultset=$this->examinationmodel->check_add_exam($classid);
-		
-		if ($resultset > 0)
+		 $classid=$this->input->post('clsmasid');
+		 $examid=$this->input->post('examid');
+		 //echo $examid;echo $classid; exit;
+		 $resultset=$this->examinationmodel->check_add_exam($classid,$examid);
+		 if ($resultset>0)
 		 {
 			echo "Already Exam Added";
 		 }
