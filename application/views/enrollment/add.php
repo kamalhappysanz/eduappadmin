@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Add Enrollment</legend>
+                                <legend>Student Registration</legend>
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">
@@ -20,7 +20,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Admission Year</label>
+                                            <label class="col-sm-2 control-label">Academic Year</label>
                                             <div class="col-sm-4">
 <?php  $status=$years['status']; if($status=="success"){
             foreach($years['all_years'] as $rows){}
@@ -56,7 +56,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Name</label>
+                                            <label class="col-sm-2 control-label">Student Name</label>
                                             <div class="col-sm-4">
                                                 <p id="msg" name="name">  </p>
 								<input type="text" name="name" id="name"  class="form-control">
@@ -67,9 +67,9 @@
 
 									 <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Enrollment Date</label>
+                                            <label class="col-sm-2 control-label">Registration Date</label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="admit_date" class="form-control datepicker" placeholder="Enrollment Date"/>
+                                                <input type="text" name="admit_date" class="form-control datepicker" placeholder="Registration Date"/>
 
                                             </div>
 

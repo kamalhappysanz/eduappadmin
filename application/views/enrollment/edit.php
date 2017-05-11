@@ -5,7 +5,7 @@
 
                         <div class="card">
                             <div class="header">
-                                <legend>Enrollment</legend>
+                                <legend>Edit Student Registration</legend>
                             </div>
                             <?php if($this->session->flashdata('msg')): ?>
                               <div class="alert alert-success">
@@ -20,7 +20,7 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Admission Year</label>
+                                            <label class="col-sm-2 control-label">Academic Year</label>
                                             <div class="col-sm-4">
          <?php
 		    $yid=$rows->admit_year;
@@ -58,11 +58,11 @@
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Admission Date</label>
+                                            <label class="col-sm-2 control-label">Registration Date</label>
                                             <div class="col-sm-4">
 
 
-                                                <input type="text" name="admit_date" class="form-control datepicker" placeholder="Admission Date"  value="<?php $date=date_create($rows->admit_date);
+                                                <input type="text" name="admit_date" class="form-control datepicker" placeholder="Registration Date"  value="<?php $date=date_create($rows->admit_date);
 echo date_format($date,"d-m-Y");  ?>" />
 
                                             </div>
@@ -71,7 +71,7 @@ echo date_format($date,"d-m-Y");  ?>" />
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Name</label>
+                                            <label class="col-sm-2 control-label">Student Name</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="name" class="form-control"  value="<?php echo $rows->name; ?>">
 
@@ -119,32 +119,12 @@ echo date_format($date,"d-m-Y");  ?>" />
 
                                   </select>
 								  
-								  
-										
-                                              <!--<select name="class" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                <?php foreach ($clas as $rows1) { ?>
-                                                  <option value="<?php echo $rows1->class_id; ?>"><?php echo $rows1->class_name; ?></option>
-                                              <?php  } ?>
-                                                </select> -->
                                                   <script language="JavaScript">document.enrollform.class.value="<?php echo $rows->class_id; ?>";</script>
                                             </div>
 
                                         </div>
                                     </fieldset>
-                                  <!--  <fieldset>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Section</label>
-                                            <div class="col-sm-4">
-                                              <select name="section" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                <?php foreach ($sec as $rows2) { ?>
-                                                  <option value="<?php echo $rows2->sec_id; ?>"><?php echo $rows2->sec_name; ?></option>
-                                              <?php  } ?>
-                                              </select>
-                                              <script language="JavaScript">document.enrollform.section.value="<?php echo $rows->sec_name; ?>";</script>
-                                            </div>
-
-                                        </div>
-                                    </fieldset> -->
+                                
                                     <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Status</label>
@@ -165,7 +145,7 @@ echo date_format($date,"d-m-Y");  ?>" />
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
-                                                   <button type="submit" class="btn btn-info btn-fill center">Update Enrollment</button>
+                                                   <button type="submit" class="btn btn-info btn-fill center">Update Registration</button>
                                             </div>
 
                                         </div>

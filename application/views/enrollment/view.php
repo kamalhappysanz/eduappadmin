@@ -15,7 +15,7 @@
                         <div class="card">
 
                             <div class="content">
-                              <h4 class="title">List of Enrollments</h4>
+                              <h4 class="title">List of Student Registration</h4>
                                 <div class="fresh-datatables">
 
 
@@ -27,7 +27,7 @@
                                       <th data-field="email" class="text-center" data-sortable="true">Name</th>
                                       <th data-field="no" class="text-center" data-sortable="true">Admission No</th>
                                 <th data-field="mobile" class="text-center" data-sortable="true">Class-Section</th>
-                                <th data-field="name" class="text-center" data-sortable="true">Admission Date</th>
+                                <th data-field="name" class="text-center" data-sortable="true">Registration Date</th>
 
                                 <!-- <th data-field="status" class="text-center" data-sortable="true">Status</th> -->
                                 <th data-field="Section" class="text-center" data-sortable="true">Action</th>
@@ -44,7 +44,6 @@
                                     <td><?php echo $i; ?></td>
                                      <?php  foreach ($year as $row)
                                           {
-
                                               $fyear=$row->from_month;
                                               $month= strtotime($fyear);
                                               $eyear=$row->to_month;
