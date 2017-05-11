@@ -240,7 +240,8 @@ class Examination extends CI_Controller
 		  if($user_type==1)
 			{
 				 $id=$this->input->post('id');
-			     $exam_year=$this->input->post('exam_year');
+			     $exam_year=$this->input->post('eid');
+				 //echo $exam_year; 
 				 $class_name=$this->input->post('class_name');
 				 $subject_name=$this->input->post('subject_name');
 
@@ -252,7 +253,7 @@ class Examination extends CI_Controller
 
 				 $teacher_id=$this->input->post('teacher_id');
 
-				 $datas=$this->examinationmodel->update_exam_details($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$teacher_id);
+				 $datas=$this->examinationmodel->update_exam_detail($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$teacher_id);
 
 				 if($datas['status']=="success")
 					 {

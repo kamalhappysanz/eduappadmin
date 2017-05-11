@@ -118,9 +118,9 @@ Class Examinationmodel extends CI_Model
          return $res->result();
 	}
 
-	function update_exam_details($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$teacher_id)
+	function update_exam_detail($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$teacher_id)
 	{
-	    $query="UPDATE edu_exam_details SET exam_id='$exam_year',subject_id='$subject_name',exam_date='$formatted_date',times='$time',classmaster_id='$class_name',teacher_id='$teacher_id',updated_at='NOW()' WHERE exam_detail_id='$id' ";
+	   $query="UPDATE edu_exam_details SET exam_id='$exam_year',subject_id='$subject_name',exam_date='$formatted_date',times='$time',classmaster_id='$class_name',teacher_id='$teacher_id',updated_at='NOW()' WHERE exam_detail_id='$id' ";
 		$res=$this->db->query($query);
 
 		//return $res->result();$notes

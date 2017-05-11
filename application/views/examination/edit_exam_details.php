@@ -15,8 +15,7 @@
                      <?php endif; ?>
 					       <?php
 						   foreach($res as $rows)
-						   {
-						   }
+						   {}
 						   ?>
                             <div class="content">
                               <form method="post" action="<?php echo base_url(); ?>examination/update_exam_details" class="form-horizontal" enctype="multipart/form-data" name="examform" id="examform">
@@ -26,14 +25,14 @@
                                             <label class="col-sm-2 control-label">Exam</label>
                                             <div class="col-sm-4">
 									<input type="hidden" name="id" value="<?php echo $rows->exam_detail_id; ?>">
-										
+						<input type="hidden" name="eid" value="<?php echo $rows->exam_id; ?>">	
 										  <?php 
 										  $exdate=$rows->exam_id;
 										  $sql="SELECT ed.exam_id,ex.exam_year,ex.exam_name,ex.exam_id,y.* FROM edu_exam_details AS ed, edu_examination AS ex,edu_academic_year AS y WHERE ed.exam_id='$exdate' AND ex.exam_id='$exdate' AND ex.exam_year=y.year_id GROUP BY ed.exam_id";
 										  $res=$this->db->query($sql);
 										  $rowsr=$res->result();
 										  foreach ($rowsr as $row1)
-										  {}
+										  {
 										  $a=$row1->from_month;
 										  $fyear= strtotime($a);
 										  $fy=date('Y',$fyear);
@@ -42,7 +41,7 @@
 										  $tyear= strtotime($b);
 										  $ty=date('Y',$tyear);
 										  
-										  $c=$row1->exam_name;?>
+										  $c=$row1->exam_name;}?>
 				 <input type="text" readonly class="form-control" value="<?php echo $fy;?>-<?php echo $ty;?>(<?php echo $c;?>)">
 
                                             </div>
