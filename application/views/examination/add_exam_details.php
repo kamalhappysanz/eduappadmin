@@ -23,7 +23,7 @@
                                         <label class="col-sm-2 control-label">Exam</label>
                                         <div class="col-sm-4">
 <input type="hidden" name="admit_date" class="form-control datepicker" placeholder="Enrollment Date"/>
-                                            <select name="exam_year" id="exam_year" onchange="checksubject(this.value)" class="selectpicker" data-title="Select Exam Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                            <select name="exam_year" required id="exam_year" onchange="checksubject(this.value)" class="selectpicker" data-title="Select Exam Year" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
                                                 <?php foreach ($year as $sect)
 												  {
 													$fyear=$sect->from_month;
@@ -43,7 +43,7 @@
 
                                         <label class="col-sm-2 control-label">Class</label>
                                         <div class="col-sm-4">
-           <select name="class_name"  id="class_name" class="selectpicker" data-title="Select class" onchange="checksubject(this.value)" >
+           <select name="class_name" required id="class_name" class="selectpicker" data-title="Select class" onchange="checksubject(this.value)" >
                                                 <?php foreach ($getall_class as $rows) {  ?>
                                                     <option value="<?php echo $rows->class_sec_id; ?>">
                                                         <?php echo $rows->class_name; ?>&nbsp; - &nbsp;
@@ -329,20 +329,22 @@ function checksubject(exam_year,class_name)
                     var exam_secction = '';
                     var teacher = '';
                     for (i = 0; i < len; i++) {
+						'<form name="exam" id="examvalidate">';
                         name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
 
-                        exam_date += '<input type="text"  name="exam_dates[]"  class="form-control datepicker"   placeholder="Enter The Exam Date"/></br>';
+                        exam_date += '<input type="text"  required name="exam_dates[]"  class="form-control datepicker"   placeholder="Enter The Exam Date"/></br>';
 
                         exam_secction += '<select name="time[]" required class="form-control" data-title="Select Time" data-style="btn-default btn-block" data-menu-style="dropdown-blue"><option value="">Select</option><option value="AM">AM</option><option value="PM">PM</option></select></br>';
 
                         teacher += '<select name="teacher_id[]" required id="teacher_id" class="form-control" ><option value="">Select Teacher</option><?php foreach ($teacheres as $rows) {  ?><option value="<?php echo $rows->teacher_id; ?>"><?php echo $rows->name; ?></option><?php  } ?></select></br>';
+						
+						'</form>';
 
                         $("#ajaxres").html(name);
                         $("#ajaxres1").html(exam_date).find('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
                         $("#ajaxres2").html(exam_secction);
                         $("#ajaxres3").html(teacher);
                         $('#msg').html('');
-						
                     }
                 } else {
 					$('#msg').html('<span style="color:red;text-align:center;">Subject Not Found</p>');
@@ -364,9 +366,24 @@ function checksubject(exam_year,class_name)
    $( "#datepicker" ).datepicker();
  }
 
-    $(document).ready(function() {
+   /*  $(document).ready(function() {
 
         $('#examform').validate({ // initialize the plugin
+            rules: {
+                exam_year: {required: true},
+                class_name: {required: true},
+            },
+            messages: {
+                exam_year: "Please Select Exam Year",
+				class_name: "Please Select Class and Section Name",
+            }
+        });
+    });
+ */
+	
+	$(document).ready(function() {
+
+        $('#examvalidate').validate({ // initialize the plugin
             rules: {
                 exam_year: {required: true},
                 class_name: {required: true},
@@ -386,6 +403,8 @@ function checksubject(exam_year,class_name)
         });
     });
 
+	
+	
     var $table = $('#bootstrap-table');
     $().ready(function() {
         $table.bootstrapTable({
