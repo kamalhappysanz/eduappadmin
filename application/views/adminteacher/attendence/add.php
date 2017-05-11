@@ -10,7 +10,7 @@
                               <?php
 
                                 if(empty($class_id)){   ?>
-                                <div class="col-md-2">  <p>No Records Found</p></div>
+                                <div class="col-md-2">  <p>NO Records Found</p></div>
                                   <?php  }  else{   ?>
                                   <?php   $cnt= count($class_id);
                                    for($i=0;$i<$cnt;$i++){
@@ -30,26 +30,5 @@
 </div>
 
 <script type="text/javascript">
-
-
-$(document).ready(function () {
-  $('#classmenu').addClass('collapse in');
-
- $('#myformclassmange').validate({ // initialize the plugin
-     rules: {
-
-          class_name:{required:true },
-         section_name:{required:true },
-     },
-     messages: {
-           class_name: "Select Class Name",
-           section_name:"Select Section Name"
-
-         }
- });
-});
-
-
-
 
 </script>

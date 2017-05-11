@@ -124,7 +124,7 @@ font-weight: 500;
 										</a>
 										<div class="collapse" id="classmenu">
 											<ul class="nav">
-													<li><a href="">Class & Test</a></li>
+													<li><a href="<?php echo base_url();  ?>teacherattendence/home">Update Attendence</a></li>
 
 											</ul>
 									</div>

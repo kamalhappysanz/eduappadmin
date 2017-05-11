@@ -12,7 +12,7 @@
                        <?php
 
                         if(empty($res)){   ?>
-                           <p class="text-center" style="margin-top:20px;">No Record Found</p>
+                           <p class="text-center" style="margin-top:20px;">No Record Found</p> <style>#submit{display: none;}</style>
                       <?php     }else{ ?>
 
                        <div class="content table-full-width">
@@ -65,7 +65,7 @@ echo $dateTime->format("A");
                                </tbody>
 
                            </table>
-                          <input type="submit" value="submit Attendnce" class="btn btn-warning btn-fill btn-wd pull-right" style="margin-top:20px;">
+                          <input type="submit" value="submit Attendnce" id="submit" class="btn btn-warning btn-fill btn-wd pull-right" style="margin-top:20px;">
                          </form>
 
                        </div>

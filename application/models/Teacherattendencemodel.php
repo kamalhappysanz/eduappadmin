@@ -38,7 +38,7 @@ Class Teacherattendencemodel extends CI_Model
          $get_classes="SELECT class_name FROM edu_teachers WHERE teacher_id='$teacher_id'";
          $resultset1=$this->db->query($get_classes);
          $teacher_row=$resultset1->result();
-          foreach($teacher_row as $teacher_rows){}
+        foreach($teacher_row as $teacher_rows){}
         $teach_id=$teacher_rows->class_name;
         $sQuery = "SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.class FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
         $objRs=$this->db->query($sQuery);
@@ -63,7 +63,7 @@ Class Teacherattendencemodel extends CI_Model
         return $data;
       }else{
 
-        $data= array("class_id" => $class_id,"class_name"=>$class_name,"sec_name"=>$sec_n,"status"=>"Record Found");
+        $data= array("class_id" => $class_id,"class_name"=>$class_name,"sec_name"=>$sec_n,"status"=>"success");
         return $data;
       }
         //print_r($data);exit;
@@ -74,13 +74,17 @@ Class Teacherattendencemodel extends CI_Model
 
        function get_studentin_class($class_id){
 
-         $check_year="SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
-         $get_year=$this->db->query($check_year);
-         foreach($get_year->result() as $current_year){}
-           $acd_year= $current_year->year_id;
+        //  $check_year="SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
+        //  $get_year=$this->db->query($check_year);
+        //  foreach($get_year->result() as $current_year){}
+        //    $acd_year= $current_year->year_id;
          //return $resultset->result();
+        $acd_year=$this->get_cur_year();
+        //print_r($acd_year['cur_year']);
+        $ye= $acd_year['cur_year'];
+      //  exit;
 
-         $query="SELECT * FROM edu_enrollment WHERE class_id='$class_id' AND admit_year='$acd_year'";
+         $query="SELECT * FROM edu_enrollment WHERE class_id='$class_id' AND admit_year='$ye'";
          $resultset=$this->db->query($query);
          return $resultset->result();
          //print_r($res);exit;
@@ -110,26 +114,33 @@ Class Teacherattendencemodel extends CI_Model
             //print_r($a_taken);
              $query="INSERT INTO edu_attendence (ac_year,class_id,class_total,no_of_present,no_of_absent,attendence_period,created_by,created_at,status) VALUES('$get_academic','$class_id','$student_count','$total_present','$at_val','$a_period','$a_taken','$cur_d','A')";
              $resultset=$this->db->query($query);
-              $last_id=$this->db->insert_id();
-              $myArray1 = implode(',', $attendence_val);
-              $myArray = explode(',', $myArray1);
-              $sp=array_chunk($myArray,3);
-              $at_len=count($attendence_val);
-              for ($i=0; $i <$at_len; $i++) {
-                $a_status= $sp[$i][0];
-                $stu_id= $sp[$i][1];
-                $a_day= $sp[$i][2];
-            //echo count($stu_id);
-            $add_att="INSERT INTO edu_attendance_history(attend_id,class_id,student_id,abs_date,a_status,attend_period,a_val,a_taken_by,created_at,status) VALUES('$last_id','$class_id','$stu_id','$cur_d','$a_status','$a_period','0.5','$a_taken',NOW(),'A')";
-            $resultset=$this->db->query($add_att);
-         }
-      if($resultset){
-        $data= array("status" =>"success");
-        return $data;
-      }else{
-        $data= array("status" =>"failure");
-        return $data;
-      }
+             if(empty($attendence_val)){
+               $data= array("status" =>"success");
+               return $data;
+             }else{
+               $last_id=$this->db->insert_id();
+               $myArray1 = implode(',', $attendence_val);
+               $myArray = explode(',', $myArray1);
+               $sp=array_chunk($myArray,3);
+               $at_len=count($attendence_val);
+               for ($i=0; $i <$at_len; $i++) {
+                 $a_status= $sp[$i][0];
+                 $stu_id= $sp[$i][1];
+                 $a_day= $sp[$i][2];
+             //echo count($stu_id);
+             $add_att="INSERT INTO edu_attendance_history(attend_id,class_id,student_id,abs_date,a_status,attend_period,a_val,a_taken_by,created_at,status) VALUES('$last_id','$class_id','$stu_id','$cur_d','$a_status','$a_period','0.5','$a_taken',NOW(),'A')";
+             $resultset=$this->db->query($add_att);
+          }
+             if($resultset){
+               $data= array("status" =>"success");
+               return $data;
+             }else{
+               $data= array("status" =>"failure");
+               return $data;
+             }
+             }
+
+
 
        }
 
@@ -152,6 +163,7 @@ Class Teacherattendencemodel extends CI_Model
                $check_attendence="SELECT * FROM edu_attendence WHERE class_id='$class_id' AND DATE_FORMAT(created_at, '%Y-%m-%d')='$cur_d' AND attendence_period='$a_period'";
                $get_att=$this->db->query($check_attendence);
                if($get_att->num_rows()==0){
+
                  $data= array("status" =>"success");
                  return $data;
 
@@ -182,30 +194,48 @@ Class Teacherattendencemodel extends CI_Model
 
 
        function get_atten_val($class_id){
-         $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
-         $cur_d=$dateTime->format("Y-m-d");
-//         $get_atten="SELECT ee.name,ea.a_status,ea.a_day ,ea.abs_date FROM edu_enrollment AS ee LEFT JOIN edu_attendence AS ea ON ee.enroll_id=ea.student_id
-// WHERE ee.class_id='$class_id'";
-
- $get_atten="SELECT * FROM (
-SELECT ee.enroll_id, ee.name, ea.abs_date, ea.a_day, ea.a_status
-FROM edu_enrollment AS ee
-LEFT JOIN edu_attendence AS ea ON ee.enroll_id=ea.student_id AND ea.abs_date = '$cur_d'
-WHERE ea.attend_id IS NULL AND ee.class_id ='$class_id'
-UNION
-SELECT ee.enroll_id, ee.name, ea.abs_date, ea.a_day, ea.a_status
-FROM edu_enrollment AS ee
-INNER JOIN edu_attendence AS ea ON ee.enroll_id=ea.student_id
-WHERE ee.class_id='$class_id' AND ea.abs_date = '$cur_d') AS X
-ORDER BY x.name";
+          $acd_year=$this->get_cur_year();
+          $ye= $acd_year['cur_year'];
+          $query="SELECT ea.*,eu.name FROM edu_attendence  AS ea JOIN edu_users  AS eu ON eu.user_id=ea.created_by WHERE class_id='$class_id' AND ac_year='$ye' ORDER BY created_at DESC";
+          $res=$this->db->query($query);
+          return $res->result();
 
 
-         $get_year=$this->db->query($get_atten);
-         return $get_year->result();
-        //  echo "<pre>";
-        //  print_r($get_year->result());
-        //  exit;
        }
+
+       function get_list_record($at_id,$class_id){
+         $query="SELECT  c.enroll_id, c.name, o.a_status FROM  edu_enrollment c LEFT JOIN edu_attendance_history o ON c.enroll_id = o.student_id AND o.attend_id ='$at_id' WHERE c.class_id='$class_id' ORDER BY c.name ASC";
+         $res=$this->db->query($query);
+         return $res->result();
+       }
+
+
+
+//        function get_atten_val($class_id){
+//          $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
+//          $cur_d=$dateTime->format("Y-m-d");
+// //         $get_atten="SELECT ee.name,ea.a_status,ea.a_day ,ea.abs_date FROM edu_enrollment AS ee LEFT JOIN edu_attendence AS ea ON ee.enroll_id=ea.student_id
+// // WHERE ee.class_id='$class_id'";
+//
+//       echo    $get_atten="SELECT * FROM (
+//         SELECT ee.enroll_id, ee.name, ea.abs_date, ea.a_day, ea.a_status
+//         FROM edu_enrollment AS ee
+//         LEFT JOIN edu_attendence AS ea ON ee.enroll_id=ea.student_id AND ea.abs_date = '$cur_d'
+//         WHERE ea.attend_id IS NULL AND ee.class_id ='$class_id'
+//         UNION
+//         SELECT ee.enroll_id, ee.name, ea.abs_date, ea.a_day, ea.a_status
+//         FROM edu_enrollment AS ee
+//         INNER JOIN edu_attendence AS ea ON ee.enroll_id=ea.student_id
+//         WHERE ee.class_id='$class_id' AND ea.abs_date = '$cur_d') AS X
+//         ORDER BY x.name";
+// exit;
+//
+//          $get_year=$this->db->query($get_atten);
+//          return $get_year->result();
+//         //  echo "<pre>";
+//         //  print_r($get_year->result());
+//         //  exit;
+//        }
 
 
 

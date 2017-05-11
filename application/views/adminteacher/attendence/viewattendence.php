@@ -1,3 +1,8 @@
+<style>
+.txt{
+  font-weight: 200;
+}
+</style>
 <div class="main-panel">
 <div class="content">
        <div class="container-fluid">
@@ -7,9 +12,8 @@
 
                    <div class="card">
                        <div class="header">
-                           List Of Student Absent in   <?php foreach($get_name_class as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?> -
-                         <?php  $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata')); echo   $cur_d=$dateTime->format("d-m-Y"); ?></div>
-                       <?php // print_r($result);  ?>
+                           <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
+
                        <div class="content table-full-width">
 
                               <table id="bootstrap-table" class="table">
@@ -28,8 +32,8 @@
                                    <tr>
                                        <td class="text-center"><?php echo $i;  ?></td>
 
-                                       <td class="text-center"><?php echo $rows->name; ?></td>
-                                       <!-- <td class="text-center"><?php echo date('d-m-Y', strtotime($rows->abs_date)); ?></td> -->
+                                       <td class="text-center  txt" ><?php echo $rows->name; ?></td>
+
                                         <td class="text-center"><?php $stat=$rows->a_status;
                                           if(empty($stat)){ ?> <button class="btn btn-success btn-fill btn-wd">Present</button> <?php }else{ ?> <button class="btn btn-danger btn-fill btn-wd">Absent</button> <?php }
 

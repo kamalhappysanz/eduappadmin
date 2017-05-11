@@ -38,11 +38,20 @@ class Teacherattendence extends CI_Controller {
   	 		$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
-			 $datas=$this->teacherattendencemodel->get_teacher_id($user_id);
-			 //print_r($datas);
-	 		 $this->load->view('adminteacher/teacher_header');
-			 $this->load->view('adminteacher/attendence/add',$datas);
-	 		 $this->load->view('adminteacher/teacher_footer');
+				 $datas['res']=$this->teacherattendencemodel->get_cur_year();
+				 if($datas['res']['status']=="success"){
+					  $datas=$this->teacherattendencemodel->get_teacher_id($user_id);
+					  $this->load->view('adminteacher/teacher_header');
+					  $this->load->view('adminteacher/attendence/add',$datas);
+					  $this->load->view('adminteacher/teacher_footer');
+				}else{
+					$this->load->view('adminteacher/teacher_header');
+					$this->load->view('adminteacher/attendence/noyear');
+					$this->load->view('adminteacher/teacher_footer');
+				}
+
+
+
 	 		 }
 	 		 else{
 	 				redirect('/');
@@ -56,6 +65,7 @@ class Teacherattendence extends CI_Controller {
 				$user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
 			 $datas=$this->teacherattendencemodel->get_teacher_id($user_id);
+
 			 //print_r($datas);
 			 $this->load->view('adminteacher/teacher_header');
 			 $this->load->view('adminteacher/attendence/view',$datas);
@@ -74,16 +84,21 @@ class Teacherattendence extends CI_Controller {
 				$user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
 				  $datas=$this->teacherattendencemodel->check_attendence($class_id);
-				 //print_r($datas);exit;
-
-				 $datas=$this->teacherattendencemodel->get_cur_year();
-				 print_r($datas);exit;
 				 if($datas['status']=="success"){
-					 $datas['res']=$this->teacherattendencemodel->get_studentin_class($class_id);
+					$datas['res']=$this->teacherattendencemodel->get_studentin_class($class_id);
 					$datas['class_id']=$class_id;
-					$this->load->view('adminteacher/teacher_header');
-					$this->load->view('adminteacher/attendence/attendence',$datas);
-					$this->load->view('adminteacher/teacher_footer');
+					$datas['cur']=$this->teacherattendencemodel->get_cur_year();
+					if($datas['cur']['status']=="success"){
+						$this->load->view('adminteacher/teacher_header');
+						$this->load->view('adminteacher/attendence/attendence',$datas);
+						$this->load->view('adminteacher/teacher_footer');
+					}
+					// else if(){
+					// 	$this->load->view('adminteacher/teacher_header');
+					// 	$this->load->view('adminteacher/attendence/attendence',$datas);
+					// 	$this->load->view('adminteacher/teacher_footer');
+					// }
+
 				}else if($datas['status']=="special"){
 					$datas['status']="This Day is marked AS Special Leave";
  					$this->load->view('adminteacher/teacher_header');
@@ -156,7 +171,23 @@ class Teacherattendence extends CI_Controller {
 			$user_type=$this->session->userdata('user_type');
 			 if($user_type==2){
 				 $datas['result']=$this->teacherattendencemodel->get_atten_val($class_id);
-				  $datas['get_name_class']=$this->class_manage->edit_cs($class_id);
+				 $datas['get_name_class']=$this->class_manage->edit_cs($class_id);
+				 //print_r($datas['result']);
+				 $this->load->view('adminteacher/teacher_header');
+				 $this->load->view('adminteacher/attendence/view_class_attendence',$datas);
+				 $this->load->view('adminteacher/teacher_footer');
+			 }else{
+
+			 }
+		}
+
+
+		public function view_all($at_id,$class_id){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			 if($user_type==2){
+				$datas['result']=$this->teacherattendencemodel->get_list_record($at_id,$class_id);
 
 				 $this->load->view('adminteacher/teacher_header');
 				 $this->load->view('adminteacher/attendence/viewattendence',$datas);
@@ -165,7 +196,6 @@ class Teacherattendence extends CI_Controller {
 
 			 }
 		}
-
 
 
 

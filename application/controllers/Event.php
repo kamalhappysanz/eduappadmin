@@ -248,7 +248,7 @@ class Event extends CI_Controller {
 							 $co_id=$this->input->post('co_id');
 							 $sub_event_name=$this->input->post('sub_event_name');
 							 $co_name=$this->input->post('co_name');
-                             $status=$this->input->post('status');
+              $status=$this->input->post('status');
 
 							 $datas=$this->eventmodel->update_sub_event($event_id,$co_id,$sub_event_name,$co_name,$status);
 
