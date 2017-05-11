@@ -259,8 +259,11 @@ class Examination extends CI_Controller
 					 {
 						$this->session->set_flashdata('msg','Updated Successfully');
 						redirect('examination/add_exam_detail');
-					 }
-				 else{
+					 }else if($datas['status']=="Exam Already Exist")
+				       {
+					    $this->session->set_flashdata('msg','Exam Already Exist');
+					    redirect('examination/add_exam_detail');
+				     }else{
 					 $this->session->set_flashdata('msg','Failed To Updated');
 					 redirect('examination/add_exam_detail');
 			}

@@ -23,10 +23,10 @@
                                                   <label class="col-sm-2 control-label">Academic Year</label>
                                                   <div class="col-sm-4">
 												  <?php  $status=$years['status']; if($status=="success"){
-            foreach($years['all_years'] as $rows){}
+            foreach($years['all_years'] as $row){}
               ?>
-            <input type="hidden" name="year_id"  value="<?php  echo $rows->year_id; ?>">
-            <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
+            <input type="hidden" name="year_id"  value="<?php  echo $row->year_id; ?>">
+            <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($row->from_month));  echo "-"; echo date('Y', strtotime( $row->to_month));  ?>" readonly="">
 
         <?php   }else{  ?>
           <input type="text" name="year_id"  class="form-control" value="" readonly="">
@@ -53,7 +53,7 @@
                                         <div class="form-group">
                                           <label class="col-sm-2 control-label">Admission No</label>
                                           <div class="col-sm-4">
-                  <input type="text" class="form-control" value="<?php echo $rows->admisn_no; ?>" name="admisn_no" id="admission_no">
+            <input type="text" class="form-control" value="<?php echo $rows->admisn_no; ?>" name="admisn_no" id="admission_no">
 				  <input type="hidden" class="form-control" value="<?php echo $rows->admission_id; ?>" name="admission_id" id="admission_id">
 
                                           </div>
@@ -73,7 +73,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Student Name</label>
                                             <div class="col-sm-4">
-                                        <input type="text" value="<?php echo $rows->name; ?>"name="name" class="form-control">
+                                        <input type="text" value="<?php echo $rows->name; ?>"name="name" readonly class="form-control">
                                             </div>
                                         </div>
                                     </fieldset>

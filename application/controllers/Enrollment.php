@@ -71,7 +71,7 @@ class Enrollment extends CI_Controller {
 			$datas['getall_class']=$this->class_manage->getall_class();
             $datas['years']=$this->enrollmentmodel->get_current_years();
 		    $datas['res']=$this->enrollmentmodel->add_enrollment($admisn_no);
-
+            //print_r($datas['res']);exit;
 			if($user_type==1)
 			 {
 	 		 $this->load->view('header');

@@ -39,7 +39,7 @@ Class Enrollmentmodel extends CI_Model
 
 	   function add_enrollment($admisn_no)
 	   {
-		   $query="SELECT * FROM edu_admission WHERE admisn_no='$admisn_no'";
+		    $query="SELECT admission_id,admisn_year,name,admisn_no FROM edu_admission WHERE admisn_no='$admisn_no'";
 		    $res=$this->db->query($query);
             return $res->result();
 	   }

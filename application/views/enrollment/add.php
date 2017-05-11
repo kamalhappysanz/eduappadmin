@@ -59,7 +59,7 @@
                                             <label class="col-sm-2 control-label">Student Name</label>
                                             <div class="col-sm-4">
                                                 <p id="msg" name="name">  </p>
-								<input type="text" name="name" id="name"  class="form-control">
+								<input type="text" name="name" id="name" readonly  class="form-control">
                                             </div>
 
                                         </div>

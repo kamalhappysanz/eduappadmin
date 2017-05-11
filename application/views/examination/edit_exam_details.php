@@ -2,7 +2,6 @@
 <div class="main-panel">
 <div class="content">
 <div class="col-md-12">
-
                         <div class="card">
                             <div class="header">
                                 <legend>Update Examination Calender</legend>
