@@ -92,11 +92,9 @@ Class Homeworkmodel extends CI_Model
         return $data;
       }
         //print_r($data);exit;
-
-
        }
 	   
-	   function create($class_id,$user_id,$test_type,$title,$subject_name,$formatted_date,$details)
+	   function create_test($year_id,$class_id,$user_id,$test_type,$title,$subject_name,$formatted_date,$details)
 	   {
 		      $check_test_date="SELECT * FROM edu_homework WHERE test_date='$formatted_date' AND subject_id='$subject_name'";
 			  $result=$this->db->query($check_test_date);
@@ -108,7 +106,7 @@ Class Homeworkmodel extends CI_Model
 			   foreach($row as $rows){}
 			   $teacher_id=$rows->teacher_id;
 			   
-			  $query="INSERT INTO edu_homework(class_id,teacher_id,hw_type,subject_id,title,test_date,hw_details,created_at)VALUES('$class_id','$teacher_id','$test_type','$subject_name','$title','$formatted_date','$details',NOW())";
+			  $query="INSERT INTO edu_homework(year_id,class_id,teacher_id,hw_type,subject_id,title,test_date,hw_details,created_at)VALUES('$year_id','$class_id','$teacher_id','$test_type','$subject_name','$title','$formatted_date','$details',NOW())";
 			  $resultset=$this->db->query($query);
 			  $data= array("status"=>"success");
 			  return $data;
@@ -207,6 +205,21 @@ Class Homeworkmodel extends CI_Model
 		   return $data;
 	  }
 
+	  function get_acdaemicyear()
+		{
+		  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
+		  $result1=$this->db->query($get_year);
+		  /* if($result1->num_rows()==0){
+			$data= array("status" => "no data Found");
+			return $data;
+		  }else{ */
+			$all_year= $result1->result();
+			//$data= array("status" => "success","all_years"=>$all_year);
+			return $all_year;
+			//print_r($all_year);
+		  
+
+		}
 
 }
 ?>

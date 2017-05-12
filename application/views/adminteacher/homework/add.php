@@ -22,6 +22,8 @@
                            <a rel="tooltip" href="" onclick="changeText(<?php echo $class_id[$i]; ?>)" data-toggle="modal" data-target="#addmodel" data-id="<?php echo $class_id[$i]; ?>"  class=" open-AddBookDialog  btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a>
                         </div>
                         <?php  } }  ?>
+						
+						
                      </div>
                   </div>
                </div>
@@ -42,7 +44,7 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
-                              <th>Teacher</th>
+                            
                               <th>Class/Section</th>
                               <th>Subject</th>
                               <th>Homework Type</th>
@@ -56,29 +58,28 @@
                                  $i=1;
                                  foreach ($result as $rows) {
                                  $type=$rows->hw_type;
-                                 $sta=$rows->homework;
-								 
-                                 
+                                 $sta=$rows->homework_mark;
                                   ?>
                               <tr>
                                  <td><?php   echo $i; ?></td>
-                                 <td>
+                                
                                     <?php 
-                                       $id=$rows->teacher_id;
+                                      /*  $id=$rows->teacher_id;
                                        $query="SELECT * FROM edu_teachers WHERE teacher_id='$id'";
                                        $resultset=$this->db->query($query);
                                        $row=$resultset->result();
                                        foreach($row as $rows1)
                                        {}
-                                       $name=$rows1->name;
+                                       $name=$rows1->name; */
                                        ?>
-                                    <?php    echo $name ; ?>
-                                 </td><?php $cid=$rows->class_id;
-                                            $query="SELECT * FROM edu_class WHERE class_id='$cid'";
+                                    <?php    //echo $name ; ?>
+                                 
+								 <?php         $cid=$rows->class_id;
+                                               $query="SELECT * FROM edu_class WHERE class_id='$cid'";
 											   $resultset=$this->db->query($query);
 											   $row=$resultset->result();
 											   foreach($row as $rows1)
-											   {}								 ?>
+											   {}?>
                                  <td><?php echo $rows1->class_name; ?> - <?php echo $rows-> sec_name ?></td>
                                  <td><?php echo $rows->subject_name; ?></td>
                                  <td><?php echo $rows->hw_type; ?></td>
@@ -125,20 +126,33 @@
                            <div class="card">
                               <div class="content">
                                  <form method="post" action="<?php echo base_url(); ?>homework/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
+								 
+									 <fieldset>
+                                       <div class="form-group">
+                                          <label class="col-sm-2 control-label">Academic Year</label>
+                                          <div class="col-sm-6">
+                                            <?php  
+					          	foreach($ayear as $academic)
+						          {} // echo $academic->year_id;?>
+			 <input type="hidden" name="year_id"  value="<?php  echo $academic->year_id; ?>">
+             <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($academic->from_month));  echo "-"; echo date('Y', strtotime( $academic->to_month));  ?>" readonly="">
+                                          </div>
+                                       </div>
+                                    </fieldset>
+									
                                     <fieldset>
                                        <div class="form-group">
+									   		
                                           <label class="col-sm-2 control-label">Type of Test</label>
                                           <div class="col-sm-10">
                                              <label class="radio">
-                                             <input type="radio" data-toggle="radio" name="test_type" value="Class Test">Class Test
+                               <input type="radio" data-toggle="radio" name="test_type" value="Class Test">Class Test
                                              </label>
                                              <label class="radio">
-                                             <input type="radio" data-toggle="radio" name="test_type" value="Home Work">Home Work
+                               <input type="radio" data-toggle="radio" name="test_type" value="Home Work">Home Work
                                              </label>
                                              <input type="hidden" id="event_id" name="class_id"  class="form-control" value="<?php ?>"/>
-											 
-											
-											 
+
                                           </div>
                                        </div>
                                     </fieldset>
