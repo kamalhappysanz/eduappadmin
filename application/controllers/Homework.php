@@ -129,7 +129,7 @@ class Homework extends CI_Controller
 			    if($user_type==2)
 			      {
 					 $this->load->view('adminteacher/teacher_header');
-					 $this->load->view('adminteacher/homework/edit',$datas);
+					 $this->load->view('adminteacher/homework/edit_marks',$datas);
 					 $this->load->view('adminteacher/teacher_footer');
 				  }
 	 		   else{
