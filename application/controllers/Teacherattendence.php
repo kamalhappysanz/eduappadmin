@@ -198,6 +198,42 @@ class Teacherattendence extends CI_Controller {
 		}
 
 
+		public function month($class_id){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			 if($user_type==2){
+				 //$list=array();
+				  $datas['result']=$this->teacherattendencemodel->get_atten_val($class_id);
+					$datas['res']=$this->teacherattendencemodel->get_studentin_class($class_id);
+					//print_r($datas['res']);exit;
+				 $this->load->view('adminteacher/teacher_header');
+				 $this->load->view('adminteacher/attendence/month',$datas);
+				 $this->load->view('adminteacher/teacher_footer');
+			 }else{
+
+			 }
+		}
+
+
+		public function monthview(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			 if($user_type==2){
+			 $datas=$this->teacherattendencemodel->get_teacher_id($user_id);
+
+			 //print_r($datas['res']);exit;
+			 $this->load->view('adminteacher/teacher_header');
+			 $this->load->view('adminteacher/attendence/monthview',$datas);
+			 $this->load->view('adminteacher/teacher_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+
+
 
 
 
