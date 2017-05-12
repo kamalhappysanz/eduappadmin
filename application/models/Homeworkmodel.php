@@ -152,7 +152,7 @@ Class Homeworkmodel extends CI_Model
 		  $query="INSERT INTO edu_class_marks(enroll_mas_id,hw_mas_id,marks,remarks,status,created_at) VALUES ('$enroll1','$hwid1','$marks1','$remarks1','A',NOW())";
 		  $result=$this->db->query($query);
 		  
-		  $sql="UPDATE edu_homework SET homework_mark='1' WHERE hw_id='$hwid1'";
+		  $sql="UPDATE edu_homework SET mark_status='1' WHERE hw_id='$hwid1'";
 		  $result1=$this->db->query($sql);
 		  
           //return $result->result();

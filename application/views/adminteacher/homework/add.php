@@ -58,7 +58,8 @@
                                  $i=1;
                                  foreach ($result as $rows) {
                                  $type=$rows->hw_type;
-                                 $sta=$rows->homework_mark;
+                                 $sta=$rows->mark_status;
+								 $hw=$rows->hw_type;
                                   ?>
                               <tr>
                                  <td><?php   echo $i; ?></td>
@@ -82,7 +83,8 @@
 											   {}?>
                                  <td><?php echo $rows1->class_name; ?> - <?php echo $rows-> sec_name ?></td>
                                  <td><?php echo $rows->subject_name; ?></td>
-                                 <td><?php echo $rows->hw_type; ?></td>
+                                 <td><?php if($hw=="HT")
+								 {echo "Class Test";}else{ echo "Home Work";}?></td>
                                  <td><?php echo $rows->title; ?></td>
                                  <td><?php $date=date_create($rows->test_date);
                                     echo date_format($date,"d-m-Y");
@@ -90,7 +92,7 @@
                                  <td><?php echo $rows->hw_details; ?></td>
                                  <!-- <td><?php //echo $sta;?></td> -->
                                  <td class="text-right">
-                                    <?php if($sta==0 && $type=="Class Test")
+                                    <?php if($sta==0 && $type=="HT")
                                        {?>
                                     <a href="<?php echo base_url();?>homework/add_mark/<?php echo $rows->hw_id; ?>" rel="tooltip" title="Add Mark Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                     <i class="fa fa-list-ol" aria-hidden="true"></i></a>
@@ -146,10 +148,10 @@
                                           <label class="col-sm-2 control-label">Type of Test</label>
                                           <div class="col-sm-10">
                                              <label class="radio">
-                               <input type="radio" data-toggle="radio" name="test_type" value="Class Test">Class Test
+                               <input type="radio" data-toggle="radio" name="test_type" value="HT">Class Test
                                              </label>
                                              <label class="radio">
-                               <input type="radio" data-toggle="radio" name="test_type" value="Home Work">Home Work
+                               <input type="radio" data-toggle="radio" name="test_type" value="HW">Home Work
                                              </label>
                                              <input type="hidden" id="event_id" name="class_id"  class="form-control" value="<?php ?>"/>
 

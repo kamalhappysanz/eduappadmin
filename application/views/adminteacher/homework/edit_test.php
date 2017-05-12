@@ -56,8 +56,8 @@
                         <div class="col-sm-4">
 						
 						<select name="hw_type" class="selectpicker form-control" data-style="btn-default btn-block" >
-                                                <option value="Class Test">Class Test</option>
-                                                <option value="Home Work">Home Work</option>
+                                                <option value="HT">Class Test</option>
+                                                <option value="HW">Home Work</option>
                                </select>
                           <script language="JavaScript">document.testform.hw_type.value="<?php echo $rows->hw_type; ?>";</script>
                            
