@@ -74,11 +74,7 @@ Class Teacherattendencemodel extends CI_Model
 
        function get_studentin_class($class_id){
 
-        //  $check_year="SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
-        //  $get_year=$this->db->query($check_year);
-        //  foreach($get_year->result() as $current_year){}
-        //    $acd_year= $current_year->year_id;
-         //return $resultset->result();
+
         $acd_year=$this->get_cur_year();
         //print_r($acd_year['cur_year']);
         $ye= $acd_year['cur_year'];

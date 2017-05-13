@@ -125,6 +125,68 @@ class Timetable extends CI_Controller {
 		}
 
 
+		public function reviewview(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				$datas['res']=$this->timetablemodel->view_review_all();
+				//echo "<pre>"; print_r($datas['res']);exit;
+			 if($user_type==1){
+			 $this->load->view('header');
+			 $this->load->view('timetable/tablereview',$datas);
+			 $this->load->view('footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+
+
+		public function edit_review($timetable_id){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				$datas['res']=$this->timetablemodel->edit_review_all($timetable_id);
+			//echo "<pre>";
+			//print_r($datas['res']);
+			 if($user_type==1){
+			 $this->load->view('header');
+			 $this->load->view('timetable/update_review',$datas);
+			 $this->load->view('footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+
+
+		public function save_user_review(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			 if($user_type==1){
+			 $timetable_id=$this->input->post('timetable_id');
+			 $remarks=$this->input->post('remarks');
+			 $datas=$this->timetablemodel->save_user_review($timetable_id,$remarks);
+			 if($datas['status']=='failure'){
+				$this->session->set_flashdata('msg', 'Somthing Went Wrong');
+				redirect('timetable/reviewview');
+			}elseif($datas['status']=='success'){
+				$this->session->set_flashdata('msg', 'Updated Successfully');
+			 redirect('timetable/reviewview');
+			}
+			else{
+				redirect('timetable/reviewview');
+			}
+
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+
+
+
 		public function delete(){
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');

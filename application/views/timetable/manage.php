@@ -19,7 +19,10 @@
   <div class="col-md-12">
     <div class="card">
       <div class="header">
-          <legend>Class View -Time Table <a href="<?php echo base_url(); ?>timetable/home" class="btn btn-primary btn-fill btn-wd pull-right" style="margin-top:-10px;">Create Timetable</a></legend>
+          <legend>Class View -Time Table <a href="<?php echo base_url(); ?>timetable/home" class="btn btn-primary btn-fill btn-wd pull-right" style="margin-top:-10px;">Create Timetable</a>
+             <a href="<?php echo base_url(); ?>timetable/reviewview" class="btn  btn-fill btn-wd pull-right" style="margin-top:-10px;">Go To Review</a>
+
+          </legend>
 
       </div>
       <div class="content">

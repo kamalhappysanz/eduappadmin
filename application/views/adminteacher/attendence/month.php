@@ -5,7 +5,7 @@ ul#menu li {
 </style>
 <div class="main-panel">
 <div class="content">
-<div class="col-md-12">
+<div class="col-md-12" style="padding-left:0px;">
   <div class="card">
 
 
