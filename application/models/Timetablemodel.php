@@ -175,9 +175,9 @@ INNER JOIN edu_academic_year AS a ON tt.year_id=a.year_id INNER JOIN edu_section
 
 
                 function view_review_all(){
-                   $query="SELECT etr.timetable_id,etr.class_id,c.class_name,s.sec_name,etr.subject_id,etr.time_date,esu.subject_name,etr.comments,etr.remarks FROM edu_timetable_review AS etr
+                   $query="SELECT etr.timetable_id,etr.user_id,edu.name,etr.class_id,c.class_name,s.sec_name,etr.subject_id,etr.time_date,esu.subject_name,etr.comments,etr.remarks FROM edu_timetable_review AS etr
                   INNER JOIN edu_classmaster AS cm ON etr.class_id=cm.class_sec_id INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id
-                  INNER JOIN edu_subject AS esu ON etr.subject_id=esu.subject_id  ORDER BY etr.created_at ASC";
+                  INNER JOIN edu_subject AS esu ON etr.subject_id=esu.subject_id  INNER JOIN edu_users AS edu ON etr.user_id=edu.user_id ORDER BY etr.created_at ASC";
                    $resultset=$this->db->query($query);
                    return $resultset->result();
                   }

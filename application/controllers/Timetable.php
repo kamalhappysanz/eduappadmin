@@ -130,7 +130,7 @@ class Timetable extends CI_Controller {
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 				$datas['res']=$this->timetablemodel->view_review_all();
-				//echo "<pre>"; print_r($datas['res']);exit;
+			///	echo "<pre>"; print_r($datas['res']);exit;
 			 if($user_type==1){
 			 $this->load->view('header');
 			 $this->load->view('timetable/tablereview',$datas);

@@ -22,6 +22,7 @@
 
                            <th data-field="id" class="text-center">S.no</th>
                          <th data-field="name" class="text-center" data-sortable="true">Class/Section</th>
+                          <th data-field="username" class="text-center" data-sortable="true">Name</th>
                          <th data-field="Subject" class="text-center" data-sortable="true">Subject</th>
                          <th data-field="comments" class="text-center" data-sortable="true">Comments</th>
                           <th data-field="DateTime" class="text-center" data-sortable="true">DateTime</th>
@@ -38,6 +39,7 @@
                            <tr>
                              <td><?php echo $i; ?></td>
                              <td><?php echo $rows->class_name; echo "-"; echo $rows ->sec_name; ?> </td>
+                               <td><?php echo $rows->name; ?></td>
                            <td><?php echo $rows->subject_name; ?></td>
                             <td><?php echo $rows->comments; ?></td>
                               <td><?php $cls_date = new DateTime($rows->time_date);
