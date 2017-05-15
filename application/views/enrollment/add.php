@@ -115,22 +115,24 @@ $(document).ready(function () {
 
  $('#admissionform').validate({ // initialize the plugin
      rules: {
-        // admit_year:{required:true, number: true },
+         year_id:{required:true, number: true },
+		 year_name:{required:true },
          admisn_no:{required:true },
          admit_date:{required:true },
          name:{required:true },
          admit_date:{required:true },
-         class:{required:true },
+         class_section:{required:true },
          section:{required:true }
 
      },
      messages: {
-          // admit_year: "Enter Admission Year",
+           year_id:"Admission Year not enable",
+		   year_name:"Admission Year not enable",
            admisn_no: "Select Admission No",
            admit_date: "Select Admission Date",
            name: "Enter Name",
             admit_date: "Select The Date",
-           class: "Select Class",
+           class_section: "Select Class",
            section: "Select Section"
 
          }
