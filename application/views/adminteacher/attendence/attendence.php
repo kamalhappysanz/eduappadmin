@@ -16,7 +16,7 @@
                       <?php     }else{ ?>
 
                        <div class="content table-full-width">
-                         <form action="<?php echo base_url(); ?>teacherattendence/take_attendence" method="post" enctype="multipart/form-data">
+                         <form action="" method="post" enctype="multipart/form-data" id="takeattendence">
                            <table class="table table-striped">
                                <thead>
                                    <tr>
@@ -48,7 +48,7 @@
                                         <td class="text-center">
                                            <div class="switch"
                                                 data-on-label=""
-                                                data-off-label="" onclick="addfunction()">
+                                                data-off-label="">
                                                 <input type="checkbox" name="attendence_val[]" value="A,<?php echo $rows->enroll_id; ?>,<?php
 $dateTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
 echo $dateTime->format("A");
@@ -65,7 +65,8 @@ echo $dateTime->format("A");
                                </tbody>
 
                            </table>
-                          <input type="submit" value="submit Attendnce" id="submit" class="btn btn-warning btn-fill btn-wd pull-right" style="margin-top:20px;">
+                          <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right" style="margin-top:20px;" onclick="submitAttendence()">
+                        submit Attendnce  </button>
                          </form>
 
                        </div>
@@ -87,7 +88,45 @@ echo $dateTime->format("A");
 
 
 <script type="text/javascript">
-// function addfunction(){
-//   alert("hi");
-// }
+function submitAttendence(){
+        swal({
+                      title: "Are you sure?",
+                      text: "You Want Confrim this form",
+                      type: "success",
+                      showCancelButton: true,
+                      confirmButtonColor: '#DD6B55',
+                      confirmButtonText: 'Yes, I am sure!',
+                      cancelButtonText: "No, cancel it!",
+                      closeOnConfirm: false,
+                      closeOnCancel: false
+                  },
+                  function(isConfirm) {
+                      if (isConfirm) {
+       $.ajax({
+           url: "<?php echo base_url(); ?>teacherattendence/take_attendence",
+            type:'POST',
+           data: $('#takeattendence').serialize(),
+           success: function(response) {
+               if(response=="success"){
+                //  swal("Success!", "Thanks for Your Note!", "success");
+                  $('#takeattendence')[0].reset();
+                  swal({
+           title: "Attendece Done!",
+           text: "Message!",
+           type: "success"
+       }, function() {
+           window.location = "<?php echo base_url(); ?>teacherattendence/view";
+       });
+               }else{
+                 sweetAlert("Oops...", "Something went wrong!", "error");
+               }
+           }
+       });
+     }else{
+         swal("Cancelled", "Process Cancel :)", "error");
+     }
+   });
+
+
+}
 </script>

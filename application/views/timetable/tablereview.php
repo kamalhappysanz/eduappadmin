@@ -5,10 +5,16 @@
          <div class="row">
              <div class="col-md-12">
                  <div class="card">
-
+                   <?php if($this->session->flashdata('msg')): ?>
+                     <div class="alert alert-success">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                   ×</button> <?php echo $this->session->flashdata('msg'); ?>
+                 </div>
+                 <?php endif; ?>
                      <div class="content">
  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
                          <div class="fresh-datatables">
+
 
 
                    <table id="bootstrap-table" class="table">
@@ -16,12 +22,12 @@
 
                            <th data-field="id" class="text-center">S.no</th>
                          <th data-field="name" class="text-center" data-sortable="true">Class/Section</th>
-                        
+                          <th data-field="username" class="text-center" data-sortable="true">Name</th>
                          <th data-field="Subject" class="text-center" data-sortable="true">Subject</th>
                          <th data-field="comments" class="text-center" data-sortable="true">Comments</th>
                           <th data-field="DateTime" class="text-center" data-sortable="true">DateTime</th>
                           <th data-field="Remarks" class="text-center" data-sortable="true">Remarks</th>
-
+                            <th data-field="Action" class="text-center" data-sortable="true">Action</th>
 
 
                        </thead>
@@ -33,13 +39,14 @@
                            <tr>
                              <td><?php echo $i; ?></td>
                              <td><?php echo $rows->class_name; echo "-"; echo $rows ->sec_name; ?> </td>
-
+                               <td><?php echo $rows->name; ?></td>
                            <td><?php echo $rows->subject_name; ?></td>
                             <td><?php echo $rows->comments; ?></td>
                               <td><?php $cls_date = new DateTime($rows->time_date);
 echo $cls_date->format('d-m-Y H:i A');  ?></td>
                              <td><?php echo $rows->remarks; ?></td>
-
+                              <td>  <a href="<?php echo base_url(); ?>timetable/edit_review/<?php echo $rows->timetable_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+              </td>
                            </tr>
                            <?php $i++;  }  ?>
                        </tbody>
@@ -97,4 +104,9 @@ echo $cls_date->format('d-m-Y H:i A');  ?></td>
 
 
        });
+</script>
+<script>
+jQuery('#timetablemenu').addClass('collapse in');
+$('#time').addClass('active');
+$('#time2').addClass('active');
 </script>

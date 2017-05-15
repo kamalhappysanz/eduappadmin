@@ -1,4 +1,6 @@
-<style>th{width:150px;}</style>
+<style>th{width:150px;} .txt{background-color: greenyellow;
+    color: red;
+    font-weight: 700;}</style>
 <div class="main-panel">
 <div class="content">
 <div class="col-md-12">
@@ -69,7 +71,7 @@ foreach($arr2 as $day){
         for($i=1;$i <= $period; $i++){
             ?>
 
-            <td>
+            <td <?php $t_name =$restime[$k]->name;  $name=$this->session->userdata('name'); if ($name==$t_name){ echo "class=txt"; } ?>>
               <?php echo  $restime[$k]->subject_name;  ?>
 
                 <?php echo "<br>";  echo  $restime[$k]->name;  ?>
