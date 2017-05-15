@@ -41,13 +41,12 @@
 										  $ty=date('Y',$tyear);
 										  
 										  $c=$row1->exam_name;}?>
-				 <input type="text" readonly class="form-control" value="<?php echo $fy;?>-<?php echo $ty;?>(<?php echo $c;?>)">
-
+		<input type="text" readonly class="form-control" value="<?php echo $fy;?>-<?php echo $ty;?>(<?php echo $c;?>)">
                                             </div>
 
 										 <label class="col-sm-2 control-label">Class </label>
                                             <div class="col-sm-4">
-								 <select multiple  name="class_name" id="multiple-class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
+								 <select   name="class_name" id="multiple-class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
 
 										<?php
 												$sPlatform=$rows->classmaster_id;

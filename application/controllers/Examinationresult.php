@@ -129,12 +129,17 @@ class Examinationresult extends CI_Controller
 			  
 			  $exam_id=$this->input->post('examid');
 			  $clsmastid=$this->input->post('clsmastid');
-			  $subid=$this->input->post('subid');
+			  $subid=$this->input->post('subjectid');
 			  $sutid=$this->input->post('sutid');
 			  $teaid=$this->input->post('teaid');
 			  $marks=$this->input->post('marks');
-			  //echo $exam_id;
-			  //echo $subid;print_r($sutid);echo $teaid;print_r($marks);exit;
+			  
+			 /*  echo $exam_id;echo'</br>';
+			  echo $subid;echo'</br>';//exit;
+			  echo $teaid;echo'</br>';
+			  print_r($sutid);echo'</br>';
+			  print_r($marks);echo'</br>';
+			  exit; */
 			
 		   $datas=$this->examinationresultmodel->exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks);
 		   //print_r($datas);

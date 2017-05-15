@@ -120,7 +120,7 @@ Class Examinationmodel extends CI_Model
 
 	function update_exam_detail($id,$exam_year,$class_name,$subject_name,$formatted_date,$time,$teacher_id)
 	{
-	  $check_exam_name="SELECT * FROM edu_exam_details WHERE exam_id='$exam_year' AND subject_id='$subject_name' AND classmaster_id='$class_name' AND exam_date='$formatted_date' AND times='$time'";
+	  $check_exam_name="SELECT * FROM edu_exam_details WHERE exam_id='$exam_year' OR subject_id='$subject_name' OR classmaster_id='$class_name' OR exam_date='$formatted_date' OR times='$time'";
 	  $result=$this->db->query($check_exam_name);
       if($result->num_rows()==0)
 	   {  

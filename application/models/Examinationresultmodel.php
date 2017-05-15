@@ -98,7 +98,7 @@ Class Examinationresultmodel extends CI_Model
 
 	   }
 	  
-	   public function getall_subname($user_id,$cls_masid,$exam_id)
+	   function getall_subname($user_id,$cls_masid,$exam_id)
 	   {
 		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
 			$resultset=$this->db->query($query);
@@ -120,19 +120,19 @@ Class Examinationresultmodel extends CI_Model
 				    $id=$rows->subject;
 						//echo $id;
 					   // $id=$rows->subject;
-					$sQuery="SELECT * FROM edu_subject";
-					$objRs=$this->db->query($sQuery);
-					$rows=$objRs->result();
+					$sql="SELECT * FROM edu_subject";
+					$res1=$this->db->query($sql);
+					$rows=$res1->result();
 					 // echo'<pre>';  print_r($rows);exit;
 					   foreach ($rows as $rows1) 
 					   {
 						   $s= $rows1->subject_id;
 						   $sec=$rows1->subject_name;
 
-						   $arryPlatform = explode(",",$id);
-						   $sPlatform_id  = trim($s);
-						   $sPlatform_name  = trim($sec);
-						   if(in_array($sPlatform_id,$arryPlatform))
+						   $subid = explode(",",$id);
+						   $subjid  = trim($s);
+						   $subname  = trim($sec);
+						   if(in_array($subjid,$subid))
 							   {
 								  $sub_name[]=$sec;
 								  $sub_id[]=$s;
@@ -144,7 +144,7 @@ Class Examinationresultmodel extends CI_Model
 
 	   }
 	   
-	   public function getall_stuname($user_id,$cls_masid,$exam_id)
+	   function getall_stuname($user_id,$cls_masid,$exam_id)
 	   {
 		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
 			$resultset=$this->db->query($query);
@@ -154,7 +154,7 @@ Class Examinationresultmodel extends CI_Model
 			//echo $teacher_id;exit;
 		    //$sql="SELECT t.teacher_id,t.class_teacher,t.name,t.subject,en.enroll_id,en.name,en.admisn_no,en.class_id FROM edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND en.class_id='$cls_masid'";
 			
-		    echo $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
+		     $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
 			$res=$this->db->query($sql); 
 			$rows=$res->result();
 			return $rows;
@@ -164,36 +164,37 @@ Class Examinationresultmodel extends CI_Model
 	   
 	   function exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks)
 	   {
-		    
-		   $count_name = count($marks);
-		    //echo $count_name; exit;
-           for($i=0;$i<$count_name;$i++)
-		   {
-			$sutid1=$sutid[$i];
-			//print_r($enroll);
-			$subid1=$subid;
-			$clsmastid1=$clsmastid;
-			$teaid1=$teaid;
-			$examid1=$exam_id;
-			$marks1=$marks[$i];
-			/* $check="SELECT * FROM edu_exam_marks WHERE exam_id='$examid1' AND subject_id='$subid1' AND classmaster_id='$clsmastid1'";
-            $result1=$this->db->query($check);
-            if($result1->num_rows()==0)
-			{  */
-			  $query="INSERT INTO edu_exam_marks(exam_id,teacher_id,subject_id,stu_id,classmaster_id,marks,created_at)VALUES('$examid1','$teaid1','$subid1','$sutid1','$clsmastid1','$marks1',NOW())";
-			  $resultset1=$this->db->query($query);
-		     /* }else{
-				$data= array("status"=>"Already Added");
-                 return $data;
-			}  */
-	      }
-		  if($resultset1){
-		  $data= array("status" => "success");
-		  return $data;}
-		  else{
-			$data= array("status" => "failure");
-			return $data;
-		  }		  
+		    //if(!empty($marks)){
+		       $count_name = count($marks);
+			   echo $count_name; //exit;
+			   for($i=0;$i<$count_name;$i++)
+			   {
+				$sutid1=$sutid[$i];
+				//print_r($enroll);
+				$subid1=$subid;
+				$clsmastid1=$clsmastid;
+				$teaid1=$teaid;
+				$examid1=$exam_id;
+				$marks1=$marks[$i];
+				/* $check="SELECT * FROM edu_exam_marks WHERE exam_id='$examid1' AND subject_id='$subid1' AND classmaster_id='$clsmastid1'";
+				$result1=$this->db->query($check);
+				if($result1->num_rows()==0)
+				{  */
+				  $query="INSERT INTO edu_exam_marks(exam_id,teacher_id,subject_id,stu_id,classmaster_id,marks,created_at)VALUES('$examid1','$teaid1','$subid1','$sutid1','$clsmastid1','$marks1',NOW())";
+				  $resultset1=$this->db->query($query);
+				 /* }else{
+					$data= array("status"=>"Already Added");
+					 return $data;
+				}  */
+			  }
+			  if($resultset1){
+			  $data= array("status" => "success");
+			  return $data;}
+			  else{
+				$data= array("status" => "failure");
+				return $data;
+			  }	
+		    //}		  
 		  
 	   }
 	 function getall_marks_details($user_id)

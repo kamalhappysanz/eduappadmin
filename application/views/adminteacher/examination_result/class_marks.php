@@ -1,3 +1,22 @@
+<?php
+$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id){
+	foreach ($stu as $v) {
+		$cnt= count($subject_name);
+		for($i=0;$i<$cnt;$i++)
+		{
+			if($subject_id[$i] == $v->subject_id)
+			{
+				$student_arr[$v->name][$subject_id[$i]] = $v;
+			}else{
+				if(!isset($student_arr[$v->name][$subject_id[$i]]))
+					$student_arr[$v->name][$subject_id[$i]] = array();
+			}
+		}
+	}
+}
+
+?>
+
 <div class="main-panel">
 
  <div class="content">
@@ -24,14 +43,7 @@
 									        $id=$exam->exam_id;
 											//echo $id;
 											 }else{ echo "";}
-									         
-											   /* if(!empty($stu))
-										       { foreach($stu as $row)
-									            { 
-												 $tname=$row->enroll_id;}
-												 $su=$row->subject;
-												 $clsid=$row->class_teacher;
-											   }else{ echo "";} */
+									      
                                   ?>
 								
 								<input type="hidden" name="examid" value="<?php echo $id; ?>"/>
@@ -50,42 +62,53 @@
 									 <th style="color:red;">Subject Not Found</th>
 									 <?php  }?> 
                                     </thead>
-									<?php foreach($marks1 as $mark)
-									      { }
-										    $tecid=$mark->teacher_id;
-										    //echo"<br>";
+									<?php 
+									$tecid=$marks1[0]->teacher_id;
+									echo '<input type="hidden" name="teaid" value="'.$tecid.'" />';
                                      ?>
                                     <tbody>
 										<?php 
-										$i=1;
-										foreach($stu as $sname)
-									      {  $sid=$sname->subject_id;
-										     // echo $sid;?>
-										<tr>
-										<td><?php echo $i;?></td>
-										<td style="">
-										<?php echo $sname->name; ?>
-										<input type="hidden" name="sutid[]" value="<?php echo $sname->enroll_id; ?>" />
-										<input type="hidden" name="teaid" value="<?php echo $tecid; ?>" />
-                                        <input type="hidden" name="clsmastid" value="<?php echo $sname->class_id; ?>" />
-										</td>
-										  <?php 
-  								      if($status=="Success")
-									   {
-                                       $cnt= count($subject_name);
-                                         for($i=0;$i<$cnt;$i++)
-									      {  //echo $subject_id[$i];
-									         // echo $sid;
-									     if($subject_id[$i]==$sid)
-											  {
-								            //echo $subject_id[$i];?>
-										<td><input type="hidden" required name="subid" value="<?php echo $subject_id[$i];?>" class="form-control"/>
-										<input style="width:60%;" type="text" required name="marks1[]" value="<?php echo $sname->marks;?>" class="form-control"/></td>	
-									  <?php }else{?>
-										  <td><input type="hidden" required name="subid" value="<?php echo $subject_id[$i];?>" class="form-control"/><input style="width:60%;" type="text"  name="marks[]" value="<?php //echo $sname->marks;?>" class="form-control"/></td>
-									  <?php } } }?>
-										</tr>
-										<?php  $i++; } ?>
+										$student_arr = array();
+										 
+										$student_array_generate($stu,$student_arr);
+										
+										/* echo '<pre>';
+										print_r($stu);
+										print_r($student_arr);
+										die;
+										 */
+										$i = 1;
+										foreach ($student_arr as $k => $s1) 
+										{
+											echo '<tr>';
+											echo '<td>' . $i . '</td>';
+											echo '<td>' . $k . '</td>';	
+											$k = 1;
+											foreach ($s1 as $k1 => $s) 
+											{
+												if(empty($s) === false && $k == 1){
+													echo '<input type="hidden" name="sutid[]" value="'.$s->enroll_id.'" />';
+													echo '<input type="hidden" name="clsmastid" value="'.$s->class_id.'" />';
+													$k++;
+												}
+												if($status=="Success")
+											   {
+												   
+												    echo '<td><input type="hidden" required name="subid" value="'.$k1.'" class="form-control"/>';
+													
+													if(!empty($s))
+													{	
+														echo '<input style="width:60%;" type="text" required name="marks1[]" value="'.$s->marks.'" class="form-control"/></td>';														
+													}else{
+														echo '<input style="width:60%;" type="text"  name="marks[]" value="" class="form-control"/>';
+														echo '<input type="hidden" required name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
+													}
+												}
+											}
+											echo '</tr>';
+											$i++;
+										}
+										?>
 										<tr>
 										 <td><div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Save</button>

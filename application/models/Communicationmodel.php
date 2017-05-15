@@ -118,11 +118,15 @@ Class Communicationmodel extends CI_Model
 	 
 	   function update_leave($leave_id,$status)
 	   {
-       echo $query1="UPDATE edu_user_leave SET status='$status',updated_at=NOW() WHERE leave_id='$leave_id'"; 
-        $resultset=$this->db->query($query1);
-		//$row=$resultset->result();
-		$data= array("status"=>"success");
-		return $data;		
+         $query4="UPDATE edu_user_leave SET status='$status',updated_at=NOW() WHERE leave_id='$leave_id'"; 
+         $result1=$this->db->query($query4);
+		 if($result1){
+				 $data= array("status" => "success");
+				 return $data;
+			   }else{
+				 $data= array("status" => "Failed to Update");
+				 return $data;
+			   }
 
 	   }
 

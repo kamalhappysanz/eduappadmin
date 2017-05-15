@@ -79,7 +79,7 @@ font-weight: 500;
 							</a>
 							<ul class="dropdown-menu dropdown-with-icons">
 								<li>
-									<a href="<?php echo base_url(); ?>">
+									<a href="<?php echo base_url(); ?>parentprofile/profile_edit">
 										<i class="pe-7s-tools"></i> Profile
 									</a>
 								</li>
