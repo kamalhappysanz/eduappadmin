@@ -79,12 +79,12 @@ font-weight: 500;
 							</a>
 							<ul class="dropdown-menu dropdown-with-icons">
 								<li>
-									<a href="<?php echo base_url(); ?>">
+									<a href="<?php echo base_url(); ?>studentprofile/profile_update">
 										<i class="pe-7s-tools"></i> Profile
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url(); ?>">
+									<a href="<?php echo base_url(); ?>studentprofile/pwd_reset">
 										<i class="pe-7s-tools"></i> Setting
 									</a>
 								</li>

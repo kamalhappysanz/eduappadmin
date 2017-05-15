@@ -72,6 +72,7 @@ class Adminlogin extends CI_Controller {
 							case '3':
 							$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
 							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+							$session_data=$this->session->set_userdata($datas);
 							//print_r($datas); echo "<br>"; echo "Access Granted AS Student";
 							$this->load->view('adminstudent/student_header',$datas);
 							$this->load->view('adminstudent/home');

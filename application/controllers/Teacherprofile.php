@@ -90,7 +90,7 @@ class Teacherprofile extends CI_Controller {
 		 $user_type=$this->session->userdata('user_type');
 			// echo $user_type;exit;
 			 if($user_type==2){
-				$this->load->view('adminteacher/teacher_header',$datas);
+				$this->load->view('adminteacher/teacher_header');
 		        $this->load->view('adminteacher/resetpassword',$datas);
 		        $this->load->view('adminteacher/teacher_footer');
 				}
