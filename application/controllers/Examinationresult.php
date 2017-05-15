@@ -22,19 +22,18 @@ class Examinationresult extends CI_Controller
 	 		 	$datas=$this->session->userdata();
   	 		    $user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
-			 if($user_type==2)
-			 {
-			 $datas['result']=$this->examinationresultmodel->get_teacher_id($user_id);
-			 //echo '<pre>';print_r($datas['result']);exit;
-			 //$datas['result'] = $this->examinationresultmodel->getall_details();
-			 //print_r($datas);
-	 		 $this->load->view('adminteacher/teacher_header');
-			 $this->load->view('adminteacher/examination_result/add',$datas);
-	 		 $this->load->view('adminteacher/teacher_footer');
-	 		 }
-	 		 else{
-	 				redirect('/');
-	 		 }
+			    if($user_type==2)
+				 {
+					 $datas['result']=$this->examinationresultmodel->get_teacher_id($user_id);
+					 //echo '<pre>';print_r($datas['result']);exit;
+					 //$datas['result'] = $this->examinationresultmodel->getall_details();
+					 //print_r($datas);
+					 $this->load->view('adminteacher/teacher_header');
+					 $this->load->view('adminteacher/examination_result/add',$datas);
+					 $this->load->view('adminteacher/teacher_footer');
+				 }else{
+						redirect('/');
+				 }
 	 	}
 		
 		public function class_section($exam_id)
