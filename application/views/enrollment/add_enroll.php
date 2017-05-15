@@ -53,7 +53,7 @@
                                         <div class="form-group">
                                           <label class="col-sm-2 control-label">Admission No</label>
                                           <div class="col-sm-4">
-            <input type="text" class="form-control" value="<?php echo $rows->admisn_no; ?>" name="admisn_no" id="admission_no">
+            <input type="text" class="form-control" readonly value="<?php echo $rows->admisn_no; ?>" name="admisn_no" id="admission_no">
 				  <input type="hidden" class="form-control" value="<?php echo $rows->admission_id; ?>" name="admission_id" id="admission_id">
 
                                           </div>
