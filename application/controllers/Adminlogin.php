@@ -7,6 +7,7 @@ class Adminlogin extends CI_Controller {
 	function __construct() {
 		 parent::__construct();
 		 $this->load->model('login');
+		 $this->load->model('dashboard');
 		  $this->load->helper('url');
 		  $this->load->library('session');
 
@@ -155,8 +156,14 @@ class Adminlogin extends CI_Controller {
 		 $datas['result'] = $this->login->getuser($user_id);
 		 $user_type=$this->session->userdata('user_type');
 		 if($user_type==1){
+			 $datas['res']=$this->dashboard->get_user_count_student();
+			 $datas['parents']=$this->dashboard->get_user_count_parents();
+			 $datas['das_events']=$this->dashboard->dash_events();
+			 $datas['das_users']=$this->dashboard->dash_users();
+			 $datas['dash_comm']=$this->dashboard->dash_comm();
+	
 			$this->load->view('header',$datas);
-			$this->load->view('home');
+			$this->load->view('home',$datas);
 			$this->load->view('footer');
 		}else if($user_type==2){
 			$this->load->view('adminteacher/teacher_header',$datas);
