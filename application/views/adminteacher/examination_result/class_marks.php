@@ -46,7 +46,7 @@ $student_array_generate = function($stu,&$student_arr) use ($subject_name,$subje
 									      
                                   ?>
 								
-								<input type="hidden" name="examid" value="<?php echo $id; ?>"/>
+								<input type="hidden" name="examid" id="eid" value="<?php echo $id; ?>"/>
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
@@ -64,7 +64,7 @@ $student_array_generate = function($stu,&$student_arr) use ($subject_name,$subje
                                     </thead>
 									<?php 
 									$tecid=$marks1[0]->teacher_id;
-									echo '<input type="hidden" name="teaid" value="'.$tecid.'" />';
+									echo '<input type="hidden" id="tid" name="teaid" value="'.$tecid.'" />';
                                      ?>
                                     <tbody>
 										<?php 
@@ -87,21 +87,21 @@ $student_array_generate = function($stu,&$student_arr) use ($subject_name,$subje
 											foreach ($s1 as $k1 => $s) 
 											{
 												if(empty($s) === false && $k == 1){
-													echo '<input type="hidden" name="sutid[]" value="'.$s->enroll_id.'" />';
-													echo '<input type="hidden" name="clsmastid" value="'.$s->class_id.'" />';
+													echo '<input type="hidden" id="sid" name="sutid[]" value="'.$s->enroll_id.'" />';
+													echo '<input type="hidden" id="cid" name="clsmastid" value="'.$s->class_id.'" />';
 													$k++;
 												}
 												if($status=="Success")
 											   {
 												   
-												    echo '<td><input type="hidden" required name="subid" value="'.$k1.'" class="form-control"/>';
+												    echo '<td><input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
 													
 													if(!empty($s))
 													{	
-														echo '<input style="width:60%;" type="text" required name="marks1[]" value="'.$s->marks.'" class="form-control"/></td>';														
+														echo '<input style="width:60%;" type="text" required name="marks1[]" value="'.$s->marks.'" class="form-control" readonly /></td>';														
 													}else{
-														echo '<input style="width:60%;" type="text"  name="marks[]" value="" class="form-control"/>';
-														echo '<input type="hidden" required name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
+														echo '<input style="width:60%;" type="text" onkeyup="insertfun(this.value)" id="mark" name="marks[]" value="" class="form-control"/>';
+														echo '<input type="text" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
 													}
 												}
 											}
@@ -125,3 +125,39 @@ $student_array_generate = function($stu,&$student_arr) use ($subject_name,$subje
             </div>
         </div>
 	</div>	
+	
+<script type="text/javascript">
+	   function insertfun()
+	   {
+		   var m=document.getElementById("mark").value;
+		   var s=document.getElementById("sid").value;
+		   var c=document.getElementById("cid").value;
+		   var sub=document.getElementById("subid").value;
+		   var t=document.getElementById("tid").value;
+		   var ex=document.getElementById("eid").value;
+
+		   //alert(m);alert(s);alert(ex);//exit;
+		   
+		  $.ajax({
+				type:'post',
+				url:'<?php echo base_url(); ?>/examinationresult/ajaxmarkinsert',
+				data:'examid=' + ex + '&suid=' + sub + '&stuid=' + s + '&clsid=' + c + '&teid=' + t + '&mark=' + m,
+		
+				success:function(test)
+				{   alert(test);exit;
+					if(test=="Email Id already Exit")
+					{
+					/* alert(test); */
+						$("#msg").html(test);
+						$("#save").hide();
+					}
+					else{
+						/* alert(test); */
+						$("#msg").html(test);
+						$("#save").show();
+					}
+
+				}
+		  });
+	}
+</script>

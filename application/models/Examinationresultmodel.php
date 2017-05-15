@@ -171,7 +171,7 @@ Class Examinationresultmodel extends CI_Model
 			   {
 				$sutid1=$sutid[$i];
 				//print_r($enroll);
-				$subid1=$subid;
+				$subid1=$subid[$i];
 				$clsmastid1=$clsmastid;
 				$teaid1=$teaid;
 				$examid1=$exam_id;
@@ -196,6 +196,22 @@ Class Examinationresultmodel extends CI_Model
 			  }	
 		    //}		  
 		  
+	   }
+	   
+	   
+	   function add_marks_detail_ajax($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks)
+	   {
+		   $query1="INSERT INTO edu_exam_marks(exam_id,teacher_id,subject_id,stu_id,classmaster_id,marks,created_at)VALUES('$exam_id','$teaid','$subid','$sutid','$clsmastid','$marks',NOW())";
+		   $resultset=$this->db->query($query1);
+		   if($resultset){
+			  $data= array("status" => "success");
+			  return $data;}
+			  else{
+				$data= array("status" => "failure");
+				return $data;
+			  }	
+		   
+		   
 	   }
 	 function getall_marks_details($user_id)
 	 {

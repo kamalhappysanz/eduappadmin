@@ -8,7 +8,7 @@
          </div>
          <?php endif; ?>
          <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                <div class="card">
                   <div class="header">
                      <h4 class="title">Examination Mark Enter</h4>

@@ -134,12 +134,12 @@ class Examinationresult extends CI_Controller
 			  $teaid=$this->input->post('teaid');
 			  $marks=$this->input->post('marks');
 			  
-			 /*  echo $exam_id;echo'</br>';
-			  echo $subid;echo'</br>';//exit;
+			  /* echo $exam_id;echo'</br>';
+			  print_r($subid);echo'</br>';//exit;
 			  echo $teaid;echo'</br>';
 			  print_r($sutid);echo'</br>';
 			  print_r($marks);echo'</br>';
-			  exit; */
+			  exit;  */
 			
 		   $datas=$this->examinationresultmodel->exam_marks_details($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks);
 		   //print_r($datas);
@@ -154,6 +154,37 @@ class Examinationresult extends CI_Controller
 			}
 		}
 		
+		public function ajaxmarkinsert()
+		{
+			  $datas=$this->session->userdata();
+  	 		  $user_id=$this->session->userdata('user_id');
+			  $user_type=$this->session->userdata('user_type');
+			  
+			  $exam_id=$this->input->post('examid');
+			  $clsmastid=$this->input->post('clsid');
+			  $subid=$this->input->post('suid');
+			  $sutid=$this->input->post('stuid');
+			  $teaid=$this->input->post('teid');
+			  $marks=$this->input->post('mark');
+			  
+			  echo $exam_id;echo'</br>';
+			  echo $subid;echo'</br>';
+			  echo $teaid;echo'</br>';
+			  echo $sutid;echo'</br>';
+			  echo $marks;echo'</br>';
+			 // exit; 
+			 $datas=$this->examinationresultmodel->add_marks_detail_ajax($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks);
+			 //print_r($datas);
+			 if($datas['status']=="success")
+			  {
+				$this->session->set_flashdata('msg','Added Successfully');
+                redirect('examinationresult/marks_details_view',$datas);
+			   //redirect('add_test');		
+			  }else{
+				$this->session->set_flashdata('msg','Falid To Added');
+                redirect('examinationresult/marks_details_view',$datas);
+			}  
+		}
 		public function marks_details_view()
 		{
 			$datas=$this->session->userdata();

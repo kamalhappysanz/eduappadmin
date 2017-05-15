@@ -19,10 +19,12 @@
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
                                 <table class="table table-hover table-striped">
 								<?php if(!empty($result))
-									  { foreach($result as $exam)
+									  { 
+								        //print_r($result);exit;
+										foreach($result as $exam)
 								         {}
 									        $id=$exam->exam_id;
-											//echo $id;
+											//echo $id;exit;
 											 }else{ echo "";}
 									           //echo $id; 
 											   /* if(!empty($stu))
@@ -80,7 +82,6 @@
                             </div>
                         </div>
                     </div>
-
 
                 </div>
 
