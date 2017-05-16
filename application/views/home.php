@@ -20,37 +20,63 @@
 	<div class="col-md-9">
 	</div>
 	<div class="col-md-3">
-		<div class="box">
-		<p class="head-count">Total Count</p>
-		<br>
-		<div class="col-md-6 text-center">
-			<p class="cnt"><?php
-			if(empty($res)){
-				echo "No data";
-			}else{
-				foreach ($res as $user_to) {}
-						echo $user_to->user_count;
-			}
-			 ?></p>
+    <div class="card">
+                            <div class="header">
+                              No .Of.Users
+                            </div>
+                            <div class="content table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th>Name</th>
+                                            <th>Total</th>
 
-			<p><a href="">Students</a></p>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>Teachers</td>
+                                            <td><?php	if(empty($res)){
+                                        				echo "No data";
+                                        			}else{
+                                        				foreach ($res as $user_to) {}
+                                        						echo $user_to->user_count;
+                                        			} ?></td>
 
-		</div>
-		<div class="col-md-6 text-center">
-			<p class="cnt"><?php
-			if(empty($parents)){
-				echo "No data";
-			}else{
-				foreach ($parents as $user_parents) {}
-						echo $user_parents->user_count;
-			}
-			 ?><p>
+                                        </tr>
+                                        <tr>
 
-			<p><a href="">Parents</a></p>
+                                            <td class="text-center">2</td>
+                                            <td>Parents</td>
+                                            <td><?php  if(empty($parents)){
+                                      				echo "No data";
+                                      			}else{
+                                      				foreach ($parents as $user_parents) {}
+                                      						echo $user_parents->user_count;
+                                      			} ?></td>
 
-		</div>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">3</td>
+                                            <td>Students</td>
+                                            <td><?php 	if(empty($stud)){
+                                        				echo "No data";
+                                        			}else{
+                                        				foreach ($stud as $user_to) {}
+                                        						echo $user_to->user_count;
+                                        			}  ?></td>
 
-	</div>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+
 		<p></p>
 	</div>
 </div>

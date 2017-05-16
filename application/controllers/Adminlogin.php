@@ -60,6 +60,7 @@ class Adminlogin extends CI_Controller {
 								$session_data=$this->session->set_userdata($datas);
 								$datas['res']=$this->dashboard->get_user_count_student();
 								$datas['parents']=$this->dashboard->get_user_count_parents();
+								$datas['stud']=$this->dashboard->dash_stud_users();
 								$datas['das_events']=$this->dashboard->dash_events();
 								$datas['das_users']=$this->dashboard->dash_users();
 								$datas['dash_comm']=$this->dashboard->dash_comm();
@@ -71,8 +72,11 @@ class Adminlogin extends CI_Controller {
 							$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
 							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 							$session_data=$this->session->set_userdata($datas);
+
+							$datas['user_details']=$this->dashboard->dash_teacher($user_id);
+							//print_r($datas['user_details']);
 							$this->load->view('adminteacher/teacher_header',$datas);
-							$this->load->view('adminteacher/home');
+							$this->load->view('adminteacher/home',$datas);
 							$this->load->view('adminteacher/teacher_footer');
 							break;
 							case '3':
@@ -163,6 +167,7 @@ class Adminlogin extends CI_Controller {
 		 if($user_type==1){
 			 $datas['res']=$this->dashboard->get_user_count_student();
 			 $datas['parents']=$this->dashboard->get_user_count_parents();
+			 $datas['stud']=$this->dashboard->dash_stud_users();
 			 $datas['das_events']=$this->dashboard->dash_events();
 			 $datas['das_users']=$this->dashboard->dash_users();
 			 $datas['dash_comm']=$this->dashboard->dash_comm();
