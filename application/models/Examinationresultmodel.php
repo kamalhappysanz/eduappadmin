@@ -17,7 +17,7 @@ Class Examinationresultmodel extends CI_Model
 			$row=$resultset->result();
 			 foreach($row as $rows){}
 			 $teacher_id=$rows->teacher_id;
-			 $sql="SELECT * FROM edu_examination";
+			 $sql="SELECT * FROM edu_examination WHERE status='A'";
 			 $resultset1=$this->db->query($sql);
 			 $res=$resultset1->result();
              return $res;
@@ -301,8 +301,19 @@ Class Examinationresultmodel extends CI_Model
 			$data= array("status" => "failure");
 			return $data;
 		  }
-		  
-		    
+	   }
+	   
+	   function marks_status_update($exam_id,$clsmastid)
+	   {
+		   $sql="INSERT INTO exam_marks_status(exam_id,classmaster_id,status,created_at) VALUES('$exam_id','$clsmastid','N',NOW())";
+		   $result=$this->db->query($sql);
+		   if($result){ 
+			   $data= array("status" => "success");
+			   return $data;
+		   }else{
+			   $data= array("status" => "failure");
+			   return $data;
+		   }
 	   }
 	   
 } 
