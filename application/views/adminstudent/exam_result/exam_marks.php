@@ -40,7 +40,7 @@
 										 <td><?php echo $rows->marks; ?> </td>
 										</tr>
 										 <?php $i++;  } 
-										}else{ echo "No Exam Added";}										 ?>
+										}else{ echo "No exam added for any class";}										 ?>
                                     </tbody>
                                 </table>
 								</form>

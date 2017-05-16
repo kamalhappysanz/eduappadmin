@@ -133,29 +133,29 @@ font-weight: 500;
 								</li>
 
 								<li>
-										<a data-toggle="collapse" href="#sectionmenu">
+										<a href="<?php echo base_url(); ?>student/homework_view">
 												<i class="pe-7s-flag"></i>
 												<p>Home Work</p>
-												<b class="caret"></b>
+												
 										</a>
-										<div class="collapse" id="sectionmenu">
+										<!-- <div class="collapse" id="sectionmenu">
 											<ul class="nav">
 													<li><a href="<?php echo base_url(); ?>student/homework_view">Home Work</a></li>
 
 											</ul>
-									</div>
+									</div>-->
 								</li>
 								<li>
-										<a data-toggle="collapse" href="#examresult">
+										<a  href="<?php echo base_url(); ?>student/exam_views">
 												<i class="pe-7s-plugin"></i>
 												<p>Examination Result</p>
-												<b class="caret"></b>
+												
 										</a>
-										<div class="collapse" id="examresult">
+										<!-- <div class="collapse" id="examresult">
 											<ul class="nav">
 									<li><a href="<?php echo base_url(); ?>student/exam_views">Examination Result</a></li>
 											</ul>
-									</div>
+									</div>-->
 								</li>
 								<li>
 										<a data-toggle="collapse" href="#componentsExamples">
