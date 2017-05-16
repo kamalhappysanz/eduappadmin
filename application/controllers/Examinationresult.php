@@ -99,7 +99,7 @@ class Examinationresult extends CI_Controller
 			  $datas['result']=$this->examinationresultmodel->getall_exam_details($exam_id);
 			  $datas['marks1']=$this->examinationresultmodel->getall_marks_details1($user_id,$cls_masid);
 			  //echo '<pre>';print_r($datas);
-			 //echo '<pre>';print_r($datas['stu']); exit;
+			  //echo '<pre>';print_r($datas['stu']); exit;
 			
 			 if($user_type==2)
 			    { 

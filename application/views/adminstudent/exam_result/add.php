@@ -24,7 +24,7 @@
 						 // echo $exam_year;
 					   ?>
                         <div class="col-md-2">
-                           <a rel="tooltip" href="<?php echo base_url(); ?>studenthomework/exam_result/<?php echo $exam_id; ?>"  class="btn btn-wd"><?php echo $ex_name; ?></a>
+                           <a rel="tooltip" href="<?php echo base_url(); ?>student/exam_result/<?php echo $exam_id; ?>"  class="btn btn-wd"><?php echo $ex_name; ?></a>
                         </div>
 					   <?php }?>
 						

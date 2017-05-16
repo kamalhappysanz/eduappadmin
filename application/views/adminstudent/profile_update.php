@@ -1,25 +1,27 @@
-
 <div class="main-panel">
 <div class="content">
-<div class="col-md-12">
+       <div class="container-fluid">
+           <div class="row">
+               <div class="col-md-8">
+                   <div class="card">
+                       <div class="header">
+                         <?php if($this->session->flashdata('msg')): ?>
+                           <div class="alert alert-success">
+                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                         ×</button> <?php echo $this->session->flashdata('msg'); ?>
+                 </div>
 
-                        <div class="card">
-                            <div class="header">
-                                <legend>Student Edit Details</legend>
-                            </div>
-                            <?php if($this->session->flashdata('msg')): ?>
-                              <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×</button> <?php echo $this->session->flashdata('msg'); ?>
-                     </div>
+           <?php endif; ?>
+                           <h4 class="title">Edit Teacher Profile</h4>
+                       </div>
+                       <?php
+                      // print_r($result);
+                      foreach ($res as $rows) {
 
-                     <?php endif; ?>
-
-                     <?php foreach ($res as $rows) {
-
-                     } ?>
-                            <div class="content">
-                                <form method="post" action="<?php echo base_url(); ?>studentprofile/update_stu_details" class="form-horizontal" enctype="multipart/form-data" id="admissionform" name="formadmission">
+                       }
+                        ?>
+                       <div class="content">
+                           <form method="post" action="<?php echo base_url(); ?>studentprofile/update_stu_details" class="form-horizontal" enctype="multipart/form-data" id="admissionform" name="formadmission">
                                     <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Admission Year</label>
@@ -187,13 +189,40 @@
                                         </div>
                                     </fieldset>
                                 </form>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-4">
+                   <div class="card card-user">
+                       <div class="image">
+                           <img src="<?php echo base_url(); ?>assets/img/full-screen-image-3.jpg" alt="..."/>
+                       </div>
+                       <div class="content">
+                           <div class="author">
+                                <a href="#">
+                               <img class="avatar border-gray" id="output" src="<?php echo base_url(); ?>assets/admission/profile/<?php echo $rows->student_pic; ?>" alt="..."/>
+                                 <h4 class="title"><?php echo $rows->name;  ?><br />
+                                 </h4>
+                               </a>
+                           </div>
 
-                            </div>
-                        </div>  <!-- end card -->
+                       </div>
 
-                    </div>
+
+                   </div>
+               </div>
+
+           </div>
+       </div>
+   </div>
 </div>
-</div>
+
+<script type="text/javascript">
+var loadFile = function(event) {
+ var output = document.getElementById('output');
+ output.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
 <script type="text/javascript">
 var loadFile = function(event) {
  var output = document.getElementById('output');
@@ -243,22 +272,3 @@ $('#admission2').addClass('active');
 });
 
 </script>
-<script type="text/javascript">
-     /*  $().ready(function(){
-
-        $('.datepicker').datetimepicker({
-          format: 'DD-MM-YYYY',
-          icons: {
-              time: "fa fa-clock-o",
-              date: "fa fa-calendar",
-              up: "fa fa-chevron-up",
-              down: "fa fa-chevron-down",
-              previous: 'fa fa-chevron-left',
-              next: 'fa fa-chevron-right',
-              today: 'fa fa-screenshot',
-              clear: 'fa fa-trash',
-              close: 'fa fa-remove'
-          }
-       });
-      }); */
-  </script>

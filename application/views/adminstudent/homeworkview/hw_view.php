@@ -61,7 +61,7 @@
                                        {?>
                                     <a href="" rel="tooltip" title="Doesn't Add Mark Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                     <i class="fa fa-id-card-o" aria-hidden="true"></i></a>
-                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>studenthomework/view_mark/<?php echo $rows->hw_id; ?>" title="View Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
+                                    <?php }elseif($sta==1){?> <a href="<?php echo base_url();?>student/view_mark/<?php echo $rows->hw_id; ?>" title="View Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i></a>	<?php }?>
                                     <!--<a href="<?php echo base_url();?>homework/edit_test/<?php //echo $rows->hw_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i>
                                     </a>-->									
                                  </td>

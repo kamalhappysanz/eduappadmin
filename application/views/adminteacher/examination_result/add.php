@@ -20,8 +20,8 @@
 					   {
 						  $ex_name=$row->exam_name;
 						  $exam_id=$row->exam_id;
-						  //  echo $ex_name;
-						 // echo $exam_year;
+						  //echo $ex_name;
+						 //echo $exam_year;
 					   ?>
                         <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/class_section/<?php echo $exam_id; ?>"  class="btn btn-wd"><?php echo $ex_name; ?></a>

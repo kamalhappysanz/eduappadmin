@@ -25,6 +25,7 @@
                                     <tbody>
 									<?php
                                         $i=1;
+										if(!empty($result)){
                                         foreach ($result as $rows) {
                                      ?>
 										<tr>
@@ -38,7 +39,8 @@
                     						  ?> </td>
 										 <td><?php echo $rows->marks; ?> </td>
 										</tr>
-										 <?php $i++;  }  ?>
+										 <?php $i++;  } 
+										}else{ echo "No Exam Added";}										 ?>
                                     </tbody>
                                 </table>
 								</form>

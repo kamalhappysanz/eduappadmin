@@ -152,8 +152,9 @@
                                        <div class="form-group">
                                            <label>Class Teacher</label>
 						
-                        <select   name="class_teacher" disabled=""   class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
-                                       <?php foreach ($getall_class as $rows2) {  ?>
+                        <select   name="class_teacher" disabled="" class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
+                                       <?php 
+									   foreach ($getall_class as $rows2) {  ?>
                                   <option value="<?php echo $rows2->class_sec_id; ?>"><?php echo $rows2->class_name; ?>&nbsp; - &nbsp;<?php echo $rows2->sec_name; ?></option>
                                           <?php      } ?>
                                               </select>

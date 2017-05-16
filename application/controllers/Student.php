@@ -8,7 +8,7 @@ class Student extends CI_Controller
 	function __construct()
 	{
 		 parent::__construct();
-		  $this->load->model('studentkmodel');
+		  $this->load->model('studentmodel');
 		  $this->load->helper('url');
 		  $this->load->library('session');
 		  $this->load->model('class_manage');
@@ -25,7 +25,7 @@ class Student extends CI_Controller
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			//echo $user_id;
-			$datas['result'] = $this->studentkmodel->get_stu_homework_details($user_id);
+			$datas['result'] = $this->studentmodel->get_stu_homework_details($user_id);
 			//print_r($datas['result']);exit;
 			 if($user_type==3)
 			  {
@@ -44,7 +44,7 @@ class Student extends CI_Controller
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			//echo $user_id; echo $hw_id;exit;
-			$datas['res'] = $this->studentkmodel->view_homework_marks($user_id,$hw_id);
+			$datas['res'] = $this->studentmodel->view_homework_marks($user_id,$hw_id);
 			//print_r($datas['res']);exit;
 			if($user_type==3)
 			  {
@@ -65,7 +65,7 @@ class Student extends CI_Controller
 			    $datas=$this->session->userdata();
   	 		    $user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
-				$datas['exam']=$this->studentkmodel->get_all_exam($user_id);
+				$datas['exam']=$this->studentmodel->get_all_exam($user_id);
 			    //echo '<pre>';print_r($datas['exam']);exit;
 			    if($user_type==3)
 				 {
@@ -82,7 +82,7 @@ class Student extends CI_Controller
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
-			$datas['result']=$this->studentkmodel->exam_marks($user_id,$exam_id);
+			$datas['result']=$this->studentmodel->exam_marks($user_id,$exam_id);
 			//echo '<pre>';print_r($datas['result']);exit;
 			if($user_type==3)
 				 {

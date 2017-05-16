@@ -1,6 +1,6 @@
 <?php
 
-Class studentkmodel extends CI_Model
+Class Studentmodel extends CI_Model
 {
 
   public function __construct()
@@ -35,8 +35,7 @@ Class studentkmodel extends CI_Model
 			$name=$row4->name;
 			$class_id=$row4->class_id;
 			}
-			
-			$query3="SELECT h.*,cm.class_sec_id,cm.class,cm.section,c.*,se.* FROM edu_homework AS h,edu_classmaster AS cm,edu_class AS c,edu_sections AS se WHERE h.class_id='$class_id' AND h.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=se.sec_id ORDER BY h.hw_id DESC" ;
+			$query3="SELECT h.*,cm.class_sec_id,cm.class,cm.section,c.*,se.* FROM edu_homework AS h,edu_classmaster AS cm,edu_class AS c,edu_sections AS se WHERE h.class_id='$class_id' AND h.status='A' AND h.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=se.sec_id ORDER BY h.hw_id DESC" ;
 			$result2=$this->db->query($query3);
 			$row4=$result2->result();
 			return $row4;

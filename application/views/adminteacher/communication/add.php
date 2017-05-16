@@ -55,8 +55,8 @@
                                  <textarea name="leave_description" class="form-control"  rows="4" cols="80"></textarea>
                               </div>
                               <label class="col-sm-2 control-label">&nbsp;</label>
-                              <div class="col-sm-4">
-                                 <button type="submit" id="save" class="btn btn-info btn-fill center"  onclick="return confirm('Are you sure you want to Save')" >Save</button>
+                              <div class="col-sm-4"><!-- onclick="return confirm('Are you sure you want to Save')" -->
+                                 <button type="submit" id="save" class="btn btn-info btn-fill center">Save</button>
                               </div>
                            </div>
                         </fieldset>

@@ -1,21 +1,3 @@
-<?php
-$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id){
-	foreach ($stu as $v) {
-		$cnt= count($subject_name);
-		for($i=0;$i<$cnt;$i++)
-		{
-			if($subject_id[$i] == $v->subject_id)
-			{
-				$student_arr[$v->name][$subject_id[$i]] = $v;
-			}else{
-				if(!isset($student_arr[$v->name][$subject_id[$i]]))
-					$student_arr[$v->name][$subject_id[$i]] = array();
-			}
-		}
-	}
-}
-
-?>
 
 <div class="main-panel">
 
@@ -36,6 +18,27 @@ $student_array_generate = function($stu,&$student_arr) use ($subject_name,$subje
                             </div>
                             <div class="content table-responsive table-full-width">
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
+					
+<?php 
+		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)	
+		{
+			foreach ($stu as $v) {
+				$cnt= count($subject_name);
+				for($i=0;$i<$cnt;$i++)
+				{
+					if($subject_id[$i] == $v->subject_id)
+					{
+						$student_arr[$v->name][$subject_id[$i]] = $v;
+					}else{
+						if(!isset($student_arr[$v->name][$subject_id[$i]]))
+							$student_arr[$v->name][$subject_id[$i]] = array();
+					}
+				}
+			}
+		}
+
+?>
+
                                 <table class="table table-hover table-striped">
 								<?php if(!empty($result))
 									  { foreach($result as $exam)
@@ -68,10 +71,10 @@ $student_array_generate = function($stu,&$student_arr) use ($subject_name,$subje
                                      ?>
                                     <tbody>
 										<?php 
+									if(!empty($stu))
+									{
 										$student_arr = array();
-										 
 										$student_array_generate($stu,$student_arr);
-										
 										/* echo '<pre>';
 										print_r($stu);
 										print_r($student_arr);
@@ -100,14 +103,15 @@ $student_array_generate = function($stu,&$student_arr) use ($subject_name,$subje
 													{	
 														echo '<input style="width:60%;" type="text" required name="marks1[]" value="'.$s->marks.'" class="form-control" readonly /></td>';														
 													}else{
-														echo '<input style="width:60%;" type="text" onkeyup="insertfun(this.value)" id="mark" name="marks[]" value="" class="form-control"/>';
-														echo '<input type="text" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
+														echo '<input style="width:60%;" type="text" readonly onkeyup="insertfun(this.value)" id="mark" name="marks[]" value="" class="form-control"/>';
+														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
 													}
 												}
 											}
 											echo '</tr>';
 											$i++;
 										}
+									}else{ echo "No Exam Mark Added"; }
 										?>
 										<tr>
 										 <td><div class="col-sm-10">

@@ -40,8 +40,9 @@ Class Examinationresultmodel extends CI_Model
 			  foreach($teacher_row as $teacher_rows){}
 			  $teach_id=$teacher_rows->class_name;
 			  $cls_te=$teacher_rows->class_teacher;
-			
-			$sQuery = "SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.class FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
+
+			  
+			 $sQuery = "SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.class,cm.subject FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id  ORDER BY c.class_name";
 			$objRs=$this->db->query($sQuery);
 			$row=$objRs->result();
 			foreach ($row as $rows1)
@@ -50,6 +51,7 @@ Class Examinationresultmodel extends CI_Model
 			$sec=$rows1->class;
 			$clas=$rows1->class_name;
 			$sec_name=$rows1->sec_name;
+			$sub=$rows1->subject;
 			$arryPlatform = explode(",", $teach_id);
 		    $sPlatform_id  = trim($s);
 		    $sPlatform_name  = trim($sec);
@@ -58,6 +60,7 @@ Class Examinationresultmodel extends CI_Model
 				 $class_id[]=$s;
 				 $class_name[]=$clas;
 				 $sec_n[]=$sec_name;
+				 $sub_id[]=$sub;
  			   }
  			 }
       // print_r($sec_n);exit
@@ -65,8 +68,7 @@ Class Examinationresultmodel extends CI_Model
         $data= array("status" =>"No Record Found");
         return $data;
       }else{
-
-        $data= array("class_id" => $class_id,"class_name"=>$class_name,"sec_name"=>$sec_n,"cls_id"=>$cls_te,"status"=>"Record Found");
+        $data= array("class_id" => $class_id,"class_name"=>$class_name,"sec_name"=>$sec_n,"sub_id"=>$sub_id,"cls_id"=>$cls_te,"status"=>"Record Found");
         return $data;
       }
         //print_r($data);exit;
