@@ -32,6 +32,8 @@
 <script type="text/javascript">
 
 
-
+$('#attendmenu').addClass('collapse in');
+$('#atten').addClass('active');
+$('#atten2').addClass('active');
 
 </script>

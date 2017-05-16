@@ -22,8 +22,8 @@
                            <a rel="tooltip" href="" onclick="changeText(<?php echo $class_id[$i]; ?>)" data-toggle="modal" data-target="#addmodel" data-id="<?php echo $class_id[$i]; ?>"  class=" open-AddBookDialog  btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a>
                         </div>
                         <?php  } }  ?>
-						
-						
+
+
                      </div>
                   </div>
                </div>
@@ -44,7 +44,7 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
-                            
+
                               <th>Class/Section</th>
                               <th>Subject</th>
                               <th>Homework Type</th>
@@ -62,11 +62,11 @@
                                  $sta=$rows->mark_status;
 								 $hw=$rows->hw_type;
 								 $status=$rows->status;
-								 
+
                                   ?>
                               <tr>
                                  <td><?php   echo $i; ?></td>
-                                 
+
 								 <?php         $cid=$rows->class_id;
                                                $query="SELECT * FROM edu_class WHERE class_id='$cid'";
 											   $resultset=$this->db->query($query);
@@ -77,7 +77,7 @@
                                  <td><?php echo $rows->subject_name; ?></td>
                                  <td><?php if($hw=="HT")
 								 {echo "Class Test";}else{ echo "Home Work";}?></td>
-							 
+
                                  <td><?php echo $rows->title; ?></td>
                                  <td><?php $date=date_create($rows->test_date);
                                     echo date_format($date,"d-m-Y");
@@ -95,7 +95,7 @@
                                     <a href="<?php echo base_url();?>homework/add_mark/<?php echo $rows->hw_id; ?>" rel="tooltip" title="Add Mark Details" class="btn btn-simple btn-info btn-icon table-action view" >
                                     <i class="fa fa-list-ol" aria-hidden="true"></i></a>
                                     <?php }elseif($sta==1){?>  <a href="<?php echo base_url();?>homework/edit_mark/<?php echo $rows->hw_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" style="color:red;"><i class="fa fa-id-card-o" aria-hidden="true"></i>	<?php }?>
-                                    <a href="<?php echo base_url();?>homework/edit_test/<?php echo $rows->hw_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i>	 
+                                    <a href="<?php echo base_url();?>homework/edit_test/<?php echo $rows->hw_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i>
                                  </td>
                               </tr>
                               <?php $i++;  }  ?>
@@ -103,7 +103,7 @@
                         </table>
                      </div>
                   </div>
-                  <!-- end content-->	
+                  <!-- end content-->
                </div>
                <!--  end card  -->
             </div>
@@ -126,12 +126,12 @@
                            <div class="card">
                               <div class="content">
                                  <form method="post" action="<?php echo base_url(); ?>homework/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
-								 
+
 									 <fieldset>
                                        <div class="form-group">
                                           <label class="col-sm-2 control-label">Academic Year</label>
                                           <div class="col-sm-6">
-                                            <?php  
+                                            <?php
 					          	foreach($ayear as $academic)
 						          {} // echo $academic->year_id;?>
 			 <input type="hidden" name="year_id"  value="<?php  echo $academic->year_id; ?>">
@@ -139,10 +139,10 @@
                                           </div>
                                        </div>
                                     </fieldset>
-									
+
                                     <fieldset>
                                        <div class="form-group">
-									   		
+
                                           <label class="col-sm-2 control-label">Type of Test</label>
                                           <div class="col-sm-10">
                                              <label class="radio">
@@ -215,9 +215,9 @@
 </div>
 <script type="text/javascript">
    $(document).ready(function () {
-   $('#mastersmenu').addClass('collapse in');
-   $('#master').addClass('active');
-   $('#masters2').addClass('active');
+     $('#homeworkmenu').addClass('collapse in');
+     $('#home').addClass('active');
+     $('#home1').addClass('active');
     $('#classsection').validate({ // initialize the plugin
         rules: {
             test_type:{required:true },
@@ -238,7 +238,7 @@
             }
     });
    });
-   
+
    var $table = $('#bootstrap-table');
          $().ready(function(){
              $table.bootstrapTable({
@@ -253,7 +253,7 @@
                  pageSize: 8,
                  clickToSelect: false,
                  pageList: [8,10,25,50,100],
-   
+
                  formatShowingRows: function(pageFrom, pageTo, totalRows){
                      //do nothing here, we don't want to show the text "showing x of y from..."
                  },
@@ -268,20 +268,20 @@
                      detailClose: 'fa fa-minus-circle'
                  }
              });
-   
+
              //activate the tooltips after the data table is initialized
              $('[rel="tooltip"]').tooltip();
-   
+
              $(window).resize(function () {
                  $table.bootstrapTable('resetView');
              });
-   
-   
+
+
          });
 </script>
 <script type="text/javascript">
    $().ready(function(){
-   
+
      $('.datepicker').datetimepicker({
        format: 'DD-MM-YYYY',
        icons: {
@@ -299,7 +299,7 @@
    });
 </script>
 <script type="text/javascript">
-   function changeText(id) 
+   function changeText(id)
    {
     $('#myModal').modal('show');
     //alert(id);
@@ -310,13 +310,13 @@
                  id:id
              },
            dataType: 'json',
-   
+
             success: function(test1)
       {
-   	    
-   		
+
+
                  if (test1.status=='Success') {
-                  
+
                      var sub = test1.subject_name;
    			//alert(sub.length);
                      var sub_id = test1.subject_id;
@@ -324,28 +324,27 @@
    			//alert(len);
                      var i;
                      var name = '';
-                   
+
                      for (i = 0; i < len; i++) {
                          name += '<option value='+ sub_id[i] +'>'+ sub[i] + '</option> ';
                          $("#ajaxres").html(name);
                          $('#msg').html('');
                      }
                  } else {
-   			
+
    			$('#msg').html('<span style="color:red;text-align:center;">Subject Not Found</p>');
    			  $("#ajaxres").html('');
-   
-                 }  
+
+                 }
              }
-    
-    
+
+
    });
    }
-   
+
    $(document).on("click", ".open-AddBookDialog", function () {
       var eventId = $(this).data('id');
       $(".modal-body #event_id").val( eventId );
    });
-   
-</script>
 
+</script>

@@ -4,8 +4,8 @@
 <div class="col-md-12">
 
                   <!-- end card -->
-						
-						
+
+
 						 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -22,11 +22,11 @@
                                       foreach ($row as $rows1) {
                                       $s= $rows1->subject_id;
                                       $sec=$rows1->subject_name;
-                                     
+
                                       $arryPlatform = explode(",", $sPlatform);
                                      $sPlatform_id  = trim($s);
                                      $sPlatform_name  = trim($sec);
-                                     if (in_array($sPlatform_id, $arryPlatform )) 
+                                     if (in_array($sPlatform_id, $arryPlatform ))
 									 {
 									 ?>
 
@@ -56,7 +56,7 @@
                                     	<th>Name</th>
                                     	<th>Marks</th>
                                     	<th>ReMarks</th>
-                                    	
+
                                     </thead>
 		 <form method="post" action="<?php echo base_url(); ?>homework/update" class="form-horizontal" enctype="multipart/form-data" id="markform">
                                     <tbody>
@@ -66,32 +66,32 @@
 										//$sub=$res->subject_name;
 										//$enr_id=$res->enroll_id;
 									?>
-									
+
                                         <tr>
                                         	<td><?php echo $i; ?></td>
-                                        	<td><?php echo $rows->name; ?> 
-											
+                                        	<td><?php echo $rows->name; ?>
+
 											<input type="hidden" name="enroll[]" value="<?php echo $rows->enroll_mas_id;?>"/>
 									         <input type="hidden" name="hwid" value="<?php echo $rows->hw_mas_id;?>"/>
 									       </td>
-                                        	<td style="width:20%;"> 
+                                        	<td style="width:20%;">
 											<input type="text" name="marks[]" value="<?php echo $rows->marks; ?>" class="form-control"/>
 											</td>
                                         	<td> <textarea name="remarks[]" value="" class="form-control" rows="1" cols="03"><?php echo $rows->remarks; ?></textarea></td>
                                         	<td></td>
                                         </tr>
-										
+
                                    <?php $i++;  }?>
 								   <tr>
 								   <td></td><td></td>
-                          <td> 
-                              
+                          <td>
+
                                    <button type="submit" id="save" class="btn btn-info btn-fill center">Update </button>
-							  
-							</td>	<td></td><td></td>							   
+
+							</td>	<td></td><td></td>
 								   </tr>
                                     </tbody>
-									
+
 								</form>
                                 </table>
 
@@ -112,9 +112,10 @@ var loadFile = function(event) {
 
 $(document).ready(function () {
 
-$('#teachermenu').addClass('collapse in');
-$('#teacher').addClass('active');
-$('#teacher2').addClass('active');
+	$('#homeworkmenu').addClass('collapse in');
+	$('#home').addClass('active');
+	$('#home1').addClass('active');
+	
  $('#admissionform').validate({ // initialize the plugin
      rules: {
 

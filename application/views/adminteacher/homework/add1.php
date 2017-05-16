@@ -23,12 +23,12 @@
             <a rel="tooltip" href="#myModal" data-toggle="modal" data-target="#addmodel" data-id="<?php echo $class_id[$i]; ?>"  class=" open-AddBookDialog  btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a></div>
                               <?php  } }  ?>
                               </div>
-							  
+
                        </div>
                    </div>
                </div>
            </div><!-- row -->
-		   
+
 <script type="text/javascript">
   $(document).on("click", ".open-AddBookDialog", function () {
      var eventId = $(this).data('id');
@@ -36,10 +36,10 @@
 });
 </script>
 	<!--<div id="test" style="display: none" >  </div>-->
-	
+
 	<div class="modal fade" id="addmodel" role="dialog" >
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header" style="padding:10px;">
@@ -51,9 +51,9 @@
 		   <div class="row">
 
               <div class="col-md-12">
-              
+
                   <div class="card">
-				  
+
                    <div class="content">
                     <form method="post" action="<?php echo base_url(); ?>homework/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
 					           <fieldset>
@@ -70,8 +70,8 @@
 									 <input type="text" id="event_id" name="class_id"  class="form-control" value="<?php ?>"/>
                                            </div>
                                         </div>
-                               </fieldset> 
-							
+                               </fieldset>
+
                              <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Title</label>
@@ -79,8 +79,8 @@
                                                 <input type="text" placeholder="Title" name="title" class="form-control">
                                             </div>
 											</div>
-                            </fieldset> 
-							
+                            </fieldset>
+
                               <fieldset>
 								 <div class="form-group">
                                             <label class="col-sm-2 control-label">Date</label>
@@ -94,12 +94,12 @@
                                             <label class="col-sm-2 control-label">Details</label>
                                             <div class="col-sm-6">
 								 <textarea name="details" class="form-control" rows="4" cols="80"></textarea>
-                                             
+
                                             </div>
 
                                  </div>
                              </fieldset>
-							 
+
 							  <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">&nbsp;</label>
@@ -109,27 +109,27 @@
 
                                         </div>
                                     </fieldset>
-							 
+
                            </form>
                        </div>
-                    
+
 
                   </div><!--  end card  -->
               </div> <!-- end col-md-12 -->
           </div><!-- end row -->
-		  
+
 		  </div>
 		  </div>
 		  </div>
 		  </div>
-		 
-		   
-		   
-		   
-		   
-		   
+
+
+
+
+
+
        </div>
-     
+
 
    </div>
 
@@ -137,6 +137,9 @@
 </div>
 
 <script type="text/javascript">
+$('#homeworkmenu').addClass('collapse in');
+$('#home').addClass('active');
+$('#home1').addClass('active');
 
 /* $(document).ready(function () {
 
@@ -159,10 +162,10 @@
 });
 
  */
-	  
-	 
+
+
      $().ready(function(){
- 
+
         $('.datepicker').datetimepicker({
           format: 'DD-MM-YYYY',
           icons: {
@@ -177,7 +180,7 @@
               close: 'fa fa-remove'
           }
        });
-      }); 
+      });
 
-  
+
 </script>

@@ -102,7 +102,7 @@
 
 
             });
-            $('#admissionmenu').addClass('collapse in');
-            $('#admission').addClass('active');
-            $('#admission3').addClass('active');
+            $('#attendmenu').addClass('collapse in');
+            $('#atten').addClass('active');
+            $('#atten2').addClass('active');
      </script>

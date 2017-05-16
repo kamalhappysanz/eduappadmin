@@ -42,7 +42,7 @@
                                   }
                                     ?>
                            </select>
-						    
+
                         </div>
                         <label class="col-sm-2 control-label">Subject</label>
                         <div class="col-sm-4">
@@ -74,7 +74,7 @@
                            <input type="text"  name="test_date" class="form-control datepicker"  value="<?php $date=date_create($rows->test_date);
 						echo date_format($date,"d-m-Y");?>">
                         </div>
-						
+
 						 <label class="col-sm-2 control-label">Status</label>
 						<div class="col-sm-4">
 						<select name="status" class="selectpicker form-control" data-style="btn-default btn-block" >
@@ -83,10 +83,10 @@
                         </select>
                           <script language="JavaScript">document.testform.status.value="<?php echo $rows->status; ?>";</script>
                         </div>
-						
+
                      </div>
                   </fieldset>
-				  
+
 				   <fieldset>
                      <div class="form-group">
 					 <label class="col-sm-2 control-label">Test Details</label>
@@ -94,8 +94,8 @@
                            <textarea name="test_details" value="" class="form-control" rows="3" cols="03"><?php echo $rows->hw_details; ?></textarea>
                         </div>
 					 </div>
-				</fieldset> 
-                
+				</fieldset>
+
                   <fieldset>
                      <div class="form-group">
                         <label class="col-sm-2 control-label">&nbsp;</label>
@@ -112,19 +112,22 @@
    </div>
 </div>
 <script type="text/javascript">
-   
-   
+
+$('#homeworkmenu').addClass('collapse in');
+$('#home').addClass('active');
+$('#home1').addClass('active');
+
    $(document).ready(function(){
-  
+
     $('#testform').validate({ // initialize the plugin
         rules: {
-   
-            title:{required:true }, 
+
+            title:{required:true },
 			test_date:{required:true },
             hw_type:{required:true }
         },
         messages: {
-   
+
               title: "Enter The Title",
               test_date: "Select Test Date",
               hw_type: "Select Test Type"
@@ -133,7 +136,7 @@
    });
    </script>
    <script type="text/javascript">
-  
+
       $().ready(function(){
 
         $('.datepicker').datetimepicker({
@@ -151,8 +154,6 @@
           }
        });
       });
-  
-  
+
+
 </script>
-
-

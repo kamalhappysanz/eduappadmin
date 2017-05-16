@@ -5,7 +5,7 @@
       <div class="container-fluid">
          <div class="row">
             <div class="col-md-12">
-              
+
                <div class="card">
                   <div class="header">
                      <legend> Communication Details</legend>
@@ -32,7 +32,7 @@
                               </div>
                            </div>
                         </fieldset>
-						
+
 						 <div id="permissiontime" style="display: none">
 								   <fieldset>
                                         <div class="form-group">
@@ -46,7 +46,7 @@
                                         </div>
                                     </fieldset>
                            </div>
-						   
+
                         <br/>
                         <fieldset>
                            <div class="form-group">
@@ -65,7 +65,7 @@
                </div>
             </div>
          </div>
-		 
+
 		  <?php if($this->session->flashdata('msg')): ?>
          <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -80,7 +80,7 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
-                              
+
                               <th>Leave Type</th>
                               <th>Leave Date</th>
                               <th>Leave Description</th>
@@ -90,13 +90,13 @@
                            <tbody>
                               <?php
                                  $i=1;
-                                 foreach($result as $rows) 
+                                 foreach($result as $rows)
 								 { $status=$rows->status;
 								  $type=$rows->leave_date;
                                   ?>
                               <tr>
                                  <td><?php   echo $i; ?></td>
-                                
+
                                  <td><?php echo $rows->type_leave; ?></td>
                                  <td><?php $date=date_create($rows->leave_date);
                                      echo date_format($date,"d-m-Y");
@@ -105,12 +105,12 @@
 									 <?php echo $rows->frm_time; ?>  <?php echo $rows->to_time; ?>
 									 <?php }?></td>
                                  <td><?php echo $rows->leave_description; ?></td>
-								 
+
                                  <td><?php if($status=='P'){ ?>
 								 <button class="btn btn-warning btn-fill btn-wd">Pending</button>
 								 <?php }elseif($status=='R'){?>
 								 <button class="btn btn-danger btn-fill btn-wd">Reject</button>
-								   
+
 								 <?php }else{ ?>
 								 <button class="btn btn-success btn-fill btn-wd">Approval</button>
 								 <?php }?>
@@ -131,15 +131,15 @@
             </div>
             <!-- end col-md-12 -->
          </div>
-		 
+
       </div>
    </div>
 </div>
 <script type="text/javascript">
    $(document).ready(function () {
-     $('#communcicationmenu').addClass('collapse in');
-     $('#communication').addClass('active');
-     $('#communication1').addClass('active');
+     $('#commmenu').addClass('collapse in');
+     $('#comm').addClass('active');
+     $('#comm1').addClass('active');
     $('#myformsection').validate({ // initialize the plugin
        rules: {
          leave_type:{required:true },
@@ -193,21 +193,21 @@
              });
 
 
-         }); 
+         });
 
 
 $(function () {
         $("#choose").change(function () {
             if ($(this).val() == "Permission") {
                 $("#permissiontime").show();
-	
+
             } else {
            $("#permissiontime").hide();
-				
+
             }
         });
-    }); 
- 
+    });
+
 
    $().ready(function(){
 

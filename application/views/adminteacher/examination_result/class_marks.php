@@ -19,9 +19,9 @@
                             <div class="content table-responsive table-full-width">
 							<!--<?php //echo base_url(); ?>examinationresult/marks_details-->
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_status" class="form-horizontal" enctype="multipart/form-data" id="markform">
-					
-<?php 
-		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)	
+
+<?php
+		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)
 		{
 			foreach ($stu as $v) {
 				$cnt= count($subject_name);
@@ -47,16 +47,16 @@
 									        $id=$exam->exam_id;
 											//echo $id;
 											 }else{ echo "";}
-									      
+
                                   ?>
-								
+
 								<input type="hidden" name="examid" id="eid" value="<?php echo $id; ?>"/>
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
 								<?php
   								      if($status=="Success")
-									  { 
+									  {
                                        $cnt= count($subject_name);
                                      for($i=0;$i<$cnt;$i++)
 									 { ?>
@@ -64,14 +64,14 @@
 									<?php  }
 									}else{  ?>
 									 <th style="color:red;">Subject Not Found</th>
-									 <?php  }?> 
+									 <?php  }?>
                                     </thead>
-									<?php 
+									<?php
 									$tecid=$marks1[0]->teacher_id;
 									echo '<input type="hidden" id="tid" name="teaid" value="'.$tecid.'" />';
                                      ?>
                                     <tbody>
-										<?php 
+										<?php
 									if(!empty($stu))
 									{
 										$student_arr = array();
@@ -82,13 +82,13 @@
 										die;
 										 */
 										$i = 1;
-										foreach ($student_arr as $k => $s1) 
+										foreach ($student_arr as $k => $s1)
 										{
 											echo '<tr>';
 											echo '<td>' . $i . '</td>';
-											echo '<td>' . $k . '</td>';	
+											echo '<td>' . $k . '</td>';
 											$k = 1;
-											foreach ($s1 as $k1 => $s) 
+											foreach ($s1 as $k1 => $s)
 											{
 												if(empty($s) === false && $k == 1){
 													echo '<input type="hidden" id="sid" name="sutid[]" value="'.$s->enroll_id.'" />';
@@ -98,10 +98,10 @@
 												if($status=="Success")
 											   {
 												    echo '<td><input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
-													
+
 													if(!empty($s))
-													{	
-														echo '<input style="width:60%;" type="text" required name="marks1" value="'.$s->marks.'" class="form-control" readonly /></td>';														
+													{
+														echo '<input style="width:60%;" type="text" required name="marks1" value="'.$s->marks.'" class="form-control" readonly /></td>';
 													}else{
 														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value="" class="form-control"/>';
 														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
@@ -128,10 +128,13 @@
 
             </div>
         </div>
-	</div>	
-	
+	</div>
+
 <script type="text/javascript">
 
+$('#examinationmenu').addClass('collapse in');
+$('#exam').addClass('active');
+$('#exam1').addClass('active');
 
 $('#markform').validate({ // initialize the plugin
         rules: {
@@ -143,11 +146,11 @@ $('#markform').validate({ // initialize the plugin
 			  marks: "Please Enter The Marks"
             }
     });
-	
+
 
 
 	   function insertfun()
-	   {//onkeyup="insertfun(this.value)" 
+	   {//onkeyup="insertfun(this.value)"
 		   var m=document.getElementById("mark").value;
 		   var s=document.getElementById("sid").value;
 		   var c=document.getElementById("cid").value;
@@ -156,12 +159,12 @@ $('#markform').validate({ // initialize the plugin
 		   var ex=document.getElementById("eid").value;
 
 		   //alert(m);alert(s);alert(ex);//exit;
-		   
+
 		  $.ajax({
 				type:'post',
 				url:'<?php echo base_url(); ?>/examinationresult/ajaxmarkinsert',
 				data:'examid=' + ex + '&suid=' + sub + '&stuid=' + s + '&clsid=' + c + '&teid=' + t + '&mark=' + m,
-		
+
 				success:function(test)
 				{   alert(test);exit;
 					if(test=="Email Id already Exit")

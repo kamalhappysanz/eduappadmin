@@ -11,13 +11,13 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Teacher Class & Section 
+                     <h4 class="title">Teacher Class & Section
 					 <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))
-						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">Class Mark</a>  
+						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">Class Mark</a>
 					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
                   </div>
-				  
-				  <?php  
+
+				  <?php
 						if(empty($result))
 						{?>
 							<p style="padding:10px;color:red;">No Exam Added For Any Class</p>
@@ -29,8 +29,8 @@
 							$c=$row->exam_date;
 							$d=$row->times;
 							$e=$row->classmaster_id;
-						}	
-                          }							
+						}
+                          }
 						 ?>
 
                   <div class="content">
@@ -42,30 +42,30 @@
                         </div>
                         <?php  }else{?>
                         <?php   $cnt= count($class_id);
-						        
+
                          for($i=0;$i<$cnt;$i++)
 						  { ?>
 						   <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details?var1=<?php echo $class_id[$i]; ?>&var2=<?php if(empty($result))
-						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>" 
+						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"
 						   onclick="changeText(<?php echo $class_id[$i]; ?>)"class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a>
                         </div>
-						 <?php   
+						 <?php
 						   } }  ?>
-						  
+
                        <!-- <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))
 						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>" class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a>
                         </div> -->
-						   
-						
+
+
                      </div>
                   </div>
                </div>
             </div>
          </div>
          <!-- row -->
-		 
+
 		   <!--  <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -96,15 +96,16 @@
                 </div>-->
          <!-- end row -->
          <!--<div id="test" style="display: none" >  </div>-->
-   
+
       </div>
    </div>
 </div>
 <script type="text/javascript">
    $(document).ready(function () {
-   $('#mastersmenu').addClass('collapse in');
-   $('#master').addClass('active');
-   $('#masters2').addClass('active');
+     $('#examinationmenu').addClass('collapse in');
+     $('#exam').addClass('active');
+     $('#exam1').addClass('active');
+
     $('#classsection').validate({ // initialize the plugin
         rules: {
             test_type:{required:true },
@@ -125,7 +126,7 @@
             }
     });
    });
-   
+
    var $table = $('#bootstrap-table');
          $().ready(function(){
              $table.bootstrapTable({
@@ -140,7 +141,7 @@
                  pageSize: 8,
                  clickToSelect: false,
                  pageList: [8,10,25,50,100],
-   
+
                  formatShowingRows: function(pageFrom, pageTo, totalRows){
                      //do nothing here, we don't want to show the text "showing x of y from..."
                  },
@@ -155,20 +156,20 @@
                      detailClose: 'fa fa-minus-circle'
                  }
              });
-   
+
              //activate the tooltips after the data table is initialized
              $('[rel="tooltip"]').tooltip();
-   
+
              $(window).resize(function () {
                  $table.bootstrapTable('resetView');
              });
-   
-   
+
+
          });
 </script>
 <script type="text/javascript">
    $().ready(function(){
-   
+
      $('.datepicker').datetimepicker({
        format: 'DD-MM-YYYY',
        icons: {
@@ -185,7 +186,7 @@
     });
    });
 
-  /*  function changeText(id) 
+  /*  function changeText(id)
    {
     //$('#myModal').modal('show');
   alert(id);
@@ -196,12 +197,12 @@
                  id:id
              },
            dataType: 'json',
-   
+
             success: function(test1)
                {
    	          alert(test1.status);
                  if (test1.status=='Success') {
-                  
+
                      var sub = test1.subject_name;
    			//alert(sub.length);
                      var sub_id = test1.subject_id;
@@ -209,26 +210,25 @@
    			//alert(len);
                      var i;
                      var name = '';
-                   
-                     for (i = 0; i < len; i++) 
+
+                     for (i = 0; i < len; i++)
 					 {
                          name += '<input name="subject_name" type="text" required class="form-control"  value="' + sub[i] + '"><input name="subject_id[]" required type="hidden" class="form-control"  value="' + sub_id[i] + '"></br>';
                          $("#ajaxres").html(name);
                          $('#msg').html('');
                      }
                  } else {
-   			
+
    			  $('#msg').html('<span style="color:red;text-align:center;">Subject Not Found</p>');
    			  $("#ajaxres").html('');
-   
-                 }  
+
+                 }
              }
-    
-    
+
+
    });
    } */
-   
-  
-   
-</script>
 
+
+
+</script>

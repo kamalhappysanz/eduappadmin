@@ -213,6 +213,10 @@
 
 		<script>
 		$(document).ready(function() {
+			
+			$('#dash').addClass('active');
+
+
 		$('#fullCalendar').fullCalendar({
 			header: {
 				left: 'prev,next today',

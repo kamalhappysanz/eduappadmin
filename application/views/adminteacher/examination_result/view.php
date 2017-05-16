@@ -1,7 +1,7 @@
 <div class="main-panel">
 <div class="content">
 <div class="container-fluid">
-	  
+
 		 <?php if($this->session->flashdata('msg')): ?>
          <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -13,7 +13,7 @@
                <div class="card">
                   <div class="content">
                      <div class="fresh-datatables">
-					 <h4 class="title">Marks Details<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4> 
+					 <h4 class="title">Marks Details<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
@@ -32,7 +32,7 @@
                               <tr>
                                  <td><?php echo $i; ?></td>
                                  <td><?php echo $rows->name;  ?> </td>
-                                 <td><?php $cid=$rows->classmaster_id; 
+                                 <td><?php $cid=$rows->classmaster_id;
                            $sql="SELECT c.*,s.*,cm.* FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class_sec_id='$cid' AND cm.section = s.sec_id AND cm.class=c.class_id";
 								     $resultset=$this->db->query($sql);
 									 $row=$resultset->result();
@@ -44,7 +44,7 @@
 									 }
 								 ?> </td>
                                  <td><?php echo $rows->subject_name;  ?> </td>
-                                 <td><?php $id=$rows->exam_id;  
+                                 <td><?php $id=$rows->exam_id;
 								     $sql="SELECT exam_id,exam_name FROM edu_examination WHERE exam_id='$id' ";
 								     $resultset=$this->db->query($sql);
 									 $row=$resultset->result();
@@ -52,7 +52,7 @@
 									 {}
 									 echo $row1->exam_name;
 								 ?> </td>
-                                 
+
                                  <td>
                                     <a href="<?php echo base_url(); ?>examinationresult/exam_mark_edit_details?var1=<?php echo $rows->subject_id; ?>&var2=<?php echo $rows->classmaster_id; ?>" title="Edit Mark Details" rel="tooltip" class="btn btn-simple btn-warning btn-icon edit" ><i class="fa fa-edit"></i></a>
 									</td>
@@ -68,12 +68,12 @@
             </div>
             <!-- end col-md-12 -->
          </div>
-		 
+
 		 </div></div></div>
-		 
+
 		 <script type="text/javascript">
    var $table = $('#bootstrap-table');
-   
+
         $().ready(function(){
             $table.bootstrapTable({
                 toolbar: ".toolbar",
@@ -111,5 +111,8 @@
             });
 
 
-        });  
+        });
+				$('#examinationmenu').addClass('collapse in');
+				$('#exam').addClass('active');
+				$('#exam2').addClass('active'); 
 </script>

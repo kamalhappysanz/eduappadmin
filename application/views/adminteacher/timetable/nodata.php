@@ -36,7 +36,7 @@
   </div>
 </div>
 <script>
-jQuery('#timetablemenu').addClass('collapse in');
-$('#time').addClass('active');
-$('#time2').addClass('active');
+$('#timetablemenu').addClass('collapse in');
+$('#timetable').addClass('active');
+$('#timetable1').addClass('active');
 </script>

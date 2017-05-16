@@ -109,45 +109,45 @@ font-weight: 500;
 
 
             <ul class="nav">
-                <li class="">
+                <li class="" id="dash">
                     <a href="<?php echo base_url(); ?>">
                         <i class="pe-7s-home"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
 
-								<li>
-										<a data-toggle="collapse" href="#classmenu">
+								<li id="atten">
+										<a data-toggle="collapse" href="#attendmenu">
 												<i class="pe-7s-note2"></i>
 												<p>Attendence	</p>
 												<b class="caret"></b>
 										</a>
-										<div class="collapse" id="classmenu">
+										<div class="collapse" id="attendmenu">
 											<ul class="nav">
-													<li><a href="<?php echo base_url();  ?>teacherattendence/home">Update Attendence</a></li>
-													<li><a href="<?php echo base_url();  ?>teacherattendence/view">View Attendence</a></li>
-													<li><a href="<?php echo base_url();  ?>teacherattendence/monthview">Month view</a></li>
+													<li id="atten1"><a href="<?php echo base_url();  ?>teacherattendence/home">Update Attendence</a></li>
+													<li id="atten2"><a href="<?php echo base_url();  ?>teacherattendence/view">View Attendence</a></li>
+													<li id="atten3"><a href="<?php echo base_url();  ?>teacherattendence/monthview">Month view</a></li>
 
 											</ul>
 									</div>
 								</li>
 
-								<li>
-										<a data-toggle="collapse" href="#homeworknmenu">
+								<li id="home">
+										<a data-toggle="collapse" href="#homeworkmenu">
 												<i class="pe-7s-flag"></i>
 												<p>Home Work	</p>
 												<b class="caret"></b>
 										</a>
-										<div class="collapse" id="homeworknmenu">
+										<div class="collapse" id="homeworkmenu">
 											<ul class="nav">
-										<li><a href="<?php echo base_url(); ?>homework/home">Home Work</a></li>
+										<li id="home1"><a href="<?php echo base_url(); ?>homework/home">Home Work</a></li>
 													<!-- <li><a href=""> Home Work</a></li>
 													<li><a href=""> Class Test</a></li> -->
 
 											</ul>
 									</div>
 								</li>
-								<li>
+								<li id="exam">
 										<a data-toggle="collapse" href="#examinationmenu">
 												<i class="pe-7s-plugin"></i>
 												<p>Examination Result</p>
@@ -155,12 +155,12 @@ font-weight: 500;
 										</a>
 										<div class="collapse" id="examinationmenu">
 											<ul class="nav">
-										<li><a href="<?php echo base_url(); ?>examinationresult/home">Add Exam Marks</a></li>
-										<li><a href="<?php echo base_url(); ?>examinationresult/marks_details_view">Edit Exam Marks</a></li>
+										<li id="exam1"><a href="<?php echo base_url(); ?>examinationresult/home">Add Exam Marks</a></li>
+										<li id="exam2"><a href="<?php echo base_url(); ?>examinationresult/marks_details_view">Edit Exam Marks</a></li>
 											</ul>
 									</div>
 								</li>
-								<li>
+								<li id="calendar">
 										<a data-toggle="collapse" href="#calendermenu">
 												<i class="pe-7s-plugin"></i>
 												<p>Calender	</p>
@@ -168,36 +168,36 @@ font-weight: 500;
 										</a>
 										<div class="collapse" id="calendermenu">
 											<ul class="nav">
-												<li><a href="<?php echo base_url(); ?>teacherevent/calender">Calender</a></li>
-												<li><a href="<?php echo base_url(); ?>teacherevent/home">List of Event</a></li>
+												<li id="calendar1"><a href="<?php echo base_url(); ?>teacherevent/calender">Calender</a></li>
+												<li id="calendar2"><a href="<?php echo base_url(); ?>teacherevent/home">List of Event</a></li>
 
 											</ul>
 									</div>
 								</li>
 
-								<li>
-										<a data-toggle="collapse" href="#communicationmenu">
+								<li id="comm">
+										<a data-toggle="collapse" href="#commmenu">
 												<i class="pe-7s-plugin"></i>
 												<p>Communication</p>
 												<b class="caret"></b>
 										</a>
-										<div class="collapse" id="communicationmenu">
+										<div class="collapse" id="commmenu">
 											<ul class="nav">
-										<li><a href="<?php echo base_url(); ?>teachercommunication/home">Apply Leaves </a></li>
+										<li id="comm1"><a href="<?php echo base_url(); ?>teachercommunication/home">Apply Leaves </a></li>
 
 											</ul>
 									</div>
 								</li>
-								<li>
-										<a data-toggle="collapse" href="#timetable">
+								<li id="timetable">
+										<a data-toggle="collapse" href="#timetablemenu">
 												<i class="pe-7s-plugin"></i>
 												<p>Time Table	</p>
 													<b class="caret"></b>
 										</a>
-										<div class="collapse" id="timetable">
+										<div class="collapse" id="timetablemenu">
 											<ul class="nav">
-										<li><a href="<?php echo base_url(); ?>teachertimetable/home">Time Table</a></li>
-										<li><a href="<?php echo base_url(); ?>teachertimetable/reviewview">Reviews</a></li>
+										<li id="timetable1"><a href="<?php echo base_url(); ?>teachertimetable/home">Time Table</a></li>
+										<li id="timetable2"><a href="<?php echo base_url(); ?>teachertimetable/reviewview">Reviews</a></li>
 											</ul>
 									</div>
 
