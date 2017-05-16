@@ -58,8 +58,13 @@ class Adminlogin extends CI_Controller {
 								$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 								//$this->session->userdata($user_name);
 								$session_data=$this->session->set_userdata($datas);
+								$datas['res']=$this->dashboard->get_user_count_student();
+								$datas['parents']=$this->dashboard->get_user_count_parents();
+								$datas['das_events']=$this->dashboard->dash_events();
+								$datas['das_users']=$this->dashboard->dash_users();
+								$datas['dash_comm']=$this->dashboard->dash_comm();
 								$this->load->view('header',$datas);
-								$this->load->view('home');
+								$this->load->view('home',$datas);
 								$this->load->view('footer');
 							break;
 							case '2':
@@ -161,7 +166,7 @@ class Adminlogin extends CI_Controller {
 			 $datas['das_events']=$this->dashboard->dash_events();
 			 $datas['das_users']=$this->dashboard->dash_users();
 			 $datas['dash_comm']=$this->dashboard->dash_comm();
-	
+
 			$this->load->view('header',$datas);
 			$this->load->view('home',$datas);
 			$this->load->view('footer');
