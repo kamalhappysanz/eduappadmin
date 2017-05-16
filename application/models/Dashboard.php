@@ -26,7 +26,7 @@ Class Dashboard extends CI_Model
 
 
     function dash_events(){
-      $query="SELECT * FROM edu_events WHERE STATUS='A' ORDER BY event_id DESC LIMIT 5";
+      $query="SELECT * FROM edu_events WHERE STATUS='A' AND  event_date>=NOW() ORDER BY event_id DESC LIMIT 5";
       $result=$this->db->query($query);
       return  $result->result();
 

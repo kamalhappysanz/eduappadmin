@@ -5,6 +5,7 @@
 		.head-count{  text-align: center; border-bottom: 2px solid #9a8585;
     }
 		.cnt{font-size: 20px;}
+    .searchbox{padding: 27px;}
 </style>
 	<div class="main-panel">
         <div class="content">
@@ -18,6 +19,21 @@
 	<div class="row">
 <div class="col-md-12">
 	<div class="col-md-9">
+    <div class="card">
+                            <form id="registerFormValidation" action="#" method="" novalidate="novalidate">
+                                <div class="header">Search</div>
+                                <div class="content">
+                                    <div class="form-group">
+                                        <input class="form-control searchbox" name="email" type="text" required="true" email="true" autocomplete="off" aria-required="true" placeholder="Search Students,Parents,Teacher">
+                                    </div>
+                                </div>
+
+                                <div class="footer">
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Search Here</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                        </div>
 	</div>
 	<div class="col-md-3">
     <div class="card">

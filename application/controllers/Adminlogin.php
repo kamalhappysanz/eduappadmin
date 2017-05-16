@@ -72,7 +72,7 @@ class Adminlogin extends CI_Controller {
 							$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
 							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 							$session_data=$this->session->set_userdata($datas);
-
+							$datas['das_events']=$this->dashboard->dash_events();
 							$datas['user_details']=$this->dashboard->dash_teacher($user_id);
 							//print_r($datas['user_details']);
 							$this->load->view('adminteacher/teacher_header',$datas);
@@ -176,8 +176,10 @@ class Adminlogin extends CI_Controller {
 			$this->load->view('home',$datas);
 			$this->load->view('footer');
 		}else if($user_type==2){
+			$datas['user_details']=$this->dashboard->dash_teacher($user_id);
+			$datas['das_events']=$this->dashboard->dash_events();
 			$this->load->view('adminteacher/teacher_header',$datas);
-			$this->load->view('adminteacher/home');
+			$this->load->view('adminteacher/home',$datas);
 			$this->load->view('adminteacher/teacher_footer');
 		}else if($user_type==3){
 			$this->load->view('adminstudent/student_header',$datas);

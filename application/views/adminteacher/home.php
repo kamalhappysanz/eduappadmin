@@ -1,8 +1,12 @@
 
 <style>
-.profile_detail{
-
+.fc-scroller{
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
+.fc-ltr .fc-basic-view .fc-day-number{text-align: center;}
+.fc-today-button,.fc-month-button,.fc-basicWeek-button,.fc-basicDay-button{display:none;}
+.fc-month-button{display: none;}
 </style>
 
 
@@ -123,7 +127,7 @@
 																</div>
 																<div class="header">
 																		<h6 class="title">Class Teacher </h6>
-																	<p class="category"><a> <?php echo $rows->class_name; ?></a></p>
+																	<p class="category"><a> <?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></a></p>
 																</div>
 																	</div>
 															<div class="col-md-6">
@@ -143,9 +147,119 @@
 
                 </div>
 							</div>
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="card ">
+							                            <div class="header">
+							                                <h4 class="title">UpComing Events</h4>
+
+							                            </div>
+							                            <div class="content">
+							                                <div class="table-full-width">
+							                                    <table class="table">
+							                                        <tbody>
+																												<?php  if(empty($das_events)){
+
+																												} else {
+																													 $i=1;
+																													foreach ($das_events as $rows) { ?>
+																														<tr>
+																																<td>
+																																		<label class="checkbox">
+																																			<?php echo $i; ?>
+																																			</label>
+																																</td>
+																																<td><?php echo $new_date = date('d-m-Y', strtotime($rows->event_date));  ?> &nbsp; <?php echo $rows->event_name; ?></td>
+
+																														</tr>
+
+																											<?php  $i++; } 	}?>
+
+
+
+
+							                                        </tbody>
+							                                    </table>
+							                                </div>
+							                            </div>
+																					<div class="footer">
+																							<hr>
+																							<div class="stats">
+																									<i class="fa fa-history"></i> View Calender
+																							</div>
+																					</div>
+
+
+							                        </div>
+								</div>
+								<div class="col-md-6">
+									<div class="card">
+									<div id="fullCalendar"></div>
+								</div>
+								</div>
+
+
+
+							</div>
+
+
 		  </div>
 
 
 
 
     </div>
+
+
+		<script>
+		$(document).ready(function() {
+		$('#fullCalendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			defaultDate: new Date(),
+			editable: false,
+			eventLimit: true, // allow "more" link when too many events
+			// events:"<?php echo base_url() ?>event/getall_act_event",
+			eventSources: [
+	 {
+		 url: '<?php echo base_url() ?>event/getall_act_event',
+		 color: 'yellow',
+		 textColor: 'black'
+	 },
+	 {
+		 url: '<?php echo base_url() ?>event/get_all_regularleave',
+		 color: 'blue',
+		 textColor: 'white'
+	 },
+	 {
+		url: '<?php echo base_url() ?>teacherevent/view_all_reminder',
+		color: 'red',
+		textColor: 'white'
+	}
+ ],
+			eventMouseover: function(calEvent, jsEvent) {
+		var tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background-color:#000;color:#fff;position:absolute;z-index:10001;padding:20px;">' + calEvent.description + '</div>';
+		var $tooltip = $(tooltip).appendTo('body');
+
+		$(this).mouseover(function(e) {
+				$(this).css('z-index', 10000);
+				$tooltip.fadeIn('500');
+				$tooltip.fadeTo('10', 1.9);
+		}).mousemove(function(e) {
+				$tooltip.css('top', e.pageY + 10);
+				$tooltip.css('left', e.pageX + 20);
+		});
+},
+
+eventMouseout: function(calEvent, jsEvent) {
+		$(this).css('z-index', 8);
+		$('.tooltipevent').remove();
+},
+
+		});
+				});
+
+		</script>
