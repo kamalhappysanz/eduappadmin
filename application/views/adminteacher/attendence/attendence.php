@@ -59,7 +59,7 @@ echo $dateTime->format("A");
                                </tbody>
 
                            </table>
-                          <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right" style="margin-top:20px;" onclick="submitAttendence()">
+                          <button type="button"   class="btn btn-warning btn-fill btn-wd pull-right"  id="submit" style="margin-top:20px;" onclick="submitAttendence()">
                         submit Attendnce  </button>
                          </form>
 
