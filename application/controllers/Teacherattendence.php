@@ -10,6 +10,7 @@ class Teacherattendence extends CI_Controller {
 			$this->load->model('teacherattendencemodel');
 			$this->load->model('class_manage');
 		  $this->load->helper('url');
+			$this->load->library('encryption');
 		  $this->load->library('session');
 
 

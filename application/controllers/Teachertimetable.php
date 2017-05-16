@@ -12,6 +12,8 @@ class Teachertimetable extends CI_Controller {
 			$this->load->model('class_manage');
 		  $this->load->helper('url');
 			$this->load->model('subjectmodel');
+
+			$this->load->library('encrypt');
 		  $this->load->library('session');
 
 
@@ -53,6 +55,7 @@ class Teachertimetable extends CI_Controller {
 
 
 		public function view($class_sec_id){
+			
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');

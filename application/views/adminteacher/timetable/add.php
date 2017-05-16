@@ -16,7 +16,10 @@
                                    for($i=0;$i<$cnt;$i++){
                                    ?>
                                <div class="col-md-2">
-                                     <a href="<?php echo  base_url(); ?>teachertimetable/view/<?php echo $class_id[$i]; ?>" class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a></div>
+                                     <a href="<?php echo  base_url(); ?>teachertimetable/view/<?php  echo $class_id[$i]; ?>" class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a></div>
+
+                                     <!-- <div class="col-md-2">
+                                           <a href="<?php echo  base_url(); ?>teachertimetable/view/<?php  echo $this->encrypt->encode($class_id[$i]); ?>" class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a></div> -->
 
 
                               <?php  } }  ?>
