@@ -30,5 +30,7 @@
 </div>
 
 <script type="text/javascript">
-
+$('#attendmenu').addClass('collapse in');
+$('#atten').addClass('active');
+$('#atten1').addClass('active');
 </script>

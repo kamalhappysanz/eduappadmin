@@ -83,6 +83,11 @@ $e_year = $event_date->format('Y');
 
 </div>
 </div>
+<script>
+$('#calendermenu').addClass('collapse in');
+$('#calendar').addClass('active');
+$('#calendar2').addClass('active');
+</script>
 <style>
 .info a{color: #000;}
 .info a:hover{color: blue;}

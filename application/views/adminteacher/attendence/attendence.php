@@ -82,6 +82,9 @@ echo $dateTime->format("A");
 
 
 <script type="text/javascript">
+$('#attendmenu').addClass('collapse in');
+$('#atten').addClass('active');
+$('#atten1').addClass('active');
 function submitAttendence(){
         swal({
                       title: "Are you sure?",

@@ -7,8 +7,8 @@
        ×</button> <?php echo $this->session->flashdata('msg'); ?>
          </div>
        <?php endif; ?>
-  
-           
+
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -25,9 +25,9 @@
 										$sec=$res->sec_name;
 										}?>
 								 <p class="category"><b>Subject Name </b>= <?php echo $sub; ?> </br> <b>Class&Section Name </b>= <?php echo $cls; ?> - <?php echo $sec; ?> </p>
-								 <?php 
+								 <?php
 									}?>
-									
+
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
@@ -36,7 +36,7 @@
                                     	<th>Name</th>
                                     	<th>Marks</th>
                                     	<th>ReMarks</th>
-                                    	
+
                                     </thead>
 		 <form method="post" action="<?php echo base_url(); ?>homework/marks" class="form-horizontal" enctype="multipart/form-data" id="markform">
                                     <tbody>
@@ -50,7 +50,7 @@
 										$sub=$res->subject_name;
 										$enr_id=$res->enroll_id;
 									?>
-									
+
                                         <tr>
                                         	<td><?php echo $i; ?></td>
                                         	<td><?php echo $res->name; ?>
@@ -58,26 +58,26 @@
 											<input type="hidden" name="enroll[]" value="<?php echo $res->enroll_id; ?>"/>
 									         <input type="hidden" name="hwid" value="<?php echo $res->hw_id; ?>"/>
 									       </td>
-                                        	<td style="width:20%;"> 
+                                        	<td style="width:20%;">
 											<input type="text" required name="marks[]" value class="form-control"/>
 											</td>
                                         	<td> <textarea required name="remarks[]" class="form-control" rows="1" cols="03"></textarea></td>
                                         	<td></td>
                                         </tr>
-										
+
                                    <?php $i++;  }
 									}?>
-								   
+
 								   <tr>
 								   <td></td><td></td>
-                          <td> 
-                              
+                          <td>
+
                                    <button type="submit" id="save" class="btn btn-info btn-fill center">Save </button>
-							  
-							</td>	<td></td><td></td>							   
+
+							</td>	<td></td><td></td>
 								   </tr>
                                     </tbody>
-									
+
 								</form>
                                 </table>
 
@@ -97,9 +97,9 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
-$('#mastersmenu').addClass('collapse in');
-$('#master').addClass('active');
-$('#masters2').addClass('active');
+  $('#homeworkmenu').addClass('collapse in');
+  $('#home').addClass('active');
+  $('#home1').addClass('active');
  $('#myformsection').validate({ // initialize the plugin
      rules: {
          marks:{required:true },

@@ -16,7 +16,7 @@
                   </div>
                   <div class="content">
                      <form method="post" action="<?php echo base_url(); ?>teachercommunication/update" class="form-horizontal" enctype="multipart/form-data" id="myformsection" name="myformsection">
-                        <?php foreach($res as $row){  
+                        <?php foreach($res as $row){
 						 $id=$row->leave_id;
 						$date=date_create($row->leave_date);
 						$leave=$row->type_leave;
@@ -26,7 +26,7 @@
                            <div class="form-group">
                               <label class="col-sm-2 control-label">Type of Leave</label>
                               <div class="col-sm-4">
-							   
+
                                 <select class="form-control" name="leave_type" id="choose" >
 												<option>Select Type Of Leave</option>
 												<option value="Sick Leave">Sick Leave</option>
@@ -42,7 +42,7 @@
                               </div>
                            </div>
                         </fieldset>
-						
+
 						 <?php if($leave=="Permission"){?>
 								   <fieldset>
                                         <div class="form-group">
@@ -56,8 +56,8 @@
                                         </div>
                                     </fieldset>
 						 <?php }?>
-                          
-						   
+
+
                         <br/>
                         <fieldset>
                            <div class="form-group">
@@ -82,9 +82,9 @@
 </div>
 <script type="text/javascript">
    $(document).ready(function () {
-     $('#communcicationmenu').addClass('collapse in');
-     $('#communication').addClass('active');
-     $('#communication1').addClass('active');
+     $('#commmenu').addClass('collapse in');
+     $('#comm').addClass('active');
+     $('#comm1').addClass('active');
     $('#myformsection').validate({ // initialize the plugin
        rules: {
          leave_type:{required:true },
@@ -92,7 +92,7 @@
    		 leave_description:{required:true },
 		 frm_time:{required:true },
 		 to_time:{required:true },
-		 
+
         },
         messages: {
               leave_type:"Select Type Of Leave",
@@ -143,18 +143,18 @@
              });
 
 
-         }); 
+         });
 
 
 $(function () {
         $("#choose").change(function () {
             if ($(this).val() == "Permisssion") {
                 $("#permissiontime").show();
-				
+
             } else {       }
         });
-    }); 
-   
+    });
+
 
    $().ready(function(){
 
@@ -173,5 +173,5 @@ $(function () {
            close: 'fa fa-remove'
        }
     });
-   }); 
+   });
 </script>

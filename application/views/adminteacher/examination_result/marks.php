@@ -19,40 +19,40 @@
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
                                 <table class="table table-hover table-striped">
 								<?php if(!empty($result))
-									  { 
+									  {
 								        //print_r($result);exit;
 										foreach($result as $exam)
 								         {}
 									        $id=$exam->exam_id;
 											//echo $id;exit;
 											 }else{ echo "";}
-									           //echo $id; 
+									           //echo $id;
 											   /* if(!empty($stu))
 										       { foreach($stu as $row)
-									            { 
+									            {
 												 $tname=$row->enroll_id;
 												 $su=$row->subject;
 												 $clsid=$row->class_teacher;}
 											   }else{ echo "";}  */
                                   ?>
-								
+
 								<input type="hidden" name="examid" value="<?php echo $id; ?>"/>
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
-									 <?php 
+									 <?php
                                       if(empty($res))
 									  {?>
 										  <p style="padding:15px;">Student Not Found </p>
 									 <?php  }else{
 										foreach($res as $row)
 										      { }?>
-				<th><?php echo $row->subject_name; ?><input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>	  
-									<?php 
+				<th><?php echo $row->subject_name; ?><input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>
+									<?php
 									  }?>
                                     </thead>
                                     <tbody>
-										<?php 
+										<?php
 										$i=1;
 										if(!empty($mark)){
 										foreach($mark as $row){
@@ -60,19 +60,19 @@
 										<tr>
 										<td><?php echo $i;?></td>
 										<td style="">
-										<?php  $stdid=$row->stu_id; 
+										<?php  $stdid=$row->stu_id;
 										       $sql="SELECT enroll_id,name FROM edu_enrollment WHERE enroll_id='$stdid'";
 											   $result=$this->db->query($sql);
 			                                   $row123=$result->result();
 											   foreach($row123 as $name){ }
-											   echo $name->name; 
+											   echo $name->name;
 										?>
-										</td>	
-										<td><input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>	
+										</td>
+										<td><input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>
 										</tr>
 										<?php $i++;}
 										}else{
-										
+
 										foreach($res as $row)
 										      { ?>
 										<tr>
@@ -82,13 +82,13 @@
 										<input type="hidden" name="sutid[]" value="<?php echo $row->enroll_id; ?>" />
 										<input type="hidden" name="teaid" value="<?php echo $row->teacher_id; ?>" />
                                         <input type="hidden" name="clsmastid" value="<?php echo $row->class_id; ?>" />
-										</td>	
-										<td><input style="width:60%;" type="text" required name="marks[]" value class="form-control"/></td>	
+										</td>
+										<td><input style="width:60%;" type="text" required name="marks[]" value class="form-control"/></td>
 										</tr>
-										<?php $i++;} 
+										<?php $i++;}
 										}?>
 										<tr>
-										<td></td><td></td>	
+										<td></td><td></td>
 										 <td><div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Save </button>
                                           </div> </td>
@@ -96,7 +96,7 @@
 
                                     </tbody>
                                 </table>
-								
+
 								</form>
 
                             </div>
@@ -107,4 +107,10 @@
 
             </div>
         </div>
-	</div>	
+	</div>
+  <script>
+
+  $('#examinationmenu').addClass('collapse in');
+  $('#exam').addClass('active');
+  $('#exam2').addClass('active');
+  </script>

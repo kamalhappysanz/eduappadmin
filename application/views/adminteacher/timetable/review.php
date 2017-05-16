@@ -16,7 +16,7 @@
 
                            <th data-field="id" class="text-center">S.no</th>
                          <th data-field="name" class="text-center" data-sortable="true">Class/Section</th>
-                        
+
                          <th data-field="Subject" class="text-center" data-sortable="true">Subject</th>
                          <th data-field="comments" class="text-center" data-sortable="true">Comments</th>
                           <th data-field="DateTime" class="text-center" data-sortable="true">DateTime</th>
@@ -57,7 +57,9 @@ echo $cls_date->format('d-m-Y H:i A');  ?></td>
 </div>
 
 <script>
-
+$('#timetablemenu').addClass('collapse in');
+$('#timetable').addClass('active');
+$('#timetable2').addClass('active');
  var $table = $('#bootstrap-table');
        $().ready(function(){
            $table.bootstrapTable({
