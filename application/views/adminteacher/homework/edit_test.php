@@ -54,13 +54,11 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Homework Type</label>
                         <div class="col-sm-4">
-						
 						<select name="hw_type" class="selectpicker form-control" data-style="btn-default btn-block" >
                                                 <option value="HT">Class Test</option>
                                                 <option value="HW">Home Work</option>
-                               </select>
+                        </select>
                           <script language="JavaScript">document.testform.hw_type.value="<?php echo $rows->hw_type; ?>";</script>
-                           
                         </div>
                         <label class="col-sm-2 control-label">Title</label>
                         <div class="col-sm-4">
@@ -76,13 +74,27 @@
                            <input type="text"  name="test_date" class="form-control datepicker"  value="<?php $date=date_create($rows->test_date);
 						echo date_format($date,"d-m-Y");?>">
                         </div>
-						 <label class="col-sm-2 control-label">Test Details</label>
-                        <div class="col-sm-4">
-                           <textarea name="test_details" value="" class="form-control" rows="3" cols="03"><?php echo $rows->hw_details; ?></textarea>
+						
+						 <label class="col-sm-2 control-label">Status</label>
+						<div class="col-sm-4">
+						<select name="status" class="selectpicker form-control" data-style="btn-default btn-block" >
+                                                <option value="A">Active</option>
+                                                <option value="DA">Deactive</option>
+                        </select>
+                          <script language="JavaScript">document.testform.status.value="<?php echo $rows->status; ?>";</script>
                         </div>
 						
                      </div>
                   </fieldset>
+				  
+				   <fieldset>
+                     <div class="form-group">
+					 <label class="col-sm-2 control-label">Test Details</label>
+                        <div class="col-sm-4">
+                           <textarea name="test_details" value="" class="form-control" rows="3" cols="03"><?php echo $rows->hw_details; ?></textarea>
+                        </div>
+					 </div>
+				</fieldset> 
                 
                   <fieldset>
                      <div class="form-group">

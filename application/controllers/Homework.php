@@ -26,7 +26,8 @@ class Homework extends CI_Controller
 			 $datas=$this->homeworkmodel->get_teacher_id($user_id);
 			 $datas['result']=$this->homeworkmodel->getall_details($user_id);
 			 $datas['ayear']=$this->homeworkmodel->get_acdaemicyear();
-			 //print_r($datas['ayear']);exit;
+			 //echo'<pre>';
+	         //print_r($datas['result']);exit;
 	 		 $this->load->view('adminteacher/teacher_header');
 			 $this->load->view('adminteacher/homework/add',$datas);
 	 		 $this->load->view('adminteacher/teacher_footer');
@@ -164,6 +165,8 @@ class Homework extends CI_Controller
 				$user_type=$this->session->userdata('user_type');
 				$datas['result']=$this->homeworkmodel->edit_test_details($hw_id);
 				
+				//print_r($datas['status']);exit;
+				
 			    if($user_type==2)
 			      {
 					 $this->load->view('adminteacher/teacher_header');
@@ -185,8 +188,9 @@ class Homework extends CI_Controller
 			
 			$dateTime = new DateTime($test_date);
 			$formatted_date=date_format($dateTime,'Y-m-d' );
+			$status=$this->input->post('status');
 			
-			$datas = $this->homeworkmodel->update_test_details($id,$hw_type,$title,$formatted_date,$test_details);
+			$datas= $this->homeworkmodel->update_test_details($id,$hw_type,$title,$formatted_date,$test_details,$status);
 			  if($datas['status']=="success")
 			  {
 				$this->session->set_flashdata('msg','Update Successfully');

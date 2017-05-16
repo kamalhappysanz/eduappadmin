@@ -51,6 +51,7 @@
                               <th>Title</th>
                               <th>Test DATE</th>
                               <th>Details</th>
+							  <th>Status</th>
                               <th class="disabled-sorting text-right">Actions</th>
                            </thead>
                            <tbody>
@@ -60,37 +61,29 @@
                                  $type=$rows->hw_type;
                                  $sta=$rows->mark_status;
 								 $hw=$rows->hw_type;
+								 //echo $rows->status;
+								 
                                   ?>
                               <tr>
                                  <td><?php   echo $i; ?></td>
-                                
-                                    <?php 
-                                      /*  $id=$rows->teacher_id;
-                                       $query="SELECT * FROM edu_teachers WHERE teacher_id='$id'";
-                                       $resultset=$this->db->query($query);
-                                       $row=$resultset->result();
-                                       foreach($row as $rows1)
-                                       {}
-                                       $name=$rows1->name; */
-                                       ?>
-                                    <?php    //echo $name ; ?>
                                  
 								 <?php         $cid=$rows->class_id;
                                                $query="SELECT * FROM edu_class WHERE class_id='$cid'";
 											   $resultset=$this->db->query($query);
 											   $row=$resultset->result();
-											   foreach($row as $rows1)
-											   {}?>
-                                 <td><?php echo $rows1->class_name; ?> - <?php echo $rows-> sec_name ?></td>
+											   //foreach($row as $rows1)
+											   //{}?>
+                                 <td><?php echo $row[0]->class_name; ?> - <?php echo $rows->sec_name ?></td>
                                  <td><?php echo $rows->subject_name; ?></td>
                                  <td><?php if($hw=="HT")
 								 {echo "Class Test";}else{ echo "Home Work";}?></td>
+							 
                                  <td><?php echo $rows->title; ?></td>
                                  <td><?php $date=date_create($rows->test_date);
                                     echo date_format($date,"d-m-Y");
                                     ?></td>
                                  <td><?php echo $rows->hw_details; ?></td>
-                                 <!-- <td><?php //echo $sta;?></td> -->
+                                 <td><?php echo $rows->status; ?></td>
                                  <td class="text-right">
                                     <?php if($sta==0 && $type=="HT")
                                        {?>
