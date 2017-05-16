@@ -70,7 +70,8 @@ class Examinationresult extends CI_Controller
 			  $datas['stu']=$this->examinationresultmodel->getall_stuname($user_id,$cls_masid,$exam_id);
 			  $datas['result']=$this->examinationresultmodel->getall_exam_details($exam_id);
 			  $datas['res']=$this->examinationresultmodel->getall_cls_sec_stu($user_id,$cls_masid,$exam_id);
-			 // echo '<pre>';print_r($datas['sub']);
+			  $datas['mark']=$this->examinationresultmodel->getall_marks($user_id,$cls_masid,$exam_id);
+			  // echo '<pre>';print_r($datas['mark']); exit;
 			 // echo '<pre>';print_r($datas['stu']); exit;
 			
 			 if($user_type==2)

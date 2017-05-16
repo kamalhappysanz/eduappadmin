@@ -47,13 +47,32 @@
 									 <?php  }else{
 										foreach($res as $row)
 										      { }?>
-				<th><?php echo $row->subject_name; ?><input type="hidden" name="subid" value="<?php echo $row->subject_id; ?>" /></th>	  
+				<th><?php echo $row->subject_name; ?><input type="hidden" name="subjectid" value="<?php echo $row->subject_id; ?>" /></th>	  
 									<?php 
 									  }?>
                                     </thead>
                                     <tbody>
 										<?php 
 										$i=1;
+										if(!empty($mark)){
+										foreach($mark as $row){
+										       ?>
+										<tr>
+										<td><?php echo $i;?></td>
+										<td style="">
+										<?php  $stdid=$row->stu_id; 
+										       $sql="SELECT enroll_id,name FROM edu_enrollment WHERE enroll_id='$stdid'";
+											   $result=$this->db->query($sql);
+			                                   $row123=$result->result();
+											   foreach($row123 as $name){ }
+											   echo $name->name; 
+										?>
+										</td>	
+										<td><input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>	
+										</tr>
+										<?php $i++;}
+										}else{
+										
 										foreach($res as $row)
 										      { ?>
 										<tr>
@@ -66,7 +85,8 @@
 										</td>	
 										<td><input style="width:60%;" type="text" required name="marks[]" value class="form-control"/></td>	
 										</tr>
-										<?php $i++;} ?>
+										<?php $i++;} 
+										}?>
 										<tr>
 										<td></td><td></td>	
 										 <td><div class="col-sm-10">

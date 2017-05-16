@@ -61,7 +61,7 @@
                                  $type=$rows->hw_type;
                                  $sta=$rows->mark_status;
 								 $hw=$rows->hw_type;
-								 //echo $rows->status;
+								 $status=$rows->status;
 								 
                                   ?>
                               <tr>
@@ -70,10 +70,10 @@
 								 <?php         $cid=$rows->class_id;
                                                $query="SELECT * FROM edu_class WHERE class_id='$cid'";
 											   $resultset=$this->db->query($query);
-											   $row=$resultset->result();
+											   $row123=$resultset->result();
 											   //foreach($row as $rows1)
 											   //{}?>
-                                 <td><?php echo $row[0]->class_name; ?> - <?php echo $rows->sec_name ?></td>
+                                 <td><?php echo $row123[0]->class_name; ?> - <?php echo $rows->sec_name ?></td>
                                  <td><?php echo $rows->subject_name; ?></td>
                                  <td><?php if($hw=="HT")
 								 {echo "Class Test";}else{ echo "Home Work";}?></td>
@@ -83,7 +83,12 @@
                                     echo date_format($date,"d-m-Y");
                                     ?></td>
                                  <td><?php echo $rows->hw_details; ?></td>
-                                 <td><?php echo $rows->status; ?></td>
+                                 <td><?php if($status=='A'){?>
+								 <button class="btn btn-success btn-fill btn-wd">Active</button>
+								 <?php }else{?>
+								  <button class="btn btn-danger btn-fill btn-wd">Deactive</button>
+								 <?php }
+								 //echo $status; ?></td>
                                  <td class="text-right">
                                     <?php if($sta==0 && $type=="HT")
                                        {?>
@@ -98,7 +103,7 @@
                         </table>
                      </div>
                   </div>
-                  <!-- end content-->
+                  <!-- end content-->	
                </div>
                <!--  end card  -->
             </div>

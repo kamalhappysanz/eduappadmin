@@ -173,7 +173,7 @@ Class Examinationresultmodel extends CI_Model
 			   {
 				$sutid1=$sutid[$i];
 				//print_r($enroll);
-				$subid1=$subid[$i];
+				$subid1=$subid;
 				$clsmastid1=$clsmastid;
 				$teaid1=$teaid;
 				$examid1=$exam_id;
@@ -240,6 +240,27 @@ Class Examinationresultmodel extends CI_Model
 			//$res=$resultset->result();
 			//$datas=array("status"=>"success","marks"=>$res);
 		    return $row;
+	   }
+	   
+	   function getall_marks($user_id,$cls_masid,$exam_id)
+	   {
+		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+			$resultset=$this->db->query($query);
+			$row=$resultset->result();
+			$teacher_id=$row[0]->teacher_id;
+			//echo $cls_masid;
+			$sql="SELECT teacher_id,class_teacher,subject FROM edu_teachers WHERE teacher_id='$teacher_id'";
+			$result=$this->db->query($sql);
+			$row=$result->result();
+			 foreach($row as $rows){}
+		     $clstea=$rows->class_teacher;
+			 $tsub=$rows->subject;
+			// echo $clstea;echo $tsub;
+			 $sql1="SELECT * FROM edu_exam_marks WHERE teacher_id='$teacher_id' AND subject_id='$tsub' AND classmaster_id='$cls_masid'";
+			 $result1=$this->db->query($sql1);
+			 $row1=$result1->result();
+			 return $row1;
+			 
 	   }
 	   
 	   function edit_marks_details($user_id,$subid,$clsmasid)

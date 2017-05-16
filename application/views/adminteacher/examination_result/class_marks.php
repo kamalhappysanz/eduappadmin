@@ -17,7 +17,8 @@
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
-					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
+							<!--<?php //echo base_url(); ?>examinationresult/marks_details-->
+					<form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="markform">
 					
 <?php 
 		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)	
