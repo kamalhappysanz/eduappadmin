@@ -255,4 +255,18 @@ class Examinationresult extends CI_Controller
 			}
 		}
 		
+		public function marks_status()
+		{
+			  $datas=$this->session->userdata();
+  	 		  $user_id=$this->session->userdata('user_id');
+			  $user_type=$this->session->userdata('user_type');
+			  
+			  $exam_id=$this->input->post('examid');
+			  $clsmastid=$this->input->post('clsmastid');
+			  //echo $exam_id;echo $clsmastid;//exit;
+			  $datas=$this->examinationresultmodel->marks_status_update($exam_id,$clsmastid);
+			  print_r($datas);exit;
+			  
+		}
+		
  }
