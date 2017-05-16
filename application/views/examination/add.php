@@ -89,12 +89,14 @@
                                 <th>S.no</th>
                                 <th>Exam Year</th>
 								<th>Exam Name</th>
-                                <th class="disabled-sorting text-right">Actions</th>
+								<th>Status</th>
+                                <th>Actions</th>
                               </thead>
                               <tbody>
                                 <?php
                                 $i=1;
                                 foreach ($result as $rows) {
+									$status=$rows->status;
 									               $fyear=$rows->from_month;
     												$month= strtotime($fyear);
 
@@ -105,7 +107,14 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php  echo  date('Y',$month); ?> (To) <?php  echo  date('Y',$month1); ?></td>
 									 <td><?php echo $rows->exam_name; ?></td>
-                                    <td class="text-right">
+									 
+									 <td><?php if($status=='A'){?>
+								 <button class="btn btn-success btn-fill btn-wd">Active</button>
+								 <?php }else{?>
+								  <button class="btn btn-danger btn-fill btn-wd">Deactive</button>
+								 <?php } 
+								 //echo $rows->status;?> </td>
+                                    <td>
 								<!--	<a href="<?php echo base_url(); ?>examination/add_exam_subject/<?php echo $rows->exam_id; ?>" rel="tooltip" title="Added Exam Details" class="btn btn-simple btn-info btn-icon table-action view" >
 									<i class="fa fa-id-card-o" aria-hidden="true"></i></a> -->
 

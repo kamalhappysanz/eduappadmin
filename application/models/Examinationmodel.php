@@ -96,9 +96,9 @@ Class Examinationmodel extends CI_Model
          $res=$this->db->query($query1);
          return $res->result();
 	}
-	function update_exam($exam_id,$exam_year,$exam_name)
+	function update_exam($exam_id,$exam_year,$exam_name,$status)
 	{
-		$query="UPDATE edu_examination SET exam_year='$exam_year',exam_name='$exam_name' WHERE exam_id='$exam_id'";
+		$query="UPDATE edu_examination SET exam_year='$exam_year',exam_name='$exam_name',status='$status' WHERE exam_id='$exam_id'";
 		$res=$this->db->query($query);
 
 		//return $res->result();
@@ -141,7 +141,16 @@ Class Examinationmodel extends CI_Model
 		return count($res1->result());
 		
 	}
-
+    
+	function marks_status()
+	{
+		//$sql="SELECT * FROM exam_marks_status ";
+		$sql="SELECT ms.*,cm.class_sec_id,cm.class,cm.section,c.*,s.* FROM exam_marks_status AS ms,edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE ms.classmaster_id=cm.class_sec_id ";
+		$res=$this->db->query($sql);
+		$result=$res->result();
+		return $result;
+		
+	}
 
 
 }
