@@ -90,7 +90,7 @@ class Examinationresult extends CI_Controller
 			  $datas=$this->session->userdata();
   	 		  $user_id=$this->session->userdata('user_id');
 			  $user_type=$this->session->userdata('user_type');
-				
+
 			  $cls_masid=$this->input->get('var1');
 			  $exam_id=$this->input->get('var2');
 			  //echo $cls_masid;echo $exam_id;exit;

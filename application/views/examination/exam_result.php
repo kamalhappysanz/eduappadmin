@@ -12,18 +12,18 @@
                         <?php
                            if(empty($cls)){   ?>
                         <div class="col-md-2">
-                           <p>No Records Found</p>
+                           <p>No Marks Added</p>
                         </div>
                         <?php  }  else{ 
                                   foreach($cls as $rows){
- 					 ?>
+ 					    ?>
                         
                         <div class="col-md-2">
-                           <a rel="tooltip" href="" class="btn btn-wd"><?php echo $rows->classmaster_id; ?></a>
+                           <a rel="tooltip" href="<?php echo base_url(); ?>examination/exam_mark_details_cls_teacher?var1=<?php echo $rows->classmaster_id; ?>&var2=<?php echo $rows->exam_id; ?>" class="btn btn-wd"><?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></a>
                         </div>
+						<input type="hidden" name="msta_id" value="<?php echo $rows->exam_status_id; ?>"/>
                         <?php  } }  ?>
-						
-						
+
                      </div>
                   </div>
                </div>
@@ -35,9 +35,9 @@
 </div>
 <script type="text/javascript">
    $(document).ready(function () {
-   $('#mastersmenu').addClass('collapse in');
-   $('#master').addClass('active');
-   $('#masters2').addClass('active');
+   $('#exammenu').addClass('collapse in');
+        $('#exam').addClass('active');
+        $('#exam3').addClass('active');
     $('#classsection').validate({ // initialize the plugin
         rules: {
             test_type:{required:true },

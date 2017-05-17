@@ -12,8 +12,8 @@
                <div class="card">
                   <div class="header">
                      <h4 class="title">Teacher Class & Section
-					 <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))
-						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">Class Mark</a>
+					<!-- <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))
+						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">Class Mark</a> -->
 					 <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
                   </div>
 
@@ -52,6 +52,8 @@
                         </div>
 						 <?php
 						   } }  ?>
+						    <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))
+						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">Class Mark</a>
 
                        <!-- <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))

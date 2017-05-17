@@ -294,7 +294,7 @@ class Examination extends CI_Controller
 	 	 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
 		 $datas['cls']=$this->examinationmodel->marks_status();
-		print_r($datas['cls']);exit;
+		 //print_r($datas['cls']);//exit;
 		 if($user_type==1)
 					{
 					 $this->load->view('header');
@@ -306,6 +306,47 @@ class Examination extends CI_Controller
 					 }
 		 
 	 }
+	 
+	 public function exam_mark_details_cls_teacher()
+		{
+			  $datas=$this->session->userdata();
+  	 		  $user_id=$this->session->userdata('user_id');
+			  $user_type=$this->session->userdata('user_type');
+
+			  $cls_masid=$this->input->get('var1');
+			  $exam_id=$this->input->get('var2');
+			 // echo $cls_masid;echo $exam_id;exit;
+			  $datas=$this->examinationmodel->getall_subname($user_id,$cls_masid,$exam_id);
+			  $datas['stu']=$this->examinationmodel->getall_stuname($user_id,$cls_masid,$exam_id);
+			  $datas['cls']=$this->examinationmodel->marks_status();
+			  //echo '<pre>';print_r($datas);
+			  //echo '<pre>';print_r($datas['stu']); exit;
+			
+			 if($user_type==1)
+			    { 
+				 $this->load->view('header');
+			     $this->load->view('examination/exam_class_result',$datas);
+	 		     $this->load->view('footer');
+				}else{
+					 redirect('/');
+				}
+
+		}
+		
+		public function marks_status_update()
+		{
+			  $datas=$this->session->userdata();
+  	 		  $user_id=$this->session->userdata('user_id');
+			  $user_type=$this->session->userdata('user_type');
+			  
+			  $eid=$this->input->post('msta_id');
+			  //echo $eid;exit;
+			  $datas=$this->examinationmodel->update_exam_status($eid);
+			  print_r($datas);exit;
+			  
+		}
+		
+		
 	
 
 

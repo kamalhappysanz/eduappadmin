@@ -13,12 +13,12 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Enter Exam Mark <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
+                                <h4 class="title">Exam Mark <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
 							<!--<?php //echo base_url(); ?>examinationresult/marks_details-->
-					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_status" class="form-horizontal" enctype="multipart/form-data" id="markform">
+					<form method="post" action="<?php echo base_url(); ?>examination/marks_status_update" class="form-horizontal" enctype="multipart/form-data" id="markform">
 
 <?php
 		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)
@@ -41,16 +41,9 @@
 ?>
 
                                 <table class="table table-hover table-striped">
-								<?php if(!empty($result))
-									  { foreach($result as $exam)
-								         {}
-									        $id=$exam->exam_id;
-											//echo $id;
-											 }else{ echo "";}
-
-                                  ?>
-
-								<input type="hidden" name="examid" id="eid" value="<?php echo $id; ?>"/>
+								<?php foreach($cls as $rows){ ?>
+								<input type="hidden" name="msta_id" value="<?php echo $rows->exam_status_id; ?>"/> 
+								<?php }?>
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
@@ -66,10 +59,7 @@
 									 <th style="color:red;">Subject Not Found</th>
 									 <?php  }?>
                                     </thead>
-									<?php
-									$tecid=$marks1[0]->teacher_id;
-									echo '<input type="hidden" id="tid" name="teaid" value="'.$tecid.'" />';
-                                     ?>
+									
                                     <tbody>
 										<?php
 									if(!empty($stu))
@@ -90,7 +80,6 @@
 											$k = 1;
 											foreach ($s1 as $k1 => $s)
 											{
-												'<form name="exam" id="examvalidate">';
 												if(empty($s) === false && $k == 1){
 													echo '<input type="hidden" id="sid" name="sutid[]" value="'.$s->enroll_id.'" />';
 													echo '<input type="hidden" id="cid" name="clsmastid" value="'.$s->class_id.'" />';
@@ -104,11 +93,10 @@
 													{
 														echo '<input style="width:60%;" type="text" required name="marks1" value="'.$s->marks.'" class="form-control" readonly /></td>';
 													}else{
-														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value=""  class="form-control"/>';
+														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value="" class="form-control"/>';
 														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
 													}
 												}
-												'</form>';
 											}
 											echo '</tr>';
 											$i++;
@@ -117,7 +105,7 @@
 										?>
 										<tr>
 										 <td><div class="col-sm-10">
-                                             <button type="submit" class="btn btn-info btn-fill center">Approve To Admin</button>
+                                             <button type="submit" class="btn btn-info btn-fill center">Approve</button>
                                           </div> </td>
 										</tr>
                                     </tbody>
@@ -138,7 +126,7 @@ $('#examinationmenu').addClass('collapse in');
 $('#exam').addClass('active');
 $('#exam1').addClass('active');
 
-$('#examvalidate').validate({ // initialize the plugin
+$('#markform').validate({ // initialize the plugin
         rules: {
             marks1:{required:true },
 			marks:{required:true }

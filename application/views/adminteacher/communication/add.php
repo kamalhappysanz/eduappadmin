@@ -8,7 +8,7 @@
 
                <div class="card">
                   <div class="header">
-                     <legend> Communication Details</legend>
+                     <legend>Leave Application</legend>
                   </div>
                   <div class="content">
                      <form method="post" action="<?php echo base_url(); ?>teachercommunication/create" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
