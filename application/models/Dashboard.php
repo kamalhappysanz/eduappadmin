@@ -152,5 +152,21 @@ WHERE teacher_id='$teacher_id'";
 
 
 
+    // Admin students
+
+    function dash_students($user_id){
+$query="SELECT ed.name,ed.student_id,ea.admisn_year,ea.admisn_no,ea.admission_id,ee.name,ee.class_id,ea.sex,ea.age,ea.dob,ea.mother_tongue,ea.mobile,ea.email,ea.student_pic,c.class_name,s.sec_name FROM edu_users AS ed LEFT JOIN edu_admission AS ea ON ed.student_id=ea.admission_id LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id INNER JOIN edu_classmaster AS cm ON ee.class_id=cm.class_sec_id INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE ed.user_id='$user_id'";
+$result12=$this->db->query($query);
+return  $result12->result();
+    }
+
+
+
+    function get_special(){
+      $query="SELECT c.leave_date AS START,c.leaves_name AS title FROM edu_leavemaster AS lm INNER JOIN edu_leaves AS c  ON lm.leave_id=c.leave_mas_id WHERE lm.leave_type='Special Holiday'";
+      $res=$this->db->query($query);
+      return $res->result();
+    }
+
 }
 ?>

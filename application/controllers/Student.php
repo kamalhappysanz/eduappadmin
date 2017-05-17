@@ -13,14 +13,14 @@ class Student extends CI_Controller
 		  $this->load->library('session');
 		  $this->load->model('class_manage');
 		  $this->load->model('subjectmodel');
-		
+
         }
 		public function home()
 		{}
-         
-       
+
+
 	  public function homework_view()
-	   {       
+	   {
            	$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
@@ -35,11 +35,11 @@ class Student extends CI_Controller
 			  }
 		   else{
 				redirect('/');
-		 } 
+		 }
       }
-	  
+
 	  public function view_mark($hw_id)
-	  { 
+	  {
 		    $datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
@@ -54,12 +54,12 @@ class Student extends CI_Controller
 			  }
 		   else{
 				redirect('/');
-		 } 
+		 }
 	  }
-		
+
 		// ---------------------Examination Marks Result Controller-----------------------------------------
-		
-		
+
+
 		public function exam_views()
 		{
 			    $datas=$this->session->userdata();
@@ -76,7 +76,7 @@ class Student extends CI_Controller
 						redirect('/');
 				 }
 		}
-		
+
 		public function exam_result($exam_id)
 		{
 			$datas=$this->session->userdata();
@@ -93,14 +93,60 @@ class Student extends CI_Controller
 						redirect('/');
 				 }
 		}
-	 
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+	   public function attendance(){
+       $datas=$this->session->userdata();
+       $user_id=$this->session->userdata('user_id');
+       $user_type=$this->session->userdata('user_type');
+       if($user_type==3)
+          {
+            $this->load->view('adminstudent/student_header');
+            $this->load->view('adminstudent/attendance/calender',$datas);
+            $this->load->view('adminstudent/student_footer');
+          }else{
+             redirect('/');
+          }
+     }
+
+     public function get_attendance_user(){
+       $datas=$this->session->userdata();
+       $user_id=$this->session->userdata('user_id');
+       $user_type=$this->session->userdata('user_type');
+       $datas['res']=$this->studentmodel->get_student_user($user_id);
+       echo json_encode($datas['res']);
+     }
+
+
+
+     public function timetable(){
+       $datas=$this->session->userdata();
+       $user_id=$this->session->userdata('user_id');
+       $user_type=$this->session->userdata('user_type');
+       if($user_type==3)
+          {
+            $datas['restime']=$this->studentmodel->get_timetable($user_id);
+            if($datas['restime']['st']=="no data Found"){
+     				 $data=$datas['restime'];
+     				 $this->load->view('adminstudent/student_header');
+     				 $this->load->view('adminstudent/timetable/nodata');
+     				 $this->load->view('adminstudent/student_footer');
+     			 }else {
+     				 $data['restime']=$datas['restime']['time'];
+     				 $data['class_id']=$class_sec_id;
+     				 $data['user_id']=$user_id;$data['user_type']=$user_type;
+     				 $this->load->view('adminstudent/student_header');
+     				 $this->load->view('adminstudent/timetable/view',$data);
+     				 $this->load->view('adminstudent/student_footer');
+     			 }
+          }else{
+             redirect('/');
+          }
+     }
+
+
+
+
+
+
  }

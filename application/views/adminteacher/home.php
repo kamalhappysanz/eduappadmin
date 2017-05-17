@@ -213,7 +213,7 @@
 
 		<script>
 		$(document).ready(function() {
-			
+
 			$('#dash').addClass('active');
 
 
@@ -239,7 +239,7 @@
 		 textColor: 'white'
 	 },
 	 {
-		url: '<?php echo base_url() ?>teacherevent/view_all_reminder',
+		url: '<?php echo base_url() ?>adminlogin/special_leave_student',
 		color: 'red',
 		textColor: 'white'
 	}
