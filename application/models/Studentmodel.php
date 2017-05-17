@@ -75,7 +75,7 @@ Class Studentmodel extends CI_Model
 			$row=$resultset->result();
 			$student_id=$row[0]->student_id;
 
-			 $sql="SELECT * FROM edu_examination";
+			 $sql="SELECT * FROM edu_examination WHERE status='A'";
 			 $resultset1=$this->db->query($sql);
 			 $res=$resultset1->result();
              return $res;
@@ -131,6 +131,11 @@ LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_
      }
 
      }
+	 
+	 function get_circular($user_id){
+		$class_id=$this->get_class_id_user();
+        echo $class_id;exit;		
+	 }
 
 
 

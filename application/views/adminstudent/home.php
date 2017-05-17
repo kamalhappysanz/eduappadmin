@@ -149,9 +149,67 @@
 											<div class="col-md-6">
 												<div id="fullCalendar"></div>
 											</div>
-											<div class="col-md-6">
+									<div class="col-md-6">
+									 <div class="card">
+                            <div class="header">
+                                <h4 class="title">Circular</h4>
+                                <p class="category">default style</p>
+                            </div>
+						 <div class="content">
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-target="#collapseOne" href="#" data-toggle="collapse">
+                                                    Collapse item 1
+                                                    <b class="caret"></b>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-target="#collapseTwo" href="#" data-toggle="collapse">
+                                                    Collapse item 2
+
+                                                    <b class="caret"></b>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                               aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-target="#collapseThree" href="#" data-toggle="collapse">
+                                                    Collapse item 3
+
+                                                    <b class="caret"></b>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                            aw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
 											</div>
 									</div>
+									
 								</div>
 							</div>
 		  </div>

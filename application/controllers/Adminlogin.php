@@ -84,8 +84,9 @@ class Adminlogin extends CI_Controller {
 							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 							$session_data=$this->session->set_userdata($datas);
 							$datas['user_details']=$this->dashboard->dash_students($user_id);
-							// echo "<pre>";
-							// print_r($datas['user_details']); exit;
+							$datas['stu_circular']=$this->dashboard->stu_circular_view();
+							 //echo "<pre>";
+							 //print_r($datas['stu_circular']); exit;
 							$this->load->view('adminstudent/student_header',$datas);
 							$this->load->view('adminstudent/home',$datas);
 							$this->load->view('adminstudent/student_footer');
@@ -186,6 +187,8 @@ class Adminlogin extends CI_Controller {
 			$this->load->view('adminteacher/teacher_footer');
 		}else if($user_type==3){
 			$datas['user_details']=$this->dashboard->dash_students($user_id);
+			$datas['stu_circular']=$this->dashboard->stu_circular_view();
+			print_r($datas['stu_circular']);exit;
 			$this->load->view('adminstudent/student_header',$datas);
 			$this->load->view('adminstudent/home',$datas);
 			$this->load->view('adminstudent/student_footer');

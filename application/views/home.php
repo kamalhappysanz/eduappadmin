@@ -159,22 +159,22 @@
                                 <div class="table-full-width">
                                     <table class="table">
                                         <tbody>
-																					<?php  if(empty($das_events)){
+							<?php  if(empty($das_events)){
 
-																					} else {
-																						 $i=1;
-																						foreach ($das_events as $rows) { ?>
-																							<tr>
-																									<td>
-																											<label class="checkbox">
-																												<?php echo $i; ?>
-																												</label>
-																									</td>
-																									<td><?php echo $new_date = date('d-m-Y', strtotime($rows->event_date));  ?> &nbsp; <?php echo $rows->event_name; ?></td>
+							} else {
+								 $i=1;
+								foreach ($das_events as $rows) { ?>
+									<tr>
+											<td>
+													<label class="checkbox">
+														<?php echo $i; ?>
+														</label>
+											</td>
+											<td><?php echo $new_date = date('d-m-Y', strtotime($rows->event_date));  ?> &nbsp; <?php echo $rows->event_name; ?></td>
 
-																							</tr>
+									</tr>
 
-																				<?php  $i++; } 	}?>
+						<?php  $i++; } 	}?>
 
 
 
@@ -240,31 +240,31 @@
 																<h4 class="title">Recent Circular</h4>
 
 														</div>
-														<div class="content">
-																<div class="table-full-width">
-																		<table class="table">
-																			<tbody>
-																				<?php  if(empty($dash_comm)){
+							<div class="content">
+									<div class="table-full-width">
+									<table class="table">
+										<tbody>
+									<?php  if(empty($dash_comm)){
 
-																				} else {
-																					 $i=1;
-																					foreach ($dash_comm as $rows) { ?>
-																						<tr>
-																								<td>
-																										<label class="checkbox">
-																											<?php echo $i; ?>
-																											</label>
-																								</td>
-																								<td><?php echo $rows->commu_title;  ?> </td>
+									} else {
+										 $i=1;
+										foreach ($dash_comm as $rows) { ?>
+											<tr>
+													<td>
+															<label class="checkbox">
+																<?php echo $i; ?>
+																</label>
+													</td>
+													<td><?php echo $rows->commu_title;  ?> </td>
 
-																						</tr>
+											</tr>
 
-																			<?php  $i++; } 	}?>
+								<?php  $i++; } 	}?>
 
-																			</tbody>
-																		</table>
-																</div>
-														</div>
+										</tbody>
+									</table>
+									</div>
+							</div>
 														<div class="footer">
 																<hr>
 																<div class="stats">

@@ -9,7 +9,7 @@ class Student extends CI_Controller
 	{
 		 parent::__construct();
 		  $this->load->model('studentmodel');
-      $this->load->model('teachereventmodel');
+          $this->load->model('teachereventmodel');
 		  $this->load->helper('url');
 		  $this->load->library('session');
 		  $this->load->model('class_manage');
@@ -94,7 +94,7 @@ class Student extends CI_Controller
 						redirect('/');
 				 }
 		}
-
+//------------------------------------------------------------------------//
 
 	   public function attendance(){
        $datas=$this->session->userdata();
@@ -178,6 +178,17 @@ class Student extends CI_Controller
            redirect('/');
         }
      }
+	 
+	 public function view_circular()
+	 {
+		 $datas=$this->session->userdata();
+         $user_id=$this->session->userdata('user_id');
+         $user_type=$this->session->userdata('user_type');
+		 
+		 $datas['res']=$this->studentmodel->get_circular($user_id);
+         if($user_type==3){}
+       
+	 }
 
 
 
