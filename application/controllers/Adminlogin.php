@@ -272,7 +272,12 @@ class Adminlogin extends CI_Controller {
 	}
 
 
-
+	public function search(){
+		$ser_txt=$this->input->post('ser');
+		$datas['res']=$this->dashboard->search_data($ser_txt);
+		// print_r($datas['res']);
+		echo json_encode($datas['res']);
+	}
 
 	public function logout(){
 		$datas=$this->session->userdata();

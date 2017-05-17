@@ -60,6 +60,23 @@ Class Dashboard extends CI_Model
      }
 
 
+      // Search function in Admin Panel
+
+     function search_data($ser_txt){
+       $query="SELECT * FROM edu_enrollment AS ee WHERE ee.name LIKE '$ser_txt%'";
+
+       $result=$this->db->query($query);
+       if($result->num_rows()==0){
+         $data= array("status"=>"nodata");
+         return $data;
+       }else{
+         $res= $result->result();
+         $data= array("status"=>"success","data"=>$res);
+         return $data;
+
+       }
+
+     }
 
 //Admin  Teacher
 

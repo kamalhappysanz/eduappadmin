@@ -1,11 +1,12 @@
 <style>
-.box{        padding: 12px 0px 66px 0px;
-
-    border: 2px solid #9a8585;}
+.box{
+    padding: 12px 0px 66px 0px;
+    border: 2px solid #9a8585;
+  }
 		.head-count{  text-align: center; border-bottom: 2px solid #9a8585;
     }
 		.cnt{font-size: 20px;}
-    .searchbox{padding: 27px;}
+
 </style>
 	<div class="main-panel">
         <div class="content">
@@ -20,19 +21,26 @@
 <div class="col-md-12">
 	<div class="col-md-9">
     <div class="card">
-                            <form id="registerFormValidation" action="#" method="" novalidate="novalidate">
+                            <form id="" action="#" method="" novalidate="">
                                 <div class="header">Search</div>
                                 <div class="content">
                                     <div class="form-group">
-                                        <input class="form-control searchbox" name="email" type="text" required="true" email="true" autocomplete="off" aria-required="true" placeholder="Search Students,Parents,Teacher">
+                                        <input class="form-control searchbox" name="text" type="text"   id="search_txt"  autocomplete="off" aria-required="true" placeholder="Search Students,Parents,Teacher">
                                     </div>
                                 </div>
 
                                 <div class="footer">
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Search Here</button>
+                                    <button type="button" class="btn btn-info btn-fill pull-right" onclick="search_load()">Search Here</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>
+
+                            <div class="card">
+                              <div id="result">
+
+                              </div>
+                            </div>
+
                         </div>
 	</div>
 	<div class="col-md-3">
@@ -235,3 +243,40 @@
 
 				</div>
 			</div>
+
+<script type="text/javascript">
+
+function search_load(){
+
+var ser= $("#search_txt").val();
+if(!ser){
+alert("enter Text");
+$('#result').html(' ');
+}else{
+  $.ajax({
+     url:'<?php echo base_url(); ?>adminlogin/search',
+     method:"POST",
+     data:{ser:ser},
+    //  dataType: "JSON",
+    //  cache: false,
+     success:function(data)
+     {
+       $('#result').html(data);
+       //alert(data['status']);
+       if(data['status']=="success"){
+         alert(data['status'][0]);
+         $('#result').html(data['data']);
+       }else{
+         $('#result').html(data['status']);
+       }
+
+
+     }
+    });
+
+
+}
+}
+
+
+</script>
