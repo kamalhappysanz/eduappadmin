@@ -64,7 +64,8 @@ Class Dashboard extends CI_Model
 
      function search_data($ser_txt,$user_type){
        if($user_type=="students"){
-         $query="SELECT * FROM edu_enrollment AS ee WHERE ee.name LIKE '$ser_txt%'";
+        //  $query="SELECT * FROM edu_enrollment AS ee WHERE ee.name LIKE '$ser_txt%'";
+        $query="SELECT e.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_id,s.sec_name FROM edu_enrollment as e,edu_classmaster as cm, edu_sections as s,edu_class as c WHERE e.class_id=cm.class_sec_id and cm.class=c.class_id and cm.section=s.sec_id  and e.name LIKE '$ser_txt%'";
          $result=$this->db->query($query);
          if($result->num_rows()==0){
           echo "No Data Found";
@@ -85,7 +86,7 @@ Class Dashboard extends CI_Model
      <tr>
       <td>'.$row->name.'</td>
       <td>'.$row->admisn_no.'</td>
-      <td>'.$row->class_id.'</td>
+      <td>'.$row->class_name.'-'.$row->sec_name.'</td>
       <td>'.$row->admit_date.'</td>
       <td>'.$row->status.'</td>
      </tr>
@@ -95,10 +96,40 @@ Class Dashboard extends CI_Model
 
        }
        }else if($user_type=="parents"){
-         echo "parents";
+        $query="SELECT et.name,et.phone,et.email,c.class_name,s.sec_name,et.status FROM edu_teachers AS et JOIN edu_classmaster AS cm, edu_sections AS s,edu_class AS c WHERE et.class_teacher=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND et.name LIKE '$ser_txt%'";
+
        }else if($user_type=="teachers"){
-         echo "teachers";
-       }else{
+         $query="SELECT et.name,et.phone,et.email,c.class_name,s.sec_name,et.status FROM edu_teachers AS et JOIN edu_classmaster AS cm, edu_sections AS s,edu_class AS c WHERE et.class_teacher=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND et.name LIKE '$ser_txt%'";
+         $result=$this->db->query($query);
+         if($result->num_rows()==0){
+          echo "No Data Found";
+         }else{
+          $output='
+  <div class="table-responsive">
+   <table class="table table bordered">
+    <tr>
+     <th>Name </th>
+     <th>phone No</th>
+     <th>Class Teacher</th>
+     <th>Email </th>
+     <th>Status</th>
+    </tr>
+  ';
+     foreach($result->result() as $row){
+    $output .= '
+     <tr>
+      <td>'.$row->name.'</td>
+      <td>'.$row->phone.'</td>
+      <td>'.$row->class_name.'-'.$row->sec_name.'</td>
+      <td>'.$row->email.'</td>
+      <td>'.$row->status.'</td>
+     </tr>
+    ';
+         }
+         echo $output;
+
+       }
+     }else{
           echo "No Data Found";
        }
 
