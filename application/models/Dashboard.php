@@ -62,21 +62,47 @@ Class Dashboard extends CI_Model
 
       // Search function in Admin Panel
 
-     function search_data($ser_txt){
-       $query="SELECT * FROM edu_enrollment AS ee WHERE ee.name LIKE '$ser_txt%'";
-
-       $result=$this->db->query($query);
-       if($result->num_rows()==0){
-         $data= array("status"=>"nodata");
-         return $data;
-       }else{
-         $res= $result->result();
-         $data= array("status"=>"success","data"=>$res);
-         return $data;
+     function search_data($ser_txt,$user_type){
+       if($user_type=="students"){
+         $query="SELECT * FROM edu_enrollment AS ee WHERE ee.name LIKE '$ser_txt%'";
+         $result=$this->db->query($query);
+         if($result->num_rows()==0){
+          echo "No Data Found";
+         }else{
+          $output='
+  <div class="table-responsive">
+   <table class="table table bordered">
+    <tr>
+     <th>Students</th>
+     <th>Adission No</th>
+     <th>Class</th>
+     <th>Admission Date</th>
+     <th>Status</th>
+    </tr>
+  ';
+     foreach($result->result() as $row){
+    $output .= '
+     <tr>
+      <td>'.$row->name.'</td>
+      <td>'.$row->admisn_no.'</td>
+      <td>'.$row->class_id.'</td>
+      <td>'.$row->admit_date.'</td>
+      <td>'.$row->status.'</td>
+     </tr>
+    ';
+         }
+         echo $output;
 
        }
+       }else if($user_type=="parents"){
+         echo "parents";
+       }else if($user_type=="teachers"){
+         echo "teachers";
+       }else{
+          echo "No Data Found";
+       }
 
-     }
+   }
 
 //Admin  Teacher
 

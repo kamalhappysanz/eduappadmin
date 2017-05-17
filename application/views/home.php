@@ -22,7 +22,15 @@
 	<div class="col-md-9">
     <div class="card">
                             <form id="" action="#" method="" novalidate="">
-                                <div class="header">Search</div>
+                                <div class="header">Search    <div class="th-inner ">
+                                    <input  type="radio" value="students" name="user_type"  id="user_type" checked=""> Students
+                                    <input  type="radio" name="user_type"  id="user_type" value="parents"> Parents
+                                      <input  type="radio"  name="user_type"  id="user_type"  value="teacher"> Teacher
+                                  </div>
+</div>
+
+
+
                                 <div class="content">
                                     <div class="form-group">
                                         <input class="form-control searchbox" name="text" type="text"   id="search_txt"  autocomplete="off" aria-required="true" placeholder="Search Students,Parents,Teacher">
@@ -249,26 +257,24 @@
 function search_load(){
 
 var ser= $("#search_txt").val();
+var user_type=$("#user_type").val();
+alert(user_type);
 if(!ser){
 alert("enter Text");
-$('#result').html(' ');
+$('#result').html('');
 }else{
   $.ajax({
      url:'<?php echo base_url(); ?>adminlogin/search',
      method:"POST",
-     data:{ser:ser},
+     data:{ser:ser,user_type:user_type},
     //  dataType: "JSON",
     //  cache: false,
      success:function(data)
      {
+      //alert(data.length);
        $('#result').html(data);
        //alert(data['status']);
-       if(data['status']=="success"){
-         alert(data['status'][0]);
-         $('#result').html(data['data']);
-       }else{
-         $('#result').html(data['status']);
-       }
+
 
 
      }
