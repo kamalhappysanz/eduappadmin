@@ -167,43 +167,59 @@ return  $result12->result();
       $res=$this->db->query($query);
       return $res->result();
     }
-	
-	function stu_circular_view()
-	{
-	    $user_id=$this->session->userdata('user_id');
-        $get_enroll_id="SELECT ed.name,ed.student_id,ea.admisn_year,ea.admisn_no,ee.enroll_id,ee.class_id FROM edu_users AS ed LEFT JOIN edu_admission AS ea ON ed.student_id=ea.admission_id
-        LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_id='$user_id'";
-	   
-        $results=$this->db->query($get_enroll_id);
-        foreach($results->result() as $rows){}
-        $class_id=$rows->class_id;	
 
-	     //echo $id;exit;
-		// $id=$rows->subject;
-	   $sql = "SELECT * FROM edu_communication WHERE status='A' ";
-	   $objRs=$this->db->query($sql);
-	   $rows=$objRs->result();
-	   foreach ($rows as $rows1)
-	   {
-		   $s= $rows1->subject_id;
-		   $sec=$rows1->subject_name;
-		   $arryPlatform = explode(",",$id);
-		   $sPlatform_id  = trim($s);
-		   $sPlatform_name  = trim($sec);
-		   if(in_array($sPlatform_id, $arryPlatform ))
-			   {
-				  $sub_name[]=$sec;
-				  $sub_id[]=$s;
-			   }
-		 //return $a;
-	  }
-					  
-					  
-					  
-		$query="SELECT * FROM edu_communication WHERE status='A' AND class_id='$class_id' ORDER BY commu_id DESC LIMIT 5";
-        $result=$this->db->query($query);
-        return  $result->result();
-	}
 
+
+// Admin Parents
+
+
+  function dash_parents($user_id){
+    $query="SELECT eu.user_id,eu.parent_id,ep.father_name,ep.* FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.parent_id=ep.parent_id WHERE eu.user_id='$user_id'";
+    $res=$this->db->query($query);
+    return $res->result();
+  }
+  function get_students($user_id){
+    $query="SELECT eu.user_id,eu.parent_id,ep.father_name,ep.admission_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.parent_id=ep.parent_id WHERE eu.user_id='$user_id'";
+    $res=$this->db->query($query);
+    foreach($res->result() as $rows){ }
+    $sPlatform= $rows->admission_id;
+    $sQuery = "SELECT * FROM edu_enrollment";
+    $objRs=$this->db->query($sQuery);
+     //print_r($objRs);
+    $row=$objRs->result();
+    foreach ($row as $rows1) {
+    $s= $rows1->enroll_id;
+     $sec=$rows1->name;
+     $arryPlatform = explode(",", $sPlatform);
+
+    $sPlatform_id  = trim($s);
+    $sPlatform_name  = trim($sec);
+
+    if(in_array($sPlatform_id, $arryPlatform )) {
+      $e_id[]=$s;
+      $name[]=$sec;
+        print_r($name);
+    //  $sec_n[]=$sec_name;
+    }
+      }
+      if(empty($e_id)){
+        $data= array("status" =>"No Record Found");
+        print_r( $data);
+        exit;
+      }else{
+
+        $data= array("subject_id" => $sub_id,"subject_name"=>$sub_name,"status"=>"success");
+        print_r( $data);
+        exit;
+      }
+
+
+
+
+  }
+
+  function stud_details(){
+
+  }
 }
 ?>
