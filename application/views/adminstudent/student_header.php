@@ -152,12 +152,7 @@ font-weight: 500;
 											</ul>
 									</div>-->
 								</li>
-								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
-												<i class="pe-7s-plugin"></i>
-												<p>Calender	</p>
-										</a>
-								</li>
+							
 								<li>
 										<a data-toggle="collapse" href="#componentsExamples">
 												<i class="pe-7s-plugin"></i>
@@ -166,7 +161,7 @@ font-weight: 500;
 								</li>
 
 								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
+										<a href="<?php echo base_url(); ?>student/timetable">
 												<i class="pe-7s-plugin"></i>
 												<p>Time Table	</p>
 										</a>
