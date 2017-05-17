@@ -47,6 +47,8 @@
                                     <td class="text-left"><?php $date=date_create($rows->commu_date);
                                        echo date_format($date,"d-m-Y");
                                        ?></td>
+									 <?php $tid=$rows->teacher_id; $cid=$rows->class_id;
+									 if($tid!='' && $cid!=''){ ?>
                                     <td>
                                        <select  multiple  class="selectpicker form-control" data-title="Select More Than one Teacher" name="multiple-teacher"  data-menu-style="dropdown-blue" >
                                        <?php
@@ -65,12 +67,13 @@
                                           {
                                               ?>
                                        <?php
-                                          echo "<option  value=\"$s\" selected  /> $sec &nbsp;&nbsp;</option>";
+                                          echo "<option  value=\"$s\" selected  /> $sec</option>";
                                           }
                                           }
                                               ?>
                                        </select>
                                     </td>
+									 <?php //}else{ ?>
                                     <td>
                                        <select multiple data-title="Select More Than one class"  name="multiple-class" class="selectpicker"  data-menu-style="dropdown-blue">
                                        <?php
@@ -89,12 +92,62 @@
                                           $sPlatform_id  = trim($s);
                                           $sPlatform_name  = trim($sec);
                                           if (in_array($sPlatform_id, $arryPlatform )) {
-                                                    echo "<option  value=\"$sPlatform_id\" selected  />$clas-$sec_name &nbsp;&nbsp; </option>";
+                                              echo "<option  value=\"$sPlatform_id\" selected  />$clas-$sec_name</option>";
                                                  }
                                                         }
                                               ?>
                                        </select>
+									 </td><?php }else if($tid!=''&& $cid==''){?>
+									 <td>
+                                       <select  multiple  class="selectpicker form-control" data-title="Select More Than one Teacher" name="multiple-teacher"  data-menu-style="dropdown-blue" >
+                                       <?php
+                                          $tea_name=$rows->teacher_id;
+                                          $sQuery = "SELECT * FROM edu_teachers";
+                                          $objRs=$this->db->query($sQuery);
+                                          $row=$objRs->result();
+                                          foreach ($row as $rows1)
+                                          {
+                                          $s=$rows1->teacher_id;
+                                          $sec=$rows1->name;
+                                          $arryPlatform = explode(",",$tea_name);
+                                          $sPlatform_id  = trim($s);
+                                          $sPlatform_name  = trim($sec);
+                                          if (in_array($sPlatform_id, $arryPlatform ))
+                                          {
+                                              ?>
+                                       <?php
+                                          echo "<option  value=\"$s\" selected  /> $sec</option>";
+                                          }
+                                          }
+                                              ?>
+                                       </select>
                                     </td>
+									 <?php } else{ ?>
+									 <td>
+                                       <select multiple data-title="Select More Than one class"  name="multiple-class" class="selectpicker"  data-menu-style="dropdown-blue">
+                                       <?php
+                                          $sPlatform=$rows->class_id;
+                                          $sQuery = "SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.class FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
+                                          $objRs=$this->db->query($sQuery);
+                                          //print_r($objRs);
+                                          $row=$objRs->result();
+                                          foreach ($row as $rows1)
+                                          {
+                                          $s= $rows1->class_sec_id;
+                                          $sec=$rows1->class;
+                                          $clas=$rows1->class_name;
+                                          $sec_name=$rows1->sec_name;
+                                          $arryPlatform = explode(",", $sPlatform);
+                                          $sPlatform_id  = trim($s);
+                                          $sPlatform_name  = trim($sec);
+                                          if (in_array($sPlatform_id, $arryPlatform )) {
+                                              echo "<option  value=\"$sPlatform_id\" selected  />$clas-$sec_name</option>";
+                                                 }
+                                                        }
+                                              ?>
+                                       </select>
+									 </td>
+									 <?php }?>
                                     <td><?php echo $rows->status;  ?></td>
                                     <td>
                                        <a href="<?php echo base_url(); ?>communication/edit_commu/<?php echo $rows->commu_id;; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>

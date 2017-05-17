@@ -43,10 +43,10 @@
 								 $sPlatform_name  = trim($sec);
 								 if (in_array($sPlatform_id, $arryPlatform ))
 								  {
-                                       echo "<option  value=\"$s\" selected  /> $sec &nbsp;&nbsp; </option>";
+                                       echo "<option value=\"$s\"selected/> $sec</option>";
                                   }
                                  else {
-                                echo "<option value=\"$s\" />$sec &nbsp;&nbsp;</option>";
+                                echo "<option value=\"$s\" />$sec</option>";
                                  }
                                       }
                                         ?>
@@ -75,12 +75,12 @@
 		 if (in_array($sPlatform_id, $arryPlatform )) {
   ?>
           <?php
-                  echo "<option  value=\"$sPlatform_id\" selected  />$clas-$sec_name &nbsp;&nbsp; </option>";
+                  echo "<option  value=\"$sPlatform_id\" selected />$clas-$sec_name</option>";
              ?>
 
                                 <?php }
                                   else {
-                                echo "<option value=\"$sPlatform_id\" />$clas-$sec_name &nbsp;&nbsp;</option>";
+                                echo "<option value=\"$sPlatform_id\"/>$clas-$sec_name</option>";
                                  }
                                       }
                                         ?>
@@ -106,8 +106,7 @@
 
 						         <label class="col-sm-2 control-label">Date</label>
                                            <div class="col-sm-4">
-               <input type="text" name="date" class="form-control datepicker"  placeholder="Enter Date" value="<?php $date=date_create($rows->commu_date);
-    echo date_format($date,"d-m-Y"); ?>">
+							<input type="text" name="date" class="form-control datepicker"  placeholder="Enter Date" value="<?php $date=date_create($rows->commu_date);echo date_format($date,"d-m-Y"); ?>">
                                             </div>
 
 				                     </div>
@@ -231,7 +230,8 @@ function myFunction1() {
         $('#communcicationmenu').addClass('collapse in');
         $('#communication').addClass('active');
         $('#communication2').addClass('active');
-          format: 'DD-MM-YYYY',
+        $('.datepicker').datetimepicker({
+			format: 'DD-MM-YYYY',
           icons: {
               time: "fa fa-clock-o",
               date: "fa fa-calendar",

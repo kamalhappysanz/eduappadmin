@@ -157,8 +157,9 @@ class Examination extends CI_Controller
 								$exam_id=$this->input->post('exam_id');
 								$exam_year=$this->input->post('exam_year');
 								$exam_name=$this->input->post('exam_name');
+								$status=$this->input->post('status');
 
-								$datas=$this->examinationmodel->update_exam($exam_id,$exam_year,$exam_name);
+								$datas=$this->examinationmodel->update_exam($exam_id,$exam_year,$exam_name,$status);
 
 								 if($datas['status']=="success")
 				                     {
@@ -285,6 +286,25 @@ class Examination extends CI_Controller
 			echo "Add Exam";
 		 }
 		  
+	 }
+	 
+	 public function marks_status()
+	 {
+		 $datas=$this->session->userdata();
+	 	 $user_id=$this->session->userdata('user_id');
+		 $user_type=$this->session->userdata('user_type');
+		 $datas['cls']=$this->examinationmodel->marks_status();
+		print_r($datas['cls']);exit;
+		 if($user_type==1)
+					{
+					 $this->load->view('header');
+					 $this->load->view('examination/exam_result',$datas);
+					 $this->load->view('footer');
+					 }
+					 else{
+						redirect('/');
+					 }
+		 
 	 }
 	
 

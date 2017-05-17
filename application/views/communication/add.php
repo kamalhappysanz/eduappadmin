@@ -33,10 +33,10 @@
                            <div class="form-group">
                               <label class="col-sm-2 control-label"></label>
                               <div class="col-sm-4">
-                          <div id="myDIV" style="display:none">
+                          <div id="myDIV">
                                  <select multiple name="teacher[]" class="selectpicker form-control" data-title="Select More Than one Teacher" id="multiple-teacher" onchange="select_class('teacher')" data-menu-style="dropdown-blue" >
                                           <?php foreach ($teacher as $rows) { ?>
-                                          <option value="<?php echo $rows->teacher_id;  ?>"><?php echo $rows->name;; ?></option>
+                                          <option value="<?php echo $rows->teacher_id;  ?>"><?php echo $rows->name; ?></option>
                                           <?php  }?>
                                    </select>
                               </div>
