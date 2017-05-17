@@ -9,6 +9,7 @@ class Student extends CI_Controller
 	{
 		 parent::__construct();
 		  $this->load->model('studentmodel');
+      $this->load->model('teachereventmodel');
 		  $this->load->helper('url');
 		  $this->load->library('session');
 		  $this->load->model('class_manage');
@@ -145,7 +146,38 @@ class Student extends CI_Controller
      }
 
 
-
+     public function event(){
+       $datas=$this->session->userdata();
+       $user_id=$this->session->userdata('user_id');
+       $user_type=$this->session->userdata('user_type');
+      if($user_type==3){
+      //$datas['res']=$this->teachereventmodel->get_teacher_event($user_id);
+      $datas['event_all']=$this->teachereventmodel->get_teacher_allevent();
+      //print_r(  $datas['event_all']);exit;
+      $this->load->view('adminstudent/student_header');
+      $this->load->view('adminstudent/event/eventview',$datas);
+      $this->load->view('adminstudent/student_footer');
+      }
+      else{
+         redirect('/');
+      }
+     }
+     public function view_event($event_id){
+         $datas=$this->session->userdata();
+         $user_id=$this->session->userdata('user_id');
+         $user_type=$this->session->userdata('user_type');
+        if($user_type==3){
+        $datas['res']=$this->teachereventmodel->get_teacher_in_event($event_id);
+       //  echo "<pre>";
+       //  print_r( $datas['res']);exit;
+        $this->load->view('adminstudent/student_header');
+        $this->load->view('adminstudent/event/event_list',$datas);
+        $this->load->view('adminstudent/student_footer');
+        }
+        else{
+           redirect('/');
+        }
+     }
 
 
 

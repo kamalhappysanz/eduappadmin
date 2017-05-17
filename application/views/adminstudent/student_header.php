@@ -146,15 +146,10 @@ font-weight: 500;
 												<p>Examination Result</p>
 
 										</a>
-										<!-- <div class="collapse" id="examresult">
-											<ul class="nav">
-									<li><a href="<?php echo base_url(); ?>student/exam_views">Examination Result</a></li>
-											</ul>
-									</div>-->
-								</li>
-							
+									</li>
+
 								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
+										<a href="<?php echo base_url(); ?>student/event">
 												<i class="pe-7s-plugin"></i>
 												<p>Event	</p>
 										</a>

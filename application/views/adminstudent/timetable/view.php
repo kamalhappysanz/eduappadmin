@@ -104,50 +104,6 @@ $k++;
 
 
 
-      <div class="content">
-      <div class="row">
-        <div class="col-md-6">
-
-                        <div class="card">
-                            <div class="header">ReView form</div>
-                            <div class="content">
-                                <form method="post" action="" id="timetablereviewform">
-                                    <div class="form-group">
-                                        <label>Current date</label>
-                                  <input type="text" placeholder="" name="cur_date" class="form-control" value="<?php $date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
-                             echo $date->format('d-m-Y h:i:s'); ?>" readonly="">
-                             <input type="hidden" placeholder="" name="class_id" class="form-control" value="<?php echo $class_id; ?>">
-                             <input type="hidden" placeholder="" name="user_id" class="form-control" value="<?php echo $user_id; ?>">
-                              <input type="hidden" placeholder="" name="user_type" class="form-control" value="<?php echo $user_type; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Subject</label>
-                                          <?php  $sat=$subres['status']; if($sat=="success"){ $subres['status']; $sub_name=$subres['subject_name'];  $sub_id=$subres['subject_id'];  $len=count($sub_name);  ?>
-                                        <select   name="subject_id" class="selectpicker" data-title="Select Subject" data-style="btn-block"  data-menu-style="dropdown-blue">
-                                          <?php   for($i=0;$i<$len;$i++) { ?>
-
-                                            <option value="<?php  echo $sub_id[$i]; ?>"><?php   echo $sub_name[$i]; ?></option>
-
-                                        <?php  } } else{  ?>
-                                            <option value="">No Data</option>
-                                        <?php  }?>
-                                 </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Comments</label>
-                                        <textarea id="comments" name="comments" class="form-control"></textarea>
-                                    </div>
-
-
-
-                                    <button type="submit" class="btn btn-fill btn-info">Submit</button>
-                                </form>
-                            </div>
-                        </div> <!-- end card -->
-
-                    </div>
-      </div>
-      </div>
     </div>
   </div>
 </div>
