@@ -22,14 +22,14 @@
 						{?>
 							<p style="padding:10px;color:red;">No Exam Added For Any Class</p>
 						<?php }else{
-						foreach($result as $row)
-						{
-							$a=$row->exam_id;
-							$b=$row->subject_id;
-							$c=$row->exam_date;
-							$d=$row->times;
-							$e=$row->classmaster_id;
-						}
+						        foreach($result as $row)
+								 {
+									$a=$row->exam_id;
+									$b=$row->subject_id;
+									$c=$row->exam_date;
+									$d=$row->times;
+									$e=$row->classmaster_id;
+								}
                           }
 						 ?>
 
@@ -46,14 +46,14 @@
                          for($i=0;$i<$cnt;$i++)
 						  { ?>
 						   <div class="col-md-2">
-                           <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details?var1=<?php echo $class_id[$i]; ?>&var2=<?php if(empty($result))
+                       <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details?var1=<?php echo $class_id[$i]; ?>&var2=<?php if(empty($result))
 						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"
 						   onclick="changeText(<?php echo $class_id[$i]; ?>)"class="btn btn-wd"><?php echo $class_name[$i]."-".$sec_name[$i]; ?></a>
                         </div>
 						 <?php
 						   } }  ?>
-						    <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))
-						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">Class Mark</a>
+						   <!-- <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))
+						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">View Class Mark</a> -->
 
                        <!-- <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cls_id; ?>&var2=<?php if(empty($result))

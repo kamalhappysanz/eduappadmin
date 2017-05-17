@@ -117,7 +117,7 @@
                                     <div class="content">
 
                                         <div class="fresh-datatables">
-	<form method="post" action="<?php echo base_url(); ?>examination/add_exam_detail" class="form-horizontal" enctype="multipart/form-data">
+	<form method="post" action="<?php echo base_url(); ?>examination/add_exam_detail" class="form-horizontal" enctype="multipart/form-data" name="myformsection">
 										 <div class="col-sm-2">
                                             <select name="class_id" style="margin-top:30px;" class="selectpicker">
 											<option>Select</option>
@@ -127,7 +127,7 @@
                                      <?php echo $rows->sec_name; ?></option>
 										<?php } ?>
                                             </select>
-
+  
                                         </div>
 										 <div class="col-sm-4">
                                             <button type="submit" id="save" class="btn btn-info btn-fill center">Search</button>
@@ -209,7 +209,7 @@
                                                         </tr>
 								<?php $i++;  } }else{
 									      foreach ($result as $rows)
-								 {
+								 { $exid=$rows->exam_id;
                                 ?>
                                                         <tr>
                                                             <td>
@@ -223,17 +223,24 @@
                                                        echo date_format($date,"d-m-Y");  ?> (<?php echo $rows->times; ?> ) </td>
                                                             <td>
                                                                 <?php echo $rows->class_name;?>
-                                                                    <?php echo $rows->sec_name; ?>
+                                                                <?php echo $rows->sec_name; ?> (<?php
+                                     $sql="SELECT exam_id,exam_year,exam_name FROM edu_examination WHERE exam_id='$exid' ";
+									 $result=$this->db->query($sql);
+									 $res1=$result->result();
+									 echo $res1[0]->exam_name;
+
+																?>)
                                                             </td>
                                                             <?php
 									 $id=$rows->teacher_id;
-									 $query = "SELECT * FROM edu_teachers WHERE teacher_id='$id' ";
+									 $query = "SELECT teacher_id,name FROM edu_teachers WHERE teacher_id='$id' ";
 									 $resultset = $this->db->query($query);
 									 $res=$resultset->result();
-									 foreach($res as $row)
+									 $name=$res[0]->name;
+									/*  foreach($res as $row)
 									 {
 										 $name=$row->name;
-									 }
+									 } */
 									?>
                                                                 <td>
                                                                     <?php echo $name; ?>
