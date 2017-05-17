@@ -91,6 +91,21 @@
 
                                         </div>
                                     </fieldset>
+									<fieldset>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Status</label>
+                                            <div class="col-sm-4">
+                                              <select name="status" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+
+                                                  <option value="A">Active</option>
+                                                    <option value="DA">DE-Active</option>
+
+                                              </select>
+                                              <script language="JavaScript">document.enrollform.status.value="<?php echo $rows->status; ?>";</script>
+                                            </div>
+
+                                        </div>
+                                    </fieldset>
 
 
                                     <fieldset>
