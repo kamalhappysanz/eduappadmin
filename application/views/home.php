@@ -6,6 +6,35 @@
 		.head-count{  text-align: center; border-bottom: 2px solid #9a8585;
     }
 		.cnt{font-size: 20px;}
+    input[type='radio']:after {
+            height: 25px;
+            width: 25px;
+            border-radius: 15px;
+            top: -2px;
+            left: -1px;
+            position: relative;
+            background-color: #d1d3d1;
+            content: '';
+            display: inline-block;
+            visibility: visible;
+            border: 2px solid white;
+        }
+
+        input[type='radio']:checked:after {
+            height: 25px;
+	          width: 25px;
+            border-radius: 15px;
+            top: -2px;
+            left: -1px;
+            position: relative;
+            background-color: #ffa500;
+            content: '';
+            display: inline-block;
+            visibility: visible;
+            border: 2px solid white;
+        }
+        input[type=radio] {
+    margin: 7px 14px 0;}
 
 </style>
 	<div class="main-panel">
@@ -21,26 +50,31 @@
 <div class="col-md-12">
 	<div class="col-md-9">
     <div class="card">
-                            <form id="" action="#" method="" novalidate="">
-                                <div class="header">Search    <div class="th-inner ">
-                                    <input  type="radio" value="students" name="user_type"  id="user_type" checked=""> Students
-                                    <input  type="radio" name="user_type"  id="user_type" value="parents"> Parents
-                                      <input  type="radio"  name="user_type"  id="user_type"  value="teacher"> Teacher
-                                  </div>
-</div>
+                            <form id="" action="#" method="" novalidate="" style="padding-bottom:30px;">
+                                <div class="header">Search</div>
+
+
+                                <fieldset id="group2" style="padding-left:30px;">
+                                    <input type="radio" value="students" id="user_type"  name="user_type" checked="">Students
+                                    <!-- <input type="radio" value="parents" id="user_type1"  name="user_type">Parents -->
+                                    <input type="radio" value="teachers" id="user_type2"  name="user_type">Teachers
+                                </fieldset>
+
 
 
 
                                 <div class="content">
                                     <div class="form-group">
-                                        <input class="form-control searchbox" name="text" type="text"   id="search_txt"  autocomplete="off" aria-required="true" placeholder="Search Students,Parents,Teacher">
+                                      <div class="col-md-10">
+                                        <input class="form-control   searchbox" name="text" type="text"   id="search_txt"  autocomplete="off" aria-required="true" placeholder="Search Students,Teacher">
+                                      </div>
+                                      <div class="col-md-2">
+                                        <button type="button" class="btn btn-info btn-fill pull-right" onclick="search_load()">GO Here</button>
+                                      </div>
                                     </div>
                                 </div>
 
-                                <div class="footer">
-                                    <button type="button" class="btn btn-info btn-fill pull-right" onclick="search_load()">Search Here</button>
-                                    <div class="clearfix"></div>
-                                </div>
+
                             </form>
 
                             <div class="card">
@@ -257,11 +291,11 @@
 function search_load(){
 
 var ser= $("#search_txt").val();
-var user_type=$("#user_type").val();
-alert(user_type);
+var user_type=$('input[name=user_type]:checked').val();
+
 if(!ser){
-alert("enter Text");
-$('#result').html('');
+// alert("enter Text");
+$('#result').html('<center style="color:red;">Enter The Text in Search Box</center>');
 }else{
   $.ajax({
      url:'<?php echo base_url(); ?>adminlogin/search',
