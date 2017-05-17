@@ -12,28 +12,35 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Enter Exam Marks <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
+                                <h4 class="title">Enter Exam Marks
+								<?php //print_r($cla_tea_id);
+								    $cid=$cla_tea_id[0]->class_teacher;
+									//echo $cid;
+									$cls_masid=$this->input->get('var1');
+									//echo $cls_masid;
+									if($cid==$cls_masid)
+									{?>
+<a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cid; ?>&var2=<?php if(empty($result))
+						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">View Class Mark</a>	
+									<?php }
+									//foreach($res as $row){}echo $row->class_id;
+									?>
+
+					<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
                                 <table class="table table-hover table-striped">
-								<?php if(!empty($result))
-									  {
+								<?php 
+									 if(!empty($result))
+									       {
 								        //print_r($result);exit;
 										foreach($result as $exam)
 								         {}
 									        $id=$exam->exam_id;
 											//echo $id;exit;
 											 }else{ echo "";}
-									           //echo $id;
-											   /* if(!empty($stu))
-										       { foreach($stu as $row)
-									            {
-												 $tname=$row->enroll_id;
-												 $su=$row->subject;
-												 $clsid=$row->class_teacher;}
-											   }else{ echo "";}  */
                                   ?>
 
 								<input type="hidden" name="examid" value="<?php echo $id; ?>"/>
@@ -55,12 +62,12 @@
 										<?php
 										$i=1;
 										if(!empty($mark)){
-										foreach($mark as $row){
+										foreach($mark as $rows){
 										       ?>
 										<tr>
 										<td><?php echo $i;?></td>
 										<td style="">
-										<?php  $stdid=$row->stu_id;
+										<?php  $stdid=$rows->stu_id;
 										       $sql="SELECT enroll_id,name FROM edu_enrollment WHERE enroll_id='$stdid'";
 											   $result=$this->db->query($sql);
 			                                   $row123=$result->result();
@@ -68,11 +75,10 @@
 											   echo $name->name;
 										?>
 										</td>
-										<td><input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>
+										<td><input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $rows->marks; ?>" class="form-control"/></td>
 										</tr>
 										<?php $i++;}
 										}else{
-
 										foreach($res as $row)
 										      { ?>
 										<tr>
@@ -90,7 +96,7 @@
 										<tr>
 										<td></td><td></td>
 										 <td><div class="col-sm-10">
-                                             <button type="submit" class="btn btn-info btn-fill center">Save </button>
+                                             <button type="submit" class="btn btn-info btn-fill center">Save</button>
                                           </div> </td>
 										</tr>
 
@@ -109,7 +115,6 @@
         </div>
 	</div>
   <script>
-
   $('#examinationmenu').addClass('collapse in');
   $('#exam').addClass('active');
   $('#exam2').addClass('active');

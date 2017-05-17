@@ -66,13 +66,14 @@ class Examinationresult extends CI_Controller
 			  $exam_id=$this->input->get('var2');
 			  //echo $cls_masid;echo $exam_id;exit;
 
-			 // $datas['sub']=$this->examinationresultmodel->getall_subname($user_id,$cls_masid,$exam_id);
+			 //$datas['sub']=$this->examinationresultmodel->getall_subname($user_id,$cls_masid,$exam_id);
+			  $datas['cla_tea_id']=$this->examinationresultmodel->get_cls_teacher_id($user_id);
 			  $datas['stu']=$this->examinationresultmodel->getall_stuname($user_id,$cls_masid,$exam_id);
 			  $datas['result']=$this->examinationresultmodel->getall_exam_details($exam_id);
 			  $datas['res']=$this->examinationresultmodel->getall_cls_sec_stu($user_id,$cls_masid,$exam_id);
 			  $datas['mark']=$this->examinationresultmodel->getall_marks($user_id,$cls_masid,$exam_id);
-			  // echo '<pre>';print_r($datas['mark']); exit;
-			 // echo '<pre>';print_r($datas['stu']); exit;
+			  //echo '<pre>';print_r($datas['cla_tea_id']); exit;
+			  //echo '<pre>';print_r($datas['stu']); exit;
 			
 			 if($user_type==2)
 			    { 
@@ -167,11 +168,11 @@ class Examinationresult extends CI_Controller
 			  $teaid=$this->input->post('teid');
 			  $marks=$this->input->post('mark');
 			  
-			  echo $exam_id;echo'</br>';
+			/*   echo $exam_id;echo'</br>';
 			  echo $subid;echo'</br>';
 			  echo $teaid;echo'</br>';
 			  echo $sutid;echo'</br>';
-			  echo $marks;echo'</br>';
+			  echo $marks;echo'</br>'; */
 			 // exit; 
 			 $datas=$this->examinationresultmodel->add_marks_detail_ajax($exam_id,$subid,$sutid,$clsmastid,$teaid,$marks);
 			 //print_r($datas);
@@ -265,7 +266,22 @@ class Examinationresult extends CI_Controller
 			  $clsmastid=$this->input->post('clsmastid');
 			  //echo $exam_id;echo $clsmastid;//exit;
 			  $datas=$this->examinationresultmodel->marks_status_update($exam_id,$clsmastid);
-			  print_r($datas);exit;
+			  //print_r($datas);exit;
+			   if($datas['status']=="success")
+			   { 
+		        $a=$datas['var1']; $b=$datas['var2'];//exit;
+				$this->session->set_flashdata('msg','Approved Successfully');
+                redirect('examinationresult/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);
+			   //redirect('add_test');		
+			   }elseif($datas['status']=="Already Added Exam Marks")
+			        { 
+					  $a=$datas['var1']; $b=$datas['var2'];
+					  $this->session->set_flashdata('msg','Already Added Exam Marks');
+					  redirect('examinationresult/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);  
+			   }else{$a=$datas['var1']; $b=$datas['var2'];
+				$this->session->set_flashdata('msg','Falid To Approve');
+                redirect('examinationresult/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);
+			}
 			  
 		}
 		

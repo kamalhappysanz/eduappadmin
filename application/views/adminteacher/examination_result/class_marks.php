@@ -65,6 +65,7 @@
 									}else{  ?>
 									 <th style="color:red;">Subject Not Found</th>
 									 <?php  }?>
+									  <th style="color:red;">Totel</th>
                                     </thead>
 									<?php
 									$tecid=$marks1[0]->teacher_id;
@@ -89,7 +90,11 @@
 											echo '<td>' . $k . '</td>';
 											$k = 1;
 											foreach ($s1 as $k1 => $s)
-											{
+											{   
+											   $b=$s->enroll_id;
+											 
+											   $a=$s->marks;
+											 
 												'<form name="exam" id="examvalidate">';
 												if(empty($s) === false && $k == 1){
 													echo '<input type="hidden" id="sid" name="sutid[]" value="'.$s->enroll_id.'" />';
@@ -103,25 +108,34 @@
 													if(!empty($s))
 													{
 														echo '<input style="width:60%;" type="text" required name="marks1" value="'.$s->marks.'" class="form-control" readonly /></td>';
+														
 													}else{
 														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value=""  class="form-control"/>';
 														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
 													}
+													
 												}
-												'</form>';
 											}
-											echo '</tr>';
+										echo '<td>
+						<input style="width:60%;" type="text" required name="marks1" value="" class="form-control" readonly /></td>';
+												'</form>';
+											 echo '</tr>';
 											$i++;
-										}
+										}?>
+											<tr>
+											 <td>
+										 <div class="col-sm-10">
+                                         <button type="submit" class="btn btn-info btn-fill center">Approve</button>
+                                          </div> </td></tr>
+											<?php 
 									}else{ echo "No Exam Mark Added"; }
 										?>
-										<tr>
-										 <td><div class="col-sm-10">
-                                             <button type="submit" class="btn btn-info btn-fill center">Approve To Admin</button>
-                                          </div> </td>
-										</tr>
+									
+									
+									
                                     </tbody>
                                 </table>
+								 
 								</form>
                             </div>
                         </div>
