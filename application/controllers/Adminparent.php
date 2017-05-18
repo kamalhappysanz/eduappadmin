@@ -10,10 +10,8 @@ class Adminparent extends CI_Controller {
 		  $this->load->model('dashboard');
 			 $this->load->model('studentmodel');
 			 $this->load->model('adminparentmodel');
-
-
-		  $this->load->helper('url');
-		  $this->load->library('session');
+		   $this->load->helper('url');
+		   $this->load->library('session');
  }
 	/**
 	 * Index Page for this controller.
@@ -176,6 +174,39 @@ class Adminparent extends CI_Controller {
 
 					$this->load->view('adminparent/parent_header');
 					$this->load->view('adminparent/attendance/view_calender',$datas);
+					$this->load->view('adminparent/parent_footer');
+				}else{
+						 redirect('/');
+				}
+		}
+
+
+		public function event(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==4){
+					$datas['res']=$this->adminparentmodel->get_event_all();
+					// print_r($datas['res']);
+					$this->load->view('adminparent/parent_header');
+					$this->load->view('adminparent/event/eventview',$datas);
+					$this->load->view('adminparent/parent_footer');
+				}else{
+						 redirect('/');
+				}
+		}
+
+
+		public function view_event($event_id){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==4){
+					$datas['res']=$this->adminparentmodel->get_event_list_all($event_id);
+					// echo "<pre>";
+					// print_r($datas['res']);
+					$this->load->view('adminparent/parent_header');
+					$this->load->view('adminparent/event/event_list',$datas);
 					$this->load->view('adminparent/parent_footer');
 				}else{
 						 redirect('/');

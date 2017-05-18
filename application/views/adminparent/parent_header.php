@@ -119,17 +119,28 @@ font-weight: 500;
                 </li>
 
 								<li>
-										<a data-toggle="collapse" href="#classmenu">
+										<a href="<?php echo base_url(); ?>adminparent/attendance">
 												<i class="pe-7s-note2"></i>
 												<p>Attendence	</p>
-												<b class="caret"></b>
-										</a>
-										<div class="collapse" id="classmenu">
-											<ul class="nav">
-													<li><a href="">Class & Test</a></li>
 
-											</ul>
-									</div>
+										</a>
+
+								</li>
+								<li>
+										<a href="<?php echo base_url(); ?>adminparent/attendance">
+												<i class="pe-7s-note2"></i>
+												<p>Events	</p>
+
+										</a>
+
+								</li>
+								<li>
+										<a href="<?php echo base_url(); ?>adminparent/attendance">
+												<i class="pe-7s-note2"></i>
+												<p>circular	</p>
+
+										</a>
+
 								</li>
 
 								<li>
@@ -152,17 +163,12 @@ font-weight: 500;
 										</a>
 								</li>
 								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
+										<a href="<?php echo base_url(); ?>adminparent/timetable">
 												<i class="pe-7s-plugin"></i>
 												<p>Time Table	</p>
 										</a>
 								</li>
-								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
-												<i class="pe-7s-plugin"></i>
-												<p>User Management	</p>
-										</a>
-								</li>
+
             </ul>
     	</div>
 
