@@ -134,7 +134,7 @@ class Student extends CI_Controller
      				 $this->load->view('adminstudent/student_footer');
      			 }else {
      				 $data['restime']=$datas['restime']['time'];
-     				 $data['class_id']=$class_sec_id;
+     			// 	 $data['class_id']=$class_sec_id;
      				 $data['user_id']=$user_id;$data['user_type']=$user_type;
      				 $this->load->view('adminstudent/student_header');
      				 $this->load->view('adminstudent/timetable/view',$data);
@@ -178,16 +178,16 @@ class Student extends CI_Controller
            redirect('/');
         }
      }
-	 
+
 	 public function view_circular()
 	 {
 		 $datas=$this->session->userdata();
          $user_id=$this->session->userdata('user_id');
          $user_type=$this->session->userdata('user_type');
-		 
+
 		 $datas['res']=$this->studentmodel->get_circular($user_id);
          if($user_type==3){}
-       
+
 	 }
 
 

@@ -46,7 +46,7 @@ class Adminlogin extends CI_Controller {
 			}
 			if($result['status']=='notRegistered'){
 				$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-				$this->session->set_flashdata('msg', 'UserName Invalid');
+				$this->session->set_flashdata('msg', 'Invalid Login');
 				 redirect('/');
 			}
 			$user_type=$this->session->userdata('user_type');
@@ -94,6 +94,9 @@ class Adminlogin extends CI_Controller {
 							$user_name=$result['user_name'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
 							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 							$session_data=$this->session->set_userdata($datas);
+							$datas['user_details']=$this->dashboard->dash_parents($user_id);
+							$datas['stud_details']=$this->dashboard->get_students($user_id);
+							$datas['res']=$this->dashboard->stud_details($user_id);
 
 							$this->load->view('adminparent/parent_header',$datas);
 							$this->load->view('adminparent/home');
