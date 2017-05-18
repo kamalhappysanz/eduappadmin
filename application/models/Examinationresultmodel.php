@@ -299,7 +299,6 @@ Class Examinationresultmodel extends CI_Model
 		    $query="SELECT * FROM exam_marks_status WHERE status='N' OR status='A'";
 			$resultset=$this->db->query($query);
 			$row=$resultset->result();
-			//return $row;
 			if($row)
 			{$data= array("status" => "success");
 		     return $data;}

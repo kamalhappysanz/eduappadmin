@@ -68,7 +68,20 @@ Class Teachercommunicationmodel extends CI_Model
 		 
 	 }
 	 
-	 
+	 function getall_circular_details($user_id)
+	 {
+		 $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+		 $resultset=$this->db->query($query);
+		 $row=$resultset->result();
+		 foreach($row as $rows){}
+		 $teacher_id=$rows->teacher_id;
+		 
+		 $sql="SELECT * FROM edu_communication WHERE status='A' AND FIND_IN_SET('$teacher_id',teacher_id) ";
+		 $resultset=$this->db->query($sql);
+		 $row=$resultset->result();
+		 //$data= array("status"=>"success");
+		 return $row;
+	 } 
 	 
 	 
 	 

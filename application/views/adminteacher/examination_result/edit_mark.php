@@ -18,7 +18,7 @@
                             <div class="content table-responsive table-full-width">
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/update_marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
                                 <table class="table table-hover table-striped">
-
+                       
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>	
@@ -33,27 +33,19 @@
 											  <?php 
 												 ?>									 
                                     </thead>
+									<?php //print_r($status);
+									if($status="success"){  ?>
+										<style> </style>
+									<?php }else{
+										echo "2";
+									}
+								
+									
+									 ?>
                                     <tbody>
 										<?php 
 										$i=1;
-										if($status="success")
-									    { 
-									     foreach($edit as $row)
-										      { ?>
-										<tr>
-										<td><?php echo $i;?></td>
-										<td style="">
-										<?php echo $row->name; ?>
-										<input type="hidden" name="examid" value="<?php echo $row->exam_id; ?>" />
-										<input type="hidden" name="subid" value="<?php echo $row->subject_id; ?>" />
-										<input type="hidden" name="sutid[]" value="<?php echo $row->stu_id; ?>" />
-										<input type="hidden" name="teaid" value="<?php echo $row->teacher_id; ?>" />
-                                        <input type="hidden" name="clsmastid" value="<?php echo $row->classmaster_id; ?>" />
-										</td>	
-										<td><input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>	
-										</tr>
-									 <?php $i++;} 
-     									}else{
+										
 										foreach($edit as $row)
 										      { ?>
 										<tr>
@@ -69,16 +61,17 @@
 										<td><input style="width:60%;" type="text"  name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>	
 										</tr>
 									 <?php $i++;} 
-									 }?>
+									 ?>
 										<tr>
 										<td></td><td></td>	
-										 <td><?php if($status="success")
-										   { echo ""; 
-										   }else{?>
+										 <td>
+										 <?php if($status="Success")
+										       {// echo $status; 
+										       } else if($status="failure "){?>
 										 <div class="col-sm-10">
-                                             <button type="submit" class="btn btn-info btn-fill center">Update </button>
+                                             <button type="submit" class="btn btn-info btn-fill center">Update</button>
                                           </div>
-										 <?php } ?>	  </td>
+										 <?php }else{ echo $status; } ?>	  </td>
 										</tr>
 
                                     </tbody>

@@ -84,6 +84,8 @@ class Adminlogin extends CI_Controller {
 							$datas= array("user_name"=>$user_name, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 							$session_data=$this->session->set_userdata($datas);
 							$datas['user_details']=$this->dashboard->dash_students($user_id);
+							$datas['stud_details']=$this->dashboard->get_students($user_id);
+			                $datas['stud_cls_id']=$this->dashboard->get_students_cls_id($user_id);
 							// echo "<pre>";
 							// print_r($datas['user_details']); exit;
 							$this->load->view('adminstudent/student_header',$datas);
@@ -189,6 +191,9 @@ class Adminlogin extends CI_Controller {
 			$this->load->view('adminteacher/teacher_footer');
 		}else if($user_type==3){
 			$datas['user_details']=$this->dashboard->dash_students($user_id);
+			$datas['stud_details']=$this->dashboard->get_students($user_id);
+			$datas['stud_cls_id']=$this->dashboard->get_students_cls_id($user_id);
+			
 			$this->load->view('adminstudent/student_header',$datas);
 			$this->load->view('adminstudent/home',$datas);
 			$this->load->view('adminstudent/student_footer');

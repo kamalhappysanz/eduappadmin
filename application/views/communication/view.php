@@ -4,7 +4,10 @@
    text-align: left;
    }
    button.btn.dropdown-toggle.btn-default {
-   width: 100px;
+   width:100%;
+   }
+   .btn-group.bootstrap-select{
+	   padding-top: 10px;
    }
 </style>
 <div class="main-panel">
@@ -27,7 +30,7 @@
                               <thead>
                                  <th data-field="id" class="text-left">S.No</th>
                                  <th data-field="year"  class="text-left"  data-sortable="true">Title</th>
-                                  <th data-field="no"  class="text-left" data-sortable="true">DETAILS</th>
+                                  
                                  <th data-field="name"  class="text-left" data-sortable="true">DATE</th>
 								 <th data-field="mobile"  class="text-left" data-sortable="true">TEACHERS & CLASS</th> 
                                  
@@ -43,7 +46,7 @@
                                  <tr>
                                     <td class="text-left"><?php echo $i; ?></td>
                                     <td class="text-left"><?php echo $rows->commu_title;  ?></td>
-                                   <td class="text-left"><?php echo $rows->commu_details;?></td>
+                                   <!-- <td class="text-left"><?php// echo $rows->commu_details;?></td>-->
                                     <td class="text-left"><?php $date=date_create($rows->commu_date);
                                        echo date_format($date,"d-m-Y");
                                        ?></td>
@@ -54,7 +57,7 @@
 						
 									  <?php if($tid!='null' && $cid!='null'){?>
 									   <td>
-									  <select multiple data-title="Select More Than one class"  name="multiple-class" class="selectpicker" >
+									  <select  data-title="Select More Than one class" style="width:300px;" name="multiple-class" class="selectpicker" >
                                        <?php
                                           $sPlatform=$rows->class_id;
                                           $sQuery = "SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.class FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
@@ -76,8 +79,8 @@
                                                         }
                                               ?>
                                        </select>
-									  
-									     <select  multiple  class="selectpicker form-control" data-title="Select More Than one Teacher" name="multiple-teacher" >
+									 
+									     <select  class="selectpicker form-control" data-title="Select More Than one Teacher" name="multiple-teacher" >
                                        <?php
                                           $tea_name=$rows->teacher_id;
                                           $sQuery = "SELECT * FROM edu_teachers";
@@ -101,7 +104,7 @@
                                        </select></td>
 									  <?php }elseif($cid!='null' && $tid=='null'){?>	
                                    <td>
-                                       <select multiple data-title="Select More Than one class"  name="multiple-class" class="selectpicker" >
+                                       <select  data-title="Select More Than one class"  name="multiple-class" class="selectpicker" >
                                        <?php
                                           $sPlatform=$rows->class_id;
                                           $sQuery = "SELECT c.class_name,s.sec_name,cm.class_sec_id,cm.class FROM edu_class AS c,edu_sections AS s ,edu_classmaster AS cm WHERE cm.class = c.class_id AND cm.section = s.sec_id ORDER BY c.class_name";
@@ -122,10 +125,10 @@
                                                  }
                                                         }
                                               ?>
-                                       </select>
+                                       </select></td>
 									  <?php }else{ ?>
-								
-								      <select  multiple  class="selectpicker form-control" data-title="Select More Than one Teacher" name="multiple-teacher" >
+								<td>
+								      <select class="selectpicker form-control" data-title="Select More Than one Teacher" name="multiple-teacher" >
                                        <?php
                                           $tea_name=$rows->teacher_id;
                                           $sQuery = "SELECT * FROM edu_teachers";

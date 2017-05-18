@@ -57,11 +57,13 @@
 
 </div>
 
+  
 <script type="text/javascript">
+
  var $table = $('#bootstrap-table');
-  $('#teachermenu').addClass('collapse in');
- $('#teacher').addClass('active');
- $('#teacher2').addClass('active');
+   $('#commmenu').addClass('collapse in');
+     $('#comm').addClass('active');
+     $('#comm2').addClass('active');
        $().ready(function(){
          jQuery('#teachermenu').addClass('collapse in');
            $table.bootstrapTable({
