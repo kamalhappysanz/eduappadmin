@@ -20,25 +20,11 @@
                      } ?>
                             <div class="content">
                                 <form method="post" action="<?php echo base_url(); ?>admission/save_ad" class="form-horizontal" enctype="multipart/form-data" id="admissionform" name="formadmission">
-
                                     <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Admission Year</label>
                                             <div class="col-sm-4">
 <input type="text" class="form-control" name="admission_year" id="admission_year" value="<?php echo $rows->admisn_year; ?>" readonly>
-                                               <!-- <select name="admission_year" class="selectpicker form-control"  data-style="btn-default btn-block" data-menu-style="dropdown-blue">
-                                                  <?php /* foreach ($result as $row)
-												  {
-                                                         $fyear=$row->from_month;
-													     $month= strtotime($fyear);
-													// echo $rows->year_id;
-													$eyear=$row->to_month;
-													$month1= strtotime($eyear); */
-												?>
-                                                <option value="<?php //echo $row->year_id; ?>"><?php //echo date('Y',$month); ?> (To) <?php  //echo  date('Y',$month1); ?></option>
-												<?php //} ?>
-                                                </select> -->
-                 
                                             </div>
                                             <label class="col-sm-2 control-label">Admission No</label>
                                             <div class="col-sm-4">

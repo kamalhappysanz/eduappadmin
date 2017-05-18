@@ -293,6 +293,22 @@ Class Examinationresultmodel extends CI_Model
 			return $res;
 
 	   }
+	   
+	   function marks_status_details($clsmasid)
+	   {
+		    $query="SELECT * FROM exam_marks_status WHERE status='N' OR status='A'";
+			$resultset=$this->db->query($query);
+			$row=$resultset->result();
+			//return $row;
+			if($row)
+			{$data= array("status" => "success");
+		     return $data;}
+		  else{
+			$data= array("status" => "failure");
+			return $data;
+		  }
+	   }
+	   
 	   function update_marks_details($teaid,$clsmastid,$exam_id,$subid,$marks,$sutid)
 	   {
 		   $count_name = count($marks);
@@ -324,7 +340,7 @@ Class Examinationresultmodel extends CI_Model
 		   $query="SELECT * FROM exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
 		   $resultset1=$this->db->query($query);
 		   
-		      $sql1="SELECT * FROM exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
+		       $sql1="SELECT * FROM exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
 			   $res1=$this->db->query($sql1);
 			   $res=$res1->result();
 			   foreach($res as $ans){

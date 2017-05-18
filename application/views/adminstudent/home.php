@@ -66,9 +66,11 @@
 																			</div>
 																	<div class="col-md-6">
 																		<div class="">
+																		<?php
+																		$dateTime=new DateTime($rows->dob); $fdate=date_format($dateTime,'d-m-Y' ); ?>
 																			<p> Name :<?php echo $rows->name; ?></p>
 																			<p> Gender :<?php echo $rows->sex; ?></p>
-																			<p>Date Of Birth :<?php echo $rows->dob; ?></p>
+																			<p>Date Of Birth :<?php echo $fdate; ?></p>
 																			<p> AGE :<?php echo $rows->age; ?></p>
 
 																		</div>
@@ -149,65 +151,41 @@
 											<div class="col-md-6">
 												<div id="fullCalendar"></div>
 											</div>
-									<div class="col-md-6">
+									<div class="col-md-6" style="padding-top:95px;">
 									 <div class="card">
                             <div class="header">
                                 <h4 class="title">Circular</h4>
-                                <p class="category">default style</p>
+                              
                             </div>
-						 <div class="content">
+							
+						 <div class="content content-full-width">
                                 <div class="panel-group" id="accordion">
+								<?php //echo count($stud_details);
+							if(empty($stud_details)){
+								echo "No Data Found";
+							}else{
+								foreach($stud_details as $circular){ ?>
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-target="#collapseOne" href="#" data-toggle="collapse">
-                                                    Collapse item 1
-                                                    <b class="caret"></b>
+                                                <a data-target="#collapseOneHover<?php echo $circular->commu_id; ?>" href="" data-toggle="collapse-hover">
+                                                    <?php echo $circular->commu_title;?>
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseOne" class="panel-collapse collapse">
+                                        <div id="collapseOneHover<?php echo $circular->commu_id; ?>" class="panel-collapse collapse">
                                             <div class="panel-body">
-                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-target="#collapseTwo" href="#" data-toggle="collapse">
-                                                    Collapse item 2
-
-                                                    <b class="caret"></b>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseTwo" class="panel-collapse collapse">
-                                            <div class="panel-body">
-                                               aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-target="#collapseThree" href="#" data-toggle="collapse">
-                                                    Collapse item 3
-
-                                                    <b class="caret"></b>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseThree" class="panel-collapse collapse">
-                                            <div class="panel-body">
-                                            aw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                 <?php echo $circular->commu_details;?> 
                                             </div>
                                         </div>
                                     </div>
 
-                                </div>
+                          <?php }}?>
+                                </div><?php foreach($stud_cls_id as $id){}$cid=$id->class_id; ?>
+								 <a href="<?php echo base_url();?>student/view_all_circular/<?php echo $cid; ?>" class="btn btn-social btn-simple btn-twitter">View All</a>
                             </div>
-											</div>
+							
+                               			</div>
 									</div>
 									
 								</div>

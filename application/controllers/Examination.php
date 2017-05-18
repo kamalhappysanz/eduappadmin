@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+   
 class Examination extends CI_Controller
  {
 
@@ -287,12 +287,33 @@ class Examination extends CI_Controller
 		 }
 		  
 	 }
+	 //--------------------Exam Result------------------------------
+	 
+	 public function exam_name_status()
+	 {
+		 $datas=$this->session->userdata();
+	 	 $user_id=$this->session->userdata('user_id');
+		 $user_type=$this->session->userdata('user_type');
+		 $datas['exam_name']=$this->examinationmodel->exam_name_status();
+		 //print_r($datas['exam_name']);exit;
+		 if($user_type==1)
+					{
+					 $this->load->view('header');
+					 $this->load->view('examination/exam_name',$datas);
+					 $this->load->view('footer');
+					 }
+					 else{
+						redirect('/');
+					 }
+		 
+	 }
 	 
 	 public function marks_status()
 	 {
 		 $datas=$this->session->userdata();
 	 	 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
+		
 		 $datas['cls']=$this->examinationmodel->marks_status();
 		 //print_r($datas['cls']);//exit;
 		 if($user_type==1)
@@ -339,10 +360,27 @@ class Examination extends CI_Controller
   	 		  $user_id=$this->session->userdata('user_id');
 			  $user_type=$this->session->userdata('user_type');
 			  
-			  $eid=$this->input->post('msta_id');
-			  //echo $eid;exit;
-			  $datas=$this->examinationmodel->update_exam_status($eid);
-			  print_r($datas);exit;
+			  $exid=$this->input->post('exams_id');
+			  $cmid=$this->input->post('cls_id');
+			  //echo $cmid;exit;
+			  $datas=$this->examinationmodel->update_exam_status($exid,$cmid);
+			 
+			 // print_r($datas);exit;
+			  if($datas['status']=="success")
+			   { 
+		        $a=$datas['var1']; $b=$datas['var2'];//echo $a;exit;
+				$this->session->set_flashdata('msg','Approved Successfully');
+                redirect('examination/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);
+			   }elseif($datas['status']=="Already Approved Exam Marks")
+			        { 
+					  $a=$datas['var1']; $b=$datas['var2'];
+					  $this->session->set_flashdata('msg','Already Approved Exam Marks');
+					  redirect('examination/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);  
+			   }else{
+				  $a=$datas['var1']; $b=$datas['var2'];
+				$this->session->set_flashdata('msg','Falid To Approve');
+                redirect('examination/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);
+			}
 			  
 		}
 		

@@ -21,7 +21,7 @@
                         <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examination/exam_mark_details_cls_teacher?var1=<?php echo $rows->classmaster_id; ?>&var2=<?php echo $rows->exam_id; ?>" class="btn btn-wd"><?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></a>
                         </div>
-						<input type="hidden" name="msta_id" value="<?php echo $rows->exam_status_id; ?>"/>
+						
                         <?php  } }  ?>
 
                      </div>

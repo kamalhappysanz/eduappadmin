@@ -50,7 +50,7 @@
                               <th>Homework Type</th>
                               <th>Title</th>
                               <th>Test DATE</th>
-                              <th>Details</th>
+                             
 							  <th>Status</th>
                               <th class="disabled-sorting text-right">Actions</th>
                            </thead>
@@ -82,7 +82,7 @@
                                  <td><?php $date=date_create($rows->test_date);
                                     echo date_format($date,"d-m-Y");
                                     ?></td>
-                                 <td><?php echo $rows->hw_details; ?></td>
+                                 <!--<td><?php//echo $rows->hw_details; ?></td>-->
                                  <td><?php if($status=='A'){?>
 								 <button class="btn btn-success btn-fill btn-wd">Active</button>
 								 <?php }else{?>

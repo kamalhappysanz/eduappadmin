@@ -95,9 +95,13 @@
 										}?>
 										<tr>
 										<td></td><td></td>
-										 <td><div class="col-sm-10">
+										 <td>
+										 <?php if(empty($mark)){ ?>
+										 <div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Save</button>
-                                          </div> </td>
+                                          </div>
+										 <?php }else{ echo "";} ?>
+										 </td>
 										</tr>
 
                                     </tbody>

@@ -65,7 +65,7 @@ class Adminparent extends CI_Controller {
 				if($stu==1){
 					$datas['stud_details']=$this->dashboard->get_students($user_id);
 						foreach ($datas['stud_details'] as $rows) {}
-						echo $class_sec_id= $rows->class_id;
+						 $class_sec_id= $rows->class_id;
 						$datas['restime']=$this->timetablemodel->view_time($class_sec_id);
 						//print_r($datas['restime']);exit;
 						if($datas['restime']['st']=="no data Found"){

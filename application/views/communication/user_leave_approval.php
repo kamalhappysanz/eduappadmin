@@ -38,9 +38,10 @@
 							  
 							  
                               <label class="col-sm-2 control-label">Date</label>
-                              <div class="col-sm-4">
-                          <input type="text" name="leave_date" disabled value="<?php echo date_format($date1,"d/m/Y");?>" class="form-control datepicker">
-								 <input type="hidden" name="leave_id" value="<?php echo $id;?>" class="form-control "  >
+                                <div class="col-sm-4">
+                          <input type="text" name="leave_date" readonly value="<?php $date1=date_create($row->leave_date);
+                                                 echo date_format($date1,"d-m-Y"); ?>" class="form-control">
+						 <input type="hidden" name="leave_id" value="<?php echo $id;?>" class="form-control "  >
                               </div>
                            </div>
                         </fieldset>
@@ -76,6 +77,7 @@
 												<option value="R">Reject</option>
 												
 								</select>
+								<script language="JavaScript">document.myformsection.status.value="<?php echo $row->status; ?>";</script>
                               </div>
 							  </div>
 							   </fieldset>

@@ -21,6 +21,9 @@
 					<form method="post" action="<?php echo base_url(); ?>examination/marks_status_update" class="form-horizontal" enctype="multipart/form-data" id="markform">
 
 <?php
+                   $cls_id=$this->input->get('var1');
+				   $exam_id=$this->input->get('var2');
+				   //echo $exam_id;echo $cls_id;
 		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)
 		{
 			foreach ($stu as $v) {
@@ -39,11 +42,15 @@
 		}
 
 ?>
-
+                                <input type="hidden" name="exams_id" value="<?php echo $exam_id; ?>"/> 
+								<input type="hidden" name="cls_id" value="<?php echo $cls_id; ?>"/> 
+								
                                 <table class="table table-hover table-striped">
-								<?php foreach($cls as $rows){ ?>
-								<input type="hidden" name="msta_id" value="<?php echo $rows->exam_status_id; ?>"/> 
-								<?php }?>
+								<?php //foreach($cls as $rows){?>
+								<!--<input type="text" name="msta_id" value="<?php echo $rows->exam_status_id; ?>"/> 
+								<input type="text" name="exam_id" value="<?php echo $rows->exam_id; ?>"/> 
+								<input type="text" name="class_id" value="<?php echo $rows->classmaster_id; ?>"/> -->
+								<?php //}?>
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
@@ -82,7 +89,7 @@
 											{
 												if(empty($s) === false && $k == 1){
 													echo '<input type="hidden" id="sid" name="sutid[]" value="'.$s->enroll_id.'" />';
-													echo '<input type="hidden" id="cid" name="clsmastid" value="'.$s->class_id.'" />';
+										echo '<input type="hidden" id="cid" name="clsmastid" value="'.$s->class_id.'" />';
 													$k++;
 												}
 												if($status=="Success")
@@ -104,7 +111,8 @@
 									}else{ echo "No Exam Mark Added"; }
 										?>
 										<tr>
-										 <td><div class="col-sm-10">
+										 <td>
+										 <div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Approve</button>
                                           </div> </td>
 										</tr>

@@ -257,7 +257,7 @@
                      <ul class="nav">
                         <li id="exam1"><a href="<?php echo base_url(); ?>examination/add_exam">Add / View Exams</a></li>
                         <li id="exam2"><a href="<?php echo base_url(); ?>examination/add_exam_detail">Examination Calender</a></li>
-                       <li id="exam3"><a href="<?php echo base_url(); ?>examination/marks_status">Exam Result Details</a></li>
+                       <li id="exam3"><a href="<?php echo base_url(); ?>examination/exam_name_status">Exam Result Details</a></li>
                      </ul>
                   </div>
                </li>

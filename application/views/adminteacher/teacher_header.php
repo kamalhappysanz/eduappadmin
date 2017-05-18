@@ -184,7 +184,7 @@ font-weight: 500;
 										<div class="collapse" id="commmenu">
 											<ul class="nav">
 										<li id="comm1"><a href="<?php echo base_url(); ?>teachercommunication/home">Apply Leaves </a></li>
-
+                         <li id="comm2"><a href="<?php echo base_url(); ?>teachercommunication/view_circular">View Circulars</a></li>
 											</ul>
 									</div>
 								</li>

@@ -107,7 +107,7 @@ LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_
      }
 
      function get_class_id_user(){
-       $user_id=$this->session->userdata('user_id');
+        $user_id=$this->session->userdata('user_id');
         $get_enroll_id="SELECT ed.name,ed.student_id,ea.admisn_year,ea.admisn_no,ee.enroll_id,ee.class_id FROM edu_users AS ed LEFT JOIN edu_admission AS ea ON ed.student_id=ea.admission_id
        LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_id='$user_id'";
 
@@ -132,9 +132,13 @@ LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_
 
      }
 	 
-	 function get_circular($user_id){
-		$class_id=$this->get_class_id_user();
-        echo $class_id;exit;		
+	 function get_circular($user_id,$cid){
+		 $cid=$this->get_class_id_user();
+        //echo $class_id;exit;	
+		  $sql="SELECT * FROM edu_communication WHERE status='A' AND FIND_IN_SET('$cid',class_id) ORDER BY commu_id DESC ";
+		  $res=$this->db->query($sql);
+		  $row=$res->result();
+		  return $row;
 	 }
 
 

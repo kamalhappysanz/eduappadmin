@@ -25,11 +25,13 @@
 		{
 			foreach ($stu as $v) {
 				$cnt= count($subject_name);
+				
 				for($i=0;$i<$cnt;$i++)
-				{
+				{ 
 					if($subject_id[$i] == $v->subject_id)
 					{
 						$student_arr[$v->name][$subject_id[$i]] = $v;
+						
 					}else{
 						if(!isset($student_arr[$v->name][$subject_id[$i]]))
 							$student_arr[$v->name][$subject_id[$i]] = array();
@@ -91,10 +93,6 @@
 											$k = 1;
 											foreach ($s1 as $k1 => $s)
 											{   
-											   $b=$s->enroll_id;
-											 
-											   $a=$s->marks;
-											 
 												'<form name="exam" id="examvalidate">';
 												if(empty($s) === false && $k == 1){
 													echo '<input type="hidden" id="sid" name="sutid[]" value="'.$s->enroll_id.'" />';
@@ -109,6 +107,11 @@
 													{
 														echo '<input style="width:60%;" type="text" required name="marks1" value="'.$s->marks.'" class="form-control" readonly /></td>';
 														
+											            /*  $a=$s->marks;
+											             for($i=0; $i <= $cnt; $i++) 
+											              {$t=$a + $a;}
+											                echo  $t; */
+														
 													}else{
 														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value=""  class="form-control"/>';
 														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
@@ -116,8 +119,8 @@
 													
 												}
 											}
-										echo '<td>
-						<input style="width:60%;" type="text" required name="marks1" value="" class="form-control" readonly /></td>';
+										echo '<td> 
+						<input style="width:60%;" type="text" required name="total" value="" class="form-control" readonly /></td>';
 												'</form>';
 											 echo '</tr>';
 											$i++;
@@ -162,6 +165,16 @@ $('#examvalidate').validate({ // initialize the plugin
 			  marks: "Please Enter The Marks"
             }
     });
+
+	
+	$('table input').on('input', function() {
+       var $tr = $(this).closest('tr'); // get tr which contains the input
+       var tot = 0; // variable to sore sum
+       $('input', $tr).each(function() { // iterate over inputs
+       tot += Number($(this).val()) || 0; // parse and add value, if NaN then add 0
+      });
+     $('td:last', $tr).text(tot); // update last column value
+     }).trigger('input'); 
 
 
 

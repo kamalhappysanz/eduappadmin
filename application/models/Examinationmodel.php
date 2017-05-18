@@ -1,5 +1,5 @@
 <?php
-
+   
 Class Examinationmodel extends CI_Model
 {
 
@@ -17,7 +17,7 @@ Class Examinationmodel extends CI_Model
 
 	  function get_details_view()
 	   {
-		 $query="select ex.exam_detail_id,ex.subject_id,ex.exam_date,ex.times,ex.classmaster_id,cm.	class_sec_id,ex.teacher_id,s.subject_name,c.class_name,se.sec_name  FROM edu_exam_details AS ex,edu_classmaster AS cm,edu_subject AS s,edu_class AS c,edu_sections AS se WHERE  ex.subject_id=s.subject_id AND ex.classmaster_id=cm.	class_sec_id AND c.class_id =cm.class AND se.sec_id=cm.section ORDER BY ex.exam_detail_id DESC";
+		 $query="select ex.exam_detail_id,ex.subject_id,ex.exam_date,ex.times,ex.classmaster_id,ex.exam_id,cm.	class_sec_id,ex.teacher_id,s.subject_name,c.class_name,se.sec_name  FROM edu_exam_details AS ex,edu_classmaster AS cm,edu_subject AS s,edu_class AS c,edu_sections AS se WHERE  ex.subject_id=s.subject_id AND ex.classmaster_id=cm.	class_sec_id AND c.class_id =cm.class AND se.sec_id=cm.section ORDER BY ex.exam_detail_id DESC";
 		 
          $resultset=$this->db->query($query);
          return $resultset->result();
@@ -142,16 +142,124 @@ Class Examinationmodel extends CI_Model
 		
 	}
     
-	function marks_status()
+	function exam_name_status()
 	{
 		//$sql="SELECT * FROM exam_marks_status ";
-		$sql="SELECT ms.*,cm.class_sec_id,cm.class,cm.section,c.*,s.* FROM exam_marks_status AS ms,edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE ms.classmaster_id=cm.class_sec_id ";
+		$sql="SELECT ms.*,ex.exam_id,ex.exam_year,ex.exam_name FROM exam_marks_status AS ms,edu_examination AS ex WHERE ms.exam_id=ex.exam_id GROUP BY ms.exam_id";
 		$res=$this->db->query($sql);
 		$result=$res->result();
 		return $result;
 		
 	}
+	
+	function marks_status()
+	{
+		//$sql="SELECT * FROM exam_marks_status ";
+		$sql="SELECT ms.*,cm.class_sec_id,cm.class,cm.section,c.*,s.* FROM exam_marks_status AS ms,edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE ms.classmaster_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id";
+		$res=$this->db->query($sql);
+		$result=$res->result();
+		return $result;
+		
+	}
+	function getall_stuname($user_id,$cls_masid,$exam_id)
+	   {
+		    $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
+			$res=$this->db->query($sql); 
+			$rows=$res->result();
+			return $rows;
+	   }
+    function getall_subname($user_id,$cls_masid,$exam_id)
+	   {
+		   
+			 $query="SELECT cm.class_sec_id,cm.subject,su.* FROM edu_classmaster AS cm,edu_subject AS su WHERE  cm.subject=su.subject_id AND cm.class_sec_id='$cls_masid'";
+            $resultset=$this->db->query($query);
+			$row=$resultset->result();
+			 //print_r($row);exit;
+			 if(empty($row))
+			 {
+				 $data= array("status" =>"Subject Not Found");
+				 return $data;
+			 }
+			  foreach($row as $rows)
+			  { }
+				    $id=$rows->subject;
+						//echo $id;
+					   // $id=$rows->subject;
+					$sql="SELECT * FROM edu_subject";
+					$res1=$this->db->query($sql);
+					$rows=$res1->result();
+					 // echo'<pre>';  print_r($rows);exit;
+					   foreach ($rows as $rows1) 
+					   {
+						   $s= $rows1->subject_id;
+						   $sec=$rows1->subject_name;
 
+						   $subid = explode(",",$id);
+						   $subjid  = trim($s);
+						   $subname  = trim($sec);
+						   if(in_array($subjid,$subid))
+							   {
+								  $sub_name[]=$sec;
+								  $sub_id[]=$s;
+							   }
+						 //return $a;
+	                   }
+					$datas= array("status" =>"Success","subject_id"=>$sub_id,"subject_name"=>$sub_name);
+					return $datas;
+
+	   }
+	   
+	   function update_exam_status($exid,$cmid)
+	   {
+		       $sql1="SELECT * FROM exam_marks_status WHERE exam_id='$exid' AND classmaster_id='$cmid' AND status='A'";
+			   $res1=$this->db->query($sql1);
+			   $res2=$res1->result();
+			   foreach($res2 as $ans){
+				   $a=$ans->exam_id;
+				   $b=$ans->classmaster_id;
+				   }
+		   if($res1->num_rows()==0)
+		   {
+			  $sql="UPDATE exam_marks_status SET status='A',updated_at=NOW() WHERE exam_id='$exid' AND classmaster_id='$cmid'";
+			  $res=$this->db->query($sql);
+			   
+			   $sql1="SELECT * FROM exam_marks_status WHERE exam_id='$exid' AND classmaster_id='$cmid'";
+			   $res1=$this->db->query($sql1);
+			   $res2=$res1->result();
+			   foreach($res2 as $ans){
+				   $a=$ans->exam_id;
+				   $b=$ans->classmaster_id;
+				   }
+				if($res)
+				 {
+					$data= array("status" => "success","var1"=>$a,"var2"=>$b);
+					return $data;
+			     }else{
+				     $data= array("status" => "Failed to Update","var1"=>$a,"var2"=>$b);
+				     return $data;
+			   }
+		   }else{
+			   $data= array("status" => "Already Approved Exam Marks","var1"=>$a,"var2"=>$b);
+			  return $data;
+				   
+		   }
+	  
+	   }
+	   function get_exam_status($exid,$cmid)
+	   {
+		     /*   $sql="SELECT * FROM exam_marks_status WHERE exam_id='$exid' AND classmaster_id='$cmid' AND status='A'";
+			   $res1=$this->db->query($sql);
+			   $res2=$res1->result();
+			   if($res2)
+				 {
+					$data= array("status" => "success");
+					return $data;
+			     }else{
+				     $data= array("status" => "NS");
+				     return $data;
+			   } */
+		   
+	   }
 
 }
 ?>

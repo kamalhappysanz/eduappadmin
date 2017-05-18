@@ -36,6 +36,24 @@
                                     <tbody>
 										<?php 
 										$i=1;
+										if($status="success")
+									    { 
+									     foreach($edit as $row)
+										      { ?>
+										<tr>
+										<td><?php echo $i;?></td>
+										<td style="">
+										<?php echo $row->name; ?>
+										<input type="hidden" name="examid" value="<?php echo $row->exam_id; ?>" />
+										<input type="hidden" name="subid" value="<?php echo $row->subject_id; ?>" />
+										<input type="hidden" name="sutid[]" value="<?php echo $row->stu_id; ?>" />
+										<input type="hidden" name="teaid" value="<?php echo $row->teacher_id; ?>" />
+                                        <input type="hidden" name="clsmastid" value="<?php echo $row->classmaster_id; ?>" />
+										</td>	
+										<td><input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>	
+										</tr>
+									 <?php $i++;} 
+     									}else{
 										foreach($edit as $row)
 										      { ?>
 										<tr>
@@ -50,12 +68,17 @@
 										</td>	
 										<td><input style="width:60%;" type="text"  name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>	
 										</tr>
-										<?php $i++;} ?>
+									 <?php $i++;} 
+									 }?>
 										<tr>
 										<td></td><td></td>	
-										 <td><div class="col-sm-10">
+										 <td><?php if($status="success")
+										   { echo ""; 
+										   }else{?>
+										 <div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Update </button>
-                                          </div> </td>
+                                          </div>
+										 <?php } ?>	  </td>
 										</tr>
 
                                     </tbody>

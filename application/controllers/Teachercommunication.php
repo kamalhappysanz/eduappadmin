@@ -28,6 +28,15 @@ class Teachercommunication extends CI_Controller
 	 				redirect('/');
 	 		 }
 	 	}
+		public function view_circular()
+		{
+			 $datas=$this->session->userdata();
+  	 		 $user_id=$this->session->userdata('user_id');
+			 $user_type=$this->session->userdata('user_type');
+			 $datas['result']=$this->teachercommunicationmodel->getall_details($user_id);
+			
+		}
+			
 		
 		public function create()
 		{
