@@ -182,44 +182,26 @@ return  $result12->result();
     $query="SELECT eu.user_id,eu.parent_id,ep.father_name,ep.admission_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.parent_id=ep.parent_id WHERE eu.user_id='$user_id'";
     $res=$this->db->query($query);
     foreach($res->result() as $rows){ }
-    $sPlatform= $rows->admission_id;
-    $sQuery = "SELECT * FROM edu_enrollment";
-    $objRs=$this->db->query($sQuery);
-     //print_r($objRs);
-    $row=$objRs->result();
-    foreach ($row as $rows1) {
-    $s= $rows1->enroll_id;
-     $sec=$rows1->name;
-     $arryPlatform = explode(",", $sPlatform);
+    $pare_id= $rows->parent_id;
 
-    $sPlatform_id  = trim($s);
-    $sPlatform_name  = trim($sec);
-
-    if(in_array($sPlatform_id, $arryPlatform )) {
-      $e_id[]=$s;
-      $name[]=$sec;
-        print_r($name);
-    //  $sec_n[]=$sec_name;
-    }
-      }
-      if(empty($e_id)){
-        $data= array("status" =>"No Record Found");
-        print_r( $data);
-        exit;
-      }else{
-
-        $data= array("subject_id" => $sub_id,"subject_name"=>$sub_name,"status"=>"success");
-        print_r( $data);
-        exit;
-      }
-
-
+    $get_stude="SELECT ee.name,ee.class_id,c.class_name,s.sec_name,ee.enroll_id,ed.* FROM edu_admission AS ed LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ed.admission_id INNER JOIN edu_classmaster AS cm ON ee.class_id=cm.class_sec_id
+INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE parnt_guardn_id='$pare_id'";
+    $res1=$this->db->query($get_stude);
+    return $res1->result();
 
 
   }
 
-  function stud_details(){
+  function stud_details($user_id){
+    $query="SELECT eu.user_id,eu.parent_id,ep.father_name,ep.admission_id FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.parent_id=ep.parent_id WHERE eu.user_id='$user_id'";
+    $res=$this->db->query($query);
+    foreach($res->result() as $rows){ }
+    $pare_id= $rows->parent_id;
 
+    $get_stude="SELECT ee.name,ee.class_id,c.class_name,s.sec_name,ee.enroll_id,ed.* FROM edu_admission AS ed LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ed.admission_id INNER JOIN edu_classmaster AS cm ON ee.class_id=cm.class_sec_id
+INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE parnt_guardn_id='$pare_id'";
+    $res1=$this->db->query($get_stude);
+    return $res1->result();
   }
 }
 ?>

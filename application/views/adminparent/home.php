@@ -7,6 +7,7 @@
 .fc-ltr .fc-basic-view .fc-day-number{text-align: center;}
 .fc-today-button,.fc-month-button,.fc-basicWeek-button,.fc-basicDay-button{display:none;}
 .fc-month-button{display: none;}
+.stud_name{color:black;}
 </style>
 
 
@@ -126,15 +127,26 @@
 																		  <h4 class="title">More information here</h4>
 
 																</div>
+																<?php if(empty($stud_details)){
+
+																}else{
+																	//print_r($stud_details);
+																	//echo count($stud_details);
+																	foreach ($stud_details as $rows) {  ?>
+
+
 																<div class="header">
-																		<h6 class="title">Class Teacher </h6>
-																	<p class="category"><a> <?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></a></p>
+																		<h6 class="title"> </h6>
+																	<p class="category"><a class="stud_name"> <?php echo $rows->name; ?></a><span style="padding-left:40px;"><?php echo $rows->class_name; ?><?php echo $rows->sec_name; ?></span></p>
 																</div>
+																<?php } } ?>
 																	</div>
+
+
 															<div class="col-md-6">
 																<div class="header">
-																		<h4 class="title">Mother Tongue</h4>
-																		<p class="category"><?php echo $rows->mother_tongue; ?></p>
+
+
 																</div>
 
 															</div>

@@ -191,8 +191,11 @@ class Adminlogin extends CI_Controller {
 			$this->load->view('adminstudent/student_footer');
 		}else if($user_type==4){
 			$datas['user_details']=$this->dashboard->dash_parents($user_id);
-			//$datas['stud_details']=$this->dashboard->get_students($user_id);
-			//print_r($datas['user_details']);
+			$datas['stud_details']=$this->dashboard->get_students($user_id);
+			$datas['res']=$this->dashboard->stud_details($user_id);
+
+
+			//print_r($datas['stud_details']);
 			$this->load->view('adminparent/parent_header',$datas);
 			$this->load->view('adminparent/home',$datas);
 			$this->load->view('adminparent/parent_footer');
