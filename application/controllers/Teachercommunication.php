@@ -33,7 +33,7 @@ class Teachercommunication extends CI_Controller
 			 $datas=$this->session->userdata();
   	 		 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
-			 $datas['result']=$this->teachercommunicationmodel->getall_details($user_id);
+			 $datas['circular']=$this->teachercommunicationmodel->getall_circular_details($user_id);
 			
 		}
 			
