@@ -51,7 +51,7 @@ select{width:100px;}
         </div>
       </div>
     </fieldset>
-    <fieldset>
+    <!-- <fieldset>
         <div class="form-group">
           <label class="col-sm-2 control-label">Select Term</label>
         <div class="col-sm-3">
@@ -64,14 +64,14 @@ select{width:100px;}
 
 
     </div>
-</fieldset>
+</fieldset> -->
 
 
         <fieldset>
             <div class="form-group">
               <label class="col-sm-2 control-label">Select class</label>
                 <div class="col-sm-3">
-                  <select   name="class_id" id="class_id"  data-title="Select Class" class="selectpicker"  data-style="btn-block"  data-menu-style="dropdown-blue">
+                  <select   name="class_id" id="class_id"  data-title="Select Class" class="selectpicker" onchange="getSubject(this.value)"   data-style="btn-block"  data-menu-style="dropdown-blue">
                     <?php foreach ($getall_class as $rows) {  ?>
                     <option value="<?php echo $rows->class_sec_id; ?>"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></option>
               <?php      } ?>
@@ -116,13 +116,21 @@ select{width:100px;}
                               for($i=1;$i <= $period; $i++){
                                   ?>
                                   <td>
-                                    <select   name="subject_id[]" class="" required>
+                                    <!-- <select   name="subject_id[]" class="" required>
                                       <option value="">No Subject</option>
                                             <?php foreach ($subres as $rows) {  ?>
                                             <option value="<?php echo $rows->subject_id; ?>"><?php echo $rows->subject_name; ?></option>
                                       <?php      } ?>
 
-                                    </select><br><br>
+                                    </select> -->
+                                    <select   name="subject_id[]" class="subject_id"  id="subject_id" required>
+                                      <option value=""></option>
+
+                                    </select>
+
+
+
+                                    <br><br>
                                     <select   name="teacher_id[]" required>
                                         <option value="">No Teacher</option>
                                       <?php foreach ($teacheres as $rows) {  ?>
@@ -171,7 +179,45 @@ select{width:100px;}
 
 function getSubject(){
  var class_id=$('#class_id').val();
- alert(class_id);
+ $.ajax({
+    url:'<?php echo base_url(); ?>timetable/getsubject',
+    method:"POST",
+    data:{class_id:class_id},
+    dataType: "JSON",
+    cache: false,
+    success:function(data)
+    {
+      var stat=data.status;
+      //alert(stat);
+      //$('.subject_id')html('');
+        $(".subject_id").empty();
+      if(stat=="success"){
+        //  alert(data.subject_id);
+          var g=data.subject_id;
+
+          var len=g.length;
+            $('<option>').val(" ").text("Select Subject").appendTo('.subject_id');
+            for (i = 0; i < len; i++) {
+              // alert(data.subject_id[i]);
+
+              $('<option>').val(data.subject_id[i]).text(data.subject_name[i]).appendTo('.subject_id');
+            }
+
+          // $("<option></option>", {value: data.subject_id, text: data.subject_name}).appendTo('#subject_id');
+      }else{
+    $(".subject_id").empty();
+        // alert("no Subject");
+      }
+
+      // if(data.[status]=="success"){
+      //
+      // }else{
+      //
+      // }
+
+      //$('#result').html(data);
+    }
+   });
 }
 
 $(document).ready(function () {
@@ -184,16 +230,16 @@ $('#time1').addClass('active');
          period_id:{required:true },
          class_id:{required:true },
          year_id:{required:true },
-         term_id:{required:true },
-         'subject_id[]':{required:true },
-         'teacher_id[]':{required:true }
+
+         "subject_id[]":{required:true },
+         "teacher_id[]":{required:true }
      },
      messages: {
 
            period_id: "Select Period",
            class_id: "Select Class",
-           year_id: "Select Year",
-           term_id: "Select Term"
+           year_id: "Select Year"
+          //  term_id: "Select Term"
           //  subject_id: "Select Subject",
           //   teacher_id: "Select Teacher"
 

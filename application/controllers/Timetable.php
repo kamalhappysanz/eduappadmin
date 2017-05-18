@@ -187,6 +187,13 @@ class Timetable extends CI_Controller {
 
 
 
+			public function getsubject(){
+				  $class_sec_id=$this->input->post('class_id');
+				$datas['res']=$this->timetablemodel->get_subject_class($class_sec_id);
+				echo json_encode( $datas['res']);
+			}
+
+
 		public function delete(){
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
