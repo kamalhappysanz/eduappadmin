@@ -33,15 +33,7 @@
 											  <?php 
 												 ?>									 
                                     </thead>
-									<?php //print_r($status);
-									if($status="success"){  ?>
-										<style> </style>
-									<?php }else{
-										echo "2";
-									}
-								
 									
-									 ?>
                                     <tbody>
 										<?php 
 										$i=1;
@@ -65,13 +57,21 @@
 										<tr>
 										<td></td><td></td>	
 										 <td>
-										 <?php if($status="Success")
-										       {// echo $status; 
-										       } else if($status="failure "){?>
+										 <?php
+										 print_r($st);
+									if($st="success")
+										       { echo "1";
+
+										   ?><style>#update{display:none;}</style><?php 
+										       }else{
+												   echo $st;
+											   }?>
+
+										 
 										 <div class="col-sm-10">
-                                             <button type="submit" class="btn btn-info btn-fill center">Update</button>
+                                             <button type="submit" id="update" class="btn btn-info btn-fill center">Update</button>
                                           </div>
-										 <?php }else{ echo $status; } ?>	  </td>
+										   </td>
 										</tr>
 
                                     </tbody>

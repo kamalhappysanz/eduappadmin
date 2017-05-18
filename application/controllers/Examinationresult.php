@@ -217,10 +217,11 @@ class Examinationresult extends CI_Controller
 			  $clsmasid=$this->input->get('var2');
 			  //echo $subid;echo $clsmasid;
 			  $datas['edit']=$this->examinationresultmodel->edit_marks_details($user_id,$subid,$clsmasid);
-			  $datas['status']=$this->examinationresultmodel->marks_status_details($clsmasid);
+			  $datas['st']=$this->examinationresultmodel->marks_status_details($clsmasid);
 			  //echo '<pre>';print_r($datas['status']);
 			if($user_type==2)
 			    { 
+			//echo '<pre>';print_r($datas['status']);
 				 $this->load->view('adminteacher/teacher_header');
 			     $this->load->view('adminteacher/examination_result/edit_mark',$datas);
 	 		     $this->load->view('adminteacher/teacher_footer');
