@@ -121,13 +121,13 @@ font-weight: 500;
 								<li>
 										<a href="<?php echo base_url(); ?>adminparent/attendance">
 												<i class="pe-7s-note2"></i>
-												<p>Attendence	</p>
+												<p>Attendence</p>
 
 										</a>
 
 								</li>
 								<li>
-										<a href="<?php echo base_url(); ?>adminparent/attendance">
+										<a href="<?php echo base_url(); ?>adminparent/event">
 												<i class="pe-7s-note2"></i>
 												<p>Events	</p>
 
@@ -137,29 +137,24 @@ font-weight: 500;
 								<li>
 										<a href="<?php echo base_url(); ?>adminparent/attendance">
 												<i class="pe-7s-note2"></i>
-												<p>circular	</p>
+												<p>circular</p>
 
 										</a>
 
 								</li>
 
 								<li>
-										<a data-toggle="collapse" href="#sectionmenu">
+										<a href="<?php echo base_url(); ?>adminparent/homework">
 												<i class="pe-7s-flag"></i>
-												<p>Home Work	</p>
-												<b class="caret"></b>
+												<p>Home Work</p>
+												
 										</a>
-										<div class="collapse" id="sectionmenu">
-											<ul class="nav">
-													<li><a href=""> Home Work</a></li>
-
-											</ul>
-									</div>
+										
 								</li>
 								<li>
-										<a data-toggle="collapse" href="#componentsExamples">
+										<a  href="<?php echo base_url(); ?>adminparent/exam_result">
 												<i class="pe-7s-plugin"></i>
-												<p>Examination Result	</p>
+												<p>Examination Result</p>
 										</a>
 								</li>
 								<li>

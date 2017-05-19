@@ -14,12 +14,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="content">
-
                                 <div class="fresh-datatables">
                                   <h4 class="title">View All Circular </h4>
-
-								  
-								  
                                 <div class="dtypo-line" style="padding:30px;">
                                     <div class="row">
                                        <?php
