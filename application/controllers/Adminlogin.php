@@ -60,7 +60,8 @@ class Adminlogin extends CI_Controller {
 								$session_data=$this->session->set_userdata($datas);
 								$datas['res']=$this->dashboard->get_user_count_student();
 								$datas['parents']=$this->dashboard->get_user_count_parents();
-								$datas['stud']=$this->dashboard->dash_stud_users();
+								$datas['teacher']=$this->dashboard->dash_teacher_users();
+
 								$datas['das_events']=$this->dashboard->dash_events();
 								$datas['das_users']=$this->dashboard->dash_users();
 								$datas['dash_comm']=$this->dashboard->dash_comm();

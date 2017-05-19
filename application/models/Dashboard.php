@@ -23,6 +23,11 @@ Class Dashboard extends CI_Model
         return  $result->result();
 
     }
+    function dash_teacher_users(){
+      $query="SELECT COUNT(teacher_id) AS user_count FROM  edu_teachers WHERE STATUS='A'";
+      $result=$this->db->query($query);
+      return  $result->result();
+    }
 
 
     function dash_events(){
@@ -39,11 +44,7 @@ Class Dashboard extends CI_Model
       return  $result->result();
     }
 
-    function dash_stud_users(){
-      $query="SELECT COUNT(enroll_id) AS user_count FROM  edu_enrollment WHERE STATUS='A'";
-      $result=$this->db->query($query);
-      return  $result->result();
-    }
+
 
 
     function dash_comm(){
@@ -216,27 +217,16 @@ INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON
 
 
   }
- /*  function get_students($user_id)
-  {
-        $user_id=$this->session->userdata('user_id');
-        $get_enroll_id="SELECT ed.name,ed.student_id,ea.admisn_year,ea.admisn_no,ee.enroll_id,ee.class_id FROM edu_users AS ed LEFT JOIN edu_admission AS ea ON ed.student_id=ea.admission_id
-       LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_id='$user_id'";
-
-        $results=$this->db->query($get_enroll_id);
-        foreach($results->result() as $rows){}
-        $class_id=$rows->class_id;
-		//return $class_id;
-
-		  $clas_id=$rows->class_id;
-		  //$sql = "SELECT * FROM edu_communication WHERE status='A' AND FIND_IN_SET('$clas_id',class_id)AND created_at>=NOW()";
-		  $sql="SELECT * FROM edu_communication WHERE status='A' AND FIND_IN_SET('$clas_id',class_id) AND created_at<=NOW() ";
-		  $res=$this->db->query($sql);
-		  $row=$res->result();
-		   return $row;
 
 
+    function total_working_days(){
+      $query="SELECT created_at FROM edu_attendence WHERE ac_year=1  GROUP BY CAST(created_at AS DATE) ";
+      $results=$this->db->query($query);
+      return $results->result();
 
-  } */
+    }
+
+
 
 }
 ?>

@@ -110,12 +110,12 @@ class Classmanage extends CI_Controller {
 						$this->session->set_flashdata('msg', 'Successfully Updated');
 						redirect('classmanage/home');
 				}
-				elseif($datas['status']=="alreadySaved"){
-					$this->session->set_flashdata('msg', 'Already Saved');
+				elseif($datas['status']=="updated"){
+					$this->session->set_flashdata('msg', 'Saved');
 						redirect('classmanage/home');
 				}
 				else{
-					$this->session->set_flashdata('msg', 'Something Went wrong');
+					$this->session->set_flashdata('msg', 'Saved');
 						redirect('classmanage/home');
 				}
 			}

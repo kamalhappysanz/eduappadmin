@@ -15,7 +15,7 @@
                            <p class="text-center" style="margin-top:20px;">No Record Found</p> <style>#submit{display: none;}</style>
                       <?php     }else{ ?>
 
-                       <div class="content table-full-width">
+                     <div class="fresh-datatables">
                          <form action="" method="post" enctype="multipart/form-data" id="takeattendence">
                            <table class="table table-striped">
                                <thead>

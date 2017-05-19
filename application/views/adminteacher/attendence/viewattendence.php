@@ -14,7 +14,7 @@
                        <div class="header">
                            <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
 
-                       <div class="content table-full-width">
+                     <div class="fresh-datatables">
 
                               <table id="bootstrap-table" class="table">
                                <thead>

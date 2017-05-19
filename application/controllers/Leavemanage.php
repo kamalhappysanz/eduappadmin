@@ -233,6 +233,16 @@ class Leavemanage extends CI_Controller {
 			}
 		}
 
+		public function delete_regular(){
+			$leave_date_id=$this->input->post('id');
+			$datas=$this->leavemodel->delete_regularleave_dates($leave_date_id);
+			if($datas['status']=="success"){
+				echo "success";
+			}else{
+				echo "failure";
+			}
+		}
+
 
 
 

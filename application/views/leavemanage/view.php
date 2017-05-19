@@ -49,7 +49,7 @@
 
 
 
-                      <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove"><i class="fa fa-remove"></i></a>
+                      <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove"  data-original-title="Remove" onclick="deleteLeaves(<?php  echo $rows->leave_id; ?>)"><i class="fa fa-remove"></i></a>
 
                         </td>
                   </tr>
@@ -108,6 +108,44 @@
   </div>
 </div>
 <script type="text/javascript">
+function deleteLeaves(id){
+  swal({
+              title: "Are you sure?",
+              text: "You Want to Delete the this Date",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: '#DD6B55',
+              confirmButtonText: 'Yes, I am sure!',
+              cancelButtonText: "No, cancel it!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          },
+          function(isConfirm) {
+              if (isConfirm) {
+                $.ajax({
+                         type: "POST",
+                         url: "<?php echo base_url(); ?>leavemanage/delete_regular",
+                         data : {  id : id },
+                         success: function(data){
+                           //alert(data)
+                         if(data=='success'){
+                           swal({title: "Good job", text: "Deleted Successfully!", type: "success"},
+                              function(){
+                                  location.reload();
+                              }
+                           );
+                         }else{
+                           sweetAlert("Oops...", "Something went wrong!", "error");
+                         }
+                         }
+                     });
+
+              } else {
+                  swal("Cancelled", "Process Cancel :)", "error");
+              }
+          });
+
+}
 var $table = $('#bootstrap-table');
       $().ready(function(){
         //  jQuery('#enrollmentmenu').addClass('collapse in');
@@ -231,6 +269,10 @@ function functionSpecial(id){
           });
 
 }
+
+
+
+
 $('#eventmenu').addClass('collapse in');
 $('#event').addClass('active');
 $('#leave1').addClass('active');

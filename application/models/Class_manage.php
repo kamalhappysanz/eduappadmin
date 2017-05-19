@@ -42,8 +42,8 @@ Class Class_manage extends CI_Model
 
        function save_cs($class_sec_id,$class,$section,$subject){
                  $check_class="SELECT * FROM edu_classmaster WHERE class='$class' AND section='$section'";
-
-
+                  $query="UPDATE edu_classmaster SET class='$class',subject='$subject' WHERE class_sec_id='$class_sec_id'";
+                  $resultset=$this->db->query($query);
                $resultset=$this->db->query($check_class);
                if($resultset->num_rows()==0){
                  $query="UPDATE edu_classmaster SET class='$class',section='$section',subject='$subject' WHERE class_sec_id='$class_sec_id'";
@@ -53,7 +53,9 @@ Class Class_manage extends CI_Model
                   return $data;
                  }
                }else{
-                 $data= array("status" => "alreadySaved");
+                //  $query="UPDATE edu_classmaster SET class='$class',section='$section',subject='$subject' WHERE class_sec_id='$class_sec_id'";
+                //  $resultset=$this->db->query($query);
+                 $data= array("status" => "already");
                  return $data;
                }
        }
@@ -103,6 +105,15 @@ Class Class_manage extends CI_Model
 					  $data= array("status" => "Success","subject_id" => $sub_id,"subject_name"=>$sub_name);
 					 return $data;
       //  print_r($id1);
+      }
+
+
+      //Class NOTEXIST
+
+      function get_all_class_notexist(){
+        $query="SELECT  e.class_sec_id,c.class_name,s.sec_name FROM    edu_classmaster AS e INNER JOIN edu_classmaster AS cm ON e.class_sec_id=cm.class_sec_id INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE   NOT EXISTS (SELECT  NULL FROM edu_teachers d WHERE   d.class_teacher = e.class_sec_id) ";
+        $result=$this->db->query($query);
+        return $result->result();
       }
  }
 ?>

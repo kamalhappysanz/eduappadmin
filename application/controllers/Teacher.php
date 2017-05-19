@@ -37,7 +37,7 @@ class Teacher extends CI_Controller {
 	 		$datas=$this->session->userdata();
 	 		$user_id=$this->session->userdata('user_id');
 
-			$datas['getall_class']=$this->class_manage->getall_class();
+			$datas['get_all_class_notexist']=$this->class_manage->get_all_class_notexist();
 			$datas['resubject'] = $this->subjectmodel->getsubject();
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==1){
@@ -59,7 +59,7 @@ class Teacher extends CI_Controller {
 			{
 			 $clas=$this->input->post('class_name');
  			 $class_name = implode(',',$clas);
-			 
+
 			 $class_teacher=$this->input->post('class_teacher');
 			 $subject=$this->input->post('subject');
 			 $name=$this->input->post('name');
@@ -68,11 +68,11 @@ class Teacher extends CI_Controller {
 			 $sec_email=$this->input->post('sec_email');
 
 		    $sex=$this->input->post('sex');
-			
+
 			 $dob=$this->input->post('dob');
 			 $dateTime = new DateTime($dob);
              $formatted_date=date_format($dateTime,'Y-m-d' );
-			 
+
 			 $age=$this->input->post('age');
 		    $nationality=$this->input->post('nationality');
 			 $religion=$this->input->post('religion');
@@ -113,7 +113,7 @@ class Teacher extends CI_Controller {
 		public function view(){
 			$datas=$this->session->userdata();
 		 $user_id=$this->session->userdata('user_id');
-		
+
 		  $datas['getall_class']=$this->class_manage->getall_class();
 			$datas['result'] = $this->teachermodel->get_all_teacher();
 			$datas['resubject'] = $this->subjectmodel->getsubject();
