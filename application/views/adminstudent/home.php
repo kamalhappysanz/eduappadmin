@@ -122,7 +122,7 @@
 
 																</div>
 																<div class="header">
-																		<h6 class="title">Class Teacher </h6>
+																		<h6 class="title">Class  </h6>
 																	<p class="category"><a> <?php echo $rows->class_name; ?>-<?php echo $rows->sec_name; ?></a></p>
 																</div>
 																	</div>
@@ -155,9 +155,9 @@
 									 <div class="card">
                             <div class="header">
                                 <h4 class="title">Circular</h4>
-                              
+
                             </div>
-							
+
 						 <div class="content content-full-width">
                                 <div class="panel-group" id="accordion">
 								<?php //echo count($stud_details);
@@ -175,7 +175,7 @@
                                         </div>
                                         <div id="collapseOneHover<?php echo $circular->commu_id; ?>" class="panel-collapse collapse">
                                             <div class="panel-body">
-                                                 <?php echo $circular->commu_details;?> 
+                                                 <?php echo $circular->commu_details;?>
                                             </div>
                                         </div>
                                     </div>
@@ -184,10 +184,10 @@
                                 </div><?php foreach($stud_cls_id as $id){}$cid=$id->class_id; ?>
 								 <a href="<?php echo base_url();?>student/view_all_circular/<?php echo $cid; ?>" class="btn btn-social btn-simple btn-twitter">View All</a>
                             </div>
-							
+
                                			</div>
 									</div>
-									
+
 								</div>
 							</div>
 		  </div>
