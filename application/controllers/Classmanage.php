@@ -125,6 +125,11 @@ class Classmanage extends CI_Controller {
 		}
 
 
+		public function getListClass(){
+			$subject_id=$this->input->post('subject_id');
+			$datas['res']=$this->class_manage->getListClass($subject_id);
+			echo json_encode($datas['res']);
+		}
 
 
 		public function deletecs($class_sec_id){

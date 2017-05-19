@@ -175,7 +175,7 @@ return  $result12->result();
 
 
   function dash_parents($user_id){
-    $query="SELECT eu.user_id,eu.parent_id,ep.father_name,ep.* FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.parent_id=ep.parent_id WHERE eu.user_id='$user_id'";
+    $query="SELECT eu.user_id,eu.user_pic,eu.parent_id,ep.father_name,ep.* FROM edu_users AS eu LEFT JOIN edu_parents AS ep ON eu.parent_id=ep.parent_id WHERE eu.user_id='$user_id'";
     $res=$this->db->query($query);
     return $res->result();
   }

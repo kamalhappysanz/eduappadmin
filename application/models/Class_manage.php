@@ -115,5 +115,28 @@ Class Class_manage extends CI_Model
         $result=$this->db->query($query);
         return $result->result();
       }
+
+
+      function getListClass($subject_id){
+        $query="SELECT  e.class_sec_id,c.class_name,s.sec_name FROM edu_classmaster AS e INNER JOIN edu_classmaster AS cm ON e.class_sec_id=cm.class_sec_id
+INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id  WHERE FIND_IN_SET('$subject_id',e.subject)";
+        $resultset=$this->db->query($query);
+         if($resultset->num_rows()==0){
+           $data= array("status" => "nodata");
+           return $data;
+         }else{
+
+           $res= $resultset->result();
+           foreach($res as $rows){
+             $class_sec_id=$rows->class_sec_id;
+              $data= array("status" => "success","res" => $class_sec_id);
+             }
+
+
+
+         }
+          return $data;
+        //return $result->result();
+      }
  }
 ?>

@@ -61,7 +61,7 @@
 																		<?php $pic= $rows->father_pic; if(empty($pic)){
 
 																		} else{  ?>
-																			<img src="<?php echo base_url(); ?>assets/admission	/profile/<?php echo $rows->father_pic; ?>" class="img-responsive" style="width:150px;padding-top:20px;">
+																			<img src="<?php echo base_url(); ?>assets/parents/profile/<?php echo $rows->user_pic; ?>" class="img-responsive" style="width:150px;padding-top:20px;">
 
 																	<?php 	}?>
 																			</div>

@@ -119,7 +119,7 @@
                                             </div>
                                             <label class="col-sm-2 control-label">Subject</label>
                                                 <div class="col-sm-4">
-                                                  <select   name="subject"  data-title="Select Subject" class="selectpicker" data-style=" btn-block"  data-menu-style="dropdown-blue">
+                                                  <select   name="subject" id="subject_id"  data-title="Select Subject" class="selectpicker" data-style=" btn-block" onchange="getListClass()"  data-menu-style="dropdown-blue">
                                                     <?php foreach ($resubject as $rows) {  ?>
                                                     <option value="<?php echo $rows->subject_id; ?>"><?php echo $rows->subject_name; ?></option>
                                               <?php      } ?>
@@ -133,7 +133,8 @@
                                       <div class="form-group">
                                         <label class="col-sm-2 control-label">Class Teacher</label>
                                             <div class="col-sm-4">
-                                              <select   name="class_teacher"  data-title="Select Class" class="selectpicker" data-style=" btn-block"  data-menu-style="dropdown-blue">
+                                              <select   name="class_teacher"  id="class_teacher" data-title="Select Class" class="selectpicker" data-style=" btn-block"  data-menu-style="dropdown-blue">
+
                                                 <?php foreach ($get_all_class_notexist as $rows) {  ?>
                                                 <option value="<?php echo $rows->class_sec_id; ?>"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></option>
                                           <?php      } ?>
@@ -183,6 +184,43 @@
 </div>
 </div>
 <script type="text/javascript">
+
+function getListClass(){
+
+var subject_id=$('#subject_id').val();
+alert(subject_id);
+$.ajax({
+   url:'<?php echo base_url(); ?>classmanage/getListClass',
+   method:"POST",
+   data:{subject_id:subject_id},
+  //  dataType: "JSON",
+  //  cache: false,
+   success:function(data)
+   {
+     var stat=data.status;
+
+    //  $('#class_teacher')html('');
+    //    $("#class_teacher").empty();
+     if(stat="success"){
+       
+        //  var g=data.res;
+        //  alert(g);
+        //  var len=g.length;
+        //    $('<option>').val(" ").text("Select Subject").appendTo('.subject_id');
+          //  for (i = 0; i < len; i++) {
+          //    $('<option>').val(data.subject_id[i]).text(data.subject_name[i]).appendTo('.subject_id');
+          //  }
+           // getTeacher();
+     }else{
+   $(".subject_id").empty();
+     }
+
+
+   }
+  });
+
+}
+
 var loadFile = function(event) {
  var output = document.getElementById('output');
  output.src = URL.createObjectURL(event.target.files[0]);
