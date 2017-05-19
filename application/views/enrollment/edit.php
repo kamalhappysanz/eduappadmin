@@ -60,8 +60,6 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Registration Date</label>
                                             <div class="col-sm-4">
-
-
                                                 <input type="text" name="admit_date" class="form-control datepicker" placeholder="Registration Date"  value="<?php $date=date_create($rows->admit_date);
 echo date_format($date,"d-m-Y");  ?>" />
 
@@ -87,7 +85,7 @@ echo date_format($date,"d-m-Y");  ?>" />
                                             <label class="col-sm-2 control-label">Class</label>
                                             <div class="col-sm-4">
 											
-											 <select multiple name="class_name" class="selectpicker"  data-menu-style="dropdown-blue">
+											 <select  name="class_name" class="selectpicker"  data-menu-style="dropdown-blue">
 
 	<?php
 		    $sPlatform=$rows->class_id;

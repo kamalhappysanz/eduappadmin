@@ -8,8 +8,8 @@ class Adminparent extends CI_Controller {
 		 parent::__construct();
 		  $this->load->model('timetablemodel');
 		  $this->load->model('dashboard');
-			 $this->load->model('studentmodel');
-			 $this->load->model('adminparentmodel');
+		  $this->load->model('studentmodel');
+		  $this->load->model('adminparentmodel');
 		   $this->load->helper('url');
 		   $this->load->library('session');
  }
@@ -213,9 +213,154 @@ class Adminparent extends CI_Controller {
 				}
 		}
 
+      public function homework(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==4){
+			 $datas['res']=$this->dashboard->stud_details($user_id);
+			 $stu= count($datas['res']);
+			// echo $stu;exit;
 
+			 if($stu==1){
+				 $datas['stud_details']=$this->dashboard->get_students($user_id);
+					 foreach ($datas['stud_details'] as $rows) {}
+					 $enroll_id= $rows->enroll_id;
+					//echo $enroll_id;exit;
+					 $datas['result']=$this->adminparentmodel->get_all_homework($enroll_id);
+					 $datas['stu_id']=$this->adminparentmodel->get_stu_id($enroll_id);
+					 $this->load->view('adminparent/parent_header');
+					 $this->load->view('adminparent/homework/hw_view',$datas);
+					 $this->load->view('adminparent/parent_footer');
+			 }else{
+				 $datas['stud_details']=$this->dashboard->get_students($user_id);
+				 $this->load->view('adminparent/parent_header');
+				 $this->load->view('adminparent/homework/add',$datas);
+				 $this->load->view('adminparent/parent_footer');
+			 }
+			}
+			else{
+				 redirect('/');
+			}
+		}
+		
+		
+		public function view_homework(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			$enroll_id=$this->input->get('var');
+			//echo $enroll_id; exit;
+			if($user_type==4){
+					 $datas['result']=$this->adminparentmodel->get_all_homework($enroll_id);
+					 $datas['stu_id']=$this->adminparentmodel->get_stu_id($enroll_id);
+					//echo print_r($datas['result']);exit;
+					$this->load->view('adminparent/parent_header');
+					$this->load->view('adminparent/homework/hw_view',$datas);
+					$this->load->view('adminparent/parent_footer');
+				}else{
+						 redirect('/');
+				}
+		}
+		
+		 public function view_mark()
+	     {
+			      
+		    $datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+            $hw_id=$this->input->get('var1');
+            $enroll_id=$this->input->get('var2');
+			//echo $hw_id; echo $enroll_id;exit;
+			$datas['res'] = $this->adminparentmodel->view_homework_marks($hw_id,$enroll_id);
+			//print_r($datas['res']);exit;
+			if($user_type==4)
+			  {
+				 $this->load->view('adminparent/parent_header');
+				 $this->load->view('adminparent/homework/marks_view',$datas);
+				 $this->load->view('adminparent/parent_footer');
+			  }
+		   else{
+				redirect('/');
+		 }
+	   }
 
+	   //----------Examination Result------------------
+	   
+	   public function exam_result()
+	   {
+		    $datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==4){
+			 $datas['res']=$this->dashboard->stud_details($user_id);
+			 $stu= count($datas['res']);
+			// echo $stu;exit;
 
+			 if($stu==1){
+				 $datas['stud_details']=$this->dashboard->get_students($user_id);
+					 foreach ($datas['stud_details'] as $rows) {}
+					 $enroll_id= $rows->enroll_id;
+					//echo $enroll_id;exit;
+					 $datas['exam'] = $this->adminparentmodel->view_exam_name($enroll_id);
+					 $datas['stu_id']=$this->adminparentmodel->get_stu_id($enroll_id);
+					 $this->load->view('adminparent/parent_header');
+					 $this->load->view('adminparent/exam_result/exam_name',$datas);
+					 $this->load->view('adminparent/parent_footer');
+			 }else{
+				 $datas['stud_details']=$this->dashboard->get_students($user_id);
+				 $this->load->view('adminparent/parent_header');
+				 $this->load->view('adminparent/exam_result/add',$datas);
+				 $this->load->view('adminparent/parent_footer');
+			 }
+			}
+			else{
+				 redirect('/');
+			}
+			
+	   }
+
+	   public function exam_name($enroll_id)
+	   {
+		    $datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			//echo $enroll_id;exit;
+			$datas['exam'] = $this->adminparentmodel->view_exam_name($enroll_id);
+			$datas['stu_id']=$this->adminparentmodel->get_stu_id($enroll_id);
+			//print_r($datas['exam']);exit;
+			if($user_type==4)
+			  {
+				 $this->load->view('adminparent/parent_header');
+				 $this->load->view('adminparent/exam_result/exam_name',$datas);
+				 $this->load->view('adminparent/parent_footer');
+			  }
+		   else{
+				redirect('/');
+		 }
+		     
+	   }
+	   
+	    public function exam_results($exam_id,$stu_id)
+	     {
+		    //echo $exam_id;echo $stu_id;exit;
+		    $datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			$datas['result']=$this->adminparentmodel->exam_marks($stu_id,$exam_id);
+			
+			//echo '<pre>';print_r($datas['result']);exit;
+			
+			if($user_type==4)
+				 {
+					 $this->load->view('adminparent/parent_header');
+					 $this->load->view('adminparent/exam_result/exam_marks',$datas);
+					 $this->load->view('adminparent/parent_footer');
+				 }else{
+						redirect('/');
+				 }
+	    }
+	  
 
 
 
