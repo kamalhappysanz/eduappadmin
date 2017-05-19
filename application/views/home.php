@@ -51,7 +51,7 @@
 	<div class="col-md-9">
     <div class="card">
                             <form id="" action="#" method="" novalidate="" style="padding-bottom:30px;">
-                                <div class="header">Search</div>
+                                <div class="header" >Search</div>
 
 
                                 <fieldset id="group2" style="padding-left:30px;">
@@ -104,10 +104,10 @@
                                         <tr>
                                             <td class="text-center">1</td>
                                             <td>Teachers</td>
-                                            <td><?php	if(empty($res)){
+                                            <td><?php	if(empty($teacher)){
                                         				echo "No data";
                                         			}else{
-                                        				foreach ($res as $user_to) {}
+                                        				foreach ($teacher as $user_to) {}
                                         						echo $user_to->user_count;
                                         			} ?></td>
 
@@ -127,10 +127,10 @@
                                         <tr>
                                             <td class="text-center">3</td>
                                             <td>Students</td>
-                                            <td><?php 	if(empty($stud)){
+                                            <td><?php 	if(empty($res)){
                                         				echo "No data";
                                         			}else{
-                                        				foreach ($stud as $user_to) {}
+                                        				foreach ($res as $user_to) {}
                                         						echo $user_to->user_count;
                                         			}  ?></td>
 

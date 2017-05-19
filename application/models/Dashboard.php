@@ -23,6 +23,11 @@ Class Dashboard extends CI_Model
         return  $result->result();
 
     }
+    function dash_teacher_users(){
+      $query="SELECT COUNT(teacher_id) AS user_count FROM  edu_teachers WHERE STATUS='A'";
+      $result=$this->db->query($query);
+      return  $result->result();
+    }
 
 
     function dash_events(){
@@ -39,11 +44,7 @@ Class Dashboard extends CI_Model
       return  $result->result();
     }
 
-    function dash_stud_users(){
-      $query="SELECT COUNT(enroll_id) AS user_count FROM  edu_enrollment WHERE STATUS='A'";
-      $result=$this->db->query($query);
-      return  $result->result();
-    }
+
 
 
     function dash_comm(){
