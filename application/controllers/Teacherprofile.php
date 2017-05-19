@@ -25,7 +25,7 @@ class Teacherprofile extends CI_Controller {
 		 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
 		 $datas['result'] = $this->teacherprofilemodel->getuser($user_id);
-		 
+
 		 $datas['resubject'] = $this->subjectmodel->getsubject();
 		 $datas['getall_class']=$this->class_manage->getall_class();
 		if($user_type==1 || $user_type==2 || $user_type==3 ||$user_type==4 ){
@@ -48,29 +48,30 @@ class Teacherprofile extends CI_Controller {
 			          	//echo $user_id;exit;
 						$teachername=$this->input->post('name');
 						$user_pic_old=$this->input->post('user_pic_old');
-						
+
 						$sex=$this->input->post('sex');
-			            $dob=$this->input->post('dob');
-			            $age=$this->input->post('age');
-		                $nationality=$this->input->post('nationality');
-			            $religion=$this->input->post('religion'); 
-                        $mobile=$this->input->post('mobile');
+			         $dob=$this->input->post('dob');
+			         $age=$this->input->post('age');
+		          $nationality=$this->input->post('nationality');
+			       $religion=$this->input->post('religion');
+            $mobile=$this->input->post('mobile');
 						$community_class=$this->input->post('community_class');
-		                $community=$this->input->post('community');
-			            $address=$this->input->post('address');
+		         $community=$this->input->post('community');
+			       $address=$this->input->post('address');
 						$email=$this->input->post('email');
-						   
-				      $student_pic = $_FILES["teacher_pic"]["name"];
-				      $userFileName =time().'-'.$student_pic;
-				      $uploaddir = 'assets/teacher/profile/';
-					  $profilepic = $uploaddir.$userFileName;
-					  move_uploaded_file($_FILES['teacher_pic']['tmp_name'], $profilepic);
+
+				       $student_pic = $_FILES["user_pic"]["name"];
+				       $userFileName =time().$student_pic;
+				      $uploaddir = 'assets/teachers/profile/';
+					   $profilepic = $uploaddir.$userFileName;
+					 move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
 					  if(empty($student_pic)){
 					   $userFileName=$user_pic_old;
 				       }
-					
+							
+
 						$res=$this->teacherprofilemodel->teacherprofileupdate($user_id,$teachername,$email,$sex,$dob,$age,$nationality,$religion,$mobile,$community_class,$community,$address,$userFileName);
-						
+
 						if($res['status']=="success"){
 					 $this->session->set_flashdata('msg', 'Update Successfully');
 					 redirect('teacherprofile/profilepic');
@@ -108,7 +109,7 @@ class Teacherprofile extends CI_Controller {
 		{
 		 		$user_id=$this->input->post('user_id');
 				//echo $user_id;exit;
-			
+
 						$name=$this->input->post('name');
 						$oldpassword=md5($this->input->post('oldpassword'));
 						$newpassword=md5($this->input->post('newpassword'));
@@ -120,7 +121,7 @@ class Teacherprofile extends CI_Controller {
 						if($res['status']=="success"){
 						 $this->session->set_flashdata('msg', 'Update Successfully');
 						  redirect('teacherprofile/profile');
-							
+
 					      }else{
 					 	        $this->session->set_flashdata('msg', 'Failed to update');
 								 redirect('teacherprofile/profile');

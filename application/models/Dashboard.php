@@ -138,11 +138,11 @@ Class Dashboard extends CI_Model
 //Admin  Teacher
 
     function dash_teacher($user_id){
-      $get_user_id="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+       $get_user_id="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
       $result=$this->db->query($get_user_id);
       foreach ($result->result() as $row) { }
       $teacher_id=$row->teacher_id;
-      $query="SELECT  et.*,c.class_name,s.sec_name,esu.subject_name FROM edu_teachers  AS et INNER JOIN edu_classmaster AS cm ON et.class_teacher=cm.class_sec_id
+       $query="SELECT  et.*,c.class_name,s.sec_name,esu.subject_name FROM edu_teachers  AS et INNER JOIN edu_classmaster AS cm ON et.class_teacher=cm.class_sec_id
 INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id INNER JOIN edu_subject AS esu ON et.subject=esu.subject_id
 WHERE teacher_id='$teacher_id'";
       $result12=$this->db->query($query);
@@ -213,8 +213,8 @@ INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON
         //foreach($results->result() as $rows){}
         //return $class_id=$rows->class_id;
 		return $ress;
-	  
-	  
+
+
   }
  /*  function get_students($user_id)
   {
@@ -233,9 +233,9 @@ INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON
 		  $res=$this->db->query($sql);
 		  $row=$res->result();
 		   return $row;
-		  
-	  
-									  
+
+
+
   } */
 
 }

@@ -12,7 +12,7 @@
                  </div>
 
            <?php endif; ?>
-                           <h4 class="title">Edit Teacher Profile</h4>
+                           <h4 class="title">Edit  Profile</h4>
                        </div>
                        <?php
                       // print_r($result);
@@ -36,12 +36,24 @@
                                             </div>
                                         </div>
                                     </fieldset>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Profile Pic</label>
+                                            <div class="col-sm-4">
+                                                <input type="file" name="user_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
+                                            </div>
+                                            <label class="col-sm-2 control-label">&nbsp;</label>
+                                            <!-- <div class="col-sm-4">
+                                              <img  id="output" class="img-circle" style="width:110px;">
+                                            </div> -->
+                                        </div>
+                                    </fieldset>
 
                                     <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Admission Date</label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="admission_date" class="form-control datepicker" value="<?php echo $rows->admisn_date; ?>"  placeholder="Admission Date "/>
+                                                <input type="text" name="admission_date" class="form-control datepicker" readonly value="<?php echo $rows->admisn_date; ?>"  placeholder="Admission Date "/>
                                             </div>
                                             <label class="col-sm-2 control-label">Email</label>
                                             <div class="col-sm-4">
@@ -50,6 +62,7 @@
 
                                         </div>
                                     </fieldset>
+
 
                                     <fieldset>
                                         <div class="form-group">
@@ -68,9 +81,9 @@
                                            <script language="JavaScript">document.formadmission.sex.value="<?php echo $rows->sex; ?>";</script>
 
                                             </div>
-											
-											
-											
+
+
+
                                         </div>
                                     </fieldset>
 
@@ -133,16 +146,16 @@
                                            <label class="col-sm-2 control-label">Certificates</label>
                                            <div class="col-sm-4">
 										   <?php $t=$rows->transfer_certificate;
-                                                 $s=$rows->record_sheet; 	
+                                                 $s=$rows->record_sheet;
 												  ?>
 								 <label class="checkbox checkbox-inline">
                                        <input type="checkbox" data-toggle="checkbox" name="trn_cert" value="1"<?php $rows->transfer_certificate=='1'?> checked="checked">Transfer Certificate
-                                     </label> 
-									 
+                                     </label>
+
 									<label class="checkbox checkbox-inline">
 										<input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="2"<?php $rows->transfer_certificate=='2'?> checked="checked">Record Sheet
 									</label>
-	 
+
                                            </div>
 									 <label class="col-sm-2 control-label">Language Proposed</label>
                                       <div class="col-sm-4">
@@ -154,8 +167,8 @@
                                             </div>
                                         </div>
                                </fieldset>
-							   
-                                    <fieldset>
+
+                                    <!-- <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Student New Pic</label>
                                             <div class="col-sm-4">
@@ -166,13 +179,13 @@
                                               <img  id="output" class="img-circle" style="width:110px;">
                                             </div>
                                         </div>
-                                    </fieldset>
+                                    </fieldset> -->
                                     <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Current  Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="hidden" placeholder="Mobile Number" name="user_pic_old" class="form-control" value="<?php echo $rows->student_pic; ?>">
-                                              <img src="<?php echo base_url(); ?>assets/admission/profile/<?php echo $rows->student_pic; ?>" class="img-circle" style="width:110px;">
+                                                <input type="hidden" placeholder="Mobile Number" name="user_pic_old" class="form-control" value="<?php echo $rows->user_pic; ?>">
+                                              <img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" class="img-circle" style="width:110px;">
                                             </div>
 
                                         </div>
@@ -200,7 +213,7 @@
                        <div class="content">
                            <div class="author">
                                 <a href="#">
-                               <img class="avatar border-gray" id="output" src="<?php echo base_url(); ?>assets/admission/profile/<?php echo $rows->student_pic; ?>" alt="..."/>
+                               <img class="avatar border-gray" id="output" src="<?php echo base_url(); ?>assets/students/profile/<?php echo $rows->user_pic; ?>" alt="..."/>
                                  <h4 class="title"><?php echo $rows->name;  ?><br />
                                  </h4>
                                </a>

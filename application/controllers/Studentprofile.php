@@ -32,10 +32,10 @@ class Studentprofile extends CI_Controller {
 
 
 	 	public function home(){}
-		
+
 		public function profile_update()
 		{
-			
+
 			 $datas=$this->session->userdata();
 			 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
@@ -51,7 +51,7 @@ class Studentprofile extends CI_Controller {
 					 redirect('/');
 				}
 		}
-		
+
 		public function update_stu_details()
 		{
 			 $datas=$this->session->userdata();
@@ -65,26 +65,26 @@ class Studentprofile extends CI_Controller {
 			 $admission_date=$this->input->post('admission_date');
 			 $name=$this->input->post('name');
 			 $email=$this->input->post('email');
-		     $sex=$this->input->post('sex');
+		   $sex=$this->input->post('sex');
 			 $dob=$this->input->post('dob');
 			 $age=$this->input->post('age');
-		     $nationality=$this->input->post('nationality');
+		   $nationality=$this->input->post('nationality');
 			 $religion=$this->input->post('religion');
 			 $community_class=$this->input->post('community_class');
-		     $community=$this->input->post('community');
+		   $community=$this->input->post('community');
 			 $mother_tongue=$this->input->post('mother_tongue');
 			 $mobile=$this->input->post('mobile');
 			 $user_pic_old=$this->input->post('user_pic_old');
-			 $student_pic = $_FILES["student_pic"]["name"];
-			 $userFileName =$admission_no.'-'.$student_pic;
+			 $student_pic = $_FILES["user_pic"]["name"];
+			 $userFileName =$student_pic;
 
-				$uploaddir = 'assets/admission/profile/';
+				$uploaddir = 'assets/students/profile/';
 				$profilepic = $uploaddir.$userFileName;
-				move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic);
+				move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
 				if(empty($student_pic)){
 						$userFileName=$user_pic_old;
 				}
-
+				
 				$datas=$this->studentprofilemodel->update_details($admission_year,$admission_no,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$mobile,$email,$userFileName,$admission_id);
 			//	print_r($datas['status']);exit;
 				if($datas['status']=="success"){
@@ -102,7 +102,7 @@ class Studentprofile extends CI_Controller {
 					redirect('/');
 			 }
 		}
-		
+
 		public function pwd_reset()
 		{
 			 $datas=$this->session->userdata();
@@ -120,7 +120,7 @@ class Studentprofile extends CI_Controller {
 						 redirect('/');
 					}
 		}
-		
+
 		public function changepwd()
 		{
 			    $datas=$this->session->userdata();
@@ -130,7 +130,7 @@ class Studentprofile extends CI_Controller {
 				{
 						$user_id=$this->input->post('user_id');
 						//echo $user_id;exit;
-					
+
 						$name=$this->input->post('name');
 						$oldpassword=md5($this->input->post('oldpassword'));
 						$newpassword=md5($this->input->post('newpassword'));
@@ -138,10 +138,10 @@ class Studentprofile extends CI_Controller {
 					    $user_password_old=$this->input->post('user_password_old');
 
 						$res=$this->studentprofilemodel->updatepwd($user_id,$oldpassword,$newpassword);
-                        
+
 						if($res['status']=="success"){
 							  $this->session->set_flashdata('msg', 'Update Successfully');
-							  redirect('studentprofile/pwd_reset'); 
+							  redirect('studentprofile/pwd_reset');
 						  }else{
 								$this->session->set_flashdata('msg', 'Failed to update');
 								redirect('studentprofile/pwd_reset');
@@ -151,6 +151,6 @@ class Studentprofile extends CI_Controller {
 			 }
 		}
 
-		
+
 
 		}

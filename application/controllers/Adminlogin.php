@@ -74,7 +74,7 @@ class Adminlogin extends CI_Controller {
 							$session_data=$this->session->set_userdata($datas);
 							$datas['das_events']=$this->dashboard->dash_events();
 							$datas['user_details']=$this->dashboard->dash_teacher($user_id);
-							//print_r($datas['user_details']);
+							//print_r($datas['user_details']);exit;
 							$this->load->view('adminteacher/teacher_header',$datas);
 							$this->load->view('adminteacher/home',$datas);
 							$this->load->view('adminteacher/teacher_footer');
@@ -193,7 +193,7 @@ class Adminlogin extends CI_Controller {
 			$datas['user_details']=$this->dashboard->dash_students($user_id);
 			$datas['stud_details']=$this->dashboard->get_students($user_id);
 			$datas['stud_cls_id']=$this->dashboard->get_students_cls_id($user_id);
-			
+
 			$this->load->view('adminstudent/student_header',$datas);
 			$this->load->view('adminstudent/home',$datas);
 			$this->load->view('adminstudent/student_footer');

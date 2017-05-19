@@ -12,7 +12,7 @@
                  </div>
 
            <?php endif; ?>
-                           <h4 class="title">Edit Teacher Profile</h4>
+                           <h4 class="title">Edit  Profile</h4>
                        </div>
                        <?php
                       // print_r($result);
@@ -26,10 +26,10 @@
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Profile Pic</label>
-                          <input type="file" name="teacher_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
+                          <input type="file" name="user_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
                           <input type="hidden" class="form-control" readonly placeholder="" name="user_id" value="<?php echo $rows->teacher_id; ?>">
-                          <input type="hidden" class="form-control" readonly placeholder="" name="user_pic_old" value="<?php echo $rows->profile_pic; ?>">
-                          
+                          <input type="hidden" class="form-control" readonly placeholder="" name="user_pic_old" value="<?php echo $rows->user_pic; ?>">
+
                                        </div>
                                    </div>
 
@@ -41,8 +41,8 @@
                                    </div>
                                </div>
 
-						
-							   
+
+
 			           <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
@@ -53,7 +53,7 @@
                                             </select>
 
                                             <script language="JavaScript">document.teacherform.sex.value="<?php echo $rows->sex; ?>";</script>
-                          
+
                                        </div>
                                    </div>
 
@@ -64,14 +64,14 @@
                                        </div>
                                    </div>
                                </div>
-							   
-							   
+
+
                         <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Date of birth</label>
                         <input type="text" name="dob" id="dob" class="form-control datepicker" placeholder="Date of Birth " value="<?php echo $rows->dob; ?>"/>
-                          
+
                                        </div>
                                    </div>
 
@@ -82,13 +82,13 @@
                                        </div>
                                    </div>
                                </div>
-							   
+
                           <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Age</label>
                          <input type="text" placeholder="Age" name="age" id="age" class="form-control"  value="<?php echo $rows->age; ?>">
-                         
+
                                        </div>
                                    </div>
 
@@ -99,13 +99,13 @@
                                        </div>
                                    </div>
                                </div>
-							   
+
 							   <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Community Class</label>
                         <input type="text" placeholder="Community Class" name="community_class" class="form-control"  value="<?php echo $rows->community_class; ?>">
-                         
+
                                        </div>
                                    </div>
 
@@ -116,32 +116,32 @@
                                        </div>
                                    </div>
                                </div>
-							  
+
 							    <div class="row">
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Address</label>
                          <textarea name="address" class="form-control" rows="4" cols="80"><?php echo $rows->address; ?></textarea>
-                         
+
                                        </div>
                                    </div>
 
                                    <div class="col-md-7">
                                        <div class="form-group">
                                            <label for="exampleInputEmail1">Subject</label>
-							<?php 
+							<?php
 						  $tea_name=$rows->subject;
                           $sQuery = "SELECT * FROM edu_subject WHERE subject_id='$tea_name'";
                           $objRs=$this->db->query($sQuery);
                           $row=$objRs->result();
                           foreach ($row as $rows1)
-						  { 
+						  {
 						    $sub=$rows1->subject_name;
 						  }
 							 ?>
-							
-		             <input type="text" readonly name="subject"  class="form-control" value="<?php echo $sub; ?>">  
-										   
+
+		             <input type="text" readonly name="subject"  class="form-control" value="<?php echo $sub; ?>">
+
 									  <label for="exampleInputEmail1"> Enail</label>
 									  <input type="text" name="email"  class="form-control " id="email" placeholder="Email Address" onblur="checkMailStatus()"  value="<?php echo $rows->email; ?>"/>
                                        </div>
@@ -151,15 +151,15 @@
                                    <div class="col-md-5">
                                        <div class="form-group">
                                            <label>Class Teacher</label>
-						
+
                         <select   name="class_teacher" disabled="" class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
-                                       <?php 
+                                       <?php
 									   foreach ($getall_class as $rows2) {  ?>
                                   <option value="<?php echo $rows2->class_sec_id; ?>"><?php echo $rows2->class_name; ?>&nbsp; - &nbsp;<?php echo $rows2->sec_name; ?></option>
                                           <?php      } ?>
                                               </select>
                                     <script language="JavaScript">document.teacherform.class_teacher.value="<?php echo $rows->class_sec_id; ?>";</script>
-                         
+
                                        </div>
                                    </div>
 
@@ -194,7 +194,7 @@
                                        </div>
                                    </div>
                                </div>
-							   
+
                                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                <div class="clearfix"></div>
                            </form>
@@ -209,7 +209,7 @@
                        <div class="content">
                            <div class="author">
                                 <a href="#">
-                               <img class="avatar border-gray" id="output" src="<?php echo base_url(); ?>assets/teacher/profile/<?php echo $rows->profile_pic; ?>" alt="..."/>
+                               <img class="avatar border-gray" id="output" src="<?php echo base_url(); ?>assets/teachers/profile/<?php echo $rows->user_pic; ?>" alt="..."/>
                                  <h4 class="title"><?php echo $rows->name;  ?><br />
                                  </h4>
                                </a>
