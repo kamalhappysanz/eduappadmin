@@ -42,8 +42,8 @@ Class Class_manage extends CI_Model
 
        function save_cs($class_sec_id,$class,$section,$subject){
                  $check_class="SELECT * FROM edu_classmaster WHERE class='$class' AND section='$section'";
-
-
+                  $query="UPDATE edu_classmaster SET class='$class',subject='$subject' WHERE class_sec_id='$class_sec_id'";
+                  $resultset=$this->db->query($query);
                $resultset=$this->db->query($check_class);
                if($resultset->num_rows()==0){
                  $query="UPDATE edu_classmaster SET class='$class',section='$section',subject='$subject' WHERE class_sec_id='$class_sec_id'";
@@ -53,7 +53,9 @@ Class Class_manage extends CI_Model
                   return $data;
                  }
                }else{
-                 $data= array("status" => "alreadySaved");
+                //  $query="UPDATE edu_classmaster SET class='$class',section='$section',subject='$subject' WHERE class_sec_id='$class_sec_id'";
+                //  $resultset=$this->db->query($query);
+                 $data= array("status" => "already");
                  return $data;
                }
        }
