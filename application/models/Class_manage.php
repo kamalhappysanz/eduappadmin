@@ -41,7 +41,9 @@ Class Class_manage extends CI_Model
 
 
        function save_cs($class_sec_id,$class,$section,$subject){
-                $check_class="SELECT * FROM edu_classmaster WHERE class='$class' AND section='$section'";
+                 $check_class="SELECT * FROM edu_classmaster WHERE class='$class' AND section='$section'";
+
+
                $resultset=$this->db->query($check_class);
                if($resultset->num_rows()==0){
                  $query="UPDATE edu_classmaster SET class='$class',section='$section',subject='$subject' WHERE class_sec_id='$class_sec_id'";

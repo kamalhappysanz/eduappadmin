@@ -198,26 +198,48 @@ function getSubject(){
           var len=g.length;
             $('<option>').val(" ").text("Select Subject").appendTo('.subject_id');
             for (i = 0; i < len; i++) {
-              // alert(data.subject_id[i]);
-
               $('<option>').val(data.subject_id[i]).text(data.subject_name[i]).appendTo('.subject_id');
             }
-
-          // $("<option></option>", {value: data.subject_id, text: data.subject_name}).appendTo('#subject_id');
+            // getTeacher();
       }else{
     $(".subject_id").empty();
-        // alert("no Subject");
       }
 
-      // if(data.[status]=="success"){
-      //
-      // }else{
-      //
-      // }
 
-      //$('#result').html(data);
     }
    });
+}
+
+function getTeacher(){
+  var class_id=$('#class_id').val();
+  $.ajax({
+     url:'<?php echo base_url(); ?>timetable/getTeacher',
+     method:"POST",
+     data:{class_id:class_id},
+    //  dataType: "JSON",
+    //  cache: false,
+     success:function(data)
+     {
+       alert(data);
+    //    var stat=data.status;
+    //      $(".subject_id").empty();
+    //    if(stat=="success"){
+    //      //  alert(data.subject_id);
+    //        var g=data.subject_id;
+     //
+    //        var len=g.length;
+    //          $('<option>').val(" ").text("Select Subject").appendTo('.subject_id');
+    //          for (i = 0; i < len; i++) {
+    //            $('<option>').val(data.subject_id[i]).text(data.subject_name[i]).appendTo('.subject_id');
+    //          }
+    //          getTeacher();
+    //    }else{
+    //  $(".subject_id").empty();
+    //    }
+
+
+     }
+    });
 }
 
 $(document).ready(function () {

@@ -114,7 +114,7 @@ function confrim(val){
                          url: "<?php echo base_url(); ?>timetable/delete",
                          data : {  val : val },
                          success: function(data){
-                          alert(data)
+                          // alert(data)
                          if(data=='success'){
                            swal({title: "Good job", text: "Deleted Successfully!", type: "success"},
                               function(){

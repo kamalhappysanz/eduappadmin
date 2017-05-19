@@ -147,6 +147,26 @@ INNER JOIN edu_academic_year AS a ON tt.year_id=a.year_id INNER JOIN edu_section
 
               }
 
+              // Get Teacher To Class
+               function get_teacher_class($class_sec_id){
+                  $query="SELECT teacher_id,name,class_name FROM edu_teachers WHERE FIND_IN_SET('$class_sec_id',class_name)";
+                 $resultset=$this->db->query($query);
+                 if($resultset->num_rows()==0){
+                   $data= array("status" =>"No Record Found");
+                   return $data;
+                 }else{
+                  $res= $resultset->result();
+                   foreach($res as $rows){
+                     $teacher_id=$rows->teacher_id; $teacher_name=$rows->name;$class_name=$rows->class_name;
+                     $data= array("teacher_id" => $teacher_id,"teacher_name"=>$teacher_name,"class_name"=>$class_name,"status"=>"success");
+                
+                     }
+                       return $data;
+
+
+                 }
+               }
+
 
               //Save Review
 

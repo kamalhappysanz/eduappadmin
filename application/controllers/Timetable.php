@@ -193,6 +193,11 @@ class Timetable extends CI_Controller {
 				echo json_encode( $datas['res']);
 			}
 
+			public function getTeacher(){
+				$class_sec_id=$this->input->post('class_id');
+			$datas['res']=$this->timetablemodel->get_teacher_class($class_sec_id);
+			echo json_encode( $datas['res']);
+			}
 
 		public function delete(){
 			$datas=$this->session->userdata();
