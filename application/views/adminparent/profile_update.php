@@ -1,29 +1,41 @@
-
 <div class="main-panel">
 <div class="content">
-<div class="col-md-12">
+       <div class="container-fluid">
+           <div class="row">
+               <div class="col-md-8">
+                   <div class="card">
+                       <div class="header">
+                         <?php if($this->session->flashdata('msg')): ?>
+                           <div class="alert alert-success">
+                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                         ×</button> <?php echo $this->session->flashdata('msg'); ?>
+                 </div>
 
-                        <div class="card">
-                            <div class="header">
-                                <legend>Edit Parents</legend>
-                            </div>
-                            <?php if($this->session->flashdata('msg')): ?>
-                              <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×</button> <?php echo $this->session->flashdata('msg'); ?>
-                     </div>
-
-                     <?php endif; ?>
-
-                     <?php foreach ($result as $rows) {
+           <?php endif; ?>
+                           <h4 class="title">Edit  Profile</h4>
+                       </div>
+                       <?php
+                      // print_r($result);
+                       foreach ($result as $rows) 
+					   {
 						 $a=$rows->father_name ;
 						 $b=$rows->mother_name ;
-                                 
-                     }
-					 ?>
-                            <div class="content">
+                       }
+                        ?>
+                      <div class="content">
                                 <form method="post" action="<?php echo base_url(); ?>parentprofile/update_parents" class="form-horizontal" enctype="multipart/form-data" id="admissionform" name="formadmission">
-                                   <fieldset>
+                                  
+                                 <fieldset>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Profile Pic</label>
+                                            <div class="col-sm-4">
+                        <input type="file" name="user_pic" class="form-control" onchange="loadFile5(event)" accept="image/*" >
+                        <input type="hidden" class="form-control" readonly name="user_pic_old" value="<?php echo $rows->user_pic; ?>">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+								  <fieldset>
                                         <div class="form-group">
 										<label class="col-sm-2 control-label">Select</label>
 										<div class="col-sm-4">
@@ -46,7 +58,7 @@
 											</div>
 										<label class="col-sm-2 control-label">Student Name</label>
 										<div class="col-sm-4">
-				 <select multiple  name="stu[]"  class="selectpicker form-control"  >
+				 <select multiple name="teacher[]"  class="selectpicker form-control"  >
 
                      <?php
                           $tea_name=$rows->	admission_id;
@@ -62,7 +74,7 @@
 								 $sPlatform_name  = trim($sec);
 								 if (in_array($sPlatform_id, $arryPlatform ))
 								  {
-                                       echo "<option  value=\"$s\" selected  /> $sec</option>";
+                                       echo "<option  value=\"$s\"selected/> $sec</option>";
                                   }
                             }
                        ?>
@@ -70,9 +82,9 @@
 										
 					</div>
 
-              </div>
-							<input type="hidden" name="admission_no" class="form-control" placeholder="" value="<?php echo $rows->admission_id ; ?>">	
-							<input type="hidden" name="parent_id" class="form-control" placeholder="" value="<?php echo $rows->parent_id ; ?>">
+											</div>
+<input type="hidden" name="admission_no" class="form-control" placeholder="" value="<?php echo $rows->admission_id ; ?>">	
+<input type="hidden" name="parent_id" class="form-control" placeholder="" value="<?php echo $rows->parent_id ; ?>">
 								</fieldset>
 						<div id="stuparents" style="display:none">	
 					
@@ -94,18 +106,18 @@
                                         <div class="form-group">
                                              <label class="col-sm-2 control-label">Mother Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="file" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->mother_pic; ?>" class="img-circle" style="width:110px;">
+                                                <input type="hidden" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*" >
+									<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->mother_pic; ?>" class="img-circle" style="width:110px;">
 												 <img  id="output1" class="img-circle" style="width:110px;">
 												 <input type="hidden" placeholder="" name="old_mother_pic" class="form-control" value="<?php echo $rows->mother_pic; ?>">
                                             </div>
 											
                                           <label class="col-sm-2 control-label">Father Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="file" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*" >
-						<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->father_pic; ?>" class="img-circle" style="width:110px;">
+                                      <input type="hidden" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*" >
+												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->father_pic; ?>" class="img-circle" style="width:110px;">
 												 <img  id="output" class="img-circle" style="width:110px;">
-							<input type="hidden" placeholder="" name="old_father_pic" class="form-control" value="<?php echo $rows->father_pic; ?>">
+												<input type="hidden" placeholder="" name="old_father_pic" class="form-control" value="<?php echo $rows->father_pic; ?>">
                                             </div>
 											
                                         </div>
@@ -122,13 +134,13 @@
                                             
                                           <label class="col-sm-2 control-label">Guardian Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="file" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
+                                                <input type="hidden" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
 												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->guardn_pic; ?>" class="img-circle" style="width:110px;">
 												<input type="hidden" placeholder="" name="old_guardian_pic" class="form-control" value="<?php echo $rows->guardn_pic; ?>">
 												
                                               <img  id="output2" class="img-circle" style="width:110px;">
                                             </div>
-                                            </div
+                                           
                                        </div>
                                     </fieldset>
 									</div>
@@ -155,7 +167,7 @@
                                         <div class="form-group">
                                              <label class="col-sm-2 control-label">Mother Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="file" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*" >
+                                                <input type="hidden" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*" >
 												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->mother_pic; ?>" class="img-circle" style="width:110px;">
 												 <img  id="output1" class="img-circle" style="width:110px;">
 												 <input type="hidden" placeholder="" name="old_mother_pic" class="form-control" value="<?php echo $rows->mother_pic; ?>">
@@ -163,7 +175,7 @@
 											
                                           <label class="col-sm-2 control-label">Father Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="file" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*" >
+                                                <input type="hidden" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*" >
 												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->father_pic; ?>" class="img-circle" style="width:110px;">
 												 <img  id="output" class="img-circle" style="width:110px;">
 												<input type="hidden" placeholder="" name="old_father_pic" class="form-control" value="<?php echo $rows->father_pic; ?>">
@@ -186,7 +198,7 @@
                                             
                                           <label class="col-sm-2 control-label">Guardian Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="file" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
+                                                <input type="hidden" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
 												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->guardn_pic; ?>" class="img-circle" style="width:110px;">
 												<input type="hidden" placeholder="" name="old_guardian_pic" class="form-control" value="<?php echo $rows->guardn_pic; ?>">
 												
@@ -276,30 +288,42 @@
                                     </fieldset>
                                 </form>
 
-                            </div>
-                        </div>  <!-- end card -->
+                            </div></div></div>
+                 
+               
+               <div class="col-md-4">
+                   <div class="card card-user">
+                       <div class="image">
+                           <img src="<?php echo base_url(); ?>assets/img/full-screen-image-3.jpg" alt="..."/>
+                       </div>
+                       <div class="content">
+                           <div class="author">
+                                <a href="#">
+                            <img class="avatar border-gray" id="output" src="<?php echo base_url(); ?>assets/parents/profile/<?php echo $rows->user_pic; ?>" alt="..."/>
+                                 <h4 class="title"><?php echo $rows->father_name;  ?><br />
+                                 </h4>
+                               </a>
+                           </div>
 
-                    </div>
+                       </div>
+
+
+                   </div>
+               </div>
+
+           </div>
+       </div>
+   </div>
 </div>
-</div>
+
 <script type="text/javascript">
-var loadFile = function(event) 
- {
+var loadFile5 = function(event) {
  var output = document.getElementById('output');
  output.src = URL.createObjectURL(event.target.files[0]);
 };
 
-var loadFile1 = function(event) 
- {
- var output1 = document.getElementById('output1');
- output1.src = URL.createObjectURL(event.target.files[0]); 
-};
 
-var loadFile2 = function(event) 
- {
- var output2 = document.getElementById('output2');
- output2.src = URL.createObjectURL(event.target.files[0]); 
-};
+
 
 $(document).ready(function () {
 
@@ -366,5 +390,7 @@ $(document).ready(function () {
             }
         });
     });
+
+
 
 </script>

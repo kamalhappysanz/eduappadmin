@@ -93,5 +93,23 @@ Class Adminparentmodel extends CI_Model
             return $res1;
 		}
 
+		
+	  function get_all_classid($enroll_id)
+	  {
+		    $query2="SELECT enroll_id,class_id,name,admisn_no FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
+			$result1=$this->db->query($query2);
+			$row3=$result1->result();
+			foreach($row3 as $row4){
+			$admisn_no=$row4->admisn_no;
+			$name=$row4->name;
+			$cls_id=$row4->class_id;
+			}
+			
+		  $sql="SELECT * FROM edu_communication WHERE status='A' AND FIND_IN_SET('$cls_id',class_id) ORDER BY commu_id DESC ";
+		  $res=$this->db->query($sql);
+		  $row=$res->result();
+		  return $row;
+			
+	  }
 }
 ?>

@@ -14,7 +14,7 @@ Class Teacherprofilemodel extends CI_Model
 
      $query="SELECT ed.*,et.* FROM edu_users AS ed LEFT JOIN edu_teachers AS et ON ed.teacher_id=et.teacher_id WHERE ed.user_id='$user_id'";
      $resultset=$this->db->query($query);
-        return $resultset->result();
+     return $resultset->result();
 
 	    // $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
       // 		$resultset=$this->db->query($query);

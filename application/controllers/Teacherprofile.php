@@ -25,7 +25,7 @@ class Teacherprofile extends CI_Controller {
 		 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
 		 $datas['result'] = $this->teacherprofilemodel->getuser($user_id);
-
+           //print_r($datas['result']);exit;
 		 $datas['resubject'] = $this->subjectmodel->getsubject();
 		 $datas['getall_class']=$this->class_manage->getall_class();
 		if($user_type==1 || $user_type==2 || $user_type==3 ||$user_type==4 ){
@@ -49,24 +49,25 @@ class Teacherprofile extends CI_Controller {
 						$teachername=$this->input->post('name');
 						$user_pic_old=$this->input->post('user_pic_old');
 
-						$sex=$this->input->post('sex');
-			         $dob=$this->input->post('dob');
-			         $age=$this->input->post('age');
-		          $nationality=$this->input->post('nationality');
-			       $religion=$this->input->post('religion');
-            $mobile=$this->input->post('mobile');
-						$community_class=$this->input->post('community_class');
-		         $community=$this->input->post('community');
-			       $address=$this->input->post('address');
-						$email=$this->input->post('email');
+					  $sex=$this->input->post('sex');
+			          $dob=$this->input->post('dob');
+			          $age=$this->input->post('age');
+		              $nationality=$this->input->post('nationality');
+			          $religion=$this->input->post('religion');
+                      $mobile=$this->input->post('mobile');
+					  $community_class=$this->input->post('community_class');
+		              $community=$this->input->post('community');
+			          $address=$this->input->post('address');
+					  $email=$this->input->post('email');
 
 				       $student_pic = $_FILES["user_pic"]["name"];
 				       $userFileName =time().$student_pic;
-				      $uploaddir = 'assets/teachers/profile/';
+				       $uploaddir = 'assets/teachers/profile/';
 					   $profilepic = $uploaddir.$userFileName;
-					 move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
-					  if(empty($student_pic)){
-					   $userFileName=$user_pic_old;
+					   move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
+					   if(empty($student_pic))
+					   {
+					    $userFileName=$user_pic_old;
 				       }
 							
 

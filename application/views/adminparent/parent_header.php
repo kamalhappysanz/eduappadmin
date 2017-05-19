@@ -84,7 +84,7 @@ font-weight: 500;
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url(); ?>">
+									<a href="<?php echo base_url(); ?>parentprofile/pwd_edit">
 										<i class="pe-7s-tools"></i> Setting
 									</a>
 								</li>
@@ -135,7 +135,7 @@ font-weight: 500;
 
 								</li>
 								<li>
-										<a href="<?php echo base_url(); ?>adminparent/attendance">
+										<a href="<?php echo base_url(); ?>adminparent/circular">
 												<i class="pe-7s-note2"></i>
 												<p>circular</p>
 
