@@ -106,5 +106,14 @@ Class Class_manage extends CI_Model
 					 return $data;
       //  print_r($id1);
       }
+
+
+      //Class NOTEXIST
+
+      function get_all_class_notexist(){
+        $query="SELECT  e.class_sec_id,c.class_name,s.sec_name FROM    edu_classmaster AS e INNER JOIN edu_classmaster AS cm ON e.class_sec_id=cm.class_sec_id INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id WHERE   NOT EXISTS (SELECT  NULL FROM edu_teachers d WHERE   d.class_teacher = e.class_sec_id) ";
+        $result=$this->db->query($query);
+        return $result->result();
+      }
  }
 ?>

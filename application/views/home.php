@@ -43,7 +43,7 @@
             <div class="container-fluid">
 							<h2>Admin Dashboard</h2>
 
-							<br />
+							
 
 <div class="">
 	<div class="row">

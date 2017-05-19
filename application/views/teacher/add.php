@@ -134,7 +134,7 @@
                                         <label class="col-sm-2 control-label">Class Teacher</label>
                                             <div class="col-sm-4">
                                               <select   name="class_teacher"  data-title="Select Class" class="selectpicker" data-style=" btn-block"  data-menu-style="dropdown-blue">
-                                                <?php foreach ($getall_class as $rows) {  ?>
+                                                <?php foreach ($get_all_class_notexist as $rows) {  ?>
                                                 <option value="<?php echo $rows->class_sec_id; ?>"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></option>
                                           <?php      } ?>
                                               </select>
@@ -220,7 +220,7 @@ $(document).ready(function () {
            admission_date: "Select Admission Date",
            name: "Enter Name",
             email: "Enter Email Address",
-             
+
            sex: "Select Gender",
            dob: "Select Date of Birth",
            age: "Enter AGE",
