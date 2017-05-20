@@ -21,7 +21,7 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover">
                                     <thead>
-                                        <th>ID</th>
+                                        <th>S.No</th>
                                     	<th>Exam Name</th>
                                     	<th>Subject Name</th>
                                     	<th>Exam Date</th>
