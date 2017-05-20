@@ -173,9 +173,9 @@
                                     </fieldset>
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Curreent  Pic</label>
+                                            <label class="col-sm-2 control-label">Curreent Pic</label>
                                             <div class="col-sm-4">
-                                              <img src="<?php echo base_url(); ?>assets/teacher/profile/<?php echo $rows->profile_pic; ?>" class="img-circle" style="width:150px;">
+                                        <img src="<?php echo base_url(); ?>assets/teachers/<?php echo $rows->profile_pic; ?>" class="img-circle" style="width:150px;">
                                             </div>
 
                                         </div>

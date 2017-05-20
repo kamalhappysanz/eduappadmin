@@ -40,7 +40,7 @@
                                           <?php  }?>
                                    </select>
                               </div>
-							  <p id="erid"> </p>
+							  <p id="erid" style="color:red;"> </p>
 							   <div id="myDIV1" style="display:none">
 							  <select multiple  name="class_name[]" id="multiple-class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
                                           <?php foreach ($getall_class as $rows) {  ?>

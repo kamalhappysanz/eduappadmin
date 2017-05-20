@@ -231,7 +231,7 @@ var loadFile = function(event) {
 
 $(document).ready(function () {
 
- $('#admissionform').validate({ // initialize the plugin
+ /* $('#admissionform').validate({ // initialize the plugin
      rules: {
 
          name:{required:true }, address:{required:true },
@@ -270,7 +270,7 @@ $(document).ready(function () {
            mobile:"Enter the mobile Number",
           // teacher_pic:"Enter the Teacher Picture"
          }
- });
+ }); */
 });
 
 </script>

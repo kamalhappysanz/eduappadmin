@@ -29,7 +29,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Profile Pic</label>
                                             <div class="col-sm-4">
-                        <input type="file" name="user_pic" class="form-control" onchange="loadFile5(event)" accept="image/*" >
+                        <input type="file" name="user_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
                         <input type="hidden" class="form-control" readonly name="user_pic_old" value="<?php echo $rows->user_pic; ?>">
                                             </div>
                                         </div>
@@ -106,18 +106,28 @@
                                         <div class="form-group">
                                              <label class="col-sm-2 control-label">Mother Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="hidden" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*" >
-									<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->mother_pic; ?>" class="img-circle" style="width:110px;">
+                                                <input type="hidden" name="mother_pic" id="mpic" class="form-control" accept="image/*" >
+												<?php $mpic=$rows->mother_pic;
+											   if(empty($mpic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
+									<img src="<?php echo base_url(); ?>assets/parents/<?php echo $mpic; ?>" class="img-circle" style="width:110px;">
+											<?php } ?>
 												 <img  id="output1" class="img-circle" style="width:110px;">
-												 <input type="hidden" placeholder="" name="old_mother_pic" class="form-control" value="<?php echo $rows->mother_pic; ?>">
+												 <input type="hidden" placeholder="" name="old_mother_pic" class="form-control" value="<?php echo $mpic; ?>">
                                             </div>
 											
                                           <label class="col-sm-2 control-label">Father Pic</label>
                                             <div class="col-sm-4">
-                                      <input type="hidden" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->father_pic; ?>" class="img-circle" style="width:110px;">
+                                      <input type="hidden" name="father_pic" id="fpic" class="form-control" accept="image/*" >
+									  <?php $fpic=$rows->father_pic;
+											   if(empty($fpic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
+												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $fpic; ?>" class="img-circle" style="width:110px;">
+											<?php } ?>
 												 <img  id="output" class="img-circle" style="width:110px;">
-												<input type="hidden" placeholder="" name="old_father_pic" class="form-control" value="<?php echo $rows->father_pic; ?>">
+												<input type="hidden" placeholder="" name="old_father_pic" class="form-control" value="<?php echo $fpic; ?>">
                                             </div>
 											
                                         </div>
@@ -134,8 +144,8 @@
                                             
                                           <label class="col-sm-2 control-label">Guardian Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="hidden" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->guardn_pic; ?>" class="img-circle" style="width:110px;">
+                                                <input type="hidden" name="guardn_pic" id="gpic" class="form-control" accept="image/*" >
+												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $rows->guardn_pic; ?>" class="img-circle" style="width:110px;">
 												<input type="hidden" placeholder="" name="old_guardian_pic" class="form-control" value="<?php echo $rows->guardn_pic; ?>">
 												
                                               <img  id="output2" class="img-circle" style="width:110px;">
@@ -167,16 +177,26 @@
                                         <div class="form-group">
                                              <label class="col-sm-2 control-label">Mother Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="hidden" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->mother_pic; ?>" class="img-circle" style="width:110px;">
+                                                <input type="hidden" name="mother_pic" id="mpic" class="form-control"  accept="image/*" >
+												<?php $mpic=$rows->mother_pic;
+											   if(empty($mpic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
+												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $mpic; ?>" class="img-circle" style="width:110px;">
+											<?php }?>
 												 <img  id="output1" class="img-circle" style="width:110px;">
-												 <input type="hidden" placeholder="" name="old_mother_pic" class="form-control" value="<?php echo $rows->mother_pic; ?>">
+												 <input type="hidden" placeholder="" name="old_mother_pic" class="form-control" value="<?php echo $mpic; ?>">
                                             </div>
 											
                                           <label class="col-sm-2 control-label">Father Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="hidden" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->father_pic; ?>" class="img-circle" style="width:110px;">
+                                                <input type="hidden" name="father_pic" id="fpic" class="form-control"  accept="image/*" >
+												 <?php $fpic=$rows->father_pic;
+											   if(empty($fpic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
+												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $fpic; ?>" class="img-circle" style="width:110px;">
+											<?php } ?>
 												 <img  id="output" class="img-circle" style="width:110px;">
 												<input type="hidden" placeholder="" name="old_father_pic" class="form-control" value="<?php echo $rows->father_pic; ?>">
                                             </div>
@@ -198,9 +218,14 @@
                                             
                                           <label class="col-sm-2 control-label">Guardian Pic</label>
                                             <div class="col-sm-4">
-                                                <input type="hidden" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/admission/parents/<?php echo $rows->guardn_pic; ?>" class="img-circle" style="width:110px;">
-												<input type="hidden" placeholder="" name="old_guardian_pic" class="form-control" value="<?php echo $rows->guardn_pic; ?>">
+                                              <input type="hidden" name="guardn_pic" id="gpic" class="form-control"  accept="image/*" >
+											  <?php $gpic=$rows->guardn_pic;
+											  if(empty($gpic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
+												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $gpic; ?>" class="img-circle" style="width:110px;">
+											<?php }?>
+												<input type="hidden" placeholder="" name="old_guardian_pic" class="form-control" value="<?php echo $gpic; ?>">
 												
                                               <img  id="output2" class="img-circle" style="width:110px;">
                                             </div>
@@ -299,8 +324,10 @@
                        <div class="content">
                            <div class="author">
                                 <a href="#">
-                            <img class="avatar border-gray" id="output" src="<?php echo base_url(); ?>assets/parents/profile/<?php echo $rows->user_pic; ?>" alt="..."/>
-                                 <h4 class="title"><?php echo $rows->father_name;  ?><br />
+								 <img class="avatar border-gray" id="output23" src="<?php echo base_url(); ?>assets/parents/profile/<?php echo $rows->user_pic; ?>" alt="..."/>
+								 
+                           
+                                 <h4 class="title"><?php echo $rows->father_name; ?><br />
                                  </h4>
                                </a>
                            </div>
@@ -317,13 +344,13 @@
 </div>
 
 <script type="text/javascript">
-var loadFile5 = function(event) {
- var output = document.getElementById('output');
+var loadFile = function(event) {
+ var output = document.getElementById('output23');
  output.src = URL.createObjectURL(event.target.files[0]);
 };
+</script>
 
-
-
+<script type="text/javascript">
 
 $(document).ready(function () {
 

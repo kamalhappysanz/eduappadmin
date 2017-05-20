@@ -170,7 +170,7 @@
                                             <label class="col-sm-2 control-label">Current  Pic</label>
                                             <div class="col-sm-4">
                                                 <input type="hidden" placeholder="Mobile Number" name="user_pic_old" class="form-control" value="<?php echo $rows->student_pic; ?>">
-                                              <img src="<?php echo base_url(); ?>assets/admission/profile/<?php echo $rows->student_pic; ?>" class="img-circle" style="width:110px;">
+                                              <img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" class="img-circle" style="width:110px;">
                                             </div>
 
                                         </div>

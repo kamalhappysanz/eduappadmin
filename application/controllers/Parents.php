@@ -74,19 +74,19 @@ class Parents extends CI_Controller {
 				  
 					$father_pic = $_FILES["father_pic"]["name"];
 				    $userFileName =$admission_id.'-'.$father_pic;
-				    $uploaddir = 'assets/admission/parents/';
+				    $uploaddir = 'assets/parents/';
 				    $profilepic = $uploaddir.$userFileName;
 				    move_uploaded_file($_FILES['father_pic']['tmp_name'], $profilepic);
 				
 					$mother_pic = $_FILES["mother_pic"]["name"];
 					$userFileName1 =$admission_id.'-'.$mother_pic;
-					$uploaddir1 = 'assets/admission/parents/';
+					$uploaddir1 = 'assets/parents/';
 					$profilepic1 = $uploaddir1.$userFileName1;
 					move_uploaded_file($_FILES['mother_pic']['tmp_name'], $profilepic1);
 					
 					$guardn_pic = $_FILES["guardn_pic"]["name"];
 					$userFileName2 =$admission_id.'-'.$guardn_pic;
-					$uploaddir2 = 'assets/admission/parents/';
+					$uploaddir2 = 'assets/parents/';
 					$profilepic2 = $uploaddir2.$userFileName2;
 					move_uploaded_file($_FILES['guardn_pic']['tmp_name'], $profilepic2);
 					
@@ -204,19 +204,19 @@ class Parents extends CI_Controller {
 				  
 					$father_pic = $_FILES["father_pic"]["name"];
 				    $userFileName =$admission_id.'-'.$father_pic;
-				    $uploaddir = 'assets/admission/parents/';
+				    $uploaddir = 'assets/parents/';
 				    $profilepic = $uploaddir.$userFileName;
 				    move_uploaded_file($_FILES['father_pic']['tmp_name'], $profilepic);
 				
 					$mother_pic = $_FILES["mother_pic"]["name"];
 					$userFileName1 =$admission_id.'-'.$mother_pic;
-					$uploaddir1 = 'assets/admission/parents/';
+					$uploaddir1 = 'assets/parents/';
 					$profilepic1 = $uploaddir1.$userFileName1;
 					move_uploaded_file($_FILES['mother_pic']['tmp_name'], $profilepic1);
 					
 					$guardn_pic = $_FILES["guardn_pic"]["name"];
 					$userFileName2 =$admission_id.'-'.$guardn_pic;
-					$uploaddir2 = 'assets/admission/parents/';
+					$uploaddir2 = 'assets/parents/';
 					$profilepic2 = $uploaddir2.$userFileName2;
 					move_uploaded_file($_FILES['guardn_pic']['tmp_name'], $profilepic2);
 					

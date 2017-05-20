@@ -86,7 +86,7 @@ class Teacher extends CI_Controller {
 			 $address=$this->input->post('address');
 			 $teacher_pic = $_FILES["teacher_pic"]["name"];
 			 $userFileName =time().'-'.$teacher_pic;
-			 $uploaddir = 'assets/teacher/profile/';
+			 $uploaddir = 'assets/teachers/';
 			 $profilepic = $uploaddir.$userFileName;
 				move_uploaded_file($_FILES['teacher_pic']['tmp_name'], $profilepic);
 				$datas=$this->teachermodel->teacher_create($name,$email,$sec_email,$sex,$formatted_date,$age,$nationality,$religion,$community_class,$community,$mobile,$sec_phone,$address,$class_teacher,$class_name,$subject,$userFileName);
@@ -178,7 +178,7 @@ class Teacher extends CI_Controller {
 			 $student_pic = $_FILES["teacher_pic"]["name"];
 				$userFileName =time().'-'.$student_pic;
 
-				$uploaddir = 'assets/teacher/profile/';
+				$uploaddir = 'assets/teachers/';
 				$profilepic = $uploaddir.$userFileName;
 				move_uploaded_file($_FILES['teacher_pic']['tmp_name'], $profilepic);
 				if(empty($student_pic)){
