@@ -155,8 +155,10 @@ font-weight: 500;
 										</a>
 										<div class="collapse" id="examinationmenu">
 											<ul class="nav">
+								<li id="exam3"><a href="<?php echo base_url(); ?>examinationresult/exam_duty"> Exam Duty</a></li>
 										<li id="exam1"><a href="<?php echo base_url(); ?>examinationresult/home">Add Exam Marks</a></li>
 										<li id="exam2"><a href="<?php echo base_url(); ?>examinationresult/marks_details_view">Edit Exam Marks</a></li>
+										
 											</ul>
 									</div>
 								</li>

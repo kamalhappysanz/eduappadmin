@@ -183,7 +183,7 @@ Class Examinationresultmodel extends CI_Model
 	   {
 		    //if(!empty($marks)){
 		       $count_name = count($marks);
-			   echo $count_name; //exit;
+			   //echo $count_name; //exit;
 			   for($i=0;$i<$count_name;$i++)
 			   {
 				$sutid1=$sutid[$i];
@@ -373,6 +373,20 @@ Class Examinationresultmodel extends CI_Model
 				$data= array("status" => "Already Added Exam Marks","var1"=>$a,"var2"=>$b);
 				   return $data;
 			}
+	   }
+	   
+	   function exam_duty_details($user_id)
+	   {
+		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+			$resultset=$this->db->query($query);
+			$row=$resultset->result();
+			foreach($row as $rows){}
+			$teacher_id=$rows->teacher_id;
+			//ORDER By ed.exam_detail_id DESC
+			$sql="SELECT ed.*,ex.exam_id,ex.exam_year,ex.exam_name,t.teacher_id,t.name,s.*,cm.class_sec_id,cm.class,cm.section,c.*,se.* FROM edu_exam_details AS ed,edu_examination As ex,edu_subject AS s,edu_teachers AS t,edu_classmaster AS cm, edu_class AS c,edu_sections AS se WHERE ed.teacher_id='$teacher_id' AND ex.exam_id=ed.exam_id AND t.teacher_id=ed.teacher_id AND ed.subject_id=s.subject_id AND cm.class_sec_id=ed.classmaster_id AND cm.class=c.class_id AND cm.section=se.sec_id ORDER By ed.exam_detail_id DESC ";
+			$result=$this->db->query($sql);
+			$res=$result->result();
+			return $res;
 	   }
 	   
 } 

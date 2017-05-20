@@ -10,7 +10,7 @@ Class Examinationmodel extends CI_Model
   }
   function get_exam_details()
 	 {
-		$query="SELECT e.*,y.year_id,y.from_month,y.to_month FROM edu_examination AS e,edu_academic_year AS y WHERE e.exam_year=y.year_id ORDER BY exam_id DESC";
+		$query="SELECT e.*,y.year_id,y.from_month,y.to_month FROM edu_examination AS e,edu_academic_year AS y WHERE e.exam_year=y.year_id  ORDER BY exam_id DESC";
          $resultset=$this->db->query($query);
          return $resultset->result();
 	 }
