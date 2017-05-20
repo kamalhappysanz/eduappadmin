@@ -185,7 +185,11 @@
                                             <label class="col-sm-2 control-label">Current  Pic</label>
                                             <div class="col-sm-4">
                                                 <input type="hidden" placeholder="Mobile Number" name="user_pic_old" class="form-control" value="<?php echo $rows->user_pic; ?>">
-                                              <img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" class="img-circle" style="width:110px;">
+                                             <?php $spic=$rows->student_pic;if(empty($spic)){?> 
+												<img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
+                                              <img src="<?php echo base_url(); ?>assets/students/<?php echo $spic; ?>" class="img-circle" style="width:110px;">
+											<?php } ?>
                                             </div>
 
                                         </div>
