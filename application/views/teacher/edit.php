@@ -20,7 +20,7 @@
 
                                   <fieldset>
                                       <div class="form-group">
-									   
+
                                           <label class="col-sm-2 control-label">Name</label>
                                           <div class="col-sm-4">
                                               <input type="text" name="name" class="form-control" value="<?php echo $rows->name; ?>">
@@ -95,7 +95,7 @@
                                             <div class="col-sm-4">
                                                 <input type="text" placeholder="Community" name="community" class="form-control" value="<?php echo $rows->community; ?>">
                                                 <input type="hidden" placeholder=" " name="old_pic" class="form-control" value="<?php echo $rows->profile_pic; ?>">
-                                                 
+
                                             </div>
 
                                         </div>
@@ -108,7 +108,7 @@
                                             </div>
                                             <label class="col-sm-2 control-label">Subject</label>
                                                 <div class="col-sm-4">
-                                                  <select   name="subject"  class="selectpicker" data-style="btn-block"  data-menu-style="dropdown-blue">
+                                                  <select   name="subject" id="subject_id" class="selectpicker" data-style="btn-block" onchange="getListClass()"  data-menu-style="dropdown-blue">
                                                     <?php foreach ($resubject as $rows3) {  ?>
                                                     <option value="<?php echo $rows3->subject_id; ?>"><?php echo $rows3->subject_name; ?></option>
                                               <?php      } ?>
@@ -134,7 +134,7 @@
                                             </div>
                                         <label class="col-sm-2 control-label">Class </label>
                                         <div class="col-sm-4">
-                                         <select multiple  name="class_name[]" id="multiple-class" class="selectpicker" data-style="btn-block" onchange="select_class('classname')" data-menu-style="dropdown-blue">
+                                         <select multiple  name="class_name[]" id="multiple-class" class="" data-style="btn-block"  data-menu-style="dropdown-blue">
 
                                         <?php
                                          $sPlatform=$rows->class_name;
@@ -161,7 +161,7 @@
 
                                 <?php }
                                   else {
-                                echo "<option value=\"$sPlatform_id\" />$clas-$sec_name &nbsp;&nbsp;</option>";
+                                // echo "<option value=\"$sPlatform_id\" />$clas-$sec_name &nbsp;&nbsp;</option>";
                                  }
 
                                       }
@@ -229,6 +229,41 @@
 </div>
 </div>
 <script type="text/javascript">
+
+function getListClass(){
+
+var subject_id=$('#subject_id').val();
+//alert(subject_id);
+$.ajax({
+   url:'<?php echo base_url(); ?>classmanage/getListClass',
+   method:"POST",
+   data:{subject_id:subject_id},
+   dataType: "JSON",
+   cache: false,
+   success:function(data)
+   {
+     var stat=data.status;
+       $("#multiple-class").empty();
+     if(stat=="success"){
+       var res=data.res;
+       //alert(res.length);
+       var len=res.length;
+
+       for (i = 0; i < len; i++) {
+
+       $('<option>').val(res[i].class_sec_id).text(res[i].class_name + res[i].sec_name).appendTo('#multiple-class');
+       }
+
+     }else{
+         $("#multiple-class").empty();
+     }
+
+
+
+   }
+  });
+
+}
 var loadFile = function(event) {
  var output = document.getElementById('output');
  output.src = URL.createObjectURL(event.target.files[0]);
@@ -250,6 +285,7 @@ $('#teacher2').addClass('active');
          dob:{required:true },
          age:{required:true,number:true,maxlength:2 },
          nationality:{required:true },
+          "class_name[]":{required:true },
          religion:{required:true },
          community_class:{required:true },
          community:{required:true },
@@ -262,6 +298,7 @@ $('#teacher2').addClass('active');
            address: "Enter Address",
            admission_date: "Select Admission Date",
            name: "Enter Name",
+           "class_name[]":"Select class",
             email: "Enter Email Address",
              remote: "Email already in use!",
            sex: "Select Gender",
@@ -279,4 +316,3 @@ $('#teacher2').addClass('active');
 });
 
 </script>
-

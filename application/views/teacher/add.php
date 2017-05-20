@@ -142,7 +142,7 @@
                                             </div>
                                             <label class="col-sm-2 control-label">Class Assigned </label>
                                                 <div class="col-sm-4">
-                                                  <select multiple  name="class_name[]" id="multiple" class="selectpicker class_teach" data-style="btn-block">
+                                                  <select multiple="multiple"  name="class_name[]" id="multiple">
 
                                                   </select>
                                                 </div>
@@ -196,20 +196,22 @@ $.ajax({
    success:function(data)
    {
      var stat=data.status;
+       $("#multiple").empty();
      if(stat=="success"){
        var res=data.res;
        //alert(res.length);
        var len=res.length;
-      //  $('<option>').val(" ").text("Select Subject").appendTo('.class_teach');
-       for (i = 0; i < len; i++) {
-         $('<option>').val(res[i].class_sec_id).text(res[i].class_name).appendTo('.class_teach');
-       }
-       //alert(res[0].class_sec_id);
-     }else{
 
+       for (i = 0; i < len; i++) {
+
+       $('<option>').val(res[i].class_sec_id).text(res[i].class_name + res[i].sec_name).appendTo('#multiple');
+       }
+
+     }else{
+         $("#multiple").empty();
      }
 
-  //  alert(data.status);
+
 
    }
   });
