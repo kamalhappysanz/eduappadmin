@@ -36,8 +36,9 @@ class Examinationresult extends CI_Controller
 				 }
 	 	}
 		
-		public function class_section($exam_id)
+		public function class_section()
 		{
+			    $exam_id=$this->input->get('var');
 			    $exam_year=$this->input->post('$exam_year');
 			    $datas=$this->session->userdata();
   	 		    $user_id=$this->session->userdata('user_id');
@@ -72,7 +73,7 @@ class Examinationresult extends CI_Controller
 			  $datas['result']=$this->examinationresultmodel->getall_exam_details($exam_id);
 			  $datas['res']=$this->examinationresultmodel->getall_cls_sec_stu($user_id,$cls_masid,$exam_id);
 			  $datas['mark']=$this->examinationresultmodel->getall_marks($user_id,$cls_masid,$exam_id);
-			  //echo '<pre>';print_r($datas['mark']); exit;
+			  //echo '<pre>';print_r($datas['result']); exit;
 			  //echo '<pre>';print_r($datas['stu']); exit;
 			
 			 if($user_type==2)

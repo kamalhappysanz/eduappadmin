@@ -41,18 +41,17 @@
 		}
 
 ?>
-
                                 <table class="table table-hover table-striped">
 								<?php if(!empty($result))
 									  { foreach($result as $exam)
 								         {}
 									        $id=$exam->exam_id;
-											//echo $id;
+											  echo '<input type="hidden" name="examid" value="'.$id.'" />';
 											 }else{ echo "";}
 
                                   ?>
 
-								<input type="hidden" name="examid" id="eid" value="<?php echo $id; ?>"/>
+							
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
@@ -106,12 +105,7 @@
 													if(!empty($s))
 													{
 														echo '<input style="width:60%;" type="text" required name="marks1" value="'.$s->marks.'" class="form-control" readonly /></td>';
-														
-											            /*  $a=$s->marks;
-											             for($i=0; $i <= $cnt; $i++) 
-											              {$t=$a + $a;}
-											                echo  $t; */
-														
+
 													}else{
 														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value=""  class="form-control"/>';
 														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
@@ -171,7 +165,7 @@ $('#examvalidate').validate({ // initialize the plugin
        $('input', $tr).each(function() { // iterate over inputs
        tot += Number($(this).val()) || 0; // parse and add value, if NaN then add 0
       });
-     $('td:last', $tr).text(tot); // update last column value
+     $('td:last',$tr).text(tot); // update last column value
      }).trigger('input'); 
 
 
