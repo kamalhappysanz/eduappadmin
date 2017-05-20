@@ -271,6 +271,9 @@ Class Examinationresultmodel extends CI_Model
 		     $clstea=$rows->class_teacher;
 			 $tsub=$rows->subject;
 			// echo $clstea;echo $tsub;
+
+			//SELECT em.*,en.* FROM edu_exam_marks AS em,edu_enrollment AS en WHERE em.teacher_id='5' AND em.subject_id='9' AND em.classmaster_id='12' AND em.exam_id='7' AND em.classmaster_id=en.class_id GROUP BY enroll_id
+			
 			 $sql1="SELECT * FROM edu_exam_marks WHERE teacher_id='$teacher_id' AND subject_id='$tsub' AND classmaster_id='$cls_masid' AND exam_id='$exam_id'";
 			 $result1=$this->db->query($sql1);
 			 $row1=$result1->result();
@@ -295,7 +298,7 @@ Class Examinationresultmodel extends CI_Model
 	   
 	   function marks_status_details($clsmasid)
 	   {
-		    $query="SELECT * FROM exam_marks_status WHERE status='N' OR status='A' AND classmaster_id='$clsmasid'";
+		    $query="SELECT * FROM edu_exam_marks_status WHERE status='N' OR status='A' AND classmaster_id='$clsmasid'";
 			$resultset=$this->db->query($query);
 			//$row=$resultset->result();
 			if($resultset->num_rows()==0)
@@ -336,10 +339,10 @@ Class Examinationresultmodel extends CI_Model
 	   
 	   function marks_status_update($exam_id,$clsmastid)
 	   {
-		   $query="SELECT * FROM exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
+		   $query="SELECT * FROM edu_exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
 		   $resultset1=$this->db->query($query);
 		   
-		       $sql1="SELECT * FROM exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
+		       $sql1="SELECT * FROM edu_exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
 			   $res1=$this->db->query($sql1);
 			   $res=$res1->result();
 			   foreach($res as $ans){
@@ -348,10 +351,10 @@ Class Examinationresultmodel extends CI_Model
 				   }
 		   if($resultset1->num_rows()==0)
 			{ 
-			   $sql="INSERT INTO exam_marks_status(exam_id,classmaster_id,status,created_at) VALUES('$exam_id','$clsmastid','N',NOW())";
+			   $sql="INSERT INTO edu_exam_marks_status(exam_id,classmaster_id,status,created_at) VALUES('$exam_id','$clsmastid','N',NOW())";
 			   $result=$this->db->query($sql);
 			   
-			   $sql1="SELECT * FROM exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
+			   $sql1="SELECT * FROM edu_exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id='$clsmastid'";
 			   $res1=$this->db->query($sql1);
 			   $res=$res1->result();
 			   foreach($res as $ans){
