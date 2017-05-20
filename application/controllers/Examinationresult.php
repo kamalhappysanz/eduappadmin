@@ -72,7 +72,7 @@ class Examinationresult extends CI_Controller
 			  $datas['result']=$this->examinationresultmodel->getall_exam_details($exam_id);
 			  $datas['res']=$this->examinationresultmodel->getall_cls_sec_stu($user_id,$cls_masid,$exam_id);
 			  $datas['mark']=$this->examinationresultmodel->getall_marks($user_id,$cls_masid,$exam_id);
-			  //echo '<pre>';print_r($datas['cla_tea_id']); exit;
+			  //echo '<pre>';print_r($datas['mark']); exit;
 			  //echo '<pre>';print_r($datas['stu']); exit;
 			
 			 if($user_type==2)
@@ -179,11 +179,11 @@ class Examinationresult extends CI_Controller
 			 if($datas['status']=="success")
 			  {
 				$this->session->set_flashdata('msg','Added Successfully');
-                redirect('examinationresult/marks_details_view',$datas);
+                redirect('examinationresult/exam_mark_details',$datas);
 			   //redirect('add_test');		
 			  }else{
 				$this->session->set_flashdata('msg','Falid To Added');
-                redirect('examinationresult/marks_details_view',$datas);
+                redirect('examinationresult/exam_mark_details',$datas);
 			}  
 		}
 		public function marks_details_view()
@@ -285,6 +285,25 @@ class Examinationresult extends CI_Controller
                 redirect('examinationresult/exam_mark_details_cls_teacher?var1='.$b.'&var2='.$a.'',$datas);
 			}
 			  
+		}
+		
+		public function exam_duty()
+		{
+		  $datas=$this->session->userdata();
+		  $user_id=$this->session->userdata('user_id');
+		  $user_type=$this->session->userdata('user_type');
+		  
+		  $datas['duty']=$this->examinationresultmodel->exam_duty_details($user_id);
+		 // print_r($datas);exit;
+		  if($user_type==2)
+			{ 
+				 $this->load->view('adminteacher/teacher_header');
+				 $this->load->view('adminteacher/examination_result/exam_duty',$datas);
+				 $this->load->view('adminteacher/teacher_footer');
+			}else{
+				 redirect('/');
+				}
+		
 		}
 		
  }
