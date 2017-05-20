@@ -61,9 +61,13 @@ Class Eventmodel extends CI_Model
           $result=$this->db->query($check_event);
           if($result->num_rows()==0)
 		  {
+        $query1="UPDATE edu_events SET sub_event_status='1' WHERE event_id='$event_id'";
+         $result1=$this->db->query($query1);
 			  $query="INSERT INTO edu_event_coordinator(event_id,sub_event_name,co_name_id,status,created_at) VALUES ('$event_id','$sub_event_name','$co_name','$status',NOW())";
 
 			  $result=$this->db->query($query);
+        //$last_id=$this->db->insert_id();
+
 
 			 if($result){
               $data= array("status" => "success");
@@ -84,7 +88,7 @@ Class Eventmodel extends CI_Model
 		  $result=$this->db->query($query);
           $res=$result->result();
 		  return $res;
-		  
+
 	}
 
 	function edit_sub_event($co_id)
@@ -98,7 +102,7 @@ Class Eventmodel extends CI_Model
 	function update_sub_event($event_id,$co_id,$sub_event_name,$co_name,$status)
 	{
 		 $query="UPDATE edu_event_coordinator SET sub_event_name='$sub_event_name',co_name_id='$co_name',status='$status',updated_at=NOW() WHERE co_id='$co_id' AND event_id='$event_id'";
-            
+
 		 $result=$this->db->query($query);
           if($result){
             $data= array("status"=>"success","eventid"=>$event_id);
