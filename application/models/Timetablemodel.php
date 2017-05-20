@@ -156,11 +156,11 @@ INNER JOIN edu_academic_year AS a ON tt.year_id=a.year_id INNER JOIN edu_section
                    return $data;
                  }else{
                   $res= $resultset->result();
-                   foreach($res as $rows){
-                     $teacher_id=$rows->teacher_id; $teacher_name=$rows->name;$class_name=$rows->class_name;
-                     $data= array("teacher_id" => $teacher_id,"teacher_name"=>$teacher_name,"class_name"=>$class_name,"status"=>"success");
-                
-                     }
+                  //  foreach($res as $rows){
+                     //$teacher_id=$rows->teacher_id; $teacher_name=$rows->name;$class_name=$rows->class_name;
+                     $data= array("status"=>"success","res"=>$res);
+
+                    //  }
                        return $data;
 
 

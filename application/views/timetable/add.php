@@ -131,12 +131,12 @@ select{width:100px;}
 
 
                                     <br><br>
-                                    <select   name="teacher_id[]" required>
+                                    <select   name="teacher_id[]" class="teacher_id"  id="teacher_id" required>
                                         <option value="">No Teacher</option>
-                                      <?php foreach ($teacheres as $rows) {  ?>
+                                      <!-- <?php foreach ($teacheres as $rows) {  ?>
 
                                       <option value="<?php echo $rows->teacher_id; ?>"><?php echo $rows->name; ?></option>
-                                <?php      } ?>
+                                <?php      } ?> -->
 
                                     </select>
                                       <input type="hidden" name="period_id[]" value="<?php echo $i; ?>">
@@ -188,19 +188,15 @@ function getSubject(){
     success:function(data)
     {
       var stat=data.status;
-      //alert(stat);
-      //$('.subject_id')html('');
         $(".subject_id").empty();
       if(stat=="success"){
-        //  alert(data.subject_id);
           var g=data.subject_id;
-
           var len=g.length;
             $('<option>').val(" ").text("Select Subject").appendTo('.subject_id');
             for (i = 0; i < len; i++) {
               $('<option>').val(data.subject_id[i]).text(data.subject_name[i]).appendTo('.subject_id');
             }
-            // getTeacher();
+             getTeacher();
       }else{
     $(".subject_id").empty();
       }
@@ -216,26 +212,27 @@ function getTeacher(){
      url:'<?php echo base_url(); ?>timetable/getTeacher',
      method:"POST",
      data:{class_id:class_id},
-    //  dataType: "JSON",
-    //  cache: false,
+     dataType: "JSON",
+     cache: false,
      success:function(data)
      {
-       alert(data);
-    //    var stat=data.status;
-    //      $(".subject_id").empty();
-    //    if(stat=="success"){
-    //      //  alert(data.subject_id);
-    //        var g=data.subject_id;
-     //
-    //        var len=g.length;
-    //          $('<option>').val(" ").text("Select Subject").appendTo('.subject_id');
-    //          for (i = 0; i < len; i++) {
-    //            $('<option>').val(data.subject_id[i]).text(data.subject_name[i]).appendTo('.subject_id');
-    //          }
-    //          getTeacher();
-    //    }else{
-    //  $(".subject_id").empty();
-    //    }
+
+       var stat=data.status;
+        //alert(stat);
+        $(".teacher_id").empty();
+      if(stat=="success"){
+        var res=data.res;
+        //alert(res.length);
+        var len=res.length;
+          $('<option>').val(" ").text("Select Teacher").appendTo('.teacher_id');
+        for (i = 0; i < len; i++) {
+
+        $('<option>').val(res[i].teacher_id).text(res[i].name).appendTo('#teacher_id');
+        }
+
+      }else{
+          $("#teacher_id").empty();
+      }
 
 
      }
