@@ -24,7 +24,7 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="content">
-                        <h4 class="title">Communication Details</h4>
+                        <h4 class="title">Circular Details</h4>
                         <div class="fresh-datatables">
                            <table id="bootstrap-table" class="table">
                               <thead>

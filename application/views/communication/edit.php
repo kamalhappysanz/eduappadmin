@@ -1,4 +1,4 @@
-<div class="main-panel">
+﻿<div class="main-panel">
 <div class="content">
 
 
@@ -16,7 +16,7 @@
 
          <div class="card">
                    <div class="header">
-                     <legend>Update  Communication Details</legend>
+                     <legend>Update  Circular Details</legend>
                         </div>
 						<?php foreach($res as $rows){}	?>
                             <div class="content">

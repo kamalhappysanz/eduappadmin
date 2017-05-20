@@ -288,8 +288,8 @@
                   </a>
                   <div class="collapse" id="communcicationmenu">
                      <ul class="nav">
-                       <li id="communication1"><a href="<?php echo base_url(); ?>communication/add_communication">Add Communications </a></li>
-                       <li id="communication2"><a href="<?php echo base_url(); ?>communication/view">View Communications </a></li>
+                       <li id="communication1"><a href="<?php echo base_url(); ?>communication/add_communication">Add Circular </a></li>
+                       <li id="communication2"><a href="<?php echo base_url(); ?>communication/view">View Circular </a></li>
 					   <li id="communication3"><a href="<?php echo base_url(); ?>communication/view_user_leaves">View User Leaves </a></li>
                      </ul>
                   </div>

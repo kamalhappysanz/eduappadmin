@@ -133,9 +133,7 @@
 											<?php 
 									}else{ echo "No Exam Mark Added"; }
 										?>
-									
-									
-									
+
                                     </tbody>
                                 </table>
 								 
