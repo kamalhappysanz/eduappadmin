@@ -182,7 +182,7 @@
 										<select   id="co_name"  data-title="Select Teacher" class="selectpicker" data-style=" btn-block"  data-menu-style="dropdown-blue">
                                                     <?php
 
-													$query = "SELECT * FROM edu_teachers ";
+													$query = "SELECT * FROM edu_teachers WHERE status='A'";
 				                                    $resultset = $this->db->query($query);
 													$teacher=$resultset->result();
 													foreach($teacher as $row){  ?>
@@ -264,25 +264,19 @@ function submitContactForm(){
             type:'POST',
             url:'<?php echo base_url(); ?>event/create_sub_event',
             data:'eventFrmSubmit=1&sub_name='+sub_name+'&co_name='+co_name+'&event_id='+event_id+'&status='+status,
-           /*  beforeSend: function () {
-                $('.submitBtn').attr("disabled","disabled");
-                $('.modal-body').css('opacity', '.5');
-            }, */
+
             success:function(msg){
+
                 if(msg == 'Added Successfully')
 				{
 
 					$('#msg').html(msg);
 					$('#coordinatorform')[0].reset();
-
-
-                  //  $('.msg').html('<span style="color:green;">Added Successfully</p>');
                 }else{
 					 $("#msg").html(msg);
-                   // $('.msg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
+
                 }
-               // $('.submitBtn').removeAttr("disabled");
-               // $('.modal-body').css('opacity', '');
+
             }
         });
     }
