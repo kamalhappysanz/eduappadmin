@@ -40,6 +40,7 @@
                                           <?php  }?>
                                    </select>
                               </div>
+							  <p id="erid"> </p>
 							   <div id="myDIV1" style="display:none">
 							  <select multiple  name="class_name[]" id="multiple-class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
                                           <?php foreach ($getall_class as $rows) {  ?>
@@ -156,7 +157,8 @@ function validates()
 		var cls = document.getElementById("multiple-class").value;
 	if(tea=="" && cls=="")
      {
-		 alert( "Please Select Teachers Or Class" );
+		 $("#erid").html("Please Select Teachers Or Class");
+		 //alert( "Please Select Teachers Or Class" );
 		 document.form.teacher.focus() ;
 		 return false;
      }
