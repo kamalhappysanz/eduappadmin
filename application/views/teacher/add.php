@@ -142,10 +142,8 @@
                                             </div>
                                             <label class="col-sm-2 control-label">Class Assigned </label>
                                                 <div class="col-sm-4">
-                                                  <select multiple data-title="Select More Than one class" name="class_name[]" id="multiple-class" class="selectpicker" data-style="btn-block" onchange="select_class('classname')" data-menu-style="dropdown-blue">
-                                                    <?php foreach ($getall_class as $rows) {  ?>
-                                                    <option value="<?php echo $rows->class_sec_id; ?>"><?php echo $rows->class_name; ?>&nbsp; - &nbsp;<?php echo $rows->sec_name; ?></option>
-                                              <?php      } ?>
+                                                  <select multiple  name="class_name[]" id="multiple" class="selectpicker class_teach" data-style="btn-block">
+
                                                   </select>
                                                 </div>
                                       </div>
@@ -188,33 +186,30 @@
 function getListClass(){
 
 var subject_id=$('#subject_id').val();
-alert(subject_id);
+//alert(subject_id);
 $.ajax({
    url:'<?php echo base_url(); ?>classmanage/getListClass',
    method:"POST",
    data:{subject_id:subject_id},
-  //  dataType: "JSON",
-  //  cache: false,
+   dataType: "JSON",
+   cache: false,
    success:function(data)
    {
      var stat=data.status;
-
-    //  $('#class_teacher')html('');
-    //    $("#class_teacher").empty();
-     if(stat="success"){
-       
-        //  var g=data.res;
-        //  alert(g);
-        //  var len=g.length;
-        //    $('<option>').val(" ").text("Select Subject").appendTo('.subject_id');
-          //  for (i = 0; i < len; i++) {
-          //    $('<option>').val(data.subject_id[i]).text(data.subject_name[i]).appendTo('.subject_id');
-          //  }
-           // getTeacher();
+     if(stat=="success"){
+       var res=data.res;
+       //alert(res.length);
+       var len=res.length;
+      //  $('<option>').val(" ").text("Select Subject").appendTo('.class_teach');
+       for (i = 0; i < len; i++) {
+         $('<option>').val(res[i].class_sec_id).text(res[i].class_name).appendTo('.class_teach');
+       }
+       //alert(res[0].class_sec_id);
      }else{
-   $(".subject_id").empty();
+
      }
 
+  //  alert(data.status);
 
    }
   });

@@ -38,6 +38,7 @@ class Teacher extends CI_Controller {
 	 		$user_id=$this->session->userdata('user_id');
 
 			$datas['get_all_class_notexist']=$this->class_manage->get_all_class_notexist();
+			 $datas['getall_class']=$this->class_manage->getall_class();
 			$datas['resubject'] = $this->subjectmodel->getsubject();
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==1){

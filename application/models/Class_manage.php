@@ -127,15 +127,19 @@ INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON
          }else{
 
            $res= $resultset->result();
-           foreach($res as $rows){
-             $class_sec_id=$rows->class_sec_id;
-              $data= array("status" => "success","res" => $class_sec_id);
-             }
+             $data= array("status" => "success","res" => $res);
+          //  foreach($res as $rows){
+          //     $class_sec_id=$rows->class_sec_id;
+          //
+           //
+          //    }
+               return $data;
+
 
 
 
          }
-          return $data;
+
         //return $result->result();
       }
  }
