@@ -60,7 +60,7 @@
 																		<?php $pic= $rows->profile_pic; if(empty($pic)){
 
 																		} else{  ?>
-																			<img src="<?php echo base_url(); ?>assets/teacher/profile/<?php echo $rows->profile_pic; ?>" class="img-responsive" style="width:150px;padding-top:20px;">
+																			<img src="<?php echo base_url(); ?>assets/teachers/profile/<?php echo $rows->profile_pic; ?>" class="img-responsive" style="width:150px;padding-top:20px;">
 
 																	<?php 	}?>
 																			</div>
