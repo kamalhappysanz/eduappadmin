@@ -19,15 +19,18 @@
                      <legend>Update  Circular Details</legend>
                         </div>
 						<?php foreach($res as $rows){}	?>
-                            <div class="content">
+                            
 
                        <div class="content">
-                           <form method="post" action="<?php echo base_url(); ?>communication/update" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
+					   
+					   <form method="post" action="<?php echo base_url(); ?>communication/update" class="form-horizontal" enctype="multipart/form-data" onsubmit="return validatess()" name="form" id="myformsection">
+					   
+                          
 						    <fieldset>
-                                      <div class="form-group">
+                                      <div class="form-group"><p id="erid" style="color:red;"> </p>
 									<label class="col-sm-2 control-label">Teacher</label>
 									 <div class="col-sm-4">
-                   <select multiple name="teacher[]" class="selectpicker form-control" data-title="Select More Than one Teacher" id="multiple-teacher" onchange="select_class('teacher')" data-menu-style="dropdown-blue" >
+                   <select multiple name="teacher[]" class="selectpicker form-control" id="multiple_teacher" onchange="select_class('teacher')" data-menu-style="dropdown-blue" >
 
                                         <?php
                                          $tea_name=$rows->teacher_id;
@@ -55,7 +58,7 @@
 
 						         <label class="col-sm-2 control-label">Classes</label>
                                            <div class="col-sm-4">
-              <select multiple data-title="Select More Than one class" name="class_name[]" id="multiple-class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
+              <select multiple  name="class_name[]" id="multiple_class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
 
 	<?php
 		    $sPlatform=$rows->class_id;
@@ -111,12 +114,9 @@
 
 				                     </div>
                                     </fieldset>
-
 								   <br/>
 								   <fieldset>
-
                                         <div class="form-group">
-
                                           <label class="col-sm-2 control-label">Notes</label>
                                             <div class="col-sm-4">
                                         <textarea name="notes" class="form-control" rows="4" cols="80"><?php echo $rows->commu_details; ?></textarea>
@@ -129,8 +129,6 @@
                                         </div>
                                     </fieldset>
                              </form>
-
-                            </div>
                         </div>
 			</div>
 			</div>
@@ -158,73 +156,29 @@ $(document).ready(function () {
            notes:"Enter The Details",
          }
  });
+ 
 });
-
-/* var $table = $('#bootstrap-table');
-      $().ready(function(){
-          $table.bootstrapTable({
-              toolbar: ".toolbar",
-              clickToSelect: true,
-              showRefresh: true,
-              search: true,
-              showToggle: true,
-              showColumns: true,
-              pagination: true,
-              searchAlign: 'left',
-              pageSize: 8,
-              clickToSelect: false,
-              pageList: [8,10,25,50,100],
-
-              formatShowingRows: function(pageFrom, pageTo, totalRows){
-                  //do nothing here, we don't want to show the text "showing x of y from..."
-              },
-              formatRecordsPerPage: function(pageNumber){
-                  return pageNumber + " rows visible";
-              },
-              icons: {
-                  refresh: 'fa fa-refresh',
-                  toggle: 'fa fa-th-list',`
-                  columns: 'fa fa-columns',
-                  detailOpen: 'fa fa-plus-circle',
-                  detailClose: 'fa fa-minus-circle'
-              }
-          });
-
-          //activate the tooltips after the data table is initialized
-          $('[rel="tooltip"]').tooltip();
-
-          $(window).resize(function () {
-              $table.bootstrapTable('resetView');
-          });
-
-
-      }); */
 </script>
-
 <script>
-function myFunction() {
-    var x = document.getElementById('myDIV');
+function validatess()
+{
+		var tea = document.getElementById("multiple_teacher").value;
+		var cls = document.getElementById("multiple_class").value;
+		//var status=false;
+	if(tea=="" && cls=="")
+     {
+		 $("#erid").html("Please Select Teachers Or Class");
+		 alert( "Please Select Teachers Or Class" );
+		 document.form.teacher.focus() ;
+		// document.form.class_name.focus() ;
+		 return false;
+		
+     }
+	
+} 
 
-    if (x.style.display === 'none')
-	{
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-    $("#myDIV1").hide();
-}
-
-
-function myFunction1() {
-    var x = document.getElementById('myDIV1');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-    $("#myDIV").hide();
-}
 </script>
+
 <script type="text/javascript">
       $().ready(function(){
         $('#communcicationmenu').addClass('collapse in');
@@ -246,3 +200,4 @@ function myFunction1() {
        });
       });
   </script>
+  

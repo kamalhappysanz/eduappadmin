@@ -82,11 +82,11 @@ Class Examinationresultmodel extends CI_Model
 			$row=$resultset->result();
 			 foreach($row as $rows){}
 			 $teacher_id=$rows->teacher_id; 
-			 $get_classes="SELECT class_teacher FROM edu_teachers WHERE teacher_id='$teacher_id'";
+			 $get_classes="SELECT class_teacher FROM edu_teachers WHERE teacher_id='$teacher_id' AND status='A'";
 			 $resultset1=$this->db->query($get_classes);
 			 $res=$resultset1->result();
 			 return $res;
-			  /* foreach($teacher_row as $teacher_rows){}
+			  /*foreach($teacher_row as $teacher_rows){}
 			  $teach_id=$teacher_rows->class_name;
 			  $cls_te=$teacher_rows->class_teacher; */
 	   }
@@ -108,7 +108,6 @@ Class Examinationresultmodel extends CI_Model
 			$teacher_id=$rows->teacher_id;
 			//echo $teacher_id;exit;
 		    $sql="SELECT t.teacher_id,t.name,t.subject,t.class_teacher,su.*,en.* FROM edu_subject AS su,edu_teachers AS t,edu_enrollment AS en WHERE t.teacher_id='$teacher_id' AND t.subject=su.subject_id AND en.class_id='$cls_masid'";
-			
 			$res=$this->db->query($sql);
 			$result=$res->result();
 			return $result;
@@ -227,7 +226,6 @@ Class Examinationresultmodel extends CI_Model
 				$data= array("status" => "failure");
 				return $data;
 			  }	
-		   
 		   
 	   }
 	 function getall_marks_details($user_id)

@@ -1,3 +1,4 @@
+<body>
 <div class="main-panel">
  <div class="content">
             <div class="container-fluid">
@@ -37,10 +38,14 @@
 										 $sec=$row[0]->subject_name;
                                              echo $sec;
                     						  ?> </td>
-										 <td><?php echo $rows->marks; ?> </td>
+											  
+										 <td> <input type="text" name="marks" id="smark" value="<?php echo $rows->marks; ?>" /> </td>
 										</tr>
 										 <?php $i++;  } 
-										}else{ echo "No exam added for any class";}										 ?>
+										}else{ echo "No exam added for any class";}	
+										?><td></td>
+										 <td>TOTAL </td>
+										 <td><input type="text" name="totals"/></td>
                                     </tbody>
                                 </table>
 								</form>
@@ -52,7 +57,19 @@
             </div>
         </div>
 	</div>	
-	
+	</body>
+	<script type="text/javascript">
+$(document).ready(function(e) {
+	$("#smark").change(function (){
+		var tot=0;
+		$("input[name=marks]").each (function() {
+			tot=tot + parseInt($(this).val());
+		})
+	$("input[name=totals]").val(tot);
+	});
+  });
+</script>
+
 <script type="text/javascript">
 	   function insertfun()
 	   {

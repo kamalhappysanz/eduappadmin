@@ -161,10 +161,10 @@
 						 <div class="content content-full-width">
                                 <div class="panel-group" id="accordion">
 								<?php //echo count($stud_details);
-							if(empty($stud_details)){
+							if(empty($stud_circular)){
 								echo "No Data Found";
 							}else{
-								foreach($stud_details as $circular){ ?>
+								foreach($stud_circular as $circular){ ?>
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">

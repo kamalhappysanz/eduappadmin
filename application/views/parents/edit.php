@@ -18,13 +18,12 @@
                      <?php foreach ($res as $rows) {
 						 $a=$rows->father_name ;
 						 $b=$rows->mother_name ;
-                                 
                      }
 					 ?>
 					 
 
                             <div class="content">
-                                <form method="post" action="<?php echo base_url(); ?>parents/update_parents" class="form-horizontal" enctype="multipart/form-data" id="admissionform" name="formadmission">
+                                <form method="post" action="<?php echo base_url(); ?>parents/update_parents" class="form-horizontal" onsubmit="return validates()" enctype="multipart/form-data" id="admissionform" name="formadmission">
                                    <fieldset>
                                         <div class="form-group">
 										<label class="col-sm-2 control-label">Select</label>
@@ -131,13 +130,13 @@
 												
                                               <img  id="output2" class="img-circle" style="width:110px;">
                                             </div>
-                                            </div
+                                          
                                        </div>
                                     </fieldset>
 									</div>
 								<!--teacher -->
 								
-									<?PHP if($a!='' && $b!='')
+									<?PHP if($a!='' && $b!='' || $a=='' && $b=='' )
 									{
 									?><div id="msg">
 									<fieldset>
@@ -202,7 +201,7 @@
 									<?php
 									}
 									?>
-									
+									<p id="erid"></p>
 								<!--   -->
 									
                                    <fieldset>
@@ -296,6 +295,26 @@
                     </div>
 </div>
 </div>
+<script>
+function validates()
+{
+		var fname = document.getElementById("father_name").value;
+		var mname = document.getElementById("mother_name").value;
+		var gname = document.getElementById("guardn_name").value;
+		
+	if(fname=="" && mname=="" || gname=="")
+     {
+		 $("#erid").html("Please Enter Parents Details Or Guardain Details");
+		 //alert( "Please Select Teachers Or Class" );
+		 document.formadmission.father_name.focus() ;
+		 document.formadmission.mother_name.focus() ;
+		 document.formadmission.guardn_name.focus() ;
+		 return false;
+     }
+	
+} 
+
+</script>
 <script type="text/javascript">
 var loadFile = function(event) 
  {
@@ -336,6 +355,7 @@ $(document).ready(function () {
         // mother_pic:{required:true },
 		// guardn_pic:{required:true }
      },
+	
      messages: {
            admission_no: "Enter Admission No",
            father_name: "Enter Father Name",

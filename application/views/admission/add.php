@@ -236,7 +236,7 @@ $(document).ready(function () {
 jQuery('#admissionmenu').addClass('collapse in');
 $('#admission').addClass('active');
 $('#admission1').addClass('active');
-/* 
+
    $('#admissionform').validate({ // initialize the plugin
      rules: {
          admission_no:{required:true, number: true },
@@ -275,7 +275,7 @@ $('#admission1').addClass('active');
            mobile:"Enter the mobile Number",
           // student_pic:"Enter the Student Picture"
          }
- });   */
+ });  
 });
 
 </script>

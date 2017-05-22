@@ -219,7 +219,7 @@ class Examinationresult extends CI_Controller
 			  //echo $subid;echo $clsmasid;
 			  $datas['edit']=$this->examinationresultmodel->edit_marks_details($user_id,$subid,$clsmasid);
 			  $datas['st']=$this->examinationresultmodel->marks_status_details($clsmasid);
-			  //echo '<pre>';print_r($datas['status']);
+			 // echo '<pre>';print_r($datas['st']);exit;
 			if($user_type==2)
 			    { 
 			//echo '<pre>';print_r($datas['status']);

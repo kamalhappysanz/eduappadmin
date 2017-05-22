@@ -102,7 +102,7 @@
                                           }
                                               ?>
                                        </select></td>
-									  <?php }elseif($cid!='null' && $tid=='null'){?>	
+									  <?php }elseif($tid=='null' && $cid!='null'  ){?>	
                                    <td>
                                        <select  data-title="Select More Than one class"  name="multiple-class" class="selectpicker" >
                                        <?php

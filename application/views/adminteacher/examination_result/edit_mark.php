@@ -55,19 +55,7 @@
 									 <?php $i++;} 
 									 ?>
 										<tr>
-										<td></td><td></td>	
-										 <td>
-										 <?php
-										 print_r($st);
-									if($st="success")
-										       { echo "1";
-
-										   ?><style>#update{display:none;}</style><?php 
-										       }else{
-												   echo $st;
-											   }?>
-
-										 
+										<td>
 										 <div class="col-sm-10">
                                              <button type="submit" id="update" class="btn btn-info btn-fill center">Update</button>
                                           </div>

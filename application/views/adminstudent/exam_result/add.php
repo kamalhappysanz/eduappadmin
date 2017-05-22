@@ -15,7 +15,9 @@
                   </div>
                   <div class="content">
                      <div class="row">
-                       <?php 
+                       <?php if(empty($exam)){
+						   echo "Admin doesn't Approve The Reportcard "; 
+					   }else{
 					   foreach($exam as $row)
 					   {
 						  $ex_name=$row->exam_name;
@@ -26,7 +28,7 @@
                         <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>student/exam_result/<?php echo $exam_id; ?>"  class="btn btn-wd"><?php echo $ex_name; ?></a>
                         </div>
-					   <?php }?>
+					   <?php } }?>
 						
                      </div>
                   </div>
