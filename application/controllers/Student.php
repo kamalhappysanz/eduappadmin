@@ -9,20 +9,19 @@ class Student extends CI_Controller
 	{
 		 parent::__construct();
 		  $this->load->model('studentmodel');
-          $this->load->model('teachereventmodel');
+      $this->load->model('teachereventmodel');
 		  $this->load->helper('url');
 		  $this->load->library('session');
 		  $this->load->model('class_manage');
+      $this->load->model('adminparentmodel');
 		  $this->load->model('subjectmodel');
 
         }
-		public function home()
-		{}
-
+	
 
 	  public function homework_view()
 	   {
-           	$datas=$this->session->userdata();
+      $datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			//echo $user_id;
@@ -102,6 +101,7 @@ class Student extends CI_Controller
        $user_type=$this->session->userdata('user_type');
        if($user_type==3)
           {
+            $datas['total']=$this->adminparentmodel->get_total_working_days();
             $this->load->view('adminstudent/student_header');
             $this->load->view('adminstudent/attendance/calender',$datas);
             $this->load->view('adminstudent/student_footer');
@@ -178,25 +178,25 @@ class Student extends CI_Controller
            redirect('/');
         }
      }
-	 
+
 	  public function view_all_circular($cid)
 	   {
 		 $datas=$this->session->userdata();
          $user_id=$this->session->userdata('user_id');
          $user_type=$this->session->userdata('user_type');
-		 
+
 		 $datas['circular']=$this->studentmodel->get_circular($user_id,$cid);
 		 //print_r($datas['circular']);exit;
          if($user_type==3)
 		 {
 			$this->load->view('adminstudent/student_header');
             $this->load->view('adminstudent/circular/view',$datas);
-            $this->load->view('adminstudent/student_footer'); 
-			 
+            $this->load->view('adminstudent/student_footer');
+
 		 }
-       
+
 	  }
 
-   
+
 
  }

@@ -22,7 +22,7 @@
                                             <label class="col-sm-2 control-label">Admission Year</label>
                                             <div class="col-sm-4">
  <input type="text" name="admission_year"  class="form-control datepicker1" placeholder="Select Admission Year"/>
-                                                
+
                                             </div>
                                             <label class="col-sm-2 control-label">Admission No</label>
                                             <div class="col-sm-4">
@@ -239,13 +239,13 @@ $('#admission1').addClass('active');
 
    $('#admissionform').validate({ // initialize the plugin
      rules: {
-         admission_no:{required:true, number: true },
+         admission_no:{required:true, number: true,  // will count space
+            maxlength: 9 },
          admission_year:{required:true },
          admission_date:{required:true },
          name:{required:true },
          email:{required:true,email:true},
-		 //sec_email:{required:true,email:true},
-         sex:{required:true },
+		     sex:{required:true },
          dob:{required:true },
          age:{required:true,number:true,maxlength:2 },
          nationality:{required:true },
@@ -253,11 +253,12 @@ $('#admission1').addClass('active');
          community_class:{required:true },
          community:{required:true },
          mother_tongue:{required:true },
-         mobile:{required:true },
+         mobile:{required:true },     
          //student_pic:{required:true }
      },
      messages: {
-           admission_no: "Enter Admission No",
+           admission_no: "Enter the Admission Number max length 9 Digits",
+          //  minlength:"Enter the Number 6 to 9 Digits",
            admission_year: "Enter Admission Year",
            admission_date: "Select Admission Date",
            name: "Enter Name",
@@ -275,7 +276,8 @@ $('#admission1').addClass('active');
            mobile:"Enter the mobile Number",
           // student_pic:"Enter the Student Picture"
          }
- });  
+
+ });
 });
 
 </script>
@@ -324,7 +326,7 @@ $('#admission1').addClass('active');
               close: 'fa fa-remove'
           }
        });
-	   
+
 	    $('.datepicker1').datetimepicker({
           format: 'YYYY',
 		  maxDate: new Date(),
@@ -340,7 +342,7 @@ $('#admission1').addClass('active');
               close: 'fa fa-remove'
           }
        });
-	   
+
       });
   </script>
 

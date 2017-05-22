@@ -133,7 +133,7 @@ class Adminparent extends CI_Controller {
 					 foreach ($datas['stud_details'] as $rows) {}
 					 $user_id= $rows->enroll_id;
 					 $this->load->view('adminparent/parent_header');
-					 $this->load->view('adminparent/attendance/calender');
+					 $this->load->view('adminparent/attendance/calender',$datas);
 					 $this->load->view('adminparent/parent_footer');
 
 			 }else{
