@@ -7,10 +7,10 @@ class Api extends CI_Controller {
 	 *
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
-	 *	- or -  
+	 *	- or -
 	 * 		http://example.com/index.php/welcome/index
 	 *	- or -
-	 * Since this controller is set as the default controller in 
+	 * Since this controller is set as the default controller in
 	 * config/routes.php, it's displayed at http://example.com/
 	 *
 	 * So any other public methods not prefixed with an underscore will
@@ -21,35 +21,15 @@ class Api extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
-	 
+
 
 	function __construct()
     {
         parent::__construct();
 		$this->load->model("apimodel");
-		
+
     }
 
-	
-	/*
-		Response-code: 
-		200 - Successfully
-		201 - Field Missing
-		202 - Value Already Exists
-		203 - Request Method Not Suppoted
-		204 - Input error
-		205 - Not allowed
-		206 - Invalid input value (field name)
-		207 - Empty Result
-		1107 - Required field missing
-		1108 - Insufficient Credit
-		1109 - Promocode not available
-		1110 - Seat not available
-		1111 - Invalid Token or Token expired
-		1112 - Error updating Citytix
-		1113 - Insufficient Inventory. Please try some other Date and Tour Time
-	*/
-	
 	public function checkMethod()
 	{
 		if($_SERVER['REQUEST_METHOD'] != 'POST')
@@ -57,133 +37,400 @@ class Api extends CI_Controller {
 			$res = array();
 			$res["scode"] = 203;
 			$res["message"] = "Request Method not supported";
-			
+
 			echo json_encode($res);
 			return FALSE;
 		}
 		return TRUE;
 	}
-	
-	
+
+//-----------------------------------------------//
+
 	public function login()
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
-		
+	    $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
 		if(!$this->checkMethod())
 		{
 			return FALSE;
 		}
-	
+
 		if($_POST == FALSE)
 		{
 			$res = array();
 			$res["opn"] = "Login";
 			$res["scode"] = 204;
 			$res["message"] = "Input error";
-		
+
 			echo json_encode($res);
 			return;
 		}
-	
-		$email = '';
+
+		$username = '';
 		$password = '';
-		
-		$email = $this->input->post("username");
+
+		$username = $this->input->post("username");
 		$password = $this->input->post("password");
-		
-		if($email == "" || $password == "")
+
+		if($username == "" || $password == "")
 		{
 			$arr = array("opn" => "Login","scode" => 201,"message" => "Please Pass all the Required Fields.");
 			echo json_encode($arr);
 			return;
 		}
-		
-		if($email == NULL || $email == '')
+
+		if($username == NULL || $username == '')
 		{
-			$arr = array("opn" => "Login","scode" => 201,"message" => "Required field missing (EMAIL).");
+			$arr = array("opn" => "Login","scode" => 201,"message" => "Required field missing (USER NAME).");
 			echo json_encode($arr);
 			return;
 		}
-		
-		/*if ($email != "" && !filter_var($email, FILTER_VALIDATE_EMAIL)) 
-		{
-			$arr = array("opn" => "Register","scode" => 206,"message" => "Invalid input value (EMAIL).");
-			echo json_encode($arr);
-			return;
-		}*/
-		
+
+
 		if($password == NULL || $password == '')
 		{
 			$arr = array("opn" => "Login","scode" => 201,"message" => "Required field missing (PASSWORD).");
 			echo json_encode($arr);
 			return;
 		}
-		
-		$ress = $this->apimodel->adminlogin($email,$password);
-		
-		
-		
-		if(count($ress) > 0)
+
+		$username= $this->input->post("username");
+		$password = $this->input->post("password");
+
+		$data['result']=$this->apimodel->mainLogin($username,$password);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
+	public function stud_timetable()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
 		{
-			$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $ress);
-			echo json_encode($response);
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Timetable View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
 			return;
 		}
-		else
+
+		$class_id= '';
+		$class_id = $this->input->post("class_id");
+
+		$data['result']=$this->apimodel->studTimetable($class_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+	public function disp_Exams()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
 		{
-			$response = array("status" => "error", "msg" => "Invalid login");
-			echo json_encode($response);
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Exams View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
 			return;
 		}
-		
-	}
-	
-	
-	//List of Student for particular class based on teacher id
-	
-	public function teacher_login(){
-		
-		
-		//$_POST = json_decode(file_get_contents("php://input"), TRUE);
-		
-		 $email = $this->input->post("username");
-		 $password = $this->input->post("password");
-		
-			
-		//$teacher_id=$this->input->post('teacher_id');
-		$data['result']=$this->apimodel->teacher_login_data($email,$password);
-		$response=$data['result'];
-		echo json_encode($response);
-		
-		//print_r($data['result']);exit;
-	}
-	
-	
-	
 
-	
-	
-	//Sample
-	
-	
-		public function list_student(){
-		
-		
-		//$_POST = json_decode(file_get_contents("php://input"), TRUE);
-		
-		$teacher_id=$this->input->post('teacher_id');
-		$data['result']=$this->apimodel->list_student($teacher_id);
-		$response=$data['result'];
-		echo json_encode($response);
-		//print_r($data['result']);exit;
-	}
-	
-	
-	
-	
+		$class_id= '';
+		$class_id = $this->input->post("class_id");
 
-	
+		$data['result']=$this->apimodel->dispExams($class_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+	public function disp_Examdetails()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Exam Details View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$class_id= '';
+		$exam_id= '';
+		$stud_id= '';
+		$stud_id = $this->input->post("stud_id");
+		$class_id = $this->input->post("class_id");
+	 	$exam_id = $this->input->post("exam_id");
+
+		$data['result']=$this->apimodel->dispExamdetails($class_id,$exam_id,$stud_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function disp_Exammarks()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Exam Marks View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$stud_id= '';
+		$exam_id= '';
+		$stud_id = $this->input->post("stud_id");
+		$exam_id = $this->input->post("exam_id");
+
+		$data['result']=$this->apimodel->dispMarkdetails($stud_id,$exam_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function disp_Homework()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Homework View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$class_id= '';
+		$class_id = $this->input->post("class_id");
+
+		$data['result']=$this->apimodel->dispHomework($class_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function disp_Ctestmarks()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Homework View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$hw_id= '';
+		$entroll_id= '';
+		$hw_id = $this->input->post("hw_id");
+		$entroll_id = $this->input->post("entroll_id");
+
+		$data['result']=$this->apimodel->dispCtestmarks($hw_id,$entroll_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function disp_Events()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Events View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$class_id= '';
+	 	$class_id = $this->input->post("class_id");
+
+
+		$data['result']=$this->apimodel->dispEvents($class_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function disp_subEvents()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Events View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$event_id= '';
+	 	$event_id = $this->input->post("event_id");
+
+
+		$data['result']=$this->apimodel->dispsubEvents($event_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function disp_ParentCommunication()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Events View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$class_id= '';
+		$class_id = $this->input->post("class_id");
+
+		$data['result']=$this->apimodel->dispParentCommunication($class_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function disp_Attendence()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Attendence View";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$class_id= '';
+		$stud_id = '';
+		$class_id = $this->input->post("class_id");
+		$stud_id = $this->input->post("stud_id");
+
+		$data['result']=$this->apimodel->dispAttendence($class_id,$stud_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
