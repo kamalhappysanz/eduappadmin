@@ -89,7 +89,7 @@ class Admission extends CI_Controller {
 			 $sec_mobile=$this->input->post('sec_mobile');
 		  // $student_pic=$this->input->post('student_pic');
 			 $student_pic = $_FILES["student_pic"]["name"];
-			 $userFileName =$admission_no.'-'.$student_pic;
+			 $userFileName =$student_pic;
 
 				$uploaddir = 'assets/students/';
 				$profilepic = $uploaddir.$userFileName;

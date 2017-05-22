@@ -85,7 +85,7 @@ class Teacher extends CI_Controller {
 
 			 $address=$this->input->post('address');
 			 $teacher_pic = $_FILES["teacher_pic"]["name"];
-			 $userFileName =time().'-'.$teacher_pic;
+			 $userFileName =$teacher_pic;
 			 $uploaddir = 'assets/teachers/';
 			 $profilepic = $uploaddir.$userFileName;
 				move_uploaded_file($_FILES['teacher_pic']['tmp_name'], $profilepic);
