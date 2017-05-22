@@ -36,7 +36,15 @@
 									</div>
 
 									<div class="col-md-4 text-center">
-										<div class="noote" style="    display: inline-flex;    padding-top: 180px;">
+										<div class="row" style="padding-top: 150px;">
+											<h5>Total Working days</h5>
+											<p> <?php if(empty($total)){
+
+											} else{
+												echo count($total);
+											}?> </p>
+										</div>
+										<div class="noote" style="    display: inline-flex;   ">
 										<div class="notice">
 											<p class="red">1</p>
 										</div>
