@@ -30,10 +30,10 @@ Class Adminparentmodel extends CI_Model
 		   $resultset1=$this->db->query($query);
 		   return $resultset1->result();
         }
-		
+
 		function get_all_homework($enroll_id)
 		{
-			
+
 			$query2="SELECT * FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
 			$result1=$this->db->query($query2);
 			$row3=$result1->result();
@@ -46,10 +46,10 @@ Class Adminparentmodel extends CI_Model
 			$result2=$this->db->query($query3);
 			$row4=$result2->result();
 			return $row4;
-             
-			 
+
+
 		}
-		
+
 		function get_stu_id($enroll_id)
 		{
 			$query2="SELECT name,admisn_no,enroll_id FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
@@ -57,16 +57,16 @@ Class Adminparentmodel extends CI_Model
 			$row3=$result1->result();
 			return $row3;
 		}
-		
+
 		function view_homework_marks($hw_id,$enroll_id)
 		{//echo $hw_id;echo $enroll_id;exit;
-			
+
 			$query="SELECT * FROM edu_class_marks WHERE hw_mas_id='$hw_id' AND enroll_mas_id='$enroll_id'";
 		    $result=$this->db->query($query);
             $marks=$result->result();
 			return $marks;
 		}
-		
+
 		function view_exam_name($enroll_id)
 		{
 			$query2="SELECT * FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
@@ -77,13 +77,13 @@ Class Adminparentmodel extends CI_Model
 			$name=$row4->name;
 			$class_id=$row4->class_id;
 			}
-			
+
 			 $sql="SELECT * FROM edu_examination WHERE status='A'";
 			 $resultset1=$this->db->query($sql);
 			 $res=$resultset1->result();
-             return $res; 
+             return $res;
 		}
-		
+
 		function exam_marks($stu_id,$exam_id)
 		{
 
@@ -93,7 +93,7 @@ Class Adminparentmodel extends CI_Model
             return $res1;
 		}
 
-		
+
 	  function get_all_classid($enroll_id)
 	  {
 		    $query2="SELECT enroll_id,class_id,name,admisn_no FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
@@ -104,12 +104,22 @@ Class Adminparentmodel extends CI_Model
 			$name=$row4->name;
 			$cls_id=$row4->class_id;
 			}
-			
+
 		  $sql="SELECT * FROM edu_communication WHERE status='A' AND FIND_IN_SET('$cls_id',class_id) ORDER BY commu_id DESC ";
 		  $res=$this->db->query($sql);
 		  $row=$res->result();
 		  return $row;
-			
+
 	  }
+
+
+    // GET TOTAL WORKING DAYS
+     function get_total_working_days(){
+       $query="SELECT abs_date FROM edu_attendance_history GROUP BY CAST(abs_date AS DATE)";
+       $resultset1=$this->db->query($query);
+ 			 return $resultset1->result();
+     }
+
+
 }
 ?>

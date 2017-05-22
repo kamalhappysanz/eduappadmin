@@ -11,8 +11,26 @@ Class Eventmodel extends CI_Model
 
 //GET ALL Years
 
+        function get_cur_year(){
+          $check_year="SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
+          $get_year=$this->db->query($check_year);
+          foreach($get_year->result() as $current_year){}
+          //
+          if($get_year->num_rows()==1){
+            $acd_year= $current_year->year_id;
+            $data= array("status" =>"success","cur_year"=>$acd_year);
+            //print_r($data);exit;
+             return $data;
+          }else{
+            $data= array("status" =>"noYearfound");
+            return $data;
+          }
+
+        }
        function create_event($event_date,$event_name,$event_details,$event_status){
-          $query="INSERT INTO edu_events (event_name,event_date,event_details,status,created_at) VALUES ('$event_name','$event_date','$event_details','$event_status',NOW())";
+         $acd_year=$this->get_cur_year();
+          $year_id= $acd_year['cur_year'];
+          $query="INSERT INTO edu_events (year_id,event_name,event_date,event_details,status,created_at) VALUES ('$year_id','$event_name','$event_date','$event_details','$event_status',NOW())";
           $res=$this->db->query($query);
 		  if($res){
             $data= array("status" => "success");

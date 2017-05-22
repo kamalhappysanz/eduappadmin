@@ -126,7 +126,7 @@ class Adminparent extends CI_Controller {
 			if($user_type==4){
 			 $datas['res']=$this->dashboard->stud_details($user_id);
 				 $stu= count($datas['res']);
-				// exit;
+				$datas['total']=$this->adminparentmodel->get_total_working_days();
 
 			 if($stu==1){
 				 $datas['stud_details']=$this->dashboard->get_students($user_id);
@@ -167,6 +167,8 @@ class Adminparent extends CI_Controller {
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
+			$datas['total']=$this->adminparentmodel->get_total_working_days();
+
 			//echo $user_id='10';
 			if($user_type==4){
 					$datas['res']=$this->adminparentmodel->get_stude_attendance($enroll_id);
@@ -243,8 +245,8 @@ class Adminparent extends CI_Controller {
 				 redirect('/');
 			}
 		}
-		
-		
+
+
 		public function view_homework(){
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
@@ -262,10 +264,10 @@ class Adminparent extends CI_Controller {
 						 redirect('/');
 				}
 		}
-		
+
 		 public function view_mark()
 	     {
-			      
+
 		    $datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
@@ -286,7 +288,7 @@ class Adminparent extends CI_Controller {
 	   }
 
 	   //----------Examination Result------------------
-	   
+
 	   public function exam_result()
 	   {
 		    $datas=$this->session->userdata();
@@ -317,7 +319,7 @@ class Adminparent extends CI_Controller {
 			else{
 				 redirect('/');
 			}
-			
+
 	   }
 
 	   public function exam_name($enroll_id)
@@ -338,9 +340,9 @@ class Adminparent extends CI_Controller {
 		   else{
 				redirect('/');
 		 }
-		     
+
 	   }
-	   
+
 	    public function exam_results($exam_id,$stu_id)
 	     {
 		    //echo $exam_id;echo $stu_id;exit;
@@ -348,9 +350,9 @@ class Adminparent extends CI_Controller {
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			$datas['result']=$this->adminparentmodel->exam_marks($stu_id,$exam_id);
-			
+
 			//echo '<pre>';print_r($datas['result']);exit;
-			
+
 			if($user_type==4)
 				 {
 					 $this->load->view('adminparent/parent_header');
@@ -392,9 +394,9 @@ class Adminparent extends CI_Controller {
 			else{
 				 redirect('/');
 			}
-			
+
 	   }
-	   
+
 	  public function view_circular(){
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');

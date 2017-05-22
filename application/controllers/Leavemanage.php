@@ -244,6 +244,12 @@ class Leavemanage extends CI_Controller {
 		}
 
 
+		public function get_all_special_leave(){
+			$datas['res']=$this->leavemodel->get_special_leave_all();
+			echo json_encode($datas['res']);
+		}
+
+
 
 
 
