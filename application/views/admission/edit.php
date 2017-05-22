@@ -2,7 +2,7 @@
 <div class="main-panel">
 <div class="content">
 <div class="col-md-12">
-
+   
                         <div class="card">
                             <div class="header">
                                 <legend>Admission</legend>
@@ -131,14 +131,17 @@
                                            <label class="col-sm-2 control-label">Certificates</label>
                                            <div class="col-sm-4">
 										   <?php $t=$rows->transfer_certificate;
-                                                 $s=$rows->record_sheet; 	
+                                                 $s=$rows->record_sheet; 
+                       											 
 												  ?>
 								 <label class="checkbox checkbox-inline">
-                                       <input type="checkbox" data-toggle="checkbox" name="trn_cert" value="1"<?php $rows->transfer_certificate=='1'?> checked="checked">Transfer Certificate
+								
+                                       <input type="checkbox" data-toggle="checkbox" name="trn_cert" value="1" checked>Transfer Certificate
+								
                                      </label> 
 									 
 									<label class="checkbox checkbox-inline">
-										<input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="2"<?php $rows->transfer_certificate=='2'?> checked="checked">Record Sheet
+						<input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="1" checked>Record Sheet
 									</label>
 	 
                                            </div>
@@ -152,29 +155,79 @@
                                             </div>
                                         </div>
                                </fieldset>
-							   
-                                    <fieldset>
+							   <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Student New Pic</label>
                                             <div class="col-sm-4">
                                                 <input type="file" name="student_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
                                             </div>
+											 <label class="col-sm-2 control-label">EMSI Number</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" name="emsi_num" readonly value="<?php echo $rows->emsi_num; ?>" class="form-control" />
+                                            </div>
+											
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-4">
                                               <img  id="output" class="img-circle" style="width:110px;">
                                             </div>
                                         </div>
                                     </fieldset>
+									
+							   <fieldset>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">School Studied</label>
+                                            <div class="col-sm-10">
+                                                <div class="row">
+												<div class="col-md-4">
+                                  <input type="text" name="sch_name" value="<?php echo $rows->last_sch_name; ?>" class="form-control">
+                                                    </div>
+
+                                                    <div class="col-md-4">
+
+				<select name="class_name" class="selectpicker" >
+
+                             <?php foreach ($class as $clas) {  ?>
+                    <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
+                             <?php } ?>
+                                          </select>
+				<script language="JavaScript">document.formadmission.class_name.value="<?php echo $rows->last_studied; ?>";</script>
+                                                    </div>
+
+                    <div class="col-md-4">
+						<select name="qual" class="selectpicker" >
+						   <option value="1">Yes</option>
+						   <option value="0">No</option>
+                        </select>
+						 <script language="JavaScript">document.formadmission.qual.value="<?php echo $rows->qualified_promotion; ?>";</script>
+                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                  
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Current  Pic</label>
+                                           
+											<label class="col-sm-2 control-label">Status</label>
+                                            <div class="col-sm-4">
+                                              <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+
+                                                  <option value="A">Active</option>
+                                                    <option value="DA">DE-Active</option>
+
+                                              </select>
+                                     <script language="JavaScript">document.formadmission.status.value="<?php echo $rows->status; ?>";</script>
+                                            </div>
+											
+											 <label class="col-sm-2 control-label">Current  Pic</label>
                                             <div class="col-sm-4">
                                                 <input type="hidden" placeholder="Mobile Number" name="user_pic_old" class="form-control" value="<?php echo $rows->student_pic; ?>">
                                               <img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" class="img-circle" style="width:110px;">
                                             </div>
-
                                         </div>
                                     </fieldset>
+									
+									
 
 
                                     <fieldset>

@@ -171,7 +171,7 @@ class Teacher extends CI_Controller {
 			 $religion=$this->input->post('religion');
 			 $community_class=$this->input->post('community_class');
 		   $community=$this->input->post('community');
-			 $mobile=$this->input->post('mobile');
+			 $mobile=$this->input->post('mobile');  
 			  $address=$this->input->post('address');
 				$status=$this->input->post('status');
 			 $user_pic_old=$this->input->post('old_pic');

@@ -193,7 +193,7 @@
                                               <img  id="output" class="img-circle" style="width:200px;">
                                             </div>
                                         </div>
-                                    </fieldset>
+                                    </fieldset>  
 
 
                                     <fieldset>
@@ -205,7 +205,6 @@
                                         <option value="A">Active</option>
                                         <option value="DA">De-Active</option>
                                       </select>
-
                                       <script language="JavaScript">document.teacherform.status.value="<?php echo $rows->status; ?>";</script>
                                     </div>
                                       </div>

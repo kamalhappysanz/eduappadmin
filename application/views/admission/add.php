@@ -170,7 +170,7 @@
                                             <div class="col-sm-10">
                                                 <div class="row">
 												<div class="col-md-4">
-                                                        <input type="sch_name" placeholder="Name of last school" class="form-control">
+                                                        <input type="text" name="sch_name" placeholder="Name of last school" class="form-control">
                                                     </div>
 
                                                     <div class="col-md-4">
@@ -193,7 +193,7 @@
                                             </div>
                                         </div>
                                     </fieldset>
-							 <fieldset>
+						  	 <fieldset>
                                         <div class="form-group">
                                            <label class="col-sm-2 control-label">Certificates</label>
                                            <div class="col-sm-10">
@@ -202,7 +202,7 @@
                                      </label>
 
 									<label class="checkbox checkbox-inline">
-										<input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="2">Record Sheet
+										<input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="1">Record Sheet
 									</label>
                                            </div>
                                         </div>

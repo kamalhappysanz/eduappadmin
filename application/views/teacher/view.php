@@ -26,7 +26,7 @@
                                 <th data-field="email" class="text-left" data-sortable="true">Email</th>
                                 <th data-field="mobile" class="text-left" data-sortable="true">Mobile</th>
                                  <th data-field="class" class="text-center" data-sortable="true">Class Teacher</th>
-                                  <!-- <th data-field="status" class="text-left" data-sortable="true">Status</th> -->
+                                 <th data-field="status" class="text-left" data-sortable="true">Status</th> 
                                 <th data-field="Section" class="text-left" data-sortable="true">Action</th>
 
 
@@ -35,16 +35,25 @@
                                 <?php
                                 $i=1;
                                 foreach ($result as $rows) {
-
+													$stu=$rows->status;
                                 ?>
                                   <tr>
                                     <td class="text-left"><?php echo $i; ?></td>
                                     <td class="text-left"><?php echo $rows->name; ?></td>
                                     <td class="text-left"><?php echo $rows->email; ?></td>
-                                      <td class="text-left"><?php echo $rows->phone; ?></td>
+                                    <td class="text-left"><?php echo $rows->phone; ?></td>
 
 									 <td><?php echo $rows->class_name;?>-<?php echo $rows->sec_name; ?></td>
-                                        <!-- <td class="text-left"><?php echo $rows->status; ?></td> -->
+									 
+									 <td><?php 
+									  if($stu=='A'){?>
+									   <button class="btn btn-success btn-fill btn-wd">Active</button>
+									   
+									 <?php  }else{?>
+									  <button class="btn btn-danger btn-fill btn-wd">DE-Active</button><?php }
+									 ?></td>
+									 
+                                    
                                     <td class="text-left">
 
                                       <a href="<?php echo base_url(); ?>teacher/get_teacher_id/<?php echo $rows->teacher_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>

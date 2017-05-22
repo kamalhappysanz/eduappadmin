@@ -22,19 +22,29 @@
                                 <th data-field="name" class="text-left" data-sortable="true">Name</th>
                                 <th data-field="email" class="text-left" data-sortable="true">Email</th>
                                 <th data-field="mobile" class="text-left" data-sortable="true">Mobile</th>
+								<th data-field="status" class="text-left" data-sortable="true">Status</th>
                                 <th data-field="Section" class="text-left" data-sortable="true">Action</th>
                               </thead>
                               <tbody>
                                 <?php
                                 $i=1;
                                 foreach ($result as $rows)
-								 {
-                                ?>
+								 { $stu=$rows->status;
+									 
+                                ?>  
                                   <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $rows->name; ?></td>
                                     <td><?php echo $rows->email; ?></td>
                                     <td><?php echo $rows->mobile; ?></td>
+									<td><?php 
+									  if($stu=='A'){?>
+									   <button class="btn btn-success btn-fill btn-wd">Active</button>
+									   
+									 <?php  }else{?>
+									  <button class="btn btn-danger btn-fill btn-wd">DE-Active</button><?php }
+									 ?></td>
+									
 
                                     <td>
 

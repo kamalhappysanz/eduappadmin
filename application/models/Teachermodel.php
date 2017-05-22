@@ -47,7 +47,7 @@ Class Teachermodel extends CI_Model
        //GET ALL Admission Form
 
        function get_all_teacher(){
-         $query="SELECT *,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_name FROM edu_teachers AS tt  INNER JOIN edu_classmaster AS cm ON tt.class_teacher=cm.class_sec_id
+         $query="SELECT tt.*,cm.class_sec_id,cm.class,cm.section,c.class_id,c.class_name,s.sec_name FROM edu_teachers AS tt  INNER JOIN edu_classmaster AS cm ON tt.class_teacher=cm.class_sec_id
          INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id ORDER BY teacher_id DESC";
          $res=$this->db->query($query);
          return $res->result();
@@ -55,7 +55,7 @@ Class Teachermodel extends CI_Model
 
        function get_teacher_id($teacher_id){
          $query="SELECT * FROM edu_teachers WHERE teacher_id='$teacher_id'";
-         $res=$this->db->query($query);
+         $res=$this->db->query($query);  
          return $res->result();
        }
        function check_email($email){
@@ -70,7 +70,7 @@ Class Teachermodel extends CI_Model
        function save_teacher($name,$email,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mobile,$address,$userFileName,$class_teacher,$class_name,$subject,$status,$teacher_id){
             $query="UPDATE edu_teachers SET name='$name',email='$email',sex='$sex',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',phone='$mobile',address='$address',profile_pic='$userFileName',class_teacher='$class_teacher',class_name='$class_name',subject='$subject',status='$status',update_at=NOW() WHERE teacher_id='$teacher_id'";
              $res=$this->db->query($query);
-			  $query1="UPDATE edu_users SET name='$name',user_pic='$userFileName',updated_date=NOW() WHERE teacher_id='$teacher_id'";
+			  $query1="UPDATE edu_users SET name='$name',updated_date=NOW() WHERE teacher_id='$teacher_id'";
 			  $res1=$this->db->query($query1);
          if($res){
          $data= array("status" => "success");

@@ -11,7 +11,6 @@ class Admission extends CI_Controller {
 		  $this->load->model('classmodel');
 		  $this->load->helper('url');
 		  $this->load->library('session');
-
  }
 
 	/**
@@ -92,7 +91,7 @@ class Admission extends CI_Controller {
 			 $student_pic = $_FILES["student_pic"]["name"];
 			 $userFileName =$admission_no.'-'.$student_pic;
 
-				$uploaddir = 'assets/admission/profile/';
+				$uploaddir = 'assets/students/';
 				$profilepic = $uploaddir.$userFileName;
 				move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic);
 				
@@ -127,7 +126,6 @@ class Admission extends CI_Controller {
 			 }
 		}
 
-
 // GET ALL ADMISSION DETAILS
 
 		public function view(){
@@ -146,14 +144,12 @@ class Admission extends CI_Controller {
 		 }
 		}
 
-
-
 		public function get_ad_id($admission_id){
 		 $datas=$this->session->userdata();
 		 $user_id=$this->session->userdata('user_id');
 
 		 $datas['result'] = $this->yearsmodel->getall_years();
-
+		 $datas['class'] = $this->classmodel->getclass();
 		 $datas['res']=$this->admissionmodel->get_ad_id($admission_id);
 		//	echo "<pre>";print_r(	$datas['res']);exit;
 		$user_type=$this->session->userdata('user_type');
@@ -208,18 +204,29 @@ class Admission extends CI_Controller {
 		     $community=$this->input->post('community');
 			 $mother_tongue=$this->input->post('mother_tongue');
 			 $mobile=$this->input->post('mobile');
+			 
+			 $status=$this->input->post('status');
+			 $last_sch=$this->input->post('sch_name');
+			 $last_studied=$this->input->post('class_name');
+			 $qual=$this->input->post('qual');
+			 //echo $last_sch;exit;			 
+				$tran_cert=$this->input->post('trn_cert');
+				$recod_sheet=$this->input->post('rec_sheet');
+				$emsi_num=$this->input->post('emsi_num');
+				//echo $tran_cert;echo $recod_sheet;exit;
+			    
 			 $user_pic_old=$this->input->post('user_pic_old');
 			 $student_pic = $_FILES["student_pic"]["name"];
 			 $userFileName =$admission_no.'-'.$student_pic;
 
-				$uploaddir = 'assets/admission/profile/';
+				$uploaddir = 'assets/students/';
 				$profilepic = $uploaddir.$userFileName;
 				move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic);
 				if(empty($student_pic)){
 						$userFileName=$user_pic_old;
 				}
 
-				$datas=$this->admissionmodel->save_ad($admission_year,$admission_no,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$mobile,$email,$userFileName,$admission_id);
+				$datas=$this->admissionmodel->save_ad($admission_id,$admission_year,$admission_no,$emsi_num,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$mobile,$email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$status);
 			//	print_r($datas['status']);exit;
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg', 'Updated Successfully');

@@ -23,6 +23,7 @@
                                 <th data-field="name" class="text-center" data-sortable="true">Father Name / Guardian Name</th>
                                 <th data-field="email" class="text-center" data-sortable="true">Email</th>
                                 <th data-field="mobile" class="text-center" data-sortable="true">Mobile</th>
+								<th data-field="Status" class="text-center" data-sortable="true">Status</th>
                                 <th data-field="Section" class="text-center" data-sortable="true">Action</th>
                               </thead>
                               <tbody>
@@ -32,16 +33,24 @@
 								 {
 									  $a=$rows->father_name;
 									  $b=$rows->guardn_name;
+									  $stu=$rows->status;
 									 if(empty($a))
 									 {
 										  $a=$b;
-									 }
+									 }  
                                 ?>
                                   <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo  $a; ?></td>
                                     <td><?php echo $rows->email; ?></td>
                                     <td><?php echo $rows->mobile; ?></td>
+									 <td><?php 
+									  if($stu=='A'){?>
+									   <button class="btn btn-success btn-fill btn-wd">Active</button>
+									   
+									 <?php  }else{?>
+									  <button class="btn btn-danger btn-fill btn-wd">DE-Active</button><?php }
+									 ?></td>
 
                                     <td>
                                      <!-- <a rel="tooltip" title="Add Enrollment" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">

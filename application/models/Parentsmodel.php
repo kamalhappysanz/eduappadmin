@@ -79,10 +79,10 @@ Class Parentsmodel extends CI_Model
          return $res->result();
 	   }
       
-	  function update_parents($parent_id,$single,$admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2)
+	  function update_parents($parent_id,$single,$admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2,$status)
 	  {
 		  
-           $query5="UPDATE edu_parents SET admission_id='$admission_id',father_name='$father_name',mother_name='$mother_name',guardn_name='$guardn_name',occupation='$occupation',income='$income',address='$address',email='$email',email1='$email1',home_phone='$home_phone',office_phone='$office_phone',mobile='$mobile',mobile1='$mobile1',father_pic='$userFileName',mother_pic='$userFileName1',guardn_pic='$userFileName2',update_at=NOW() WHERE  parent_id='$parent_id'";
+           $query5="UPDATE edu_parents SET admission_id='$admission_id',father_name='$father_name',mother_name='$mother_name',guardn_name='$guardn_name',occupation='$occupation',income='$income',address='$address',email='$email',email1='$email1',home_phone='$home_phone',office_phone='$office_phone',mobile='$mobile',mobile1='$mobile1',father_pic='$userFileName',mother_pic='$userFileName1',guardn_pic='$userFileName2',status='$status',update_at=NOW() WHERE  parent_id='$parent_id'";
             $res=$this->db->query($query5);
 			 
 			
@@ -91,8 +91,8 @@ Class Parentsmodel extends CI_Model
 				$father_name=$guardn_name;
 				$userFileName=$userFileName2;
 			  } 
-			  
-	        $query6="UPDATE edu_users SET name='$father_name',user_pic='$userFileName',updated_date=NOW() WHERE parent_id='$parent_id' ";
+			    
+	        $query6="UPDATE edu_users SET name='$father_name',updated_date=NOW() WHERE parent_id='$parent_id' "; 
 	        $res=$this->db->query($query6);
 		 
 		    $query2="UPDATE edu_admission SET parents_status='1',parnt_guardn_id='$parent_id' WHERE admission_id='$single'";

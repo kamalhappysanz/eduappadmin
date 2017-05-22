@@ -182,12 +182,13 @@ class Parents extends CI_Controller {
 				 {
 					$parent_id=$this->input->post('parent_id');
 					$single=$this->input->post('single');
+					//echo $single;exit;
 					$admission_id=$this->input->post('admission_no');
 				    $father_name=$this->input->post('father_name');
 					$mother_name=$this->input->post('mother_name');
 					
 					$guardn_name=$this->input->post('guardn_name');
-					
+					  
 					$occupation=$this->input->post('occupation');
 					$income=$this->input->post('income');
 					$address=$this->input->post('address');
@@ -197,6 +198,8 @@ class Parents extends CI_Controller {
 				    $office_phone=$this->input->post('office_phone');
 					$mobile=$this->input->post('mobile');
 					$mobile1=$this->input->post('mobile1');
+					
+					$status=$this->input->post('status');
 					
 					$father_pic_old=$this->input->post('old_father_pic');
 					$mother_pic_old=$this->input->post('old_mother_pic');
@@ -233,7 +236,7 @@ class Parents extends CI_Controller {
 						$userFileName2=$guardian_pic_old;
 				}
 				
-				$datas=$this->parentsmodel->update_parents($parent_id,$single,$admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2);
+				$datas=$this->parentsmodel->update_parents($parent_id,$single,$admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2,$status);
 				
 				//	print_r($datas['status']);exit;
 				if($datas['status']=="success"){
