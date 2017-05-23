@@ -16,7 +16,7 @@
                   <div class="content">
                      <div class="row">
                        <?php if(empty($exam)){
-						   echo "Admin doesn't Approve The Reportcard "; 
+						   echo "<p style=text-align:center;color:red;>Admin doesn't Approve The Reportcard </p>"; 
 					   }else{
 					   foreach($exam as $row)
 					   {

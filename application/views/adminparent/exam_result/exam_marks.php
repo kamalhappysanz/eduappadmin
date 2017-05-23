@@ -37,10 +37,15 @@
 										 $sec=$row[0]->subject_name;
                                              echo $sec;
                     						  ?> </td>
-										 <td><?php echo $rows->marks; ?> </td>
+										 <td> <input type="text" name="marks" id="smark"  value="<?php echo $rows->marks; ?>" /> </td>
 										</tr>
 										 <?php $i++;  } 
-										}else{ echo "No exam added for any class";}										 ?>
+										}else{ echo "No exam added for any class";}	?>
+										<td></td>
+										<?php if(!empty($result)){?>
+										 <td>TOTAL </td>
+										 <td><input type="text"  name="totals"/></td>
+										<?php }else{ echo ""; }?>
                                     </tbody>
                                 </table>
 								</form>
@@ -52,7 +57,22 @@
             </div>
         </div>
 	</div>	
+	<script type="text/javascript">
+$(window).load(function($) {
+    loadmarks();
+});
 	
+function loadmarks()
+{
+		var tot=0;
+		$("input[name=marks]").each (function() {
+			tot=tot + parseInt($(this).val());
+		})
+	$("input[name=totals]").val(tot);
+	
+}
+
+</script>
 <script type="text/javascript">
 	   function insertfun()
 	   {
