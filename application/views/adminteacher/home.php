@@ -57,10 +57,10 @@
                                 <div class="" style="border:none;box-shadow: none;">
 																	<div class="row profile_detail card">
 																	<div class="col-md-6" >
-																		<?php $pic= $rows->profile_pic; if(empty($pic)){
+																		<?php $pic= $rows->user_pic; if(empty($pic)){
 
 																		} else{  ?>
-																			<img src="<?php echo base_url(); ?>assets/teachers/profile/<?php echo $rows->profile_pic; ?>" class="img-responsive" style="width:150px;padding-top:20px;">
+																			<img src="<?php echo base_url(); ?>assets/teachers/profile/<?php echo $rows->user_pic; ?>" class="img-responsive" style="width:150px;padding-top:20px;">
 
 																	<?php 	}?>
 																			</div>

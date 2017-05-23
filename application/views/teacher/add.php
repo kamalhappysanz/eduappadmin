@@ -142,7 +142,7 @@
                                             </div>
                                             <label class="col-sm-2 control-label">Class Assigned </label>
                                                 <div class="col-sm-4">
-                                                  <select multiple="multiple"  name="class_name[]" id="multiple">
+                                                  <select multiple="multiple"  name="class_name[]" id="multiple" style="width:150px;">
 
                                                   </select>
                                                 </div>

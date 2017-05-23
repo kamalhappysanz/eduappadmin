@@ -139,15 +139,10 @@ Class Dashboard extends CI_Model
 //Admin  Teacher
 
     function dash_teacher($user_id){
-       $get_user_id="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
-      $result=$this->db->query($get_user_id);
-      foreach ($result->result() as $row) { }
-      $teacher_id=$row->teacher_id;
-       $query="SELECT  et.*,c.class_name,s.sec_name,esu.subject_name FROM edu_teachers  AS et INNER JOIN edu_classmaster AS cm ON et.class_teacher=cm.class_sec_id
-INNER JOIN edu_class AS c ON cm.class=c.class_id INNER JOIN edu_sections AS s ON cm.section=s.sec_id INNER JOIN edu_subject AS esu ON et.subject=esu.subject_id
-WHERE teacher_id='$teacher_id'";
-      $result12=$this->db->query($query);
-      return  $result12->result();
+  $query="SELECT ed.teacher_id,ed.*,et.*,c.class_name,s.sec_name,esu.subject_name FROM edu_users  AS ed LEFT JOIN edu_teachers AS et ON  et.teacher_id=ed.teacher_id INNER JOIN edu_classmaster AS cm ON et.class_teacher=cm.class_sec_id INNER JOIN edu_class AS c ON cm.class=c.class_id
+INNER JOIN edu_sections AS s ON cm.section=s.sec_id INNER JOIN edu_subject AS esu ON et.subject=esu.subject_id WHERE ed.user_id='$user_id'";
+  $result12=$this->db->query($query);
+  return  $result12->result();
 
     }
 
@@ -233,7 +228,7 @@ function get_students_circular($user_id)
         foreach($results->result() as $rows){}
         //$class_id=$rows->class_id;
 		$clas_id=$rows->class_id;
-		 
+
 		  $sql="SELECT * FROM edu_communication  WHERE status='A' AND FIND_IN_SET('$clas_id',class_id) AND commu_date>= NOW() LIMIT 5 ";
 		  $res=$this->db->query($sql);
 		  $row=$res->result();
