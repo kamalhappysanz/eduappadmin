@@ -123,8 +123,8 @@ select{width:100px;}
                                       <?php      } ?>
 
                                     </select> -->
-                                    <select   name="subject_id[]" class="subject_id"  id="subject_id" required>
-                                      <option value=""></option>
+                                    <select   name="subject_id[]" class="subject_id"  id="subject_id" onchange="getTeacher(this);"  required>
+                                      <option value="">No subject</option>
 
                                     </select>
 
@@ -176,6 +176,10 @@ select{width:100px;}
 
 <script type="text/javascript">
 
+// function getComboA(sel){
+//    var value = sel.value;
+//    alert(value);
+// }
 
 function getSubject(){
  var class_id=$('#class_id').val();
@@ -196,7 +200,7 @@ function getSubject(){
             for (i = 0; i < len; i++) {
               $('<option>').val(data.subject_id[i]).text(data.subject_name[i]).appendTo('.subject_id');
             }
-             getTeacher();
+           getTeacher();
       }else{
     $(".subject_id").empty();
       }
@@ -227,7 +231,7 @@ function getTeacher(){
           $('<option>').val(" ").text("Select Teacher").appendTo('.teacher_id');
         for (i = 0; i < len; i++) {
 
-        $('<option>').val(res[i].teacher_id).text(res[i].name).appendTo('#teacher_id');
+        $('<option>').val(res[i].teacher_id).text(res[i].name).appendTo('.teacher_id');
         }
 
       }else{

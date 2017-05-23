@@ -195,6 +195,7 @@ class Timetable extends CI_Controller {
 
 			public function getTeacher(){
 				$class_sec_id=$this->input->post('class_id');
+				// 	$subject_id=$this->input->post('subject_id');
 			$datas['res']=$this->timetablemodel->get_teacher_class($class_sec_id);
 			echo json_encode( $datas['res']);
 			}
