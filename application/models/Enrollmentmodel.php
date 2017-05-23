@@ -11,7 +11,7 @@ Class Enrollmentmodel extends CI_Model
 
 //CREATE ADMISSION   ad_enrollment
 
-        function ad_enrollment($admission_id,$admit_year,$formatted_date,$admisn_no,$name,$class){
+        function ad_enrollment($admission_id,$admit_year,$formatted_date,$admisn_no,$name,$class,$status){
           $check_email="SELECT * FROM edu_enrollment WHERE admisn_no='$admisn_no'";
           $result=$this->db->query($check_email);
           if($result->num_rows()==0){
@@ -21,7 +21,7 @@ Class Enrollmentmodel extends CI_Model
 		      {}
 		        $admisnid=$rows->admission_id;
 				//echo $admisnid;
-            $query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,created_at,status) VALUES ('$admisnid','$admit_year','$formatted_date','$admisn_no','$name','$class',NOW(),'A')";
+            $query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,created_at,status) VALUES ('$admisnid','$admit_year','$formatted_date','$admisn_no','$name','$class',NOW(),'$status')";
             $resultset=$this->db->query($query);
 			
 

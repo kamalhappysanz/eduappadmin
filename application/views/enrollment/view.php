@@ -28,8 +28,7 @@
                                       <th data-field="no" class="text-center" data-sortable="true">Admission No</th>
                                 <th data-field="mobile" class="text-center" data-sortable="true">Class-Section</th>
                                 <th data-field="name" class="text-center" data-sortable="true">Registration Date</th>
-
-                                <!-- <th data-field="status" class="text-center" data-sortable="true">Status</th> -->
+                                <th data-field="status" class="text-center" data-sortable="true">Status</th>
                                 <th data-field="Section" class="text-center" data-sortable="true">Action</th>
 
 
@@ -38,6 +37,7 @@
                                 <?php
                                 $i=1;
                                 foreach ($result as $rows) {
+									$stu=$rows->status;
 //$rows->admit_year
                                 ?>
                                   <tr>
@@ -61,6 +61,13 @@
                                      <td><?php $date=date_create($rows->admit_date);
                                      echo date_format($date,"d-m-Y"); ?></td>
                                      <!-- <td><?php echo $rows->status; ?></td> -->
+									 <td><?php 
+									  if($stu=='A'){?>
+									   <button class="btn btn-success btn-fill btn-wd">Active</button>
+									   
+									 <?php  }else{?>
+									  <button class="btn btn-danger btn-fill btn-wd">DE-Active</button><?php }
+									 ?></td>
                                     <td>
                                         <a href="<?php echo base_url(); ?>admission/get_ad_id1/<?php echo $rows->admisn_no; ?>" rel="tooltip" title="View Admission Details " class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">
                                       <i class="fa fa-address-card-o" aria-hidden="true"></i>

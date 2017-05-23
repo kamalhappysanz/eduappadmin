@@ -99,9 +99,10 @@ class Enrollment extends CI_Controller {
 			 $name=$this->input->post('name');
 			 $class=$this->input->post('class_section');
 			 $admission_id=$this->input->post('admission_id');
+			 $status=$this->input->post('status');
 			// $class_name = implode(',',$class);
 			// $section=$this->input->post('section');
-			 $datas=$this->enrollmentmodel->ad_enrollment($admission_id,$admit_year,$formatted_date,$admisn_no,$name,$class);
+			 $datas=$this->enrollmentmodel->ad_enrollment($admission_id,$admit_year,$formatted_date,$admisn_no,$name,$class,$status);
 			 if($datas['status']=="success"){
 				 $this->session->set_flashdata('msg', 'Added Successfully');
 				 redirect('enrollment/view');

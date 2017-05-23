@@ -229,7 +229,7 @@ function get_students_circular($user_id)
         //$class_id=$rows->class_id;
 		$clas_id=$rows->class_id;
 
-		  $sql="SELECT * FROM edu_communication  WHERE status='A' AND FIND_IN_SET('$clas_id',class_id) AND commu_date>= NOW() LIMIT 5 ";
+		$sql="SELECT * FROM edu_communication  WHERE status='A' AND FIND_IN_SET('$clas_id',class_id) AND commu_date>= NOW() LIMIT 5 ";
 		  $res=$this->db->query($sql);
 		  $row=$res->result();
 		   return $row;

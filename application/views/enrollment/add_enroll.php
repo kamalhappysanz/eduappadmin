@@ -101,7 +101,7 @@
                                                     <option value="DA">DE-Active</option>
 
                                               </select>
-                                              <script language="JavaScript">document.enrollform.status.value="<?php echo $rows->status; ?>";</script>
+                                             
                                             </div>
 
                                         </div>

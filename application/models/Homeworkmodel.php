@@ -126,7 +126,7 @@ Class Homeworkmodel extends CI_Model
 			$id=$row[0]->teacher_id;
 			 
 		  //$query="SELECT * FROM edu_homework ";
-		   $query="SELECT eh.*,cm.class_sec_id,cm.class,cm.section,c.*,s.*,su.* FROM edu_homework as eh,edu_classmaster AS cm,edu_subject AS su,edu_class AS c,edu_sections AS s WHERE eh.teacher_id='$id' AND eh.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND eh.subject_id=su.subject_id";
+		   $query="SELECT eh.*,cm.class_sec_id,cm.class,cm.section,c.*,s.*,su.* FROM edu_homework as eh,edu_classmaster AS cm,edu_subject AS su,edu_class AS c,edu_sections AS s WHERE eh.teacher_id='$id' AND eh.class_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id AND eh.subject_id=su.subject_id ORDER BY eh.hw_id DESC";
           $result=$this->db->query($query);
           return $result->result();
 	   }

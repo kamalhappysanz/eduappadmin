@@ -44,13 +44,11 @@
                         <table id="bootstrap-table" class="table">
                            <thead>
                               <th>S.no</th>
-
                               <th>Class/Section</th>
                               <th>Subject</th>
                               <th>Homework Type</th>
                               <th>Title</th>
                               <th>Test DATE</th>
-                             
 							  <th>Status</th>
                               <th class="disabled-sorting text-right">Actions</th>
                            </thead>
@@ -125,7 +123,7 @@
                         <div class="col-md-12">
                            <div class="card">
                               <div class="content">
-                                 <form method="post" action="<?php echo base_url(); ?>homework/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
+                              <form method="post" action="<?php echo base_url(); ?>homework/create" class="form-horizontal" enctype="multipart/form-data" id="classsection">
 
 									 <fieldset>
                                        <div class="form-group">
@@ -145,13 +143,15 @@
 
                                           <label class="col-sm-2 control-label">Type of Test</label>
                                           <div class="col-sm-10">
-                                             <label class="radio">
-                               <input type="radio" data-toggle="radio" name="test_type" value="HT">Class Test
-                                             </label>
-                                             <label class="radio">
-                               <input type="radio" data-toggle="radio" name="test_type" value="HW">Home Work
-                                             </label>
-                                             <input type="hidden" id="event_id" name="class_id"  class="form-control" value="<?php ?>"/>
+										  
+										  <label class="radio">
+                                                    <input type="radio" data-toggle="radio" name="test_type" value="HT" checked="">Class Test
+                                                </label>
+
+                                                <label class="radio">
+                                                    <input type="radio" data-toggle="radio" name="test_type" value="HW">Home Work
+                                                </label>
+                                     <input type="hidden" id="event_id" name="class_id" class="form-control" value="<?php ?>"/>
 
                                           </div>
                                        </div>
@@ -225,15 +225,15 @@
 			subject_name:{required:true },
 			tet_date:{required:true },
 			details:{required:true },
-			class_id:{required:true }
+			class_id:{required:true}
         },
         messages: {
-              test_type: "Please Select Type Of Test",
-			  title: "Please Enter Title Name",
-			  subject_name: "Please Select Subject Name",
-			  tet_date: "Please Select Date",
-			  details: "Please Enter Details",
-			  class_id: "Please Enter Class Name"
+              test_type:"Please Select Type Of Test",
+			  title:"Please Enter Title Name",
+			  subject_name:"Please Select Subject Name",
+			  tet_date:"Please Select Date",
+			  details:"Please Enter Details",
+			  class_id:"Please Enter Class Name"
 
             }
     });
