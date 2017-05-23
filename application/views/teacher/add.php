@@ -56,7 +56,6 @@
                                       <input type="text" name="sec_phone" class="form-control" placeholder="Mobile Number" />
                                           </div>
 
-
 										     <label class="col-sm-2 control-label">Gender</label>
                                                   <div class="col-sm-4">
                                             <select name="sex" class="selectpicker form-control" data-title="Select Gender" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
