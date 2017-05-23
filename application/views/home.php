@@ -43,7 +43,7 @@
             <div class="container-fluid">
 							<h2>Admin Dashboard</h2>
 
-							
+
 
 <div class="">
 	<div class="row">
@@ -183,12 +183,7 @@
                                     </table>
                                 </div>
                             </div>
-														<div class="footer">
-																<hr>
-																<div class="stats">
-																		<i class="fa fa-history"></i> View Calender
-																</div>
-														</div>
+
 
 
                         </div>
@@ -214,7 +209,14 @@
 																												<?php echo $i; ?>
 																												</label>
 																									</td>
-																									<td><?php echo $rows->user_name;  ?>  ->&nbsp; <?php echo $rows->name; ?></td>
+																									<td><?php echo $rows->user_name;  ?> ->&nbsp; <?php if($rows->user_type=="2"){
+                                                    echo "Teacher";
+                                                  }else if($rows->user_type=="3"){
+                                                      echo "Student";
+                                                  }else if($rows->user_type=="4"){
+                                                      echo "Parent";
+                                                  }
+                                                ?> ->&nbsp; <?php echo $rows->name; ?></td>
 
 																							</tr>
 
@@ -224,12 +226,7 @@
 																		</table>
 																</div>
 														</div>
-														<div class="footer">
-																<hr>
-																<div class="stats">
-																		<i class="fa fa-history"></i> Updated 3 minutes ago
-																</div>
-														</div>
+
 
 												</div>
 	</div>
@@ -265,12 +262,7 @@
 									</table>
 									</div>
 							</div>
-														<div class="footer">
-																<hr>
-																<div class="stats">
-																		<i class="fa fa-history"></i> Updated 3 minutes ago
-																</div>
-														</div>
+
 
 												</div>
 	</div>
