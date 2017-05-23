@@ -74,7 +74,7 @@ Class Studentmodel extends CI_Model
 			$resultset=$this->db->query($query);
 			$row=$resultset->result();
 			$student_id=$row[0]->student_id;
-			
+
 
 			 $sql="SELECT m.*,ed.exam_id,ed.exam_year,ed.exam_name FROM edu_exam_marks_status AS m,edu_examination AS ed WHERE  m.status='A' AND m.exam_id=ed.exam_id";
 			 $resultset1=$this->db->query($sql);
@@ -89,7 +89,7 @@ Class Studentmodel extends CI_Model
 			$row=$resultset->result();
 			$student_id=$row[0]->student_id;
 			//echo $student_id;
-			
+
 			$sql="SELECT * FROM edu_enrollment WHERE admission_id='$student_id'";
 			$resultset=$this->db->query($sql);
 			$row=$resultset->result();
@@ -97,7 +97,7 @@ Class Studentmodel extends CI_Model
 			$enr_id=$rows->enroll_id;
 			$cls_id=$rows->class_id;
 			//echo $enr_id;exit;
-			
+
 			 $sql1="SELECT ms.*,em.* FROM edu_exam_marks AS em,edu_exam_marks_status AS ms WHERE ms.status='A' AND em.exam_id='$exam_id' AND ms.exam_id=em.exam_id  AND em.classmaster_id='$cls_id' AND em.classmaster_id=ms.classmaster_id AND em.stu_id='$enr_id'";
 			 $resultset1=$this->db->query($sql1);
 			 $res1=$resultset1->result();
@@ -111,7 +111,7 @@ Class Studentmodel extends CI_Model
 LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_id=$user_id";
         $results=$this->db->query($get_enroll_id);
         foreach($results->result() as $rows){}  $enroll_id=$rows->enroll_id;
-      $query="SELECT abs_date AS start FROM edu_attendance_history WHERE student_id='$enroll_id'";
+      $query="SELECT abs_date AS start,CASE WHEN attend_period = 0 THEN 'MORNING' ELSE 'AFTERNOON' END AS title FROM edu_attendance_history WHERE student_id='$enroll_id'";
        $resultset1=$this->db->query($query);
 			 return $resultset1->result();
      }
@@ -141,10 +141,10 @@ LEFT JOIN edu_enrollment AS ee ON ee.admission_id=ea.admission_id WHERE ed.user_
      }
 
      }
-	 
+
 	 function get_circular($user_id,$cid){
 		 $cid=$this->get_class_id_user();
-        //echo $class_id;exit;	
+        //echo $class_id;exit;
 		  $sql="SELECT * FROM edu_communication WHERE status='A' AND FIND_IN_SET('$cid',class_id) ORDER BY commu_id DESC ";
 		  $res=$this->db->query($sql);
 		  $row=$res->result();

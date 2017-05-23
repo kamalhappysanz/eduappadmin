@@ -11,7 +11,9 @@ Class Adminparentmodel extends CI_Model
 
 		 function get_stude_attendance($enroll_id)
 		 {
-			$query="SELECT abs_date AS start FROM edu_attendance_history WHERE student_id='$enroll_id'";
+
+
+			$query="SELECT abs_date AS start,CASE WHEN attend_period = 0 THEN 'MORNING' ELSE 'AFTERNOON' END AS title FROM edu_attendance_history WHERE student_id='$enroll_id'";
 			$resultset1=$this->db->query($query);
 			return $resultset1->result();
 		 }

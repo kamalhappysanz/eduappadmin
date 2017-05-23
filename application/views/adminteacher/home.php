@@ -182,12 +182,7 @@
 							                                    </table>
 							                                </div>
 							                            </div>
-																					<div class="footer">
-																							<hr>
-																							<div class="stats">
-																									<i class="fa fa-history"></i> View Calender
-																							</div>
-																					</div>
+																					
 
 
 							                        </div>
@@ -232,17 +227,23 @@
 		 url: '<?php echo base_url() ?>event/getall_act_event',
 		 color: 'yellow',
 		 textColor: 'black'
-	 },
+	 }
+	 ,
 	 {
 		 url: '<?php echo base_url() ?>event/get_all_regularleave',
 		 color: 'blue',
 		 textColor: 'white'
 	 },
 	 {
-		url: '<?php echo base_url() ?>adminlogin/special_leave_student',
+		url: '<?php echo base_url() ?>teacherevent/view_all_reminder',
 		color: 'red',
 		textColor: 'white'
-	}
+	},
+	{
+	 url: '<?php echo base_url() ?>leavemanage/get_all_special_leave',
+	 color: 'pink',
+	 textColor: 'white'
+ }
  ],
 			eventMouseover: function(calEvent, jsEvent) {
 		var tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background-color:#000;color:#fff;position:absolute;z-index:10001;padding:20px;">' + calEvent.description + '</div>';
