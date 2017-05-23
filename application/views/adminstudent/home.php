@@ -225,11 +225,7 @@
 		 color: 'blue',
 		 textColor: 'white'
 	 },
-	 {
-		url: '<?php echo base_url() ?>teacherevent/view_all_reminder',
-		color: 'red',
-		textColor: 'white'
-	},
+
 	{
 	 url: '<?php echo base_url() ?>leavemanage/get_all_special_leave',
 	 color: 'pink',
