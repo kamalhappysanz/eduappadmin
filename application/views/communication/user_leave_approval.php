@@ -73,6 +73,7 @@
                               <div class="col-sm-4">
                                  <select class="form-control" name="status" id="choose" >
 												<option>Select </option>
+												<option value="P">Pending</option>
 												<option value="A">Approval</option>
 												<option value="R">Reject</option>
 												
@@ -102,7 +103,7 @@
    $(document).ready(function () {
      $('#communcicationmenu').addClass('collapse in');
      $('#communication').addClass('active');
-     $('#communication1').addClass('active');
+     $('#communication3').addClass('active');
     $('#myformsection').validate({ // initialize the plugin
        rules: {
          leave_type:{required:true },

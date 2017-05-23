@@ -89,7 +89,7 @@
    $(document).ready(function () {
      $('#communcicationmenu').addClass('collapse in');
      $('#communication').addClass('active');
-     $('#communication1').addClass('active');
+     $('#communication3').addClass('active');
     $('#myformsection').validate({ // initialize the plugin
        rules: {
          leave_type:{required:true },
@@ -146,45 +146,7 @@
          }); 
 
 
-$(function () {
-        $("#choose").change(function () {
-            if ($(this).val() == "Permisssion") {
-                $("#permissiontime").show();
-				//$("#stuguardian").hide();
-				//$("#msg").hide();
-				//$("#msg1").hide();
-				
-            } else {
-                //$("#stuguardian").show();
-				// $("#stuparents").hide();
-				// $("#msg").hide();
-				//$("#msg1").hide();
-				
-            }
-        });
-    }); 
-   /* function myFunction() {
-       var x = document.getElementById('myDIV');
 
-       if (x.style.display === 'none')
-   	{
-           x.style.display = 'block';
-       } else {
-           x.style.display = 'none';
-       }
-       $("#myDIV1").hide();
-   }
-
-
-   function myFunction1() {
-       var x = document.getElementById('myDIV1');
-       if (x.style.display === 'none') {
-           x.style.display = 'block';
-       } else {
-           x.style.display = 'none';
-       }
-       $("#myDIV").hide();
-   } */
 
    $().ready(function(){
 

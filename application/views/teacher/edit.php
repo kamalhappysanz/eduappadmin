@@ -51,10 +51,22 @@
                                           <div class="col-sm-4">
                                               <input type="text" placeholder="Mobile Number" name="mobile" class="form-control" value="<?php echo $rows->phone; ?>">
                                           </div>
-
-
                                         </div>
                                     </fieldset>
+									
+									<fieldset>
+                                      <div class="form-group">
+                                          <label class="col-sm-2 control-label">Secondary Email</label>
+                                          <div class="col-sm-4">
+                                <input type="text" name="sec_email" placeholder="Email Address" class="form-control" value="<?php echo $rows->sec_email;?>">
+                                          </div>
+                                         <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                         <div class="col-sm-4">
+                                      <input type="text" name="sec_phone" value="<?php echo $rows->sec_phone;?> " class="form-control" placeholder="Mobile Number" />
+                                          </div>
+
+                                      </div>
+                                  </fieldset>
 
 
                                     <fieldset>

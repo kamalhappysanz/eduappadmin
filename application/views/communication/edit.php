@@ -23,7 +23,7 @@
 
                        <div class="content">
 					   
-					   <form method="post" action="<?php echo base_url(); ?>communication/update" class="form-horizontal" enctype="multipart/form-data" onsubmit="return validatess()" name="form" id="myformsection">
+					   <form method="post" action="<?php echo base_url(); ?>communication/update" class="form-horizontal" enctype="multipart/form-data" name="form"  id="myformsection">
 					   
                           
 						    <fieldset>
@@ -58,7 +58,7 @@
 
 						         <label class="col-sm-2 control-label">Classes</label>
                                            <div class="col-sm-4">
-              <select multiple  name="class_name[]" id="multiple_class" class="selectpicker" onchange="select_class('classname')" data-menu-style="dropdown-blue">
+              <select multiple  name="class_name[]" id="multiple_class" class="selectpicker" data-menu-style="dropdown-blue">
 
 	<?php
 		    $sPlatform=$rows->class_id;
@@ -124,7 +124,7 @@
 											<label class="col-sm-2 control-label">&nbsp;</label>
 
                                             <div class="col-sm-4">
-                                       <button type="submit" id="save" class="btn btn-info btn-fill center">Update</button>
+                                       <button type="submit" id="save"  class="btn btn-info btn-fill center">Update</button>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -142,14 +142,14 @@ $(document).ready(function () {
 
  $('#myformsection').validate({ // initialize the plugin
     rules: {
-         teacher:{required:true },
+         "teacher[]":{required:true },
 		 class_name:{required:true },
 		 title:{required:true },
 		 date:{required:true },
 		 notes:{required:true },
      },
      messages: {
-           teacher:"Select Teachers",
+           "teacher[]":"Select Teachers Or Classes",
            class_name:"Select Classes",
            title:"Enter Title",
            date:"Enter Date",
@@ -158,26 +158,9 @@ $(document).ready(function () {
  });
  
 });
-</script>
-<script>
-function validatess()
-{
-		var tea = document.getElementById("multiple_teacher").value;
-		var cls = document.getElementById("multiple_class").value;
-		//var status=false;
-	if(tea=="" && cls=="")
-     {
-		 $("#erid").html("Please Select Teachers Or Class");
-		 alert( "Please Select Teachers Or Class" );
-		 document.form.teacher.focus() ;
-		// document.form.class_name.focus() ;
-		 return false;
-		
-     }
-	
-} 
 
 </script>
+
 
 <script type="text/javascript">
       $().ready(function(){
