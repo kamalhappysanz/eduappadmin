@@ -74,8 +74,8 @@
 <input type="hidden" name="admission_no" class="form-control" placeholder="" value="<?php echo $rows->admission_id ; ?>">	
 <input type="hidden" name="parent_id" class="form-control" placeholder="" value="<?php echo $rows->parent_id ; ?>">
 								</fieldset>
+
 						<div id="stuparents" style="display:none">	
-					
 								<fieldset>
                                         <div class="form-group">
 											
@@ -86,8 +86,7 @@
 											
                                             <label class="col-sm-2 control-label">Mother Name</label>
                                            <div class="col-sm-4">
-                                                <input type="text" name="mother_name" id="mother_name" class="form-control" placeholder="Mother Name"
- 												value="<?php echo $rows->mother_name; ?>">
+                                                <input type="text" name="mother_name" id="mother_name" class="form-control" placeholder="Mother Name" value="<?php echo $rows->mother_name; ?>">
                                             </div>
 				                     </div>
                                    
@@ -134,7 +133,7 @@
 
 									</div>
 								<!--teacher -->
-								
+								<div id="stuparents">
 									<?PHP if($a!='' && $b!='')
 									{
 									?><div id="msg">
@@ -143,12 +142,12 @@
 											
                                             <label class="col-sm-2 control-label">Father Name</label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="father_name" id="father_name1" class="form-control"placeholder="Father Name" value="<?php echo $rows->father_name ;?>">
+                                                <input type="text" name="father_name" id="fname" class="form-control"placeholder="Father Name" value="<?php echo $rows->father_name ;?>">
                                             </div>
 											
                                             <label class="col-sm-2 control-label">Mother Name</label>
                                            <div class="col-sm-4">
-                                                <input type="text" name="mother_name" id="mother_name1" class="form-control" placeholder="Mother Name"
+                                                <input type="text" name="mother_name" id="mname" class="form-control" placeholder="Mother Name"
  												value="<?php echo $rows->mother_name; ?>">
                                             </div>
 				                     </div>
@@ -173,6 +172,8 @@
                                         </div>
                                     </fieldset>
 									</div>
+									</div>
+									<div id="stuguardian" style="display: none">
 									<?php 
 									}
 									else{
@@ -182,7 +183,7 @@
                                         <div class="form-group">
                                              <label class="col-sm-2 control-label">Guardian Name</label>
                                             <div class="col-sm-4">
-											<input type="text" name="guardn_name" id="guardn_name1" class="form-control" placeholder="Guardian Name" value="<?php echo $rows->guardn_name ;?>">
+											<input type="text" name="guardn_name" id="gname" class="form-control" placeholder="Guardian Name" value="<?php echo $rows->guardn_name ;?>">
                                             </div>
                                             
                                           <label class="col-sm-2 control-label">Guardian Pic</label>
@@ -200,7 +201,7 @@
 									<?php
 									}
 									?>
-									
+									</div>
 								<!--   -->
 									
                                    <fieldset>
@@ -300,13 +301,13 @@ function validates()
 		var mname = document.getElementById("mother_name").value;
 		var gname = document.getElementById("guardn_name").value;
 		
-	if(fname =="")
+	if(fname=="")
      {
 		 $("#erid").html("Please Enter Parents Details Or Guardain Details");
 		 document.formadmission.father_name.focus() ;
 		 return false;
      }
-	     
+	    document.getElementById("parentform").submit();   
 		
 } 
 
@@ -369,20 +370,18 @@ $(document).ready(function () {
            community_class:"Enter the Community Class",
            mobile:"Enter The Primary Mobile Number",
            mobile1:"Enter The Secondary Mobile Number",
-          // father_pic:"Enter the Father Picture",
-		  //mother_pic:"Enter the Mother Picture",
-		  //guardn_pic:"Enter the Guardian Picture"
+            //father_pic:"Enter the Father Picture",
+		   //mother_pic:"Enter the Mother Picture",
+		   //guardn_pic:"Enter the Guardian Picture"
          }
  });
 }); 
-
-
     $(function () {
         $("#choose").change(function () {
             if ($(this).val() == "parents") {
                 $("#stuparents").show();
 				$("#stuguardian").hide();
-				$("#msg").hide();
+				$("#msg").show();
 				$("#msg1").hide();
 				
             } else {

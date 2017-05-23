@@ -41,7 +41,7 @@
 		}
 
 ?>
-                                <table class="table table-hover table-striped">
+                                <table class="table table-hover table-striped" id="sum_table">
 								<?php if(!empty($result))
 									  { foreach($result as $exam)
 								         {}
@@ -100,21 +100,21 @@
 												}
 												if($status=="Success")
 											   {
-												    echo '<td><input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
+												    echo '<input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
 
 													if(!empty($s))
 													{
-														echo '<input style="width:60%;" type="text" required name="marks1" value="'.$s->marks.'" class="form-control" readonly /></td>';
+														echo '<td><input style="width:60%;" type="text" required name="marks1" id="tmark" value="'.$s->marks.'" class="form-control"  /></td>';
 
 													}else{
 														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value=""  class="form-control"/>';
-														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
+														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/>';
 													}
 													
 												}
 											}
 										echo '<td> 
-						<input style="width:60%;" type="text" required name="total" value="" class="form-control" readonly /></td>';
+						<input style="width:60%;" type="text" required name="total" value="" class="form-control" /></td>';
 												'</form>';
 											 echo '</tr>';
 											$i++;
@@ -158,7 +158,28 @@ $('#examvalidate').validate({ // initialize the plugin
             }
     });
 
+	/* $("#sum_table tr:not(:first,:last) td:last-child").text(function(){
+    var t = 0;
+    $(this).prevAll().each(function(){ 
+        t += parseInt( $(this).text(), 10 ) || 0;
+    });
+    return t;
+}); */
+
+	 /* $(window).load(function($) 
+	 {
+        loadmarks();
+     });
 	
+function loadmarks()
+{
+		var tot=0;
+		$("input[name=marks1]").prevAll().each (function() {
+			tot=tot + Number($(this).val());
+		})
+	$("input[name=total]").val(tot);
+	
+} */ 
 	$('table input').on('input', function() {
        var $tr = $(this).closest('tr'); // get tr which contains the input
        var tot = 0; // variable to sore sum
