@@ -24,8 +24,8 @@
 
                                   <th data-field="id" class="text-center">S.No</th>
                                     <!-- <th data-field="year" class="text-center" data-sortable="true">Year</th> -->
-                                      <th data-field="email" class="text-center" data-sortable="true">Name</th>
-                                      <th data-field="no" class="text-center" data-sortable="true">Admission No</th>
+                                <th data-field="email" class="text-center" data-sortable="true">Name</th>
+                                <th data-field="no" class="text-center" data-sortable="true">Admission No</th>
                                 <th data-field="mobile" class="text-center" data-sortable="true">Class-Section</th>
                                 <th data-field="name" class="text-center" data-sortable="true">Registration Date</th>
                                 <th data-field="status" class="text-center" data-sortable="true">Status</th>

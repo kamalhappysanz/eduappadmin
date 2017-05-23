@@ -12,9 +12,9 @@ Class Examinationresultmodel extends CI_Model
   
   function get_teacher_id($user_id)
 		 {
-			$query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
-			$resultset=$this->db->query($query);
-			$row=$resultset->result();
+			 $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
+			 $resultset=$this->db->query($query);
+			 $row=$resultset->result();
 			 foreach($row as $rows){}
 			 $teacher_id=$rows->teacher_id;
 			 $sql="SELECT * FROM edu_examination WHERE status='A'";
@@ -301,10 +301,10 @@ Class Examinationresultmodel extends CI_Model
 			//$row=$resultset->result();
 			if($resultset->num_rows()==0)
 			{
-				$data= array("status" => "failure");
+				$data= array("mark"=>"failure");
 		        return $data;}
 		  else{
-			$data= array("status" => "success");
+			$data= array("mark"=>"success");
 			return $data;
 		  }
 	   }

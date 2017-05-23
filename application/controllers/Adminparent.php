@@ -117,8 +117,6 @@ class Adminparent extends CI_Controller {
 			}
 		}
 
-
-
 		public function attendance(){
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
@@ -247,7 +245,8 @@ class Adminparent extends CI_Controller {
 		}
 
 
-		public function view_homework(){
+		public function view_homework()
+		{
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
@@ -330,7 +329,7 @@ class Adminparent extends CI_Controller {
 			//echo $enroll_id;exit;
 			$datas['exam'] = $this->adminparentmodel->view_exam_name($enroll_id);
 			$datas['stu_id']=$this->adminparentmodel->get_stu_id($enroll_id);
-			//print_r($datas['exam']);exit;
+			//print_r($datas['stu_id']);exit;
 			if($user_type==4)
 			  {
 				 $this->load->view('adminparent/parent_header');
@@ -343,13 +342,13 @@ class Adminparent extends CI_Controller {
 
 	   }
 
-	    public function exam_results($exam_id,$stu_id)
+	    public function exam_results($exam_id,$stu_id,$cls_id)
 	     {
 		    //echo $exam_id;echo $stu_id;exit;
 		    $datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
-			$datas['result']=$this->adminparentmodel->exam_marks($stu_id,$exam_id);
+			$datas['result']=$this->adminparentmodel->exam_marks($stu_id,$exam_id,$cls_id);
 
 			//echo '<pre>';print_r($datas['result']);exit;
 

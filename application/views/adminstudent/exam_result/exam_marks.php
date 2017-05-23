@@ -39,13 +39,17 @@
                                              echo $sec;
                     						  ?> </td>
 											  
-										 <td> <input type="text" name="marks" id="smark" value="<?php echo $rows->marks; ?>" /> </td>
+										 <td> 
+								 <input type="text" name="marks" id="smark"  value="<?php echo $rows->marks; ?>" /> 
+										 </td>
 										</tr>
 										 <?php $i++;  } 
-										}else{ echo "No exam added for any class";}	
+										}else{ echo "<p style=text-align:center;color:red;>No exam added for any class </p>";}	
 										?><td></td>
+										<?php if(!empty($result)){ ?>
 										 <td>TOTAL </td>
-										 <td><input type="text" name="totals"/></td>
+										 <td><input type="text"  name="totals"/></td>
+										<?php }else{ echo"";}?>
                                     </tbody>
                                 </table>
 								</form>
@@ -59,7 +63,21 @@
 	</div>	
 	</body>
 	<script type="text/javascript">
-$(document).ready(function(e) {
+$(window).load(function($) {
+    loadmarks();
+});
+	
+function loadmarks()
+{
+		var tot=0;
+		$("input[name=marks]").each (function() {
+			tot=tot + parseInt($(this).val());
+		})
+	$("input[name=totals]").val(tot);
+	
+}
+
+/* $(document).ready(function(e) {
 	$("#smark").change(function (){
 		var tot=0;
 		$("input[name=marks]").each (function() {
@@ -67,7 +85,7 @@ $(document).ready(function(e) {
 		})
 	$("input[name=totals]").val(tot);
 	});
-  });
+  }); */
 </script>
 
 <script type="text/javascript">

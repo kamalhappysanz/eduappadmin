@@ -4,7 +4,7 @@
          <div class="col-md-12">
 
                         <div class="card">
-                            <div class="header">Examinarion Result For</div>
+                            <div class="header">Examinarion Result </div>
                             <div class="content">
                                 <div class="row">
                               <?php
