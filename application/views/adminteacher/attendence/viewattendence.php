@@ -10,41 +10,51 @@
 
 <div class="col-md-10">
 
-                   <div class="card">
-                       <div class="header">
-                           <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button>
 
-                     <div class="fresh-datatables">
 
-                              <table id="bootstrap-table" class="table">
-                               <thead>
-                                   <tr>
-                                       <th class="text-center">S.No</th>
-                                       <th class="text-center">Name</th>
-                                        <!-- <th  data-field="email" class="text-center" data-sortable="true">Attendence Date</th> -->
-                                       <th class="text-center">Status</th>
-                                   </tr>
-                               </thead>
-                               <tbody>
-                                 <?php  $i=1;
-                                 foreach($result as $rows){
-                                    ?>
-                                   <tr>
-                                       <td class="text-center"><?php echo $i;  ?></td>
+  <div class="card">
 
-                                       <td class="text-center  txt" ><?php echo $rows->name; ?></td>
 
-                                        <td class="text-center"><?php $stat=$rows->a_status;
-                                          if(empty($stat)){ ?> <button class="btn btn-success btn-fill btn-wd">Present</button> <?php }else{ ?> <button class="btn btn-danger btn-fill btn-wd">Absent</button> <?php }
+      <div class="content">
+        <legend>  <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:10px;">Go Back</button>  </legend>
+        <!-- <h4 class="title"> List of Record in <?php foreach($result as $rows){} echo $rows->class_name; echo "-";echo $rows->sec_name;  ?></h4> -->
 
-                                         ?></td>
 
-                                   </tr>
+          <div class="fresh-datatables">
 
-                            <?php
-                            $i++;
-}
-                            ?>
+
+    <table id="bootstrap-table" class="table">
+        <thead>
+
+                  <th data-field="id" class="text-center">S.No</th>
+                <th data-field="date" class="text-center" data-sortable="true">Name</th>
+                <th data-field="year" class="text-center" data-sortable="true">Status </th>
+
+
+
+        </thead>
+        <tbody>
+          <?php
+          $i=1;
+          foreach ($result as $rows) {
+
+          ?>
+            <tr>
+              <td class="text-center"><?php echo $i;  ?></td>
+              <td class="text-center  txt" ><?php echo $rows->name; ?></td>
+               <td class="text-center"><?php $stat=$rows->a_status;
+                 if(empty($stat)){ ?> <button class="btn btn-success btn-fill btn-wd">Present</button> <?php }else{ ?> <button class="btn btn-danger btn-fill btn-wd">Absent</button> <?php }
+                ?></td>
+            </tr>
+            <?php $i++;  }  ?>
+        </tbody>
+    </table>
+
+  </div>
+      </div><!-- end content-->
+  </div><!--  end card  -->
+
+            
 
                                </tbody>
 
@@ -74,9 +84,9 @@
                     showColumns: true,
                     pagination: true,
                     searchAlign: 'left',
-                    pageSize: 8,
+                    pageSize:50,
                     clickToSelect: false,
-                    pageList: [8,10,25,50,100],
+                    pageList: [50,100],
 
                     formatShowingRows: function(pageFrom, pageTo, totalRows){
                         //do nothing here, we don't want to show the text "showing x of y from..."
