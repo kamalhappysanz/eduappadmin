@@ -11,7 +11,7 @@ class Apimodel extends CI_Model {
 
 	public function getYear()
 	{
-		$sqlYear = "SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month";
+		$sqlYear = "SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month AND status = 'A'";
 		$year_result = $this->db->query($sqlYear);
 		$ress_year = $year_result->result();
 
@@ -95,7 +95,7 @@ class Apimodel extends CI_Model {
 
 						$student_id = $rows->student_id;
 
-						$student_query = "SELECT * from edu_admission WHERE admission_id='$student_id'";
+						$student_query = "SELECT * from edu_admission WHERE admission_id='$student_id' AND status = 'A'";
 						$student_res = $this->db->query($student_query);
 						$student_profile= $student_res->result();
 
@@ -114,7 +114,7 @@ class Apimodel extends CI_Model {
 				  else {
 				  		$parent_id = $rows->parent_id;
 
-						$parent_query = "SELECT * from edu_parents WHERE parent_id='$parent_id'";
+						$parent_query = "SELECT * from edu_parents WHERE parent_id='$parent_id' AND status = 'A'";
 						$parent_res = $this->db->query($parent_query);
 						$parent_profile= $parent_res->result();
 
@@ -170,7 +170,7 @@ class Apimodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-			$exam_query = "SELECT exam_id,exam_name FROM edu_examination WHERE exam_year ='$year_id' ORDER BY exam_id";
+			$exam_query = "SELECT exam_id,exam_name FROM edu_examination WHERE exam_year ='$year_id' AND status = 'A' ORDER BY exam_id";
 
 			$exam_res = $this->db->query($exam_query);
 			$exam_result= $exam_res->result();
@@ -275,7 +275,7 @@ class Apimodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-			$hw_query = "SELECT A.hw_id,A.hw_type,A.title, A.test_date, A.hw_details, A.mark_status, B.subject_name FROM `edu_homework` A, `edu_subject` B WHERE A.subject_id = B.subject_id AND A.class_id ='$class_id' AND A.year_id='$year_id'";
+			$hw_query = "SELECT A.hw_id,A.hw_type,A.title, A.test_date, A.hw_details, A.mark_status, B.subject_name FROM `edu_homework` A, `edu_subject` B WHERE A.subject_id = B.subject_id AND A.class_id ='$class_id' AND A.year_id='$year_id' AND A.status = 'A'";
 			$hw_res = $this->db->query($hw_query);
 			$hw_result= $hw_res->result();
 			$hw_count = $hw_res->num_rows();
