@@ -126,7 +126,7 @@ font-weight: 500;
 											<ul class="nav">
 													<li id="atten1"><a href="<?php echo base_url();  ?>teacherattendence/home">Update Attendence</a></li>
 													<li id="atten2"><a href="<?php echo base_url();  ?>teacherattendence/view">View Attendence</a></li>
-													<li id="atten3"><a href="<?php echo base_url();  ?>teacherattendence/monthview">Month view</a></li>
+													<!-- <li id="atten3"><a href="<?php echo base_url();  ?>teacherattendence/monthview">Month view</a></li> -->
 
 											</ul>
 									</div>
@@ -158,7 +158,7 @@ font-weight: 500;
 								<li id="exam3"><a href="<?php echo base_url(); ?>examinationresult/exam_duty"> Exam Duty</a></li>
 										<li id="exam1"><a href="<?php echo base_url(); ?>examinationresult/home">Add Exam Marks</a></li>
 										<li id="exam2"><a href="<?php echo base_url(); ?>examinationresult/marks_details_view">Edit Exam Marks</a></li>
-										
+
 											</ul>
 									</div>
 								</li>

@@ -54,7 +54,7 @@ Class Adminparentmodel extends CI_Model
 
 		function get_stu_id($enroll_id)
 		{
-			$query2="SELECT name,admisn_no,enroll_id,class_id FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
+			$query2="SELECT name,admisn_no,enroll_id FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
 			$result1=$this->db->query($query2);
 			$row3=$result1->result();
 			return $row3;
@@ -80,16 +80,16 @@ Class Adminparentmodel extends CI_Model
 			$class_id=$row4->class_id;
 			}
 
-			 $sql="SELECT m.*,ed.exam_id,ed.exam_year,ed.exam_name FROM edu_exam_marks_status AS m,edu_examination AS ed WHERE  m.status='A' AND m.exam_id=ed.exam_id";
+			 $sql="SELECT * FROM edu_examination WHERE status='A'";
 			 $resultset1=$this->db->query($sql);
 			 $res=$resultset1->result();
              return $res;
 		}
 
-		function exam_marks($stu_id,$exam_id,$cls_id)
-		{//SELECT * FROM edu_exam_marks WHERE exam_id='$exam_id' AND stu_id='$stu_id'
-//SELECT ms.*,em.* FROM edu_exam_marks AS em,edu_exam_marks_status AS ms WHERE ms.status='A' AND em.exam_id='$exam_id' AND ms.exam_id=em.exam_id  AND em.classmaster_id='$cls_id' AND em.classmaster_id=ms.classmaster_id AND em.stu_id='$stu_id'
-			$sql1="SELECT ms.*,em.* FROM edu_exam_marks AS em,edu_exam_marks_status AS ms WHERE ms.status='A' AND em.exam_id='$exam_id' AND ms.exam_id=em.exam_id  AND em.classmaster_id='$cls_id' AND em.classmaster_id=ms.classmaster_id AND em.stu_id='$stu_id'";
+		function exam_marks($stu_id,$exam_id)
+		{
+
+			$sql1="SELECT * FROM edu_exam_marks WHERE exam_id='$exam_id' AND stu_id='$stu_id'";
 			$resultset1=$this->db->query($sql1);
 			$res1=$resultset1->result();
             return $res1;
