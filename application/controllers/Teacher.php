@@ -71,7 +71,7 @@ class Teacher extends CI_Controller {
 
 			 $dob=$this->input->post('dob');
 			 $dateTime = new DateTime($dob);
-             $formatted_date=date_format($dateTime,'Y-m-d' );
+       $formatted_date=date_format($dateTime,'Y-m-d' );
 
 			 $age=$this->input->post('age');
 		    $nationality=$this->input->post('nationality');
@@ -163,10 +163,10 @@ class Teacher extends CI_Controller {
 			 $subject=$this->input->post('subject');
 			 $name=$this->input->post('name');
 			 $email=$this->input->post('email');
-			 
+
 			 $sec_email=$this->input->post('sec_email');
 			 $sec_phone=$this->input->post('sec_phone');
-			 
+
 		     $sex=$this->input->post('sex');
 			 $dob=$this->input->post('dob');
 			 $age=$this->input->post('age');
@@ -174,7 +174,7 @@ class Teacher extends CI_Controller {
 			 $religion=$this->input->post('religion');
 			 $community_class=$this->input->post('community_class');
 		     $community=$this->input->post('community');
-			 $mobile=$this->input->post('mobile');  
+			 $mobile=$this->input->post('mobile');
 			 $address=$this->input->post('address');
 			 $status=$this->input->post('status');
 			 $user_pic_old=$this->input->post('old_pic');

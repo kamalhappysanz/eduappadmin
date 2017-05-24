@@ -19,6 +19,7 @@ Class Teachermodel extends CI_Model
           $result=$this->db->query($check_email);
           if($result->num_rows()==0){
 
+
           $query="INSERT INTO edu_teachers (name,email,sec_email,sex,dob,age,nationality,religion,community_class,community,phone,sec_phone,address,class_teacher,class_name,subject,profile_pic,created_at,update_at,status) VALUES ('$name','$email','$sec_email','$sex','$dob','$age','$nationality','$religion','$community_class','$community','$mobile','$sec_phone','$address','$class_teacher','$class_name','$subject','$userFileName',NOW(),NOW(),'A')";
 
            $resultset=$this->db->query($query);
@@ -30,9 +31,43 @@ Class Teachermodel extends CI_Model
                $result1= $resultsql->result();
                $cont=$result1[0]->teacher;
 			   $user_id=$cont+800000;
+         $to = $email;
+       $subject = '"Welcome Message"';
+       $htmlContent = '
+           <html>
+           <head>  <title></title>
+           </head>
+           <body style="background-color:beige;">
+
+              <center> <table cellspacing="0" style=" width: 300px; height: 200px;">
+                   <tr>
+                       <th>Name:</th><td>'.$name.'</td>
+                   </tr>
+                   <tr>
+                       <th>Email:</th><td>'.$email.'</td>
+                   </tr>
+                   <tr>
+                       <th>Username :</th><td>'.$user_id.'</td>
+                   </tr>
+                   <tr>
+                       <th>Password:</th><td>123456</td>
+                   </tr>
+                   <tr>
+                       <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+                   </tr>
+               </table></center>
+           </body>
+           </html>';
+
+       // Set content-type header for sending HTML email
+       $headers = "MIME-Version: 1.0" . "\r\n";
+       $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+       // Additional headers
+       $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+       mail($to,$subject,$htmlContent,$headers);
 
 
-            $query="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,teacher_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5(123),'$userFileName','2','$insert_id',NOW(),NOW(),'A')";
+            $query="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,teacher_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5(12345),'$userFileName','2','$insert_id',NOW(),NOW(),'A')";
           $resultset=$this->db->query($query);
             $data= array("status" => "success");
             return $data;
@@ -55,7 +90,7 @@ Class Teachermodel extends CI_Model
 
        function get_teacher_id($teacher_id){
          $query="SELECT * FROM edu_teachers WHERE teacher_id='$teacher_id'";
-         $res=$this->db->query($query);  
+         $res=$this->db->query($query);
          return $res->result();
        }
        function check_email($email){
