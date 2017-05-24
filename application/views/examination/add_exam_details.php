@@ -246,7 +246,7 @@
                                                                     <?php echo $name; ?>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="<?php echo base_url(); ?>examination/edit_exam_details/<?php echo $rows->exam_detail_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
+				<a href="<?php echo base_url(); ?>examination/edit_exam_details/<?php echo $rows->exam_detail_id; ?>" rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                                                 </td>
 
                                                         </tr>
@@ -298,9 +298,11 @@ function checksubject(exam_year,class_name)
                     $("#ajaxres1").html('');
                     $("#ajaxres2").html('');
                     $("#ajaxres3").html('');
+					$("#save").hide();
 				}
 				else{
 					$("#msg1").html('');
+					$("#save").show();
 					//alert(cid);
 					checknamefun(cid);
 				}
@@ -372,22 +374,6 @@ function checksubject(exam_year,class_name)
  function myFunction(){
    $( "#datepicker" ).datepicker();
  }
-
-   /*  $(document).ready(function() {
-
-        $('#examform').validate({ // initialize the plugin
-            rules: {
-                exam_year: {required: true},
-                class_name: {required: true},
-            },
-            messages: {
-                exam_year: "Please Select Exam Year",
-				class_name: "Please Select Class and Section Name",
-            }
-        });
-    });
- */
-	
 	$(document).ready(function() {
 
         $('#examvalidate').validate({ // initialize the plugin
