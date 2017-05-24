@@ -80,7 +80,7 @@ Class Adminparentmodel extends CI_Model
 			$class_id=$row4->class_id;
 			}
 
-			 $sql="SELECT * FROM edu_examination WHERE status='A'";
+			 $sql="SELECT m.*,ed.exam_id,ed.exam_year,ed.exam_name FROM edu_exam_marks_status AS m,edu_examination AS ed WHERE m.classmaster_id='$class_id' AND  m.status='A' AND m.exam_id=ed.exam_id";
 			 $resultset1=$this->db->query($sql);
 			 $res=$resultset1->result();
              return $res;
@@ -113,7 +113,31 @@ Class Adminparentmodel extends CI_Model
 		  return $row;
 
 	  }
-
+	  
+	  function view_exam_calender($enroll_id)
+	  {
+		    $sql="SELECT * FROM edu_enrollment WHERE admission_id='$enroll_id'";
+			$resultset=$this->db->query($sql);
+			$row=$resultset->result();
+			foreach($row as $rows){}
+			$enr_id=$rows->enroll_id;
+			$cls_id=$rows->class_id;
+			//echo $cls_id; exit;
+			
+			$sql1="SELECT * FROM edu_examination WHERE status='A'";
+			$resultset1=$this->db->query($sql1);
+			$row1=$resultset1->result();
+			return $row1;
+	  }
+ 
+     function view_exam_calender_details($exam_id,$cls_id)
+	 {
+		 $sql1="SELECT ed.*,en.exam_id,en.exam_year,en.exam_name,su.* FROM edu_exam_details AS ed,edu_examination AS en,edu_subject AS su WHERE ed.exam_id='$exam_id' AND ed.classmaster_id='$cls_id' AND ed.exam_id=en.exam_id AND ed.subject_id=su.subject_id ";
+			$resultset1=$this->db->query($sql1);
+			$row1=$resultset1->result();
+			return $row1;
+			
+	 }
 
     // GET TOTAL WORKING DAYS
      function get_total_working_days(){

@@ -15,7 +15,7 @@
                                   <?php  foreach($stud_details as $rows){
                                    ?>
                                <div class="col-md-2">
-                                     <a href="<?php echo  base_url(); ?>adminparent/exam_name/<?php echo $rows->enroll_id; ?>" class="btn btn-wd">
+                                     <a href="<?php echo  base_url(); ?>adminparent/exam_calender/<?php echo $rows->enroll_id; ?>" class="btn btn-wd">
                                        <?php echo $rows->name; ?></a>
                                      </div>
 
@@ -35,7 +35,7 @@
  $(document).ready(function () {
    $('#examinationmenu').addClass('collapse in');
    $('#exam').addClass('active');
-   $('#exam2').addClass('active');
+   $('#exam1').addClass('active');
   
    });
 

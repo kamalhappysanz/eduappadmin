@@ -75,11 +75,30 @@ Class Studentmodel extends CI_Model
 			$row=$resultset->result();
 			$student_id=$row[0]->student_id;
 
-
-			 $sql="SELECT m.*,ed.exam_id,ed.exam_year,ed.exam_name FROM edu_exam_marks_status AS m,edu_examination AS ed WHERE  m.status='A' AND m.exam_id=ed.exam_id";
+			$sql="SELECT * FROM edu_enrollment WHERE admission_id='$student_id'";
+			$resultset=$this->db->query($sql);
+			$row=$resultset->result();
+			foreach($row as $rows){}
+			$enr_id=$rows->enroll_id;
+			$cls_id=$rows->class_id;
+            //echo $cls_id;exit;
+			
+			 $sql="SELECT m.*,ed.exam_id,ed.exam_year,ed.exam_name FROM edu_exam_marks_status AS m,edu_examination AS ed WHERE m.classmaster_id='$cls_id' AND  m.status='A' AND m.exam_id=ed.exam_id";
 			 $resultset1=$this->db->query($sql);
 			 $res=$resultset1->result();
              return $res;
+		}
+		
+		function get_all_exam_views($user_id)
+		{
+			/* $query="SELECT student_id FROM edu_users WHERE user_id='$user_id'";
+			$resultset=$this->db->query($query);
+			$row=$resultset->result();
+			$student_id=$row[0]->student_id; */
+			 $sql1="SELECT * FROM edu_examination WHERE status='A'";
+			 $resultset=$this->db->query($sql1);
+			 $res1=$resultset->result();
+             return $res1;
 		}
 
 		function exam_marks($user_id,$exam_id)
@@ -104,6 +123,29 @@ Class Studentmodel extends CI_Model
              return $res1;
 		}
 
+		
+		function exam_calender_details($user_id,$exams_id)
+		{
+			$query="SELECT student_id FROM edu_users WHERE user_id='$user_id'";
+			$resultset=$this->db->query($query);
+			$row=$resultset->result();
+			$student_id=$row[0]->student_id;
+			//echo $student_id;
+
+			$sql="SELECT * FROM edu_enrollment WHERE admission_id='$student_id'";
+			$resultset=$this->db->query($sql);
+			$row=$resultset->result();
+			foreach($row as $rows){}
+			$enr_id=$rows->enroll_id;
+			$cls_id=$rows->class_id;
+			//echo $cls_id; exit;
+			
+			$sql1="SELECT ed.*,en.exam_id,en.exam_year,en.exam_name,su.* FROM edu_exam_details AS ed,edu_examination AS en,edu_subject AS su WHERE ed.exam_id='$exams_id' AND ed.classmaster_id='$cls_id' AND ed.exam_id=en.exam_id AND ed.subject_id=su.subject_id ";
+			$resultset1=$this->db->query($sql1);
+			$row1=$resultset1->result();
+			return $row1;
+			
+		}
 
 
 	   function get_student_user($user_id){

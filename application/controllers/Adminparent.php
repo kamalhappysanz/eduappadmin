@@ -306,10 +306,11 @@ class Adminparent extends CI_Controller {
 					 $datas['exam'] = $this->adminparentmodel->view_exam_name($enroll_id);
 					 $datas['stu_id']=$this->adminparentmodel->get_stu_id($enroll_id);
 					 $this->load->view('adminparent/parent_header');
-					 $this->load->view('adminparent/exam_result/exam_name',$datas);
+					 $this->load->view('adminparent/exam_result/exam_name_calender',$datas);
 					 $this->load->view('adminparent/parent_footer');
 			 }else{
 				 $datas['stud_details']=$this->dashboard->get_students($user_id);
+				//echo'<pre>'; print_r($datas['stud_details']);exit;
 				 $this->load->view('adminparent/parent_header');
 				 $this->load->view('adminparent/exam_result/add',$datas);
 				 $this->load->view('adminparent/parent_footer');
@@ -361,6 +362,84 @@ class Adminparent extends CI_Controller {
 						redirect('/');
 				 }
 	    }
+		
+		
+		public function exam_name_calender()
+		{
+			
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==4){
+			 $datas['res']=$this->dashboard->stud_details($user_id);
+			 $stu= count($datas['res']);
+			// echo $stu;exit;
+
+			 if($stu==1){
+				 $datas['stud_details']=$this->dashboard->get_students($user_id);
+					 foreach ($datas['stud_details'] as $rows) {}
+					 $enroll_id= $rows->enroll_id;
+					//echo $enroll_id;exit;
+					$datas['calender'] = $this->adminparentmodel->view_exam_calender($enroll_id);
+			        $datas['stu_id']=$this->adminparentmodel->get_stu_id($enroll_id);
+					 $this->load->view('adminparent/parent_header');
+				     $this->load->view('adminparent/exam_result/exam_name_calender',$datas);
+				     $this->load->view('adminparent/parent_footer');
+			 }else{
+				 $datas['stud_details']=$this->dashboard->get_students($user_id);
+				//echo'<pre>'; print_r($datas['stud_details']);exit;
+				 $this->load->view('adminparent/parent_header');
+				 $this->load->view('adminparent/exam_result/exam_cal',$datas);
+				 $this->load->view('adminparent/parent_footer');
+			 }
+			}
+			else{
+				 redirect('/');
+			}
+			
+		}
+		
+		public function exam_calender($enroll_id)
+		{
+			
+			 $datas=$this->session->userdata();
+			 $user_id=$this->session->userdata('user_id');
+			 $user_type=$this->session->userdata('user_type');
+			//echo $enroll_id;exit;
+			$datas['calender'] = $this->adminparentmodel->view_exam_calender($enroll_id);
+			$datas['stu_id']=$this->adminparentmodel->get_stu_id($enroll_id);
+			//print_r($datas['calender']);exit;
+			if($user_type==4)
+			  {
+				 $this->load->view('adminparent/parent_header');
+				 $this->load->view('adminparent/exam_result/exam_name_calender',$datas);
+				 $this->load->view('adminparent/parent_footer');
+			  }
+		   else{
+				redirect('/');
+		 }
+		 
+		}
+		public function exam_calender_views($exam_id,$cls_id)
+		{
+			 $datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			$datas['cresult']=$this->adminparentmodel->view_exam_calender_details($exam_id,$cls_id);
+
+			//echo '<pre>';print_r($datas['cresult']);exit;
+
+			if($user_type==4)
+				 {
+					 $this->load->view('adminparent/parent_header');
+					 $this->load->view('adminparent/exam_result/view_exam_calender',$datas);
+					 $this->load->view('adminparent/parent_footer');
+				 }else{
+						redirect('/');
+				 }
+		}
+		
+		
 	  //---------------Circular---------------------
 
         public function circular()

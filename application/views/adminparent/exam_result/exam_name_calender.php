@@ -17,11 +17,11 @@
                      <div class="row">
                        <?php 
 					  
-					   if(empty($exam)){echo "<p style=text-align:center;color:red;>Admin doesn't Approve The Reportcard </p>";}else{
+					   if(empty($calender)){echo "<p style=text-align:center;color:red;>Admin doesn't Approve The Reportcard </p>";}else{
 						    foreach($stu_id as $sid){}
 					        $stu_id=$sid->enroll_id;
 							$cls_id=$sid->class_id;
-					   foreach($exam as $row)
+					   foreach($calender as $row)
 					   {
 						  $ex_name=$row->exam_name;
 						  $exam_id=$row->exam_id;
@@ -29,7 +29,7 @@
 						 // echo $exam_year;
 					   ?>
                         <div class="col-md-2">
-                           <a rel="tooltip" href="<?php echo base_url(); ?>adminparent/exam_results/<?php echo $exam_id; ?>/<?php echo $stu_id;?>/<?php echo $cls_id;?>"  class="btn btn-wd"><?php echo $ex_name; ?></a>
+                           <a rel="tooltip" href="<?php echo base_url(); ?>adminparent/exam_calender_views/<?php echo $exam_id; ?>/<?php echo $cls_id;?>"  class="btn btn-wd"><?php echo $ex_name; ?></a>
                         </div>
 					   <?php } }?>
 						
@@ -52,7 +52,7 @@
   $(document).ready(function () {
    $('#examinationmenu').addClass('collapse in');
    $('#exam').addClass('active');
-   $('#exam2').addClass('active');
+   $('#exam1').addClass('active');
   
    });
    

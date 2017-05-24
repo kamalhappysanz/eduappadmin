@@ -93,6 +93,42 @@ class Student extends CI_Controller
 						redirect('/');
 				 }
 		}
+		
+		public function exam_name_calender()
+		{
+			    $datas=$this->session->userdata();
+  	 		    $user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				$datas['exam_view']=$this->studentmodel->get_all_exam_views($user_id);
+			    //echo '<pre>';print_r($datas['exam_view']);exit;
+			    if($user_type==3)
+				 {
+					 $this->load->view('adminstudent/student_header');
+					 $this->load->view('adminstudent/exam_result/exam_name',$datas);
+					 $this->load->view('adminstudent/student_footer');
+				 }else{
+						redirect('/');
+				 }
+		}
+		
+		public function exam_calender($exams_id)
+		{
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			//echo $user_id;
+			$user_type=$this->session->userdata('user_type');
+			$datas['calender']=$this->studentmodel->exam_calender_details($user_id,$exams_id);
+			//echo '<pre>';print_r($datas['calender']);exit;
+			if($user_type==3)
+				 {
+					 $this->load->view('adminstudent/student_header');
+					 $this->load->view('adminstudent/exam_result/view_exam_calender',$datas);
+					 $this->load->view('adminstudent/student_footer');
+				 }else{
+						redirect('/');
+				 }
+			
+		}
 //------------------------------------------------------------------------//
 
 	   public function attendance(){

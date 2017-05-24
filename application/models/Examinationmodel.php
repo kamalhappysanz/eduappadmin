@@ -84,9 +84,8 @@ Class Examinationmodel extends CI_Model
             $data= array("status"=>"Exam Already Exist");
             return $data;
           }  
-
 	}
-	
+
 	$data= array("status" => "success");
      return $data;
  }
@@ -101,6 +100,9 @@ Class Examinationmodel extends CI_Model
 		$query="UPDATE edu_examination SET exam_year='$exam_year',exam_name='$exam_name',status='$status' WHERE exam_id='$exam_id'";
 		$res=$this->db->query($query);
 
+		$query1="UPDATE edu_exam_details SET status='$status' WHERE exam_id='$exam_id'";
+		$res=$this->db->query($query1);
+		 
 		//return $res->result();
 		if($res){
          $data= array("status" => "success");

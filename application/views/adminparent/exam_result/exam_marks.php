@@ -76,10 +76,15 @@ function loadmarks()
 	$("input[name=totals]").val(tot);
 	
 }
-
+ $(document).ready(function () {
+   $('#examinationmenu').addClass('collapse in');
+   $('#exam').addClass('active');
+   $('#exam2').addClass('active');
+  
+   });
 </script>
 <script type="text/javascript">
-	   function insertfun()
+	 /*   function insertfun()
 	   {
 		   var m=document.getElementById("mark").value;
 		   var s=document.getElementById("sid").value;
@@ -111,5 +116,5 @@ function loadmarks()
 
 				}
 		  });
-	}
+	} */
 </script>

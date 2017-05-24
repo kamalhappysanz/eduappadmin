@@ -151,12 +151,34 @@ font-weight: 500;
 										</a>
 										
 								</li>
-								<li>
+								
+								<li id="exam">
+										<a data-toggle="collapse"  href="#examinationmenu">
+												<i class="pe-7s-plugin"></i>
+												<p>Examination </p>
+												<b class="caret"></b>
+										</a>
+										<div class="collapse" id="examinationmenu">
+											<ul class="nav">
+								<li id="exam1">
+								  <a href="<?php echo base_url(); ?>adminparent/exam_name_calender">Examination Calender</a>
+								</li>
+								<li id="exam2">
+									<a href="<?php echo base_url(); ?>adminparent/exam_result">Examination Result</a>
+								</li>
+										
+
+											</ul>
+									</div>
+										
+									</li>
+									
+								<!-- <li>
 										<a  href="<?php echo base_url(); ?>adminparent/exam_result">
 												<i class="pe-7s-plugin"></i>
 												<p>Examination Result</p>
 										</a>
-								</li>
+								</li>-->
 								<li>
 										<a href="<?php echo base_url(); ?>adminparent/timetable">
 												<i class="pe-7s-plugin"></i>
