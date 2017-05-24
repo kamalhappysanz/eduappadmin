@@ -236,7 +236,7 @@ Class Examinationresultmodel extends CI_Model
 			foreach($row as $rows){}
 			$teacher_id=$rows->teacher_id;
 			
-			$sql="SELECT em.*,t.name,t.teacher_id,t.subject,su.* FROM edu_exam_marks AS em,edu_teachers AS t,edu_subject AS su WHERE em.teacher_id='$teacher_id' AND t.teacher_id='$teacher_id' AND t.subject=su.subject_id  GROUP BY classmaster_id";
+			$sql="SELECT em.*,t.name,t.teacher_id,t.subject,su.* FROM edu_exam_marks AS em,edu_teachers AS t,edu_subject AS su WHERE em.teacher_id='$teacher_id' AND t.teacher_id='$teacher_id' AND t.subject=su.subject_id GROUP BY em.exam_id ";
 			$resultset=$this->db->query($sql);
 			return $resultset->result();
 	 }

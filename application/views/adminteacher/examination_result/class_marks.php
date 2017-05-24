@@ -21,7 +21,7 @@
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_status" class="form-horizontal" enctype="multipart/form-data" id="markform">
 
 <?php
-
+ 
 		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)
 		{
 			foreach ($stu as $v) {
