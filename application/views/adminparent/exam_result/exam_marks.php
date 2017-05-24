@@ -104,12 +104,12 @@ function loadmarks()
 				{   alert(test);exit;
 					if(test=="Email Id already Exit")
 					{
-					/* alert(test); */
+					/* alert(test);
 						$("#msg").html(test);
 						$("#save").hide();
 					}
 					else{
-						/* alert(test); */
+						/* alert(test);s
 						$("#msg").html(test);
 						$("#save").show();
 					}
