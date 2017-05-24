@@ -116,14 +116,7 @@ Class Adminparentmodel extends CI_Model
 	  
 	  function view_exam_calender($enroll_id)
 	  {
-		    $sql="SELECT * FROM edu_enrollment WHERE admission_id='$enroll_id'";
-			$resultset=$this->db->query($sql);
-			$row=$resultset->result();
-			foreach($row as $rows){}
-			$enr_id=$rows->enroll_id;
-			$cls_id=$rows->class_id;
-			//echo $cls_id; exit;
-			
+		   
 			$sql1="SELECT * FROM edu_examination WHERE status='A'";
 			$resultset1=$this->db->query($sql1);
 			$row1=$resultset1->result();
