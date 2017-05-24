@@ -123,7 +123,7 @@ Class Leavemodel extends CI_Model
               }
 
 
-              function udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$days,$weeks,$leave_mas_id,$leave_status){
+              function udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$days,$weeks,$leave_status){
 
                  $query="UPDATE edu_leavemaster SET leave_year='$years',status='$leave_status',updated_at=NOW() WHERE leave_id='$leave_id'";
 
