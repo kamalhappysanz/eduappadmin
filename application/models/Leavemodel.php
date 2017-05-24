@@ -91,7 +91,8 @@ Class Leavemodel extends CI_Model
               }
 
               function get_leave_id($id){
-                $query="SELECT elm.*,el.* FROM edu_leavemaster  AS elm LEFT JOIN edu_leaves AS el ON el.leave_mas_id=elm.leave_id WHERE elm.leave_id='$id'";
+                $query="SELECT elm.*,el.* FROM edu_leavemaster  AS elm LEFT JOIN edu_leaves AS el ON el.leave_mas_id=elm.leave_id
+ WHERE elm.leave_id='$id'";
               //echo   $query="SELECT * FROM edu_holidays_list_history AS lm INNER JOIN edu_leavemaster AS c ON lm.leave_id=c.leave_id  WHERE lm.leave_id='$id'";
                 $res=$this->db->query($query);
                 return $res->result();
@@ -123,7 +124,7 @@ Class Leavemodel extends CI_Model
               }
 
 
-              function udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$days,$weeks,$leave_mas_id,$leave_status){
+              function udate_regular_leave($leave_type,$leave_id,$leave_mas_id,$years,$days,$weeks,$leave_status){
 
                  $query="UPDATE edu_leavemaster SET leave_year='$years',status='$leave_status',updated_at=NOW() WHERE leave_id='$leave_id'";
 
@@ -182,7 +183,8 @@ Class Leavemodel extends CI_Model
                   $data= array("status" => "success");
                   return $data;
                 }else{
-                  $data= array("status" => "failure");
+                  $data= array("statu
+ s" => "failure");
                   return $data;
                 }
               }
