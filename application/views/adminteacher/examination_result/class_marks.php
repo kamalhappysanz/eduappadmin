@@ -21,6 +21,7 @@
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_status" class="form-horizontal" enctype="multipart/form-data" id="markform">
 
 <?php
+
 		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)
 		{
 			foreach ($stu as $v) {
@@ -39,6 +40,7 @@
 				}
 			}
 		}
+
 
 ?>
                                 <table class="table table-hover table-striped" id="sum_table">
@@ -66,7 +68,7 @@
 									}else{  ?>
 									 <th style="color:red;">Subject Not Found</th>
 									 <?php  }?>
-									  <th style="color:red;">Totel</th>
+									  <th style="color:red;">Total</th>
                                     </thead>
 									<?php
 									$tecid=$marks1[0]->teacher_id;
@@ -100,11 +102,11 @@
 												}
 												if($status=="Success")
 											   {
-												    echo '<input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
+												    echo '<td><input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
 
 													if(!empty($s))
 													{
-														echo '<td><input style="width:60%;" type="text" required name="marks1" id="tmark" value="'.$s->marks.'" class="form-control"  /></td>';
+														echo '<input style="width:60%;" type="text" required name="marks1" id="tmark" readonly value="'.$s->marks.'" class="form-control"  /></td>';
 
 													}else{
 														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value=""  class="form-control"/>';
@@ -119,11 +121,13 @@
 											 echo '</tr>';
 											$i++;
 										}?>
+										<?php if(!empty($smark)){ echo "";}else{ ?> 
 											<tr>
 											 <td>
 										 <div class="col-sm-10">
                                          <button type="submit" class="btn btn-info btn-fill center">Approve</button>
                                           </div> </td></tr>
+										<?php }?>
 											<?php 
 									}else{ echo "No Exam Mark Added"; }
 										?>
@@ -188,8 +192,6 @@ function loadmarks()
       });
      $('td:last',$tr).text(tot); // update last column value
      }).trigger('input'); 
-
-
 
 	   function insertfun()
 	   {//onkeyup="insertfun(this.value)"

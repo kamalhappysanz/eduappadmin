@@ -272,14 +272,14 @@ Class Examinationresultmodel extends CI_Model
 
 			//SELECT em.*,en.* FROM edu_exam_marks AS em,edu_enrollment AS en WHERE em.teacher_id='5' AND em.subject_id='9' AND em.classmaster_id='12' AND em.exam_id='7' AND em.classmaster_id=en.class_id GROUP BY enroll_id
 			
-			 $sql1="SELECT * FROM edu_exam_marks WHERE teacher_id='$teacher_id' AND subject_id='$tsub' AND classmaster_id='$cls_masid' AND exam_id='$exam_id'";
+			$sql1="SELECT * FROM edu_exam_marks WHERE teacher_id='$teacher_id' AND subject_id='$tsub' AND classmaster_id='$cls_masid' AND exam_id='$exam_id'";
 			 $result1=$this->db->query($sql1);
 			 $row1=$result1->result();
 			 return $row1;
 			 
 	   }
 	   
-	   function edit_marks_details($user_id,$subid,$clsmasid)
+	   function edit_marks_details($user_id,$subid,$clsmasid,$exam_id)
 	   {
 		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
 			$resultset=$this->db->query($query);
@@ -287,17 +287,17 @@ Class Examinationresultmodel extends CI_Model
 			foreach($row as $rows){}
 			$teacher_id=$rows->teacher_id;
 			
-			$sql="SELECT m.*,en.enroll_id,en.admit_year,en.name,en.class_id,en.admisn_no FROM edu_exam_marks AS m,edu_enrollment AS en WHERE m.subject_id='$subid' AND m.classmaster_id='$clsmasid' AND m.teacher_id='$teacher_id' AND en.class_id='$clsmasid' AND en.enroll_id=m.stu_id ";
+			$sql="SELECT m.*,en.enroll_id,en.admit_year,en.name,en.class_id,en.admisn_no FROM edu_exam_marks AS m,edu_enrollment AS en WHERE m.exam_id='$exam_id' AND m.subject_id='$subid' AND m.classmaster_id='$clsmasid' AND m.teacher_id='$teacher_id' AND en.class_id='$clsmasid' AND en.enroll_id=m.stu_id ";
 			$resultset=$this->db->query($sql);
 			$res=$resultset->result();
 			return $res;
 
 	   }
 	   
-	   function marks_status_details($clsmasid)
+	   function marks_status_details($clsmasid,$exam_id)
 	   {
 		    //echo $clsmasid;
-		    $query="SELECT * FROM edu_exam_marks_status WHERE status='N' OR status='A' AND classmaster_id='$clsmasid'";
+		    $query="SELECT * FROM edu_exam_marks_status WHERE status='N' OR status='A' AND exam_id='$exam_id' AND classmaster_id='$clsmasid'";
 			$resultset=$this->db->query($query);
 			$row=$resultset->result();
 			return $row;

@@ -101,6 +101,8 @@ class Examinationresult extends CI_Controller
 			  $datas['stu']=$this->examinationresultmodel->getall_stuname($user_id,$cls_masid,$exam_id);
 			  $datas['result']=$this->examinationresultmodel->getall_exam_details($exam_id);
 			  $datas['marks1']=$this->examinationresultmodel->getall_marks_details1($user_id,$cls_masid);
+			  $datas['smark']=$this->examinationresultmodel->marks_status_details($cls_masid,$exam_id);
+			  //print_r($datas['smark']);exit;
 			  //echo '<pre>';print_r($datas);
 			  //echo '<pre>';print_r($datas['stu']); exit;
 			
@@ -216,9 +218,10 @@ class Examinationresult extends CI_Controller
 			  $subid=$this->input->get('var1');
 			  
 			  $clsmasid=$this->input->get('var2');
+			  $exam_id=$this->input->get('var3');
 			  //echo $subid;echo $clsmasid;
-			  $datas['edit']=$this->examinationresultmodel->edit_marks_details($user_id,$subid,$clsmasid);
-			  $datas['mark']=$this->examinationresultmodel->marks_status_details($clsmasid);
+			  $datas['edit']=$this->examinationresultmodel->edit_marks_details($user_id,$subid,$clsmasid,$exam_id);
+			  $datas['mark']=$this->examinationresultmodel->marks_status_details($clsmasid,$exam_id);
 			  //echo '<pre>';print_r($datas['mark']);exit;
 			if($user_type==2)
 			    { 
@@ -267,7 +270,7 @@ class Examinationresult extends CI_Controller
 			  $clsmastid=$this->input->post('clsmastid');
 			  //echo $exam_id;echo $clsmastid;//exit;
 			  $datas=$this->examinationresultmodel->marks_status_update($exam_id,$clsmastid);
-			  //print_r($datas);exit;
+			 
 			   if($datas['status']=="success")
 			   { 
 		        $a=$datas['var1']; $b=$datas['var2'];//exit;

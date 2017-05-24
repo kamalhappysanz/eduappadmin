@@ -53,17 +53,15 @@
 										<td><input style="width:60%;" type="text"  name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>	
 										</tr>
 									 <?php $i++;} 
-									 ?>
+									 ?> <?php if(!empty($mark)){ echo "";}else{ ?> 
 										<tr>
 										<td>
 										 <div class="col-sm-10">
-										 <?php if(!empty($mark)){ echo "";}else{ ?> 
                                        <button type="submit" id="update" class="btn btn-info btn-fill center">Update</button>
-										 <?php } ?>
                                           </div>
 										   </td>
 										</tr>
-
+<?php } ?>
                                     </tbody>
                                 </table>
 								
