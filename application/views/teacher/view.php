@@ -25,7 +25,7 @@
                                 <th data-field="name" class="text-left" data-sortable="true">Name</th>
                                 <th data-field="email" class="text-left" data-sortable="true">Email</th>
                                 <th data-field="mobile" class="text-left" data-sortable="true">Mobile</th>
-                                 <th data-field="class" class="text-center" data-sortable="true">Class Teacher</th>
+                                 <th data-field="class" class="text-left" data-sortable="true">Class Teacher</th>
                                  <th data-field="status" class="text-left" data-sortable="true">Status</th> 
                                 <th data-field="Section" class="text-left" data-sortable="true">Action</th>
 
@@ -43,7 +43,7 @@
                                     <td class="text-left"><?php echo $rows->email; ?></td>
                                     <td class="text-left"><?php echo $rows->phone; ?></td>
 
-									 <td><?php echo $rows->class_name;?>-<?php echo $rows->sec_name; ?></td>
+									 <td class="text-left"><?php echo $rows->class_name;?>-<?php echo $rows->sec_name; ?></td>
 									 
 									 <td><?php 
 									  if($stu=='A'){?>

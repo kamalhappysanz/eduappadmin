@@ -20,14 +20,14 @@
                    <table id="bootstrap-table" class="table">
                        <thead>
 
-                           <th data-field="id" class="text-center">S.no</th>
-                         <th data-field="name" class="text-center" data-sortable="true">Class/Section</th>
-                          <th data-field="username" class="text-center" data-sortable="true">Name</th>
-                         <th data-field="Subject" class="text-center" data-sortable="true">Subject</th>
-                         <th data-field="comments" class="text-center" data-sortable="true">Comments</th>
-                          <th data-field="DateTime" class="text-center" data-sortable="true">DateTime</th>
-                          <th data-field="Remarks" class="text-center" data-sortable="true">Remarks</th>
-                            <th data-field="Action" class="text-center" data-sortable="true">Action</th>
+                           <th data-field="id">S.no</th>
+                         <th data-field="name" data-sortable="true">Class/Section</th>
+                          <th data-field="username" data-sortable="true">Name</th>
+                         <th data-field="Subject"  data-sortable="true">Subject</th>
+                         <th data-field="comments"  data-sortable="true">Comments</th>
+                          <th data-field="DateTime"  data-sortable="true">DateTime</th>
+                          <th data-field="Remarks"  data-sortable="true">Remarks</th>
+                            <th data-field="Action"  data-sortable="true">Action</th>
 
 
                        </thead>

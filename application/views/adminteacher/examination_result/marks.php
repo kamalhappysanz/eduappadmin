@@ -13,6 +13,7 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Enter Exam Marks
+								 <?php  $exam_id=$this->input->get('var2'); //echo$exam_id;  ?>
 								<?php //print_r($cla_tea_id);
 								    $cid=$cla_tea_id[0]->class_teacher;
 									//echo $cid;
@@ -20,8 +21,7 @@
 									//echo $cls_masid;
 									if($cid==$cls_masid)
 									{?>
-<a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cid; ?>&var2=<?php if(empty($result))
-						{echo "";}else{ foreach($result as $row){ } echo $row->exam_id; }?>"  class="btn btn-info btn-fill btn-wd">View Class Mark</a>	
+<a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cid; ?>&var2=<?php  echo $exam_id; ?>"  class="btn btn-info btn-fill btn-wd">View Class Mark</a>	
 									<?php }
 									//foreach($res as $row){}echo $row->class_id;
 									?>
@@ -34,16 +34,14 @@
                                 <table class="table table-hover table-striped">
 								<?php 
 									 if(!empty($result))
-									       {
-								        //print_r($result);exit;
+									  {
 										foreach($result as $exam)
 								         {}
 									        $id=$exam->exam_id;
-											//echo $id;exit;
-											 }else{ echo "";}
+                                      echo '<input type="hidden" name="examid" value="'.$id.'" />';
+									  }else{ echo "";}
                                   ?>
 
-								<input type="hidden" name="examid" value="<?php echo $id; ?>"/>
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
@@ -121,5 +119,5 @@
   <script>
   $('#examinationmenu').addClass('collapse in');
   $('#exam').addClass('active');
-  $('#exam2').addClass('active');
+  $('#exam1').addClass('active');
   </script>

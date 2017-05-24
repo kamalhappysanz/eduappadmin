@@ -130,9 +130,9 @@
 
 <script type="text/javascript">
 
-$('#examinationmenu').addClass('collapse in');
+$('#exammenu').addClass('collapse in');
 $('#exam').addClass('active');
-$('#exam1').addClass('active');
+$('#exam3').addClass('active');
 
 $('#markform').validate({ // initialize the plugin
         rules: {

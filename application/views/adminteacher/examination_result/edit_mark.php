@@ -57,7 +57,9 @@
 										<tr>
 										<td>
 										 <div class="col-sm-10">
-                                             <button type="submit" id="update" class="btn btn-info btn-fill center">Update</button>
+										 <?php if(!empty($mark)){ echo "";}else{ ?> 
+                                       <button type="submit" id="update" class="btn btn-info btn-fill center">Update</button>
+										 <?php } ?>
                                           </div>
 										   </td>
 										</tr>

@@ -32,12 +32,11 @@
 									              {
 									             ?>
 												<option value="parents">Parents</option>
-												<option value="guardian">Guardain</option>
+												<option value="guardian">Guardian</option>
 												<?php
-												  }else
-												  {
+												  }else{
 												?>
-												<option value="guardian">Guardain</option>
+												<option value="guardian">Guardian</option>
 												<option value="parents">Parents</option>
 												<?php
 												  }
@@ -46,7 +45,7 @@
 											</div>
 										<label class="col-sm-2 control-label">Student Name</label>
 										<div class="col-sm-4">
-				 <select multiple name="teacher[]"  class="selectpicker form-control"  >
+				 <select multiple name="teacher[]" class="selectpicker form-control"  >
 
                      <?php
                           $tea_name=$rows->	admission_id;
@@ -66,10 +65,8 @@
                                   }
                             }
                        ?>
-                                  </select>
-										
+                   </select>
 					</div>
-
 											</div>
 <input type="hidden" name="admission_no" class="form-control" placeholder="" value="<?php echo $rows->admission_id ; ?>">	
 <input type="hidden" name="parent_id" class="form-control" placeholder="" value="<?php echo $rows->parent_id ; ?>">
@@ -78,7 +75,6 @@
 						<div id="stuparents" style="display:none">	
 								<fieldset>
                                         <div class="form-group">
-											
                                             <label class="col-sm-2 control-label">Father Name</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="father_name" id="father_name" class="form-control" placeholder="Father Name" value="<?php echo $rows->father_name ;?>">
@@ -111,7 +107,7 @@
                                     </fieldset>
 						</div>			
      
-						<div id="stuguardian" style="display: none">
+						<div id="stuguardian" style="display:none">
 								   <fieldset>
                                         <div class="form-group">
                                              <label class="col-sm-2 control-label">Guardian Name</label>
@@ -142,12 +138,12 @@
 											
                                             <label class="col-sm-2 control-label">Father Name</label>
                                             <div class="col-sm-4">
-                                                <input type="text" name="father_name" id="fname" class="form-control"placeholder="Father Name" value="<?php echo $rows->father_name ;?>">
+                                                <input type="text" name="father_name" id="father_name" class="form-control"placeholder="Father Name" value="<?php echo $rows->father_name ;?>">
                                             </div>
 											
                                             <label class="col-sm-2 control-label">Mother Name</label>
                                            <div class="col-sm-4">
-                                                <input type="text" name="mother_name" id="mname" class="form-control" placeholder="Mother Name"
+                                                <input type="text" name="mother_name" id="mother_name" class="form-control" placeholder="Mother Name"
  												value="<?php echo $rows->mother_name; ?>">
                                             </div>
 				                     </div>
@@ -173,17 +169,16 @@
                                     </fieldset>
 									</div>
 									</div>
-									<div id="stuguardian" style="display: none">
+									<div id="stuguardian" style="display:none">
 									<?php 
-									}
-									else{
+									}else{
 										?>
                                      <div id="msg1">
 										 <fieldset>
                                         <div class="form-group">
                                              <label class="col-sm-2 control-label">Guardian Name</label>
                                             <div class="col-sm-4">
-											<input type="text" name="guardn_name" id="gname" class="form-control" placeholder="Guardian Name" value="<?php echo $rows->guardn_name ;?>">
+											<input type="text" name="guardn_name" id="guardn_name" class="form-control" placeholder="Guardian Name" value="<?php echo $rows->guardn_name ;?>">
                                             </div>
                                             
                                           <label class="col-sm-2 control-label">Guardian Pic</label>
@@ -191,7 +186,6 @@
                                                 <input type="file" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
 												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $rows->guardn_pic; ?>" class="img-circle" style="width:110px;">
 												<input type="hidden" placeholder="" name="old_guardian_pic" class="form-control" value="<?php echo $rows->guardn_pic; ?>">
-												
                                               <img  id="output2" class="img-circle" style="width:110px;">
                                             </div>
                                            </div>
@@ -264,8 +258,7 @@
                                             <div class="col-sm-4">
                                                 <input type="text" placeholder="Mobile Number" value="<?php echo $rows->mobile; ?>" name="mobile1" class="form-control">
                                             </div>
-											
-                                    
+
 											<label class="col-sm-2 control-label">Status</label>
                                             <div class="col-sm-4">
                                               <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
@@ -274,8 +267,6 @@
                                               </select>
                                      <script language="JavaScript">document.formadmission.status.value="<?php echo $rows->status; ?>";</script>
                                             </div>
-											
-											
                                         </div>
                                     </fieldset>
                                    
@@ -283,7 +274,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">&nbsp;</label>
                                             <div class="col-sm-10">
-                                                   <button type="submit" class="btn btn-info btn-fill center">Update</button>
+                                                  <button type="submit" class="btn btn-info btn-fill center">Update</button>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -301,10 +292,10 @@ function validates()
 		var mname = document.getElementById("mother_name").value;
 		var gname = document.getElementById("guardn_name").value;
 		
-	if(fname=="")
+	if(gname=="")
      {
 		 $("#erid").html("Please Enter Parents Details Or Guardain Details");
-		 document.formadmission.father_name.focus() ;
+		 //document.formadmission.father_name.focus() ;
 		 return false;
      }
 	    document.getElementById("parentform").submit();   
@@ -381,14 +372,21 @@ $(document).ready(function () {
             if ($(this).val() == "parents") {
                 $("#stuparents").show();
 				$("#stuguardian").hide();
-				$("#msg").show();
+				document.getElementById("father_name").value;
+				document.getElementById("mother_name").value;
+				document.getElementById("guardn_name").value='';
+				$("#msg").hide();
 				$("#msg1").hide();
 				
             } else {
                 $("#stuguardian").show();
-				 $("#stuparents").hide();
-				 $("#msg").hide();
-				$("#msg1").hide();
+				$("#stuparents").hide();
+				document.getElementById("father_name").value='';
+				document.getElementById("mother_name").value='';
+				document.getElementById("guardn_name").value;
+				$("#msg").val('');
+				//$(".input").val("");
+				 $("#msg1").hide();
 				
             }
         });

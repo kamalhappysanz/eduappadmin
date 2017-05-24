@@ -77,11 +77,11 @@
                       <table id="bootstrap-table" class="table">
                           <thead>
 
-                              <th data-field="id" class="text-center">ID</th>
-                            <th data-field="name" class="text-center" data-sortable="true">Class</th>
-                            <th data-field="Section" class="text-center" data-sortable="true">Section</th>
+                            <th data-field="id" class="text-left">ID</th>
+                            <th data-field="name" class="text-left" data-sortable="true">Class</th>
+                            <th data-field="Section" class="text-left" data-sortable="true">Section</th>
 
-                            <th data-field="actions" class="td-actions text-center" data-events="operateEvents">Actions</th>
+                            <th data-field="actions" class="td-actions text-left" data-events="operateEvents">Actions</th>
                           </thead>
                           <tbody>
                             <?php $i=1; foreach ($getall_class as $rowsclass) { ?>

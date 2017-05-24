@@ -26,7 +26,7 @@
                               <th>Leave Date</th>
                               <th>Leave Description</th>
                               <th>Status</th>
-                              <th></th>
+                              <th>Action</th>
                            </thead>
                            <tbody>
                               <?php

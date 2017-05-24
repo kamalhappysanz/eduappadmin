@@ -44,12 +44,12 @@
 									              {
 									             ?>
 												<option value="parents">Parents</option>
-												<option value="guardian">Guardain</option>
+												<option value="guardian">Guardian</option>
 												<?php
 												  }else
 												  {
 												?>
-												<option value="guardian">Guardain</option>
+												<option value="guardian">Guardian</option>
 												<option value="parents">Parents</option>
 												<?php
 												  }

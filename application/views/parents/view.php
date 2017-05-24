@@ -19,12 +19,12 @@
 
                           <table id="bootstrap-table" class="table">
                               <thead>
-                                <th data-field="id" class="text-center">ID</th>
-                                <th data-field="name" class="text-center" data-sortable="true">Father Name / Guardian Name</th>
-                                <th data-field="email" class="text-center" data-sortable="true">Email</th>
-                                <th data-field="mobile" class="text-center" data-sortable="true">Mobile</th>
-								<th data-field="Status" class="text-center" data-sortable="true">Status</th>
-                                <th data-field="Section" class="text-center" data-sortable="true">Action</th>
+                                <th data-field="id" >ID</th>
+                                <th data-field="name" data-sortable="true">Father Name / Guardian Name</th>
+                                <th data-field="email" data-sortable="true">Email</th>
+                                <th data-field="mobile"  data-sortable="true">Mobile</th>
+								<th data-field="Status" data-sortable="true">Status</th>
+                                <th data-field="Section" data-sortable="true">Action</th>
                               </thead>
                               <tbody>
                                 <?php

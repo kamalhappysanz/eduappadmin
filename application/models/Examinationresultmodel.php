@@ -296,17 +296,11 @@ Class Examinationresultmodel extends CI_Model
 	   
 	   function marks_status_details($clsmasid)
 	   {
+		    //echo $clsmasid;
 		    $query="SELECT * FROM edu_exam_marks_status WHERE status='N' OR status='A' AND classmaster_id='$clsmasid'";
 			$resultset=$this->db->query($query);
-			//$row=$resultset->result();
-			if($resultset->num_rows()==0)
-			{
-				$data= array("mark"=>"failure");
-		        return $data;}
-		  else{
-			$data= array("mark"=>"success");
-			return $data;
-		  }
+			$row=$resultset->result();
+			return $row;
 	   }
 	   
 	   function update_marks_details($teaid,$clsmastid,$exam_id,$subid,$marks,$sutid)

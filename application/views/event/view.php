@@ -27,12 +27,12 @@
                               <thead>
 
                                   <th data-field="id" class="text-center">ID</th>
-                                    <th data-field="year" class="text-center" data-sortable="true">Event Name</th>
-                                      <th data-field="no" class="text-center" data-sortable="true">Event -Date</th>
-                                <th data-field="name" class="text-center" data-sortable="true">Event -Details</th>
+                                    <th data-field="year" data-sortable="true">Event Name</th>
+                                      <th data-field="no"  data-sortable="true">Event -Date</th>
+                                <th data-field="name" data-sortable="true">Event -Details</th>
 
-                                <th data-field="status" class="text-center" data-sortable="true">Status</th>
-                                <th data-field="Section" class="text-center" data-sortable="true">Action</th>
+                                <th data-field="status"  data-sortable="true">Status</th>
+                                <th data-field="Section"  data-sortable="true">Action</th>
 
 
                               </thead>

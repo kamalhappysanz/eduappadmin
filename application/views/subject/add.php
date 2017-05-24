@@ -52,7 +52,6 @@
 
                                 <th>S.no</th>
                                 <th>Section</th>
-
                                 <th class="disabled-sorting text-right">Actions</th>
 
 

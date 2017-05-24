@@ -137,11 +137,11 @@
                                             <table id="bootstrap-table" class="table">
 
                                                 <thead>
-                                                    <th data-field="id" class="text-center">ID</th>
-                                                    <th data-field="name" class="text-center" data-sortable="true"> Subject</th>
-                                                    <th data-field="email" class="text-center" data-sortable="true">Exam Date</th>
-                                                    <th data-field="mobile" class="text-center" data-sortable="true">Class/Section</th>
-                                                    <th data-field="Section" class="text-center" data-sortable="true">Teacher</th>
+                                                    <th data-field="id">ID</th>
+                                                    <th data-field="name" data-sortable="true"> Subject</th>
+                                                    <th data-field="email" data-sortable="true">Exam Date</th>
+                                                    <th data-field="mobile"  data-sortable="true">Class/Section</th>
+                                                    <th data-field="Section"  data-sortable="true">Teacher</th>
                                                     <th class="text-center">Action</th>
 
                                                 </thead>

@@ -48,9 +48,9 @@
                           <table id="bootstrap-table" class="table">
                               <thead>
 
-                                  <th data-field="id" class="text-center">ID</th>
-                                <th data-field="name" class="text-center" data-sortable="true">Class</th>
-                                <th data-field="Section" class="text-center" data-sortable="true">Action</th>
+                                 <th>ID</th>
+                                <th>Class</th>
+                                <th class="disabled-sorting text-right">Action</th>
 
 
                               </thead>
@@ -62,7 +62,7 @@
                                   <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $rows->class_name; ?></td>
-                                    <td>
+                                    <td class="text-right">
                                       <a href="<?php echo base_url();  ?>classadd/updateclass/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit"></i></a>
                                       <!-- <a href="<?php echo base_url();  ?>classadd/delete_class/<?php echo $rows->class_id; ?>" class="btn btn-simple btn-danger btn-icon "><i class="fa fa-times"></i></a> -->
 
