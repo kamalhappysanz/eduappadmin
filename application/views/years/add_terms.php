@@ -116,7 +116,7 @@
 								   <td><?php  echo $i; ?></td>
 								   <?php
                                           $tea_name=$rows->year_id;
-										  
+
 										  $sQuery = "SELECT * FROM edu_academic_year ";
 										  $objRs=$this->db->query($sQuery);
 										  $row=$objRs->result();

@@ -23,10 +23,20 @@ Class Enrollmentmodel extends CI_Model
 				//echo $admisnid;
             $query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,created_at,status) VALUES ('$admisnid','$admit_year','$formatted_date','$admisn_no','$name','$class',NOW(),'$status')";
             $resultset=$this->db->query($query);
-			
 
-			$query2="UPDATE edu_admission SET enrollment='1' WHERE admisn_no='$admisn_no'";
-			$resultset=$this->db->query($query2);
+        // Student User Creation
+             $sql="SELECT count(*) AS student FROM edu_admission" ;
+             $resultsql=$this->db->query($sql);
+             $result1= $resultsql->result();
+             $cont=$result1[0]->student;
+             $user_id=$cont+400000;
+             $stude_insert="INSERT INTO edu_users (name,user_name,user_password,user_type,student_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5(123),'3','$admission_id',NOW(),NOW(),'DA')";
+             $resultset=$this->db->query($stude_insert);
+
+
+
+      			$query2="UPDATE edu_admission SET enrollment='1' WHERE admisn_no='$admisn_no'";
+      			$resultset=$this->db->query($query2);
 
             $data= array("status" => "success");
             return $data;
@@ -43,7 +53,7 @@ Class Enrollmentmodel extends CI_Model
 		    $res=$this->db->query($query);
             return $res->result();
 	   }
-	   
+
 	    function get_current_years()
 		{
 		  $get_year="SELECT * FROM edu_academic_year WHERE NOW()>=from_month AND NOW()<=to_month";
@@ -80,10 +90,10 @@ Class Enrollmentmodel extends CI_Model
         function save_enrollment($admit_year,$admit_date,$name,$class,$status,$enroll_id,$admisn_no,$admission_id){
            $query="UPDATE edu_enrollment SET admit_year='$admit_year',admit_date='$admit_date',name='$name',class_id='$class',status='$status' WHERE enroll_id='$enroll_id' AND admisn_no='$admisn_no'";
            $res=$this->db->query($query);
-		   
+
 		   $query1="UPDATE edu_admission SET name='$name' WHERE admisn_no='$admisn_no'";
            $res1=$this->db->query($query1);
-		   
+
 		   $query2="UPDATE edu_users SET name='$name' WHERE student_id='$admission_id'";
            $res1=$this->db->query($query2);
 
@@ -115,7 +125,7 @@ Class Enrollmentmodel extends CI_Model
 		  }
 
 		}
-		
+
 		function getData1($admisno)
 		{
 		   $query = "select name from edu_enrollment WHERE admisn_no='".$admisno."'";
