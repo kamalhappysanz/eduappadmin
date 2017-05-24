@@ -40,7 +40,10 @@
                     						  ?> </td>
 											  
 										 <td> 
-								 <input type="text" name="marks" id="smark"  value="<?php echo $rows->marks; ?>" /> 
+										 <div class="col-md-5">
+										 <div class="form-group">
+								 <input type="text" name="marks" disabled id="smark" class="form-control" value="<?php echo $rows->marks; ?>" /> 
+								 </div></div>
 										 </td>
 										</tr>
 										 <?php $i++;  } 
@@ -48,7 +51,11 @@
 										?><td></td>
 										<?php if(!empty($result)){ ?>
 										 <td>TOTAL </td>
-										 <td><input type="text"  name="totals"/></td>
+										 <td>
+										  <div class="col-md-5">
+										 <div class="form-group">
+										 <input type="text" class="form-control" disabled name="totals"/>
+										  </div></div></td>
 										<?php }else{ echo"";}?>
                                     </tbody>
                                 </table>

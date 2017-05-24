@@ -54,7 +54,7 @@ Class Adminparentmodel extends CI_Model
 
 		function get_stu_id($enroll_id)
 		{
-			$query2="SELECT name,admisn_no,enroll_id FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
+			$query2="SELECT name,admisn_no,enroll_id,class_id FROM edu_enrollment WHERE enroll_id='$enroll_id' AND status='A'";
 			$result1=$this->db->query($query2);
 			$row3=$result1->result();
 			return $row3;

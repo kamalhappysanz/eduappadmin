@@ -37,14 +37,19 @@
 										 $sec=$row[0]->subject_name;
                                              echo $sec;
                     						  ?> </td>
-										 <td> <input type="text" name="marks" id="smark"  value="<?php echo $rows->marks; ?>" /> </td>
+										 <td>  <div class="col-md-5">
+										 <div class="form-group"><input type="text" disabled name="marks" class="form-control" id="smark"  value="<?php echo $rows->marks; ?>" /> 
+										 </div></div></td>
 										</tr>
 										 <?php $i++;  } 
 										}else{ echo "No exam added for any class";}	?>
 										<td></td>
 										<?php if(!empty($result)){?>
 										 <td>TOTAL </td>
-										 <td><input type="text"  name="totals"/></td>
+										 <td> <div class="col-md-5">
+										 <div class="form-group">
+										 <input type="text" disabled  class="form-control" name="totals"/>
+										 </div></div></td>
 										<?php }else{ echo ""; }?>
                                     </tbody>
                                 </table>
