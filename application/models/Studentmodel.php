@@ -9,7 +9,7 @@ Class Studentmodel extends CI_Model
 
   }
 
-//GET ALL
+//GET ALL    
 		function get_stu_homework_details($user_id)
 		{
 			$query="SELECT student_id FROM edu_users WHERE user_id='$user_id'";

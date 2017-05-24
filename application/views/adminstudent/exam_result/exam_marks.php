@@ -6,7 +6,7 @@
          <div class="alert alert-success">
    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
        ×</button> <?php echo $this->session->flashdata('msg'); ?>
-         </div>
+         </div>  
        <?php endif; ?>
                 <div class="row">
                     <div class="col-md-12">

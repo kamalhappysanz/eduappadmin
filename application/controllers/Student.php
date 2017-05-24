@@ -16,7 +16,7 @@ class Student extends CI_Controller
       $this->load->model('adminparentmodel');
 		  $this->load->model('subjectmodel');
 
-        }
+        }   
 	
 
 	  public function homework_view()

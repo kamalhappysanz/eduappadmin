@@ -10,7 +10,7 @@
 				  foreach ($calender as $rows) 
 								 {}?>
 				  <h4 class="title"><?php echo $rows->exam_name; }?></h4>
-                  </div>
+                  </div>  
                     <div class="content">
                      <div class="fresh-datatables">
                         <table id="bootstrap-table" class="table">
