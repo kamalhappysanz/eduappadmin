@@ -13,8 +13,13 @@ Class Teachereventmodel extends CI_Model
 
 
       function get_teacher_event($user_id){
+          $get_teacher ="SELECT et.teacher_id FROM edu_users AS ed LEFT JOIN edu_teachers AS et ON ed.teacher_id=et.teacher_id WHERE user_id='$user_id'";
+          $result1=$this->db->query($get_teacher);
+          $teacher_id=$result1->result();
+          foreach ($teacher_id as $rows) { }
+          $teacher_id=$rows->teacher_id;
          $query="SELECT ev.event_id,ev.event_name,ev.event_date,evc.co_name_id FROM edu_events AS ev  LEFT JOIN edu_event_coordinator AS evc ON ev.event_id= evc.event_id
-          WHERE ev.event_date >=NOW() AND evc.co_name_id='$user_id' AND ev.status='A' GROUP BY event_id ";
+          WHERE  evc.co_name_id='$teacher_id' AND ev.status='A' GROUP BY event_id ";
           $resultset=$this->db->query($query);
           if($resultset->num_rows()==0){
             $data= array("status" => "failure");
@@ -42,8 +47,10 @@ Class Teachereventmodel extends CI_Model
 
 
         function get_teacher_in_event($event_id){
-        $query="SELECT ec.event_id,es.event_name,eu.name,es.event_date,ec.sub_event_name FROM  edu_event_coordinator AS ec LEFT JOIN edu_events AS es ON es.event_id=ec.event_id
-        INNER JOIN edu_users AS eu ON ec.co_name_id=eu.user_id WHERE ec.event_id='$event_id'";
+          $query="SELECT ec.event_id,es.event_name,et.name,es.event_date,ec.sub_event_name FROM edu_event_coordinator AS ec LEFT JOIN edu_teachers AS et ON ec.co_name_id=et.teacher_id
+LEFT JOIN edu_events AS es ON es.event_id=ec.event_id WHERE ec.event_id='$event_id' AND ec.status='A'";
+        // $query="SELECT ec.event_id,es.event_name,eu.name,es.event_date,ec.sub_event_name FROM  edu_event_coordinator AS ec LEFT JOIN edu_events AS es ON es.event_id=ec.event_id
+        // INNER JOIN edu_users AS eu ON ec.co_name_id=eu.user_id WHERE ec.event_id='$event_id'";
         $resultset=$this->db->query($query);
         if($resultset->num_rows()==0){
           $data= array("status" => "failure");
