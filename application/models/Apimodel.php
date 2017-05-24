@@ -170,26 +170,27 @@ class Apimodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-			$exam_query = "SELECT exam_id,exam_name FROM edu_examination WHERE exam_year ='$year_id' AND status = 'A' ORDER BY exam_id";
+             $exam_query = "SELECT ex.exam_id,ex.exam_name, DATE_FORMAT(MIN(exam_date), '%d/%b/%y') AS Fromdate, DATE_FORMAT(MAX(exam_date), '%d/%b/%y') AS Todate FROM edu_examination ex
+                            LEFT JOIN edu_exam_details ed on ex.exam_id = ed.exam_id
+                            WHERE ex.exam_year ='$year_id' and ex.status = 'A' and ed.classmaster_id='$class_id'
+                            GROUP by ex.exam_name
+
+                            UNION ALL
+
+                            SELECT ex.exam_id,ex.exam_name, DATE_FORMAT(COALESCE(MIN(ed.exam_date),''), '%d/%b/%y') AS Fromdate, DATE_FORMAT(COALESCE(MAX(ed.exam_date),''), '%d/%b/%y') AS Todate FROM edu_examination ex
+                            LEFT JOIN edu_exam_details ed on ed.exam_id = ex.exam_id
+                            WHERE ex.exam_year ='$year_id' and ex.status = 'A' and ex.exam_id NOT IN (SELECT DISTINCT exam_id FROM edu_exam_details where
+                            classmaster_id = '$class_id')
+                            GROUP by ex.exam_name";
 
 			$exam_res = $this->db->query($exam_query);
 			$exam_result= $exam_res->result();
 			$exam_count = $exam_res->num_rows();
 
-			foreach($exam_result as $rows){
-				$exam_id = $rows->exam_id;
-			}
-
-
-            $exam_date_query = "SELECT `exam_id`, MIN(`exam_date`) AS Fromdate, MAX(`exam_date`) AS Todate FROM edu_exam_details WHERE `classmaster_id` = '$class_id' GROUP BY `exam_id`  ORDER BY exam_id";
-			$exam_date_res = $this->db->query($exam_date_query);
-			$exam_date_result= $exam_date_res->result();
-
-
 			 if($exam_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Exams Not Found");
 			}else{
-				$response = array("status" => "success", "msg" => "View Exams", "count" => $exam_count, "Exams"=>$exam_result, "Exams_date"=>$exam_date_result);
+				$response = array("status" => "success", "msg" => "View Exams", "count" => $exam_count, "Exams"=>$exam_result);
 			}
 
 			return $response;
@@ -201,7 +202,6 @@ class Apimodel extends CI_Model {
 	public function dispExamdetails($class_id,$exam_id,$stud_id)
 	{
 			 $year_id = $this->getYear();
-
 
 
 			$exam_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times FROM `edu_examination` A, `edu_exam_details` B, `edu_subject` C WHERE A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND B.classmaster_id ='$class_id' AND B.exam_id='$exam_id'";
