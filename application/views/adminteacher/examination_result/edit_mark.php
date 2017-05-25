@@ -77,3 +77,8 @@
             </div>
         </div>
 	</div>	
+	 <script type="text/javascript">
+	$('#examinationmenu').addClass('collapse in');
+				$('#exam').addClass('active');
+				$('#exam2').addClass('active'); 
+</script>

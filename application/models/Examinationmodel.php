@@ -163,6 +163,15 @@ Class Examinationmodel extends CI_Model
 		return $result;
 		
 	}
+	function marks_status_details($clsmasid,$exam_id)
+	   {
+		    //echo $clsmasid;
+		    $query="SELECT * FROM edu_exam_marks_status WHERE status='A' AND exam_id='$exam_id' AND classmaster_id='$clsmasid'";
+			$resultset=$this->db->query($query);
+			$row=$resultset->result();
+			return $row;
+	   }
+	   
 	function getall_stuname($user_id,$cls_masid,$exam_id)
 	   {
 		    $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.exam_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE m.exam_id='$exam_id' AND m.classmaster_id='$cls_masid' AND en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
@@ -247,21 +256,6 @@ Class Examinationmodel extends CI_Model
 		   }
 	  
 	   }
-	   function get_exam_status($exid,$cmid)
-	   {
-		     /*   $sql="SELECT * FROM edu_exam_marks_status WHERE exam_id='$exid' AND classmaster_id='$cmid' AND status='A'";
-			   $res1=$this->db->query($sql);
-			   $res2=$res1->result();
-			   if($res2)
-				 {
-					$data= array("status" => "success");
-					return $data;
-			     }else{
-				     $data= array("status" => "NS");
-				     return $data;
-			   } */
-		   
-	   }
-
+	   
 }
 ?>

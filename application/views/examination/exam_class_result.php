@@ -108,7 +108,7 @@
 										}
 									}else{ echo "<p style=text-align:center;color:red;>No Exam Mark Added</p>"; }
 										?>
-										<?php if(!empty($stu))
+										<?php if(empty($smark))
 									       { ?>
 										<tr>
 										 <td>

@@ -50,12 +50,14 @@
 									        $id=$exam->exam_id;
 											  echo '<input type="hidden" name="examid" value="'.$id.'" />';
 											 }else{ echo "";}
+											 if(!empty($stu))
+									{
                                   ?>
 
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
-								<?php
+									<?php 
   								      if($status=="Success")
 									  {
                                        $cnt= count($subject_name);
@@ -71,7 +73,7 @@
 									<?php
 									$tecid=$marks1[0]->teacher_id;
 									echo '<input type="hidden" id="tid" name="teaid" value="'.$tecid.'" />';
-                                     ?>
+                                     }?>
                                     <tbody>
 										<?php
 									if(!empty($stu))
