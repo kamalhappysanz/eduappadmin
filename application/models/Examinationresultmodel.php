@@ -228,7 +228,7 @@ Class Examinationresultmodel extends CI_Model
 			  }	
 		   
 	   }
-	 function getall_marks_details($user_id)
+	 function getall_marks_details($user_id,$exam_id)
 	 {
 		    $query="SELECT teacher_id FROM edu_users WHERE user_id='$user_id'";
 			$resultset=$this->db->query($query);
@@ -236,7 +236,7 @@ Class Examinationresultmodel extends CI_Model
 			foreach($row as $rows){}
 			$teacher_id=$rows->teacher_id;
 			
-			$sql="SELECT em.*,t.name,t.teacher_id,t.subject,su.* FROM edu_exam_marks AS em,edu_teachers AS t,edu_subject AS su WHERE em.teacher_id='$teacher_id' AND t.teacher_id='$teacher_id' AND t.subject=su.subject_id GROUP BY em.exam_id ";
+			$sql="SELECT em.*,t.name,t.teacher_id,t.subject,su.* FROM edu_exam_marks AS em,edu_teachers AS t,edu_subject AS su WHERE em.exam_id='$exam_id' AND em.teacher_id='$teacher_id' AND t.teacher_id='$teacher_id' AND t.subject=su.subject_id GROUP BY em.classmaster_id ";
 			$resultset=$this->db->query($sql);
 			return $resultset->result();
 	 }

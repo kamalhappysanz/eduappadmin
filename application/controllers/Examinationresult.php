@@ -189,14 +189,36 @@ class Examinationresult extends CI_Controller
                 redirect('examinationresult/exam_mark_details',$datas);
 			}  
 		}
+		
+		public function view_exam_name_marks()
+		{
+			    $datas=$this->session->userdata();
+  	 		    $user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			    if($user_type==2)
+				 {
+					 $datas['result']=$this->examinationresultmodel->get_teacher_id($user_id);
+					 //echo '<pre>';print_r($datas['result']);exit;
+					 //$datas['result'] = $this->examinationresultmodel->getall_details();
+					 //print_r($datas);
+					 $this->load->view('adminteacher/teacher_header');
+					 $this->load->view('adminteacher/examination_result/view_exam_marks',$datas);
+					 $this->load->view('adminteacher/teacher_footer');
+				 }else{
+						redirect('/');
+				 }
+		}
+		
+		
 		public function marks_details_view()
 		{
 			$datas=$this->session->userdata();
   	 		$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			
-			
-			$datas['marks']=$this->examinationresultmodel->getall_marks_details($user_id);
+			$exam_id=$this->input->get('var');
+			//echo $exam_id;exit;
+			$datas['marks']=$this->examinationresultmodel->getall_marks_details($user_id,$exam_id);
 			//echo '<pre>';print_r($datas['marks']);
 			if($user_type==2)
 			    { 
@@ -252,11 +274,11 @@ class Examinationresult extends CI_Controller
 			  if($datas['status']="success")
 			  {
 				$this->session->set_flashdata('msg','Updated Successfully');
-                redirect('examinationresult/marks_details_view',$datas);
+                redirect('examinationresult/view_exam_name_marks',$datas);
 			   //redirect('add_test');		
 			  }else{
 				$this->session->set_flashdata('msg','Falid To Updated');
-                redirect('examinationresult/marks_details_view',$datas);
+                redirect('examinationresult/view_exam_name_marks',$datas);
 			}
 		}
 		
