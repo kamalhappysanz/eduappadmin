@@ -91,10 +91,9 @@ Class Dashboard extends CI_Model
                  <html>
                  <head>  <title></title>
                  </head>
-                 <body style="background-color:beige;">
-
-                   <table cellspacing="0" style=" width: 300px; height: 200px;">
-                       <p>Hi Your Account Password is Reset.Please Use Below Password to login</p>
+                 <body>
+                 <center><p>Hi Your Account Password is Reset.Please Use Below Password to login</p></center>
+                   <table cellspacing="0">
 
                          <tr>
                              <th>Password:</th><td>'.$OTP.'</td>
@@ -138,10 +137,10 @@ Class Dashboard extends CI_Model
                 <html>
                 <head>  <title></title>
                 </head>
-                <body style="background-color:beige;">
+                <body>
+                <center><p>Hi Your Account Password is Reset.Please Use Below Password to login</p></center>
+                  <table cellspacing="0">
 
-                  <table cellspacing="0" style=" width: 300px; height: 200px;">
-                      <p>Hi Your Account Password is Reset.Please Use Below Password to login</p>
 
                         <tr>
                             <th>Password:</th><td>'.$OTP.'</td>
@@ -183,10 +182,9 @@ Class Dashboard extends CI_Model
               <html>
               <head>  <title></title>
               </head>
-              <body style="background-color:beige;">
-
-                <table cellspacing="0" style=" width: 300px; height: 200px;">
-                    <p>Hi Your Account Password is Reset.Please Use Below Password to login</p>
+              <body>
+              <center><p>Hi Your Account Password is Reset.Please Use Below Password to login</p></center>
+                <table cellspacing="0">
 
                       <tr>
                           <th>Password:</th><td>'.$OTP.'</td>
