@@ -7,6 +7,23 @@ class Apimodel extends CI_Model {
         parent::__construct();
     }
 
+
+//#################### Current Year ####################//
+
+	public function sendMail($to,$subject,$htmlContent)
+	{
+		// Set content-type header for sending HTML email
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		// Additional headers
+		$headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+		mail($to,$subject,$htmlContent,$headers);
+	}
+
+
+//#################### Login ####################//
+
+
 //#################### Current Year ####################//
 
 	public function getYear()
@@ -144,6 +161,115 @@ class Apimodel extends CI_Model {
 //#################### Main Login End ####################//
 
 
+//#################### Forgot Password ####################//
+	public function forgotPassword($user_name)
+	{
+			$year_id = $this->getYear();
+			$digits = 6;
+			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+
+
+			$user_query = "SELECT * FROM edu_users WHERE user_name ='".$user_name."' and status='A'";
+			$user_res = $this->db->query($user_query);
+			$user_result= $user_res->result();
+
+
+			if($user_res->num_rows()==1)
+			{
+				foreach ($user_res->result() as $rows)
+				{
+				  $user_id = $rows->user_id;
+				  $user_type = $rows->user_type;
+				  $name = $rows->name;
+				}
+
+				if ($user_type==1)  {
+					$response = array("status" => "sucess", "msg" => "Please contact server Admin");
+				}
+				else if ($user_type==2) {
+
+						$teacher_id = $rows->teacher_id;
+
+						$teacher_query = "SELECT * from edu_teachers WHERE teacher_id ='$teacher_id' AND status = 'A'";
+						$teacher_res = $this->db->query($teacher_query);
+						$teacher_profile= $teacher_res->result();
+
+							foreach($teacher_profile as $rows){
+								$email = $rows->email;
+							}
+
+						$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW(),password_status='0' WHERE user_id='$user_id'";
+						$update_result = $this->db->query($update_sql);
+
+						$subject = "Forgot Password";
+						$htmlContent = 'Dear '. $name . '<br><br>' . 'Username : '. $user_name .'<br>' . 'Password : '. $OTP.'<br><br>Regards<br>Webmaster';
+						$this->sendMail($email,$subject,$htmlContent);
+
+						$response = array("status" => "sucess", "msg" => "Password Updated", "Email" => $email);
+				}
+				else if ($user_type==3) {
+
+						$student_id = $rows->student_id;
+
+						$student_query = "SELECT * from edu_admission WHERE admission_id='$student_id' AND status = 'A'";
+						$student_res = $this->db->query($student_query);
+						$student_profile= $student_res->result();
+
+							foreach($student_profile as $rows){
+								$email = $rows->email;
+							}
+
+						$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW(),password_status='0' WHERE user_id='$user_id'";
+						$update_result = $this->db->query($update_sql);
+
+						$subject = "Forgot Password";
+						$htmlContent = 'Dear '. $name . '<br><br>' . 'Username : '. $user_name .'<br>' . 'Password : '. $OTP.'<br><br>Regards<br>Webmaster';
+						$this->sendMail($email,$subject,$htmlContent);
+
+						$response = array("status" => "sucess", "msg" => "Password Updated", "Email" => $email);
+				}
+				else {
+
+						$parent_id = $rows->parent_id;
+
+						$parent_query = "SELECT * from edu_parents WHERE parent_id='$parent_id' AND status = 'A'";
+						$parent_res = $this->db->query($parent_query);
+						$parent_profile= $parent_res->result();
+
+							foreach($parent_profile as $rows){
+								$email = $rows->email;
+							}
+
+
+						$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW(),password_status='0' WHERE user_id='$user_id'";
+						$update_result = $this->db->query($update_sql);
+
+						$subject = "Forgot Password";
+						$htmlContent = 'Dear '. $name . '<br><br>' . 'Username : '. $user_name .'<br>' . 'Password : '. $OTP.'<br><br>Regards<br>Webmaster';
+						$this->sendMail($email,$subject,$htmlContent);
+
+						$response = array("status" => "sucess", "msg" => "Password Updated", "Email" => $email);
+				}
+
+			} else {
+				$response = array("status" => "error", "msg" => "User Not Found");
+			}
+			return $response;
+	}
+//#################### Forgot Password End ####################//
+
+
+//#################### Reset Password ####################//
+	public function resetPassword($user_id,$password)
+	{
+			$update_sql = "UPDATE edu_users SET user_password = md5('$password'),updated_date=NOW(),password_status='1' WHERE user_id='$user_id'";
+			$update_result = $this->db->query($update_sql);
+
+			$response = array("status" => "sucess", "msg" => "Password Updated");
+			return $response;
+	}
+//#################### Reset Password End ####################//
+
 //#################### Time table for Students and Parents ####################//
 	public function studTimetable($class_id)
 	{
@@ -170,18 +296,25 @@ class Apimodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-             $exam_query = "SELECT ex.exam_id,ex.exam_name, DATE_FORMAT(MIN(exam_date), '%d/%b/%y') AS Fromdate, DATE_FORMAT(MAX(exam_date), '%d/%b/%y') AS Todate FROM edu_examination ex
-                            LEFT JOIN edu_exam_details ed on ex.exam_id = ed.exam_id
-                            WHERE ex.exam_year ='$year_id' and ex.status = 'A' and ed.classmaster_id='$class_id'
-                            GROUP by ex.exam_name
+			$exam_query = "SELECT ex.exam_id,ex.exam_name, COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate, COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
+			CASE WHEN ems.status='A' THEN 1 ELSE 0 END AS MarkStatus
+			FROM edu_examination ex
+			RIGHT JOIN edu_exam_details ed on ex.exam_id = ed.exam_id and ed.classmaster_id='$class_id'
+			LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
+			WHERE ex.exam_year ='$year_id' and ex.status = 'A' and ed.classmaster_id='$class_id'
+			GROUP by ex.exam_name
 
-                            UNION ALL
+			UNION ALL
 
-                            SELECT ex.exam_id,ex.exam_name, DATE_FORMAT(COALESCE(MIN(ed.exam_date),''), '%d/%b/%y') AS Fromdate, DATE_FORMAT(COALESCE(MAX(ed.exam_date),''), '%d/%b/%y') AS Todate FROM edu_examination ex
-                            LEFT JOIN edu_exam_details ed on ed.exam_id = ex.exam_id
-                            WHERE ex.exam_year ='$year_id' and ex.status = 'A' and ex.exam_id NOT IN (SELECT DISTINCT exam_id FROM edu_exam_details where
-                            classmaster_id = '$class_id')
-                            GROUP by ex.exam_name";
+			SELECT ex.exam_id,ex.exam_name, COALESCE(DATE_FORMAT(MIN(ed.exam_date), '%d/%b/%y'),'') AS Fromdate,
+			COALESCE(DATE_FORMAT(MAX(ed.exam_date), '%d/%b/%y'),'') AS Todate,
+			CASE WHEN ems.status='A' THEN 1 ELSE 0 END AS MarkStatus
+			FROM edu_examination ex
+			LEFT JOIN edu_exam_details ed on ed.exam_id = ex.exam_id and ed.classmaster_id='$class_id'
+			LEFT JOIN edu_exam_marks_status ems ON ems.exam_id = ex.exam_id and ems.classmaster_id = ed.classmaster_id
+			WHERE ex.exam_year ='$year_id' and ex.status = 'A' and ex.exam_id NOT IN (SELECT DISTINCT exam_id FROM edu_exam_details where
+			classmaster_id = '$class_id')
+			GROUP by ex.exam_name";
 
 			$exam_res = $this->db->query($exam_query);
 			$exam_result= $exam_res->result();
@@ -190,7 +323,7 @@ class Apimodel extends CI_Model {
 			 if($exam_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Exams Not Found");
 			}else{
-				$response = array("status" => "success", "msg" => "View Exams", "count" => $exam_count, "Exams"=>$exam_result);
+				$response = array("status" => "success", "msg" => "View Exams", "Exams"=>$exam_result);
 			}
 
 			return $response;
@@ -199,41 +332,19 @@ class Apimodel extends CI_Model {
 
 
 //#################### Exam Details for Students and Parents ####################//
-	public function dispExamdetails($class_id,$exam_id,$stud_id)
+	public function dispExamdetails($class_id,$exam_id)
 	{
 			 $year_id = $this->getYear();
-
 
 			$exam_query = "SELECT A.exam_id,A.exam_name,C.subject_name,B.exam_date, B.times FROM `edu_examination` A, `edu_exam_details` B, `edu_subject` C WHERE A.`exam_id` = B. exam_id AND B.subject_id = C.subject_id AND B.classmaster_id ='$class_id' AND B.exam_id='$exam_id'";
 			$exam_res = $this->db->query($exam_query);
 			$exam_result= $exam_res->result();
 			$exam_result_count = $exam_res->num_rows();
 
-			$exam_marks_query = "SELECT * from edu_exam_marks_status WHERE exam_id='$exam_id' AND classmaster_id ='$class_id' AND status='A'";
-			$exam_marks_res = $this->db->query($exam_marks_query);
-			$exam_marks_result= $exam_marks_res->result();
-
-			if($exam_marks_res->num_rows()==0){
-				 $exam_mark_status = '0';
-			}else{
-				 $exam_mark_status = '1';
-			}
-
-
-			$mark_query = "SELECT C.exam_name,B.subject_name,A.marks FROM `edu_exam_marks` A, `edu_subject` B, `edu_examination`C WHERE A.`exam_id` ='$exam_id' AND A.`stu_id` = '$stud_id' AND A.subject_id=B.subject_id AND A.exam_id = C.exam_id";
-			$mark_res = $this->db->query($mark_query);
-			$mark_result= $mark_res->result();
-
-			$total_marks = 0;
-			foreach($mark_result as $rows){
-				$exam_marks = $rows->marks;
-				$total_marks = 	$total_marks + $exam_marks;
-			}
-
 			if($exam_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Exams Not Found");
 			}else{
-				$response = array("status" => "success", "msg" => "View Exam Details", "count"=>$exam_result_count,"examDetails"=>$exam_result,"markStatus"=>$exam_mark_status,"marksDetails"=>$mark_result, "totalMarks"=>$total_marks);
+				$response = array("status" => "success", "msg" => "View Exam Details", "count"=>$exam_result_count,"examDetails"=>$exam_result);
 			}
 
 
@@ -243,7 +354,7 @@ class Apimodel extends CI_Model {
 //#################### Exam Details End ####################//
 
 
-//#################### Exam Details for Students and Parents ####################//
+//#################### Mark Details for Students and Parents ####################//
 	public function dispMarkdetails($stud_id,$exam_id)
 	{
 			$year_id = $this->getYear();
@@ -264,18 +375,16 @@ class Apimodel extends CI_Model {
 				$response = array("status" => "success", "msg" => "View Marks Details", "marksDetails"=>$mark_result, "totalMarks"=>$total_marks);
 			}
 
-
-
 			return $response;
 	}
-//#################### Exam Details End ####################//
+//#################### Mark Details End ####################//
 
 //#################### Homework for Students and Parents ####################//
-	public function dispHomework($class_id)
+	public function dispHomework($class_id,$hw_type)
 	{
 			$year_id = $this->getYear();
 
-			$hw_query = "SELECT A.hw_id,A.hw_type,A.title, A.test_date, A.hw_details, A.mark_status, B.subject_name FROM `edu_homework` A, `edu_subject` B WHERE A.subject_id = B.subject_id AND A.class_id ='$class_id' AND A.year_id='$year_id' AND A.status = 'A'";
+			$hw_query = "SELECT A.hw_id,A.hw_type,A.title, A.test_date, A.hw_details, A.mark_status, B.subject_name FROM `edu_homework` A, `edu_subject` B WHERE A.subject_id = B.subject_id AND A.class_id ='$class_id' AND A.year_id='$year_id' AND A.status = 'A' AND A.hw_type = '$hw_type'";
 			$hw_res = $this->db->query($hw_query);
 			$hw_result= $hw_res->result();
 			$hw_count = $hw_res->num_rows();
@@ -289,6 +398,7 @@ class Apimodel extends CI_Model {
 			return $response;
 	}
 //#################### Homework Details End ####################//
+
 
 //#################### Homework test marks for Students and Parents ####################//
 	public function dispCtestmarks($hw_id,$entroll_id)
@@ -314,12 +424,9 @@ class Apimodel extends CI_Model {
 //#################### Events for Students and Parents ####################//
 	public function dispEvents($class_id)
 	{
-
 			$year_id = $this->getYear();
 
 		 	$event_query = "SELECT event_id,year_id,event_name,event_details,status,DATE_FORMAT(event_date,'%d-%m-%Y') as event_date,sub_event_status FROM `edu_events` WHERE year_id='$year_id' AND status='A'";
-
-
 			$event_res = $this->db->query($event_query);
 			$event_result= $event_res->result();
 			$event_count = $event_res->num_rows();
@@ -336,8 +443,6 @@ class Apimodel extends CI_Model {
 					}
 			}
 */
-
-
 			 if($event_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Events Not Found");
 			}else{

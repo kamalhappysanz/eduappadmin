@@ -58,6 +58,7 @@
 																	<div class="row profile_detail card">
 																	<div class="col-md-6" >
 																		<?php $pic= $rows->student_pic; if(empty($pic)){
+																			
 
 																		} else{  ?>
 																			<img src="<?php echo base_url(); ?>assets/admission	/profile/<?php echo $rows->student_pic; ?>" class="img-responsive" style="width:150px;padding-top:20px;">

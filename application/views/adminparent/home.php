@@ -68,8 +68,8 @@
 																	<div class="col-md-6">
 																		<div class="">
 																			<?php if(empty($rows->guardn_name)){  ?>
-																				<p> Father Name :<?php echo $rows->father_name; ?></p>
-																				<p>  Mother name <span>:<?php echo $rows->mother_name; ?></span></p>
+																				<p> Mr. :<?php echo $rows->father_name; ?></p>
+																				<p>  Mrs. <span>:<?php echo $rows->mother_name; ?></span></p>
 																		<?php	} else{  ?>
 
 																			<p>  Gaurdain name <span>:<?php echo $rows->guardn_name; ?></span></p>

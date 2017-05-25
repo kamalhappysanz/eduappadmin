@@ -18,8 +18,8 @@ Class Teachereventmodel extends CI_Model
           $teacher_id=$result1->result();
           foreach ($teacher_id as $rows) { }
           $teacher_id=$rows->teacher_id;
-         $query="SELECT ev.event_id,ev.event_name,ev.event_date,evc.co_name_id FROM edu_events AS ev  LEFT JOIN edu_event_coordinator AS evc ON ev.event_id= evc.event_id
-          WHERE  evc.co_name_id='$teacher_id' AND ev.status='A' GROUP BY event_id ";
+          $query="SELECT ev.event_id,ev.event_name,ev.event_date,evc.co_name_id FROM edu_events AS ev  LEFT JOIN edu_event_coordinator AS evc ON ev.event_id= evc.event_id
+          WHERE  evc.co_name_id='$teacher_id' AND evc.status='A' GROUP BY event_id ";
           $resultset=$this->db->query($query);
           if($resultset->num_rows()==0){
             $data= array("status" => "failure");
@@ -32,8 +32,7 @@ Class Teachereventmodel extends CI_Model
        }
 
        function get_teacher_allevent(){
-          $query="SELECT ev.event_id,ev.event_name,ev.event_date,evc.co_name_id FROM edu_events AS ev  LEFT JOIN edu_event_coordinator AS evc ON ev.event_id= evc.event_id
-           WHERE ev.event_date >=NOW() AND ev.status='A'  GROUP BY event_id ";
+          $query="SELECT ev.event_id,ev.event_name,ev.event_date FROM edu_events AS ev WHERE ev.status='A' ORDER  BY event_date DESC";
            $resultset=$this->db->query($query);
            if($resultset->num_rows()==0){
              $data= array("status" => "failure");
