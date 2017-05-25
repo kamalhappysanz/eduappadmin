@@ -154,10 +154,10 @@ Class Examinationmodel extends CI_Model
 		
 	}
 	
-	function marks_status()
-	{
+	function marks_statuss($exam_id)
+	{  
 		//$sql="SELECT * FROM edu_exam_marks_status ";
-		$sql="SELECT ms.*,cm.class_sec_id,cm.class,cm.section,c.*,s.* FROM edu_exam_marks_status AS ms,edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE ms.classmaster_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id";
+		$sql="SELECT ms.*,cm.class_sec_id,cm.class,cm.section,c.*,s.* FROM edu_exam_marks_status AS ms,edu_classmaster AS cm,edu_class AS c,edu_sections AS s WHERE ms.exam_id='$exam_id' AND ms.classmaster_id=cm.class_sec_id AND cm.class=c.class_id AND cm.section=s.sec_id";
 		$res=$this->db->query($sql);
 		$result=$res->result();
 		return $result;
@@ -165,7 +165,7 @@ Class Examinationmodel extends CI_Model
 	}
 	function getall_stuname($user_id,$cls_masid,$exam_id)
 	   {
-		    $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
+		    $sql="SELECT en.enroll_id,en.name,en.admisn_no,en.class_id,m.exam_id,m.subject_id,m.classmaster_id,m.marks FROM edu_enrollment AS en,edu_exam_marks AS m WHERE m.exam_id='$exam_id' AND m.classmaster_id='$cls_masid' AND en.class_id='$cls_masid' AND en.enroll_id=m.stu_id ";
 			$res=$this->db->query($sql); 
 			$rows=$res->result();
 			return $rows;

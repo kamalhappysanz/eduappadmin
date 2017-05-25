@@ -308,14 +308,14 @@ class Examination extends CI_Controller
 		 
 	 }
 	 
-	 public function marks_status()
+	 public function marks_status($exam_id)
 	 {
 		 $datas=$this->session->userdata();
 	 	 $user_id=$this->session->userdata('user_id');
 		 $user_type=$this->session->userdata('user_type');
 		
-		 $datas['cls']=$this->examinationmodel->marks_status();
-		 //print_r($datas['cls']);//exit;
+		 $datas['cls']=$this->examinationmodel->marks_statuss($exam_id);
+		// print_r($datas['cls']);exit;
 		 if($user_type==1)
 					{
 					 $this->load->view('header');
@@ -324,7 +324,7 @@ class Examination extends CI_Controller
 					 }
 					 else{
 						redirect('/');
-					 }
+					 } 
 		 
 	 }
 	 
@@ -336,10 +336,10 @@ class Examination extends CI_Controller
 
 			  $cls_masid=$this->input->get('var1');
 			  $exam_id=$this->input->get('var2');
-			 // echo $cls_masid;echo $exam_id;exit;
+			  //echo $cls_masid;echo $exam_id;exit;
 			  $datas=$this->examinationmodel->getall_subname($user_id,$cls_masid,$exam_id);
 			  $datas['stu']=$this->examinationmodel->getall_stuname($user_id,$cls_masid,$exam_id);
-			  $datas['cls']=$this->examinationmodel->marks_status();
+			  $datas['cls']=$this->examinationmodel->marks_statuss($exam_id);
 			  //echo '<pre>';print_r($datas);
 			  //echo '<pre>';print_r($datas['stu']); exit;
 			

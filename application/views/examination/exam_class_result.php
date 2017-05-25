@@ -1,6 +1,5 @@
 
 <div class="main-panel">
-
  <div class="content">
             <div class="container-fluid">
 			<?php if($this->session->flashdata('msg')): ?>
@@ -20,7 +19,7 @@
 							<!--<?php //echo base_url(); ?>examinationresult/marks_details-->
 					<form method="post" action="<?php echo base_url(); ?>examination/marks_status_update" class="form-horizontal" enctype="multipart/form-data" id="markform">
 
-<?php
+            <?php  
                    $cls_id=$this->input->get('var1');
 				   $exam_id=$this->input->get('var2');
 				   //echo $exam_id;echo $cls_id;

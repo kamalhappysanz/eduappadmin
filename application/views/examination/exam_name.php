@@ -7,7 +7,7 @@
                   <div class="header">
                      <h4 class="title">Class & Section</h4>
                   </div>
-                  <div class="content">
+                  <div class="content">  
                      <div class="row">
                         <?php
                            if(empty($exam_name)){   ?>
@@ -19,7 +19,7 @@
  					    ?>
                         
                         <div class="col-md-2">
-                           <a rel="tooltip" href="<?php echo base_url(); ?>examination/marks_status" class="btn btn-wd"><?php echo $rows->exam_name; ?></a>
+                           <a rel="tooltip" href="<?php echo base_url(); ?>examination/marks_status/<?php echo $rows->exam_id; ?>" class="btn btn-wd"><?php echo $rows->exam_name; ?></a>
                         </div>
 						<input type="hidden" name="msta_id" value="<?php echo $rows->exam_status_id; ?>"/>
                         <?php  } }  ?>
