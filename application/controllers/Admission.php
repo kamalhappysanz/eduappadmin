@@ -205,6 +205,7 @@ class Admission extends CI_Controller {
 			 $community_class=$this->input->post('community_class');
 		     $community=$this->input->post('community');
 			 $mother_tongue=$this->input->post('mother_tongue');
+			 $lang=$this->input->post('lang');
 			 $mobile=$this->input->post('mobile');
 			 
 			 $sec_mobile=$this->input->post('sec_mobile');
@@ -231,7 +232,7 @@ class Admission extends CI_Controller {
 						$userFileName=$user_pic_old;
 				}
 
-				$datas=$this->admissionmodel->save_ad($admission_id,$admission_year,$admission_no,$emsi_num,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$status);
+				$datas=$this->admissionmodel->save_ad($admission_id,$admission_year,$admission_no,$emsi_num,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$lang,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$status);
 			//	print_r($datas['status']);exit;
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg', 'Updated Successfully');

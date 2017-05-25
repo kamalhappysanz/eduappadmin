@@ -50,9 +50,9 @@ Class Teacherprofilemodel extends CI_Model
        }
 
 
-  function teacherprofileupdate($user_id,$teachername,$email,$sex,$dob,$age,$nationality,$religion,$mobile,$community_class,$community,$address,$userFileName)
+  function teacherprofileupdate($user_id,$teachername,$email,$sec_email,$sex,$dob,$age,$nationality,$religion,$mobile,$sec_phone,$community_class,$community,$address,$userFileName)
     {
-	 $query="UPDATE edu_teachers SET name='$teachername',email='$email',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',phone='$mobile',address='$address',update_at=NOW() WHERE teacher_id='$user_id'";
+	 $query="UPDATE edu_teachers SET name='$teachername',email='$email',sec_email='$sec_email',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',phone='$mobile',sec_phone='$sec_phone',address='$address',update_at=NOW() WHERE teacher_id='$user_id'";
 
       $query1="UPDATE edu_users SET name='$teachername',user_pic='$userFileName',updated_date=NOW() WHERE teacher_id='$user_id' ";
 

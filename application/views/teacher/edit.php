@@ -290,7 +290,7 @@ $('#teacher2').addClass('active');
      rules: {
 
          name:{required:true }, address:{required:true },
-         email:{required:true,email:true
+        // email:{required:true,email:true
          },
          sex:{required:true },
          dob:{required:true },
@@ -310,7 +310,7 @@ $('#teacher2').addClass('active');
            admission_date: "Select Admission Date",
            name: "Enter Name",
            "class_name[]":"Select class",
-            email: "Enter Email Address",
+            //email: "Enter Email Address",
              remote: "Email already in use!",
            sex: "Select Gender",
            dob: "Select Date of Birth",

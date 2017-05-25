@@ -21,7 +21,7 @@
                      }
 					 ?>
                             <div class="content">
-                                <form method="post" action="<?php echo base_url(); ?>parents/update_parents" class="form-horizontal" onsubmit="return validates()" enctype="multipart/form-data" id="admissionform" name="formadmission">
+                                <form method="post" action="<?php echo base_url(); ?>parents/update_parents" class="form-horizontal" onsubmit="return validates()" enctype="multipart/form-data" id="parentform" name="formadmission">
                                    <fieldset>
                                         <div class="form-group">
 										<p id="erid" style="color:red;"></p>

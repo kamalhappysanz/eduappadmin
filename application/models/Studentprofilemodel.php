@@ -27,9 +27,9 @@ Class Studentprofilemodel extends CI_Model
 	   }
 
 
-       function update_details($admission_year,$admission_no,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$mobile,$email,$userFileName,$admission_id)
+       function update_details($admission_year,$admission_no,$emsi_num,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$lang,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$admission_id)
 	   {
-		   $query="UPDATE edu_admission SET admisn_year='$admission_year',admisn_no='$admission_no',admisn_date='$admission_date',name='$name',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',mother_tongue='$mother_tongue',mobile='$mobile',email='$email' WHERE admission_id='$admission_id'";
+		   $query="UPDATE edu_admission SET admisn_year='$admission_year',admisn_no='$admission_no',emsi_num='$emsi_num',admisn_date='$admission_date',name='$name',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',mother_tongue='$mother_tongue',language='$lang',mobile='$mobile',sec_mobile='$sec_mobile',email='$email',sec_email='$sec_email',last_sch_name='$last_sch',last_studied='$last_studied',qualified_promotion='$qual',transfer_certificate='$tran_cert',record_sheet='$recod_sheet' WHERE admission_id='$admission_id'";
 		   $res=$this->db->query($query);
 
 			 	$query6="UPDATE edu_users SET name='$name',user_pic='$userFileName',updated_date=NOW() WHERE student_id='$admission_id' ";

@@ -12,7 +12,7 @@
                  </div>
 
            <?php endif; ?>
-                           <h4 class="title">Edit  Profile</h4>
+                           <h4 class="title">Student Edit  Profile</h4>
                        </div>
                        <?php
                       // print_r($result);
@@ -42,22 +42,24 @@
                                             <div class="col-sm-4">
                                                 <input type="file" name="user_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
                                             </div>
-                                            <label class="col-sm-2 control-label">&nbsp;</label>
-                                            <!-- <div class="col-sm-4">
-                                              <img  id="output" class="img-circle" style="width:110px;">
-                                            </div> -->
+                                            <label class="col-sm-2 control-label">Admission Date</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" name="admission_date" class="form-control datepicker" readonly value="<?php echo $rows->admisn_date; ?>"  placeholder="Admission Date "/>
+                                            </div>
                                         </div>
                                     </fieldset>
 
                                     <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Admission Date</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" name="admission_date" class="form-control datepicker" readonly value="<?php echo $rows->admisn_date; ?>"  placeholder="Admission Date "/>
-                                            </div>
+                                           
                                             <label class="col-sm-2 control-label">Email</label>
                                             <div class="col-sm-4">
                                                 <input type="text" name="email" class="form-control " placeholder="Email Address" value="<?php echo $rows->email; ?>"/>
+                                            </div>
+											
+											 <label class="col-sm-2 control-label">Secondary Email</label>
+                                            <div class="col-sm-4">
+                                               <input type="text" name="sec_email" class="form-control" placeholder="Secondary Email Address" value="<?php echo $rows->sec_email; ?>" />
                                             </div>
 
                                         </div>
@@ -140,6 +142,23 @@
                                             </div>
                                         </div>
                                     </fieldset>
+									
+									  <fieldset>
+                                        <div class="form-group">
+                                           
+											
+											 <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                            <div class="col-sm-4">
+                                              <input type="text" placeholder="Mobile Number" name="sec_mobile" class="form-control" value="<?php echo $rows->sec_mobile; ?>">
+                                            </div>
+											 <label class="col-sm-2 control-label">EMSI Number</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" name="emsi_num" readonly value="<?php echo $rows->emsi_num; ?>" class="form-control" />
+                                            </div>
+
+                                        </div>
+                                    </fieldset>
+									
 
 									 <fieldset>
                                         <div class="form-group">
@@ -153,7 +172,7 @@
                                      </label>
 
 									<label class="checkbox checkbox-inline">
-										<input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="2"<?php $rows->transfer_certificate=='2'?> checked="checked">Record Sheet
+										<input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="1"<?php $rows->transfer_certificate=='2'?> checked="checked">Record Sheet
 									</label>
 
                                            </div>
@@ -167,19 +186,36 @@
                                             </div>
                                         </div>
                                </fieldset>
-
-                                    <!-- <fieldset>
+							   
+							      <fieldset>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Student New Pic</label>
-                                            <div class="col-sm-4">
-                                                <input type="file" name="student_pic" class="form-control" onchange="loadFile(event)" accept="image/*" >
-                                            </div>
-                                            <label class="col-sm-2 control-label">&nbsp;</label>
-                                            <div class="col-sm-4">
-                                              <img  id="output" class="img-circle" style="width:110px;">
+                                            <label class="col-sm-2 control-label">School Studied</label>
+                                            <div class="col-sm-10">
+                                                <div class="row">
+												<div class="col-md-4">
+                                  <input type="text" name="sch_name" value="<?php echo $rows->last_sch_name; ?>" class="form-control">
+                                                 </div>
+                                                    <div class="col-md-4">
+				<select name="class_name" class="selectpicker" >
+                             <?php foreach ($class as $clas) {  ?>
+                    <option value="<?php  echo $clas->class_id; ?>"><?php  echo $clas->class_name; ?></option>
+                             <?php } ?>
+                </select>
+				<script language="JavaScript">document.formadmission.class_name.value="<?php echo $rows->last_studied; ?>";</script>
+                                                    </div>
+
+                    <div class="col-md-4">
+						<select name="qual" class="selectpicker" >
+						   <option value="1">Yes</option>
+						   <option value="0">No</option>
+                        </select>
+						 <script language="JavaScript">document.formadmission.qual.value="<?php echo $rows->qualified_promotion; ?>";</script>
+                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </fieldset> -->
+                                    </fieldset>
+
                                     <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Current  Pic</label>
@@ -191,7 +227,7 @@
                                               <img src="<?php echo base_url(); ?>assets/students/<?php echo $spic; ?>" class="img-circle" style="width:110px;">
 											<?php } ?>
                                             </div>
-
+											
                                         </div>
                                     </fieldset>
 

@@ -116,6 +116,24 @@
                                        </div>
                                    </div>
                                </div>
+							   
+							     <div class="row">
+                                   <div class="col-md-5">
+                                       <div class="form-group">
+                                           <label>Secondary Email</label>
+                        <input type="text" name="sec_email" placeholder="Email Address" class="form-control" value="<?php echo $rows->sec_email;?>">
+
+                                       </div>
+                                   </div>
+
+                                   <div class="col-md-7">
+                                       <div class="form-group">
+                                           <label for="exampleInputEmail1"> Secondary Mobile</label>
+                                         <input type="text" name="sec_phone" value="<?php echo $rows->sec_phone;?> " class="form-control" placeholder="Mobile Number" />
+                                       </div>
+                                   </div>
+                               </div>
+							 
 
 							    <div class="row">
                                    <div class="col-md-5">
@@ -142,7 +160,7 @@
 
 		             <input type="text" readonly name="subject"  class="form-control" value="<?php echo $sub; ?>">
 
-									  <label for="exampleInputEmail1"> Enail</label>
+									  <label for="exampleInputEmail1"> Email</label>
 									  <input type="text" name="email"  class="form-control " id="email" placeholder="Email Address" onblur="checkMailStatus()"  value="<?php echo $rows->email; ?>"/>
                                        </div>
                                    </div>

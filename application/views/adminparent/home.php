@@ -72,7 +72,7 @@
 																				<p>  Mrs. <span>:<?php echo $rows->mother_name; ?></span></p>
 																		<?php	} else{  ?>
 
-																			<p>  Gaurdain name <span>:<?php echo $rows->guardn_name; ?></span></p>
+																			<p>  Gaurdian name <span>:<?php echo $rows->guardn_name; ?></span></p>
 																		<?php 	}?>
 
 

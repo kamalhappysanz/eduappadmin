@@ -41,6 +41,8 @@ class Studentprofile extends CI_Controller {
 			 $user_type=$this->session->userdata('user_type');
 			 //echo $user_id;exit;
 			 $datas['res'] = $this->studentprofilemodel->getuser($user_id);
+			  $datas['class'] = $this->classmodel->getclass();
+			 
 			   //print_r($datas['res']);exit;
 				if($user_type==3){
 				$this->load->view('adminstudent/student_header');
@@ -65,15 +67,27 @@ class Studentprofile extends CI_Controller {
 			 $admission_date=$this->input->post('admission_date');
 			 $name=$this->input->post('name');
 			 $email=$this->input->post('email');
-		   $sex=$this->input->post('sex');
+		     $sex=$this->input->post('sex');
 			 $dob=$this->input->post('dob');
 			 $age=$this->input->post('age');
-		   $nationality=$this->input->post('nationality');
+		     $nationality=$this->input->post('nationality');
 			 $religion=$this->input->post('religion');
 			 $community_class=$this->input->post('community_class');
-		   $community=$this->input->post('community');
+		     $community=$this->input->post('community');
 			 $mother_tongue=$this->input->post('mother_tongue');
 			 $mobile=$this->input->post('mobile');
+			 $lang=$this->input->post('lang');
+			 $sec_mobile=$this->input->post('sec_mobile');
+			 $sec_email=$this->input->post('sec_email');
+			 
+			 $status=$this->input->post('status');
+			 $last_sch=$this->input->post('sch_name');
+			 $last_studied=$this->input->post('class_name');
+			 $qual=$this->input->post('qual');
+			 //echo $last_sch;exit;			 
+				$tran_cert=$this->input->post('trn_cert');
+				$recod_sheet=$this->input->post('rec_sheet');
+				$emsi_num=$this->input->post('emsi_num');
 			 $user_pic_old=$this->input->post('user_pic_old');
 			 $student_pic = $_FILES["user_pic"]["name"];
 			 $userFileName =$student_pic;
@@ -85,7 +99,7 @@ class Studentprofile extends CI_Controller {
 						$userFileName=$user_pic_old;
 				}
 				
-				$datas=$this->studentprofilemodel->update_details($admission_year,$admission_no,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$mobile,$email,$userFileName,$admission_id);
+				$datas=$this->studentprofilemodel->update_details($admission_year,$admission_no,$emsi_num,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$lang,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$admission_id);
 			//	print_r($datas['status']);exit;
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg', 'Updated Successfully');

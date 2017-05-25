@@ -11,7 +11,7 @@
             <div class="col-md-12">
                <div class="card">
                   <div class="header">
-                     <h4 class="title">Examination Marks</h4>
+                     <h4 class="title">Exam Name</h4>
                   </div>
                   <div class="content">
                      <div class="row">
@@ -47,9 +47,9 @@
 </div>
 <script type="text/javascript">
    $(document).ready(function () {
-   $('#mastersmenu').addClass('collapse in');
-   $('#master').addClass('active');
-   $('#masters2').addClass('active');
+   $('#examinationmenu').addClass('collapse in');
+   $('#exam').addClass('active');
+   $('#exam2').addClass('active');
     $('#classsection').validate({ // initialize the plugin
         rules: {
             test_type:{required:true },
