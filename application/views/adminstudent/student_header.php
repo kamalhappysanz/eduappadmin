@@ -8,7 +8,7 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <!-- Bootstrap core CSS     -->  
+    <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!--  Light Bootstrap Dashboard core CSS    -->
@@ -121,7 +121,7 @@ font-weight: 500;
 								<li>
 										<a  href="<?php echo base_url(); ?>student/attendance">
 												<i class="pe-7s-note2"></i>
-												<p>Attendence	</p>
+												<p>Attendance	</p>
 
 										</a>
 
@@ -154,11 +154,11 @@ font-weight: 500;
 								<li id="exam2">
 									<a href="<?php echo base_url(); ?>student/exam_views">Examination Result</a>
 								</li>
-										
+
 
 											</ul>
 									</div>
-										
+
 									</li>
 
 								<li>

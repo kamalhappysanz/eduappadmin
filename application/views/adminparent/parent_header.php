@@ -121,7 +121,7 @@ font-weight: 500;
 								<li>
 										<a href="<?php echo base_url(); ?>adminparent/attendance">
 												<i class="pe-7s-note2"></i>
-												<p>Attendence</p>
+												<p>Attendance</p>
 
 										</a>
 
@@ -147,11 +147,11 @@ font-weight: 500;
 										<a href="<?php echo base_url(); ?>adminparent/homework">
 												<i class="pe-7s-flag"></i>
 												<p>Home Work</p>
-												
+
 										</a>
-										
+
 								</li>
-								
+
 								<li id="exam">
 										<a data-toggle="collapse"  href="#examinationmenu">
 												<i class="pe-7s-plugin"></i>
@@ -166,13 +166,13 @@ font-weight: 500;
 								<li id="exam2">
 									<a href="<?php echo base_url(); ?>adminparent/exam_result">Examination Result</a>
 								</li>
-										
+
 
 											</ul>
 									</div>
-										
+
 									</li>
-									
+
 								<!-- <li>
 										<a  href="<?php echo base_url(); ?>adminparent/exam_result">
 												<i class="pe-7s-plugin"></i>

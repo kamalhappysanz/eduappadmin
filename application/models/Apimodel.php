@@ -120,7 +120,7 @@ class Apimodel extends CI_Model {
 								$admisson_no = $rows->admisn_no;
 							}
 
-						 $enroll_query = "SELECT A.enroll_id,A.admission_id,A.admisn_no,A.class_id,A.name,C.class_name,D.sec_name from edu_enrollment A, edu_classmaster B, edu_class C, edu_sections D WHERE A.class_id = B.class_sec_id AND B.class = C.class_id AND B.section = D.sec_id AND A.admit_year ='$year_id' AND A.admisn_no = '$admisson_id'";
+						 $enroll_query = "SELECT A.enroll_id,A.admission_id,A.admisn_no,A.class_id,A.name,C.class_name,D.sec_name from edu_enrollment A, edu_classmaster B, edu_class C, edu_sections D WHERE A.class_id = B.class_sec_id AND B.class = C.class_id AND B.section = D.sec_id AND A.admit_year ='$year_id' AND A.admisn_no = '$admisson_no'";
 						$enroll_res = $this->db->query($enroll_query);
 						$stu_enroll_res= $enroll_res->result();
 
@@ -129,9 +129,9 @@ class Apimodel extends CI_Model {
 						return $response;
 				  }
 				  else {
-				  		$parent_id = $rows->parent_id;
+				  		 $parent_id = $rows->parent_id;
 
-						$parent_query = "SELECT * from edu_parents WHERE parent_id='$parent_id' AND status = 'A'";
+						 $parent_query = "SELECT * from edu_parents WHERE parent_id='$parent_id' AND status = 'A'";
 						$parent_res = $this->db->query($parent_query);
 						$parent_profile= $parent_res->result();
 
@@ -347,8 +347,6 @@ class Apimodel extends CI_Model {
 				$response = array("status" => "success", "msg" => "View Exam Details", "count"=>$exam_result_count,"examDetails"=>$exam_result);
 			}
 
-
-
 			return $response;
 	}
 //#################### Exam Details End ####################//
@@ -459,7 +457,7 @@ class Apimodel extends CI_Model {
 	{
 			$year_id = $this->getYear();
 
-			$subevent_query = "SELECT A.sub_event_name,B.name  from edu_event_coordinator A, edu_teachers B WHERE A.event_id = '$event_id' AND A.co_name_id = B.teacher_id";
+			$subevent_query = "SELECT A.sub_event_name,B.name  from edu_event_coordinator A, edu_teachers B WHERE A.event_id = '$event_id' AND A.co_name_id = B.teacher_id AND A.status='A'";
 
 			$subevent_res = $this->db->query($subevent_query);
 			$subevent_result= $subevent_res->result();
