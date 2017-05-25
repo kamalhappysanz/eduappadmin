@@ -43,7 +43,7 @@
 
 					<?php endif; ?>
 
-                        <form method="post" action="<?php echo base_url(); ?>adminlogin/home" id="myform">
+                        <form method="post" action="" id="forgotform">
 
                         <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
 
@@ -76,19 +76,11 @@
 								</div> -->
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <input type="text" placeholder="Enter Username" name="email" class="form-control">
-                                    </div><br>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" placeholder="Password" name="password" class="form-control">
-																				<p class="pull-right"><a href="<?php echo base_url(); ?>home/forgotpassword">Forgot Password</a></p>
-
+                                        <input type="text" placeholder="Enter Username" name="username" class="form-control">
                                     </div>
-
-
-                                </div>
+                                  </div>
                                 <div class="footer text-center">
-                                    <button type="submit" class="btn btn-fill btn-warning btn-wd">Login</button>
+                                    <button type="submit" class="btn btn-fill btn-warning btn-wd">Reset</button>
                                 </div>
 
                             </div>
@@ -180,23 +172,43 @@
 
 
 
-         $(document).ready(function () {
+				$('#forgotform').validate({ // initialize the plugin
+				    rules: {
+				        username:{required:true },
+				    },
+				    messages: {
+				          username: "Enter Username"
+				        },
+				      submitHandler: function(form) {
+				       $.ajax({
+				           url: "<?php echo base_url(); ?>adminlogin/forgotpassword",
+				            type:'POST',
+				           data: $('#forgotform').serialize(),
+				           success: function(response) {
+										 //alert(response);
+										 if(response=="Password  Reset and send to your Mail Please check it"){
+											 swal({
+												   title: "Success",
+												    text: response,
+												     type: "success"
+												   },
+												   function(){
+												     window.location.href = '<?php echo base_url(); ?>';
+												 });
 
-           $('#myform').validate({ // initialize the plugin
-               rules: {
 
-                   email: {required: true},
-                   password:{required:true },
+										 }else if(response=="Username Not found"){
+											 sweetAlert("Oops...", response, "error");
+										 }
+										 else{
+											  sweetAlert("Oops...", "Something went wrong!", "error");
+										 }
 
-               },
-               messages: {
+				           }
+				       });
 
-                     email: "Please Enter Username ",
-                     password: "Please Enter Password"
-
-                   }
-           });
-       });
+				}
+				});
 
     </script>
 

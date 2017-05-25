@@ -61,6 +61,167 @@ Class Dashboard extends CI_Model
      }
 
 
+    //  forgotpassword
+
+
+    function forgotpassword($username){
+      $query="SELECT user_type,teacher_id,parent_id,student_id FROM edu_users WHERE user_name='$username'";
+      $result=$this->db->query($query);
+       if($result->num_rows()==0){
+         echo "Username Not found";
+       }else{
+          foreach($result->result() as $row){}
+           $type_name= $row->user_type;
+        switch ($type_name) {
+
+          case '2':
+               $type_id= $row->teacher_id;
+               $digits = 6;
+               $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+               $reset_pwd=md5($OTP);
+               $reset="UPDATE edu_users SET user_password='$reset_pwd' WHERE teacher_id='$type_id'";
+               $result_pwd=$this->db->query($reset);
+               $query="SELECT email FROM edu_teachers WHERE teacher_id='$type_id'";
+               $result=$this->db->query($query);
+               foreach($result->result() as $row){}
+               $to_mail= $row->email;
+               $to = $to_mail;
+               $subject = '"Password Reset"';
+               $htmlContent = '
+                 <html>
+                 <head>  <title></title>
+                 </head>
+                 <body style="background-color:beige;">
+
+                   <table cellspacing="0" style=" width: 300px; height: 200px;">
+                       <p>Hi Your Account Password is Reset.Please Use Below Password to login</p>
+
+                         <tr>
+                             <th>Password:</th><td>'.$OTP.'</td>
+                         </tr>
+                         <tr>
+                             <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+                         </tr>
+                     </table>
+                 </body>
+                 </html>';
+
+             // Set content-type header for sending HTML email
+             $headers = "MIME-Version: 1.0" . "\r\n";
+             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+             // Additional headers
+             $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+             $sent= mail($to,$subject,$htmlContent,$headers);
+             if($sent){
+                 echo "Password  Reset and send to your Mail Please check it";
+             }else{
+               echo "Somthing Went Wrong";
+             }
+
+
+              exit;
+            break;
+          case '3':
+              $type_id= $row->student_id;
+              $digits = 6;
+              $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+              $reset_pwd=md5($OTP);
+              $reset="UPDATE edu_users SET user_password='$reset_pwd' WHERE student_id='$type_id'";
+              $result_pwd=$this->db->query($reset);
+              $query="SELECT email FROM edu_admission WHERE admission_id='$type_id'";
+              $result=$this->db->query($query);
+              foreach($result->result() as $row){}
+              $to_mail= $row->email;
+              $to = $to_mail;
+              $subject = '"Password Reset"';
+              $htmlContent = '
+                <html>
+                <head>  <title></title>
+                </head>
+                <body style="background-color:beige;">
+
+                  <table cellspacing="0" style=" width: 300px; height: 200px;">
+                      <p>Hi Your Account Password is Reset.Please Use Below Password to login</p>
+
+                        <tr>
+                            <th>Password:</th><td>'.$OTP.'</td>
+                        </tr>
+                        <tr>
+                            <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+                        </tr>
+                    </table>
+                </body>
+                </html>';
+
+            // Set content-type header for sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            // Additional headers
+            $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+            $sent= mail($to,$subject,$htmlContent,$headers);
+            if($sent){
+                echo "Password  Reset and send to your Mail Please check it";
+            }else{
+              echo "Somthing Went Wrong";
+            }
+
+            break;
+          case '4':
+            $type_id= $row->parent_id;
+            $digits = 6;
+            $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+            $reset_pwd=md5($OTP);
+            $reset="UPDATE edu_users SET user_password='$reset_pwd' WHERE parent_id='$type_id'";
+            $result_pwd=$this->db->query($reset);
+            $query="SELECT email FROM edu_parents WHERE parent_id='$type_id'";
+            $result=$this->db->query($query);
+            foreach($result->result() as $row){}
+            $to_mail= $row->email;
+            $to = $to_mail;
+            $subject = '"Password Reset"';
+            $htmlContent = '
+              <html>
+              <head>  <title></title>
+              </head>
+              <body style="background-color:beige;">
+
+                <table cellspacing="0" style=" width: 300px; height: 200px;">
+                    <p>Hi Your Account Password is Reset.Please Use Below Password to login</p>
+
+                      <tr>
+                          <th>Password:</th><td>'.$OTP.'</td>
+                      </tr>
+                      <tr>
+                          <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+                      </tr>
+                  </table>
+              </body>
+              </html>';
+
+          // Set content-type header for sending HTML email
+          $headers = "MIME-Version: 1.0" . "\r\n";
+          $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+          // Additional headers
+          $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+          $sent= mail($to,$subject,$htmlContent,$headers);
+          if($sent){
+              echo "Password  Reset and send to your Mail Please check it";
+          }else{
+            echo "Somthing Went Wrong";
+          }
+
+            break;
+          default:
+            echo "No result found";
+            break;
+        }
+
+
+
+       }
+
+    }
+
       // Search function in Admin Panel
 
      function search_data($ser_txt,$user_type){

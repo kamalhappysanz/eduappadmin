@@ -43,6 +43,11 @@ class Home extends CI_Controller {
 
 
 
+	public function forgotpassword(){
+		 $this->load->view('forgotpassword');
+	}
+
+
 
 
 

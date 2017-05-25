@@ -24,6 +24,8 @@ Class Teachermodel extends CI_Model
 
            $resultset=$this->db->query($query);
            $insert_id = $this->db->insert_id();
+          $digits = 6;
+       		$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
 		   $sql="SELECT count(*) AS teacher FROM edu_teachers" ;
 			 // $resultsql=$this->db->query($sql);
@@ -32,14 +34,14 @@ Class Teachermodel extends CI_Model
                $cont=$result1[0]->teacher;
 			   $user_id=$cont+800000;
          $to = $email;
-       $subject = '"Welcome Message"';
-       $htmlContent = '
+         $subject = '"Welcome Message"';
+         $htmlContent = '
            <html>
            <head>  <title></title>
            </head>
            <body style="background-color:beige;">
 
-              <center> <table cellspacing="0" style=" width: 300px; height: 200px;">
+             <table cellspacing="0" style=" width: 300px; height: 200px;">
                    <tr>
                        <th>Name:</th><td>'.$name.'</td>
                    </tr>
@@ -50,12 +52,12 @@ Class Teachermodel extends CI_Model
                        <th>Username :</th><td>'.$user_id.'</td>
                    </tr>
                    <tr>
-                       <th>Password:</th><td>123456</td>
+                       <th>Password:</th><td>'.$OTP.'</td>
                    </tr>
                    <tr>
                        <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
                    </tr>
-               </table></center>
+               </table>
            </body>
            </html>';
 
@@ -67,7 +69,7 @@ Class Teachermodel extends CI_Model
        mail($to,$subject,$htmlContent,$headers);
 
 
-            $query="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,teacher_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5(12345),'$userFileName','2','$insert_id',NOW(),NOW(),'A')";
+            $query="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,teacher_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5($OTP),'$userFileName','2','$insert_id',NOW(),NOW(),'A')";
           $resultset=$this->db->query($query);
             $data= array("status" => "success");
             return $data;

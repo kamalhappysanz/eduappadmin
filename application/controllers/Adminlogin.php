@@ -168,6 +168,14 @@ class Adminlogin extends CI_Controller {
 }
 
 
+	public function forgotpassword(){
+
+		$username=$this->input->post('username');
+		$datas=$this->dashboard->forgotpassword($username);
+	}
+
+
+
 	public function dashboard(){
 		 $datas=$this->session->userdata();
 		 $user_id=$this->session->userdata('user_id');
@@ -195,7 +203,7 @@ class Adminlogin extends CI_Controller {
 			$datas['stud_details']=$this->dashboard->get_students($user_id);
 			$datas['stud_circular']=$this->dashboard->get_students_circular($user_id);
 			$datas['stud_cls_id']=$this->dashboard->get_students_cls_id($user_id);
-			
+
 			//print_r($datas['stud_circular']);exit;
 
 			$this->load->view('adminstudent/student_header',$datas);
