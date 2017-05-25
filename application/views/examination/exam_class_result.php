@@ -1,4 +1,3 @@
-
 <div class="main-panel">
  <div class="content">
             <div class="container-fluid">
@@ -109,12 +108,15 @@
 										}
 									}else{ echo "No Exam Mark Added"; }
 										?>
+										<?php if(!empty($stu))
+									       { ?>
 										<tr>
 										 <td>
 										 <div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Approve</button>
                                           </div> </td>
 										</tr>
+										   <?php }else{ echo""; }?>
                                     </tbody>
                                 </table>
 								</form>

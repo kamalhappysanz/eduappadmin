@@ -40,8 +40,9 @@
 									        $id=$exam->exam_id;
                                       echo '<input type="hidden" name="examid" value="'.$id.'" />';
 									  }else{ echo "";}
-                                  ?>
 
+                                      if(!empty($res))
+									  {?>
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
@@ -93,16 +94,17 @@
 										}?>
 										<tr>
 										<td></td><td></td>
-										 <td>
-										 <?php if(empty($mark)){ ?>
+										<?php if(empty($mark) && !empty($res) ){ ?>
+										<td>
 										 <div class="col-sm-10">
                                              <button type="submit" class="btn btn-info btn-fill center">Save</button>
                                           </div>
-										 <?php }else{ echo "";} ?>
 										 </td>
+										<?php }else{ echo ""; }?>
 										</tr>
 
                                     </tbody>
+									  <?php }else{ echo "<p style=text-align:center;color:red;>Student Not Found </p>"; } ?>
                                 </table>
 
 								</form>

@@ -31,7 +31,7 @@ Class Teachermodel extends CI_Model
                $result1= $resultsql->result();
                $cont=$result1[0]->teacher;
 			   $user_id=$cont+800000;
-         $to = $email;
+       $to = $email;
        $subject = '"Welcome Message"';
        $htmlContent = '
            <html>
@@ -65,7 +65,6 @@ Class Teachermodel extends CI_Model
        // Additional headers
        $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
        mail($to,$subject,$htmlContent,$headers);
-
 
             $query="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,teacher_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5(12345),'$userFileName','2','$insert_id',NOW(),NOW(),'A')";
           $resultset=$this->db->query($query);
