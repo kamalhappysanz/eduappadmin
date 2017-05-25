@@ -4,7 +4,7 @@
          <div class="col-md-12">
 
                         <div class="card">
-                            <div class="header">View the Attendece By Class wise</div>
+                            <div class="header">View the Attendance By Class wise</div>
                             <div class="content">
                                 <div class="row">
                               <?php

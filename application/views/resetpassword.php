@@ -45,7 +45,7 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>Old Password</label>
-                                           <input type="text" class="form-control" name="oldpassword" placeholder="Current Password" value="">
+                                           <input type="password" class="form-control" name="oldpassword" placeholder="Current Password" value="">
                                        </div>
                                    </div>
                                    <div class="col-md-6">
@@ -57,13 +57,13 @@
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>New Password</label>
-                                           <input type="text" class="form-control"  name="newpassword" id="newpassword" placeholder="New Password" value="">
+                                           <input type="password" class="form-control"  name="newpassword" id="newpassword" placeholder="New Password" value="">
                                        </div>
                                    </div>
                                    <div class="col-md-6">
                                        <div class="form-group">
                                            <label>Re-type Password</label>
-                                           <input type="text" class="form-control" name="retypepassword" placeholder="Re-type Password" value="">
+                                           <input type="password" class="form-control" name="retypepassword" placeholder="Re-type Password" value="">
                                        </div>
                                    </div>
                                </div>

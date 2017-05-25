@@ -4,7 +4,7 @@
          <div class="col-md-12">
 
                         <div class="card">
-                            <div class="header">List of Class For Attendence</div>
+                            <div class="header">List of Class For Attendance</div>
                             <div class="content">
                                 <div class="row">
                               <?php

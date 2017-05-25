@@ -120,13 +120,13 @@ font-weight: 500;
 								<li id="atten">
 										<a data-toggle="collapse" href="#attendmenu">
 												<i class="pe-7s-note2"></i>
-												<p>Attendence	</p>
+												<p>Attendance	</p>
 												<b class="caret"></b>
 										</a>
 										<div class="collapse" id="attendmenu">
 											<ul class="nav">
-													<li id="atten1"><a href="<?php echo base_url();  ?>teacherattendence/home">Update Attendence</a></li>
-													<li id="atten2"><a href="<?php echo base_url();  ?>teacherattendence/view">View Attendence</a></li>
+													<li id="atten1"><a href="<?php echo base_url();  ?>teacherattendence/home">Update Attendance</a></li>
+													<li id="atten2"><a href="<?php echo base_url();  ?>teacherattendence/view">View Attendance</a></li>
 													<!-- <li id="atten3"><a href="<?php echo base_url();  ?>teacherattendence/monthview">Month view</a></li> -->
 
 											</ul>
