@@ -12,12 +12,11 @@
                         <?php
                            if(empty($exam_name)){   ?>
                         <div class="col-md-2">
-                           <p>No Marks Added</p>
+                           <p style="padding:10px;color:red;text-align:center;">No Marks Added</p>
                         </div>
                         <?php  }  else{ 
                                   foreach($exam_name as $rows){
  					    ?>
-                        
                         <div class="col-md-2">
                            <a rel="tooltip" href="<?php echo base_url(); ?>examination/marks_status/<?php echo $rows->exam_id; ?>" class="btn btn-wd"><?php echo $rows->exam_name; ?></a>
                         </div>

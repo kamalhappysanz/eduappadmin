@@ -93,7 +93,7 @@ Class Examinationresultmodel extends CI_Model
 	   
 	   function getall_exam_details($exam_id)
 	   {
-		   $sql="SELECT * FROM edu_exam_details WHERE exam_id='$exam_id'";
+		   $sql="SELECT * FROM edu_exam_details WHERE exam_id='$exam_id' GROUP By classmaster_id";
 		   $resultset1=$this->db->query($sql);
 		   $res=$resultset1->result();
            return $res;

@@ -50,10 +50,8 @@
 									        $id=$exam->exam_id;
 											  echo '<input type="hidden" name="examid" value="'.$id.'" />';
 											 }else{ echo "";}
-
                                   ?>
 
-							
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>
@@ -129,7 +127,7 @@
                                           </div> </td></tr>
 										<?php }?>
 											<?php 
-									}else{ echo "No Exam Mark Added"; }
+									}else{ echo "<p style=color:red;text-align:center;>No Exam Mark Added</p>"; }
 										?>
 
                                     </tbody>

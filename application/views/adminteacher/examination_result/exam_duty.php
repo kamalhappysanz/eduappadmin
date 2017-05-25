@@ -20,6 +20,10 @@
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover">
+								 <?php
+									  if(empty($duty)){
+										  echo "<p style=padding:10px;color:red;text-align:center;>No Exam Duty Allocated</p>";
+									  }else{?>
                                     <thead>
                                         <th>S.No</th>
                                     	<th>Exam Name</th>
@@ -29,11 +33,8 @@
 										<th>Class & Section </th>
                                     </thead>
                                     <tbody>
-									  <?php
-									  if(empty($duty)){
-										  echo "No Exam Duty Allocated";
-									  }else{
-                                           $i=1;
+									 
+                                           <?php $i=1;
 										   
 										   foreach ($duty as $res)
 										   {
