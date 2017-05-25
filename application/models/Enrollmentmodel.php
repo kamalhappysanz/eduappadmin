@@ -15,6 +15,10 @@ Class Enrollmentmodel extends CI_Model
           $check_email="SELECT * FROM edu_enrollment WHERE admisn_no='$admisn_no'";
           $result=$this->db->query($check_email);
           if($result->num_rows()==0){
+			  
+			  $digits = 6;
+		      $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+		
 			  $admisn="select name,admission_id from edu_admission WHERE admisn_no='".$admisn_no."'";
      	      $resultset = $this->db->query($admisn);
 		      foreach ($resultset->result() as $rows)
@@ -24,19 +28,17 @@ Class Enrollmentmodel extends CI_Model
             $query="INSERT INTO edu_enrollment (admission_id,admit_year,admit_date,admisn_no,name,class_id,created_at,status) VALUES ('$admisnid','$admit_year','$formatted_date','$admisn_no','$name','$class',NOW(),'$status')";
             $resultset=$this->db->query($query);
 
-        // Student User Creation
+            //Student User Creation
              $sql="SELECT count(*) AS student FROM edu_admission" ;
              $resultsql=$this->db->query($sql);
              $result1= $resultsql->result();
              $cont=$result1[0]->student;
              $user_id=$cont+400000;
-             $stude_insert="INSERT INTO edu_users (name,user_name,user_password,user_type,student_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5(123),'3','$admission_id',NOW(),NOW(),'DA')";
+             $stude_insert="INSERT INTO edu_users (name,user_name,user_password,user_type,student_id,created_date,updated_date,status) VALUES ('$name','$user_id',md5($OTP),'3','$admission_id',NOW(),NOW(),'DA')";
              $resultset=$this->db->query($stude_insert);
 
-
-
-      			$query2="UPDATE edu_admission SET enrollment='1' WHERE admisn_no='$admisn_no'";
-      			$resultset=$this->db->query($query2);
+      		 $query2="UPDATE edu_admission SET enrollment='1' WHERE admisn_no='$admisn_no'";
+      		 $resultset=$this->db->query($query2);
 
             $data= array("status" => "success");
             return $data;

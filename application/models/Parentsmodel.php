@@ -14,7 +14,7 @@ Class Parentsmodel extends CI_Model
         function ad_parents($admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2)
 		{
 		
-		$digits = 8;
+		$digits = 6;
 		$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 		//echo $OTP;exit; 		
 			
