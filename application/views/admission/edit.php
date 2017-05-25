@@ -125,6 +125,21 @@
                                             </div>
                                         </div>
                                     </fieldset>
+									
+									 <fieldset>
+                                        <div class="form-group">
+                                         <label class="col-sm-2 control-label">Secondary Mobile</label>
+                                          <div class="col-sm-4">
+                                              <input type="text" placeholder="Mobile Number" name="sec_mobile" class="form-control" value="<?php echo $rows->sec_mobile; ?>">
+                                          </div>
+                                          <label class="col-sm-2 control-label">Secondary-Email</label>
+                                          <div class="col-sm-4">
+                                              <input type="text" name="sec_email" class="form-control" placeholder="Secondary Email Address" value="<?php echo $rows->sec_email; ?>" />
+                                          </div>
+
+                                        </div>
+                                    </fieldset>
+									
 
 									 <fieldset>
                                         <div class="form-group">
@@ -222,13 +237,16 @@
 											 <label class="col-sm-2 control-label">Current  Pic</label>
                                             <div class="col-sm-4">
                                                 <input type="hidden" placeholder="Mobile Number" name="user_pic_old" class="form-control" value="<?php echo $rows->student_pic; ?>">
+												 <?php $spic=$rows->student_pic;
+											   if(empty($spic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
                                               <img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" class="img-circle" style="width:110px;">
+											<?php }?>
                                             </div>
                                         </div>
                                     </fieldset>
 									
-									
-
 
                                     <fieldset>
                                         <div class="form-group">

@@ -71,6 +71,7 @@ class Parents extends CI_Controller {
 				    $office_phone=$this->input->post('office_phone');
 					$mobile=$this->input->post('mobile');
 					$mobile1=$this->input->post('mobile1');
+					$status=$this->input->post('status');
 				  
 					$father_pic = $_FILES["father_pic"]["name"];
 				    $userFileName =$father_pic;
@@ -92,7 +93,7 @@ class Parents extends CI_Controller {
 					
 					
 														
-	$datas=$this->parentsmodel->ad_parents($admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2);
+	$datas=$this->parentsmodel->ad_parents($admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2,$status);
 					
 				
 			//	print_r($datas['status']);exit;

@@ -45,7 +45,7 @@
 								            <select class="form-control" id="choose" >
 												<option>Choose</option>
 												<option value="parents">Parents</option>
-												<option value="guardian">Guardain</option>
+												<option value="guardian">Guardian</option>
 											</select>
 											</div>
 											</div>
@@ -168,7 +168,20 @@
                                             <div class="col-sm-4">
                                                 <input type="text" placeholder="Mobile Number" name="mobile1" class="form-control">
                                             </div>
-
+											
+											<label class="col-sm-2 control-label">Status</label>
+                                            <div class="col-sm-4">
+                                              <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                                  <option value="A">Active</option>
+                                                  <option value="DA">DE-Active</option>
+                                              </select>
+                                     
+                                            </div>
+											
+											  </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="form-group">
 											<label class="col-sm-2 control-label">&nbsp;</label>
 
                                             <div class="col-sm-4">
@@ -223,10 +236,9 @@
 						<div class="col-sm-4">
 	                     <input type="hidden" name="admission_no" class="form-control" placeholder=""  value="<?php echo $result; ?>">
 							<input type="text" required name="cell" placeholder="Enter Your Mobile Number" class="form-control" onkeyup="checkcellfun(this.value)" value="">
-							
 							<p id="msg1"> </p>
-							
 						</div>
+
 						<label class="col-sm-2 control-label">&nbsp;</label>
 
 						<div class="col-sm-4">

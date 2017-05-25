@@ -196,7 +196,7 @@
 						  	 <fieldset>
                                         <div class="form-group">
                                            <label class="col-sm-2 control-label">Certificates</label>
-                                           <div class="col-sm-10">
+                                           <div class="col-sm-4">
                                      <label class="checkbox checkbox-inline">
                                        <input type="checkbox" data-toggle="checkbox" name="trn_cert" value="1">Transfer Certificate
                                      </label>
@@ -205,6 +205,17 @@
 										<input type="checkbox" data-toggle="checkbox" name="rec_sheet" value="1">Record Sheet
 									</label>
                                            </div>
+										   
+										   <label class="col-sm-2 control-label">Status</label>
+                                            <div class="col-sm-4">
+                                              <select name="status" class="selectpicker form-control" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+
+                                                  <option value="A">Active</option>
+                                                    <option value="DA">DE-Active</option>
+
+                                              </select>
+                                            </div>
+											
                                         </div>
                                </fieldset>
 
@@ -277,7 +288,7 @@ $('#admission1').addClass('active');
           // student_pic:"Enter the Student Picture"
          }
 
- });
+ }); 
 });
 
 </script>

@@ -84,6 +84,8 @@ class Admission extends CI_Controller {
 			 $mother_tongue=$this->input->post('mother_tongue');
 			 
 			 $language=$this->input->post('lang');
+			 $status=$this->input->post('status');
+			 //echo $status;exit;
 			 
 			 $mobile=$this->input->post('mobile');
 			 $sec_mobile=$this->input->post('sec_mobile');
@@ -102,7 +104,7 @@ class Admission extends CI_Controller {
 				$recod_sheet=$this->input->post('rec_sheet');
 				$emsi_num=$this->input->post('emsi_num');
 				
-				$datas=$this->admissionmodel->ad_create($admission_year,$admission_no,$emsi_num,$formatted_date,$name,$sex,$dob_date,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$language,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet);
+				$datas=$this->admissionmodel->ad_create($admission_year,$admission_no,$emsi_num,$formatted_date,$name,$sex,$dob_date,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$language,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$status);
 			     //print_r($datas['status']); print_r($datas['last_id']);exit;
                //print_r$data['admisn_no'] ; exit;
        
@@ -205,6 +207,9 @@ class Admission extends CI_Controller {
 			 $mother_tongue=$this->input->post('mother_tongue');
 			 $mobile=$this->input->post('mobile');
 			 
+			 $sec_mobile=$this->input->post('sec_mobile');
+			 $sec_email=$this->input->post('sec_email');
+			 
 			 $status=$this->input->post('status');
 			 $last_sch=$this->input->post('sch_name');
 			 $last_studied=$this->input->post('class_name');
@@ -226,7 +231,7 @@ class Admission extends CI_Controller {
 						$userFileName=$user_pic_old;
 				}
 
-				$datas=$this->admissionmodel->save_ad($admission_id,$admission_year,$admission_no,$emsi_num,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$mobile,$email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$status);
+				$datas=$this->admissionmodel->save_ad($admission_id,$admission_year,$admission_no,$emsi_num,$admission_date,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$mobile,$sec_mobile,$email,$sec_email,$userFileName,$last_sch,$last_studied,$qual,$tran_cert,$recod_sheet,$status);
 			//	print_r($datas['status']);exit;
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg', 'Updated Successfully');

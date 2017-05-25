@@ -25,24 +25,7 @@
                                    <fieldset>
                                         <div class="form-group">
 										<p id="erid" style="color:red;"></p>
-										<label class="col-sm-2 control-label">Select</label>
-										<div class="col-sm-4">
-								            <select class="form-control" id="choose" >
-												<?php if($a!='' && $b!='')
-									              {
-									             ?>
-												<option value="parents">Parents</option>
-												<option value="guardian">Guardian</option>
-												<?php
-												  }else{
-												?>
-												<option value="guardian">Guardian</option>
-												<option value="parents">Parents</option>
-												<?php
-												  }
-												  ?>
-											</select> 
-											</div>
+
 										<label class="col-sm-2 control-label">Student Name</label>
 										<div class="col-sm-4">
 				 <select multiple name="teacher[]" class="selectpicker form-control"  >
@@ -72,67 +55,7 @@
 <input type="hidden" name="parent_id" class="form-control" placeholder="" value="<?php echo $rows->parent_id ; ?>">
 								</fieldset>
 
-						<div id="stuparents" style="display:none">	
-								<fieldset>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Father Name</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" name="father_name" id="father_name" class="form-control" placeholder="Father Name" value="<?php echo $rows->father_name ;?>">
-                                            </div>
-											
-                                            <label class="col-sm-2 control-label">Mother Name</label>
-                                           <div class="col-sm-4">
-                                                <input type="text" name="mother_name" id="mother_name" class="form-control" placeholder="Mother Name" value="<?php echo $rows->mother_name; ?>">
-                                            </div>
-				                     </div>
-                                   
-                                        <div class="form-group">
-                                             <label class="col-sm-2 control-label">Mother Pic</label>
-                                            <div class="col-sm-4">
-                                                <input type="file" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $rows->mother_pic; ?>" class="img-circle" style="width:110px;">
-												 <img  id="output1" class="img-circle" style="width:110px;">
-												 <input type="hidden" placeholder="" name="old_mother_pic" class="form-control" value="<?php echo $rows->mother_pic; ?>">
-                                            </div>
-											
-                                          <label class="col-sm-2 control-label">Father Pic</label>
-                                            <div class="col-sm-4">
-                                                <input type="file" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $rows->father_pic; ?>" class="img-circle" style="width:110px;">
-												 <img  id="output" class="img-circle" style="width:110px;">
-												<input type="hidden" placeholder="" name="old_father_pic" class="form-control" value="<?php echo $rows->father_pic; ?>">
-                                            </div>
-											
-                                        </div>
-                                    </fieldset>
-						</div>			
-     
-						<div id="stuguardian" style="display:none">
-								   <fieldset>
-                                        <div class="form-group">
-                                             <label class="col-sm-2 control-label">Guardian Name</label>
-                                            <div class="col-sm-4">
-											<input type="text" name="guardn_name" id="guardn_name" class="form-control" placeholder="Guardian Name" value="<?php echo $rows->guardn_name ;?>">
-                                            </div>
-                                            
-                                          <label class="col-sm-2 control-label">Guardian Pic</label>
-                                            <div class="col-sm-4">
-                                                <input type="file" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
-												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $rows->guardn_pic; ?>" class="img-circle" style="width:110px;">
-												<input type="hidden" placeholder="" name="old_guardian_pic" class="form-control" value="<?php echo $rows->guardn_pic; ?>">
-												
-                                              <img  id="output2" class="img-circle" style="width:110px;">
-                                            </div>
-                                          
-                                       </div>
-                                    </fieldset>
-
-									</div>
 								<!--teacher -->
-								<div id="stuparents">
-									<?PHP if($a!='' && $b!='')
-									{
-									?><div id="msg">
 									<fieldset>
                                         <div class="form-group">
 											
@@ -152,7 +75,13 @@
                                              <label class="col-sm-2 control-label">Mother Pic</label>
                                             <div class="col-sm-4">
                                                 <input type="file" name="mother_pic" id="mpic" class="form-control" onchange="loadFile1(event)" accept="image/*" >
+												
+												<?php $mpic=$rows->mother_pic;
+											   if(empty($mpic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
 												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $rows->mother_pic; ?>" class="img-circle" style="width:110px;">
+											<?php } ?>
 												 <img  id="output1" class="img-circle" style="width:110px;">
 												 <input type="hidden" placeholder="" name="old_mother_pic" class="form-control" value="<?php echo $rows->mother_pic; ?>">
                                             </div>
@@ -160,20 +89,22 @@
                                           <label class="col-sm-2 control-label">Father Pic</label>
                                             <div class="col-sm-4">
                                                 <input type="file" name="father_pic" id="fpic" class="form-control" onchange="loadFile(event)" accept="image/*" >
+												
+												 <?php $fpic=$rows->father_pic;
+											   if(empty($fpic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
+											
 												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $rows->father_pic; ?>" class="img-circle" style="width:110px;">
+											<?php } ?>
 												 <img  id="output" class="img-circle" style="width:110px;">
 												<input type="hidden" placeholder="" name="old_father_pic" class="form-control" value="<?php echo $rows->father_pic; ?>">
                                             </div>
 											
                                         </div>
                                     </fieldset>
-									</div>
-									</div>
-									<div id="stuguardian" style="display:none">
-									<?php 
-									}else{
-										?>
-                                     <div id="msg1">
+									
+									
 										 <fieldset>
                                         <div class="form-group">
                                              <label class="col-sm-2 control-label">Guardian Name</label>
@@ -184,20 +115,18 @@
                                           <label class="col-sm-2 control-label">Guardian Pic</label>
                                             <div class="col-sm-4">
                                                 <input type="file" name="guardn_pic" id="gpic" class="form-control" onchange="loadFile2(event)" accept="image/*" >
+											 <?php $gpic=$rows->guardn_pic;
+											   if(empty($gpic)){?>
+												  <img src="<?php echo base_url(); ?>assets/noimg.png" class="img-circle" style="width:110px;">
+											<?php }else{?>
 												<img src="<?php echo base_url(); ?>assets/parents/<?php echo $rows->guardn_pic; ?>" class="img-circle" style="width:110px;">
+											<?php } ?>
 												<input type="hidden" placeholder="" name="old_guardian_pic" class="form-control" value="<?php echo $rows->guardn_pic; ?>">
                                               <img  id="output2" class="img-circle" style="width:110px;">
                                             </div>
                                            </div>
 										   </fieldset>
-										   </div>
-					
-									<?php
-									}
-									?>
-									</div>
 								<!--   -->
-									
                                    <fieldset>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Occupation</label>
@@ -291,11 +220,11 @@ function validates()
 		var fname = document.getElementById("father_name").value;
 		var mname = document.getElementById("mother_name").value;
 		var gname = document.getElementById("guardn_name").value;
-		
-	if(gname=="")
+		//alert(fname);alert(gname);
+	if(fname=="" && gname=="")
      {
 		 $("#erid").html("Please Enter Parents Details Or Guardain Details");
-		 //document.formadmission.father_name.focus() ;
+		 document.formadmission.father_name.focus() ;
 		 return false;
      }
 	    document.getElementById("parentform").submit();   
@@ -327,9 +256,9 @@ $(document).ready(function () {
  $('#parentform').validate({ // initialize the plugin
      rules: {
          admission_no:{required:true, number: true },
-         father_name:{required:true },
-         mother_name:{required:true },
-         guardn_name:{required:true },
+         //father_name:{required:true },
+        // mother_name:{required:true },
+         //guardn_name:{required:true },
          email:{required:true,email:true},
          occupation:{required:true },
          income:{required:true },
@@ -346,9 +275,9 @@ $(document).ready(function () {
 	
      messages: {
            admission_no: "Enter Admission No",
-           father_name: "Enter Father Name",
-           mother_name: "Enter Mother Name",
-           guardn_name: "Enter Guardian Name",
+          // father_name: "Enter Father Name",
+           //mother_name: "Enter Mother Name",
+          // guardn_name: "Enter Guardian Name",
            occupation: "Enter Occupation",
            income: "Enter Income",
            address: "Enter Address",
@@ -367,7 +296,7 @@ $(document).ready(function () {
          }
  });
 }); 
-    $(function () {
+    /* $(function () {
         $("#choose").change(function () {
             if ($(this).val() == "parents") {
                 $("#stuparents").show();
@@ -390,6 +319,6 @@ $(document).ready(function () {
 				
             }
         });
-    });
+    }); */
 
 </script>

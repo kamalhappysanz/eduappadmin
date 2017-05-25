@@ -11,7 +11,7 @@ Class Parentsmodel extends CI_Model
 
 //CREATE ADMISSION
 
-        function ad_parents($admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2)
+        function ad_parents($admission_id,$father_name,$mother_name,$guardn_name,$occupation,$income,$address,$email,$email1,$home_phone,$office_phone,$mobile,$mobile1,$userFileName,$userFileName1,$userFileName2,$status)
 		{
 		
 		$digits = 6;
@@ -22,7 +22,7 @@ Class Parentsmodel extends CI_Model
           $result=$this->db->query($check_email);
           if($result->num_rows()==0)
 		  {
-            $query="INSERT INTO edu_parents(admission_id,father_name,mother_name,guardn_name,occupation,income,address,email,email1,home_phone,office_phone,mobile,mobile1,father_pic,mother_pic,guardn_pic,status,created_at,update_at) VALUES ('$admission_id','$father_name','$mother_name','$guardn_name','$occupation','$income','$address','$email','$email1','$home_phone','$office_phone','$mobile','$mobile1','$userFileName','$userFileName1','$userFileName2','A',NOW(),NOW())";
+            $query="INSERT INTO edu_parents(admission_id,father_name,mother_name,guardn_name,occupation,income,address,email,email1,home_phone,office_phone,mobile,mobile1,father_pic,mother_pic,guardn_pic,status,created_at,update_at) VALUES ('$admission_id','$father_name','$mother_name','$guardn_name','$occupation','$income','$address','$email','$email1','$home_phone','$office_phone','$mobile','$mobile1','$userFileName','$userFileName1','$userFileName2','$status',NOW(),NOW())";
             $resultset=$this->db->query($query);
 			$insert_id = $this->db->insert_id();
 			
