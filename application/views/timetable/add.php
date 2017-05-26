@@ -123,7 +123,7 @@ select{width:100px;}
                                       <?php      } ?>
 
                                     </select> -->
-                                    <select   name="subject_id[]" class="subject_id"  id="subject_id" onchange="getTeacher(this);"  required>
+                                    <select   name="subject_id[]" class="subject_id"  id="subject_id"   required>
                                       <option value="">No subject</option>
 
                                     </select>
