@@ -12,13 +12,14 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Edit Exam Mark <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
+                                <h4 class="title">Edit Exam Marks <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button></h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/update_marks_details" class="form-horizontal" enctype="multipart/form-data" id="markform">
+					
+					                <?php if(!empty($mark)){ echo "<p style=color:red;text-align:center;>The Reportcard Approve to Admin So Can't Update Marks</p>";}else{ } ?>
                                 <table class="table table-hover table-striped">
-                       
                                     <thead>
 									 <th>Sno</th>
                                      <th>Name</th>	
@@ -50,7 +51,13 @@
 										<input type="hidden" name="teaid" value="<?php echo $row->teacher_id; ?>" />
                                         <input type="hidden" name="clsmastid" value="<?php echo $row->classmaster_id; ?>" />
 										</td>	
-										<td><input style="width:60%;" type="text"  name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/></td>	
+										<td>
+										<?php if(!empty($mark)){?>
+									 <input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/>
+										<?php }else{ ?>
+										<input style="width:60%;" type="text"  name="marks[]" value="<?php echo $row->marks; ?>" class="form-control"/>
+										<?php } ?>
+										</td>	
 										</tr>
 									 <?php $i++;} 
 									 ?> <?php if(!empty($mark)){ echo "";}else{ ?> 

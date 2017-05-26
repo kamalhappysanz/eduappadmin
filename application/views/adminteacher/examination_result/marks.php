@@ -13,8 +13,12 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Enter Exam Marks
-								 <?php  $exam_id=$this->input->get('var2'); //echo$exam_id;  ?>
-								<?php //print_r($cla_tea_id);
+								
+								 <?php  $exam_id=$this->input->get('var2'); //echo$exam_id;  
+								
+								 if(empty($res))
+									  { echo "";}else{
+								//print_r($cla_tea_id);
 								    $cid=$cla_tea_id[0]->class_teacher;
 									//echo $cid;
 									$cls_masid=$this->input->get('var1');
@@ -23,6 +27,7 @@
 									{?>
 <a href="<?php echo base_url(); ?>examinationresult/exam_mark_details_cls_teacher?var1=<?php echo $cid; ?>&var2=<?php  echo $exam_id; ?>"  class="btn btn-info btn-fill btn-wd">View Class Mark</a>	
 									<?php }
+									  }
 									//foreach($res as $row){}echo $row->class_id;
 									?>
 
@@ -74,7 +79,7 @@
 											   echo $name->name;
 										?>
 										</td>
-										<td><input style="width:60%;" type="text" readonly name="marks[]" value="<?php echo $rows->marks; ?>" class="form-control"/></td>
+										<td><input style="width:20%;" type="text" readonly name="marks[]" value="<?php echo $rows->marks; ?>" class="form-control"/></td>
 										</tr>
 										<?php $i++;}
 										}else{
@@ -88,12 +93,12 @@
 										<input type="hidden" name="teaid" value="<?php echo $row->teacher_id; ?>" />
                                         <input type="hidden" name="clsmastid" value="<?php echo $row->class_id; ?>" />
 										</td>
-										<td><input style="width:60%;" type="text" required name="marks[]" value class="form-control"/></td>
+										<td><input style="width:20%;" type="text" required name="marks[]" value class="form-control"/></td>
 										</tr>
 										<?php $i++;}
 										}?>
 										<tr>
-										<td></td><td></td>
+										
 										<?php if(empty($mark) && !empty($res) ){ ?>
 										<td>
 										 <div class="col-sm-10">
