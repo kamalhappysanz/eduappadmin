@@ -130,7 +130,9 @@ $(document).ready(function () {
 
  $('#admissionform').validate({ // initialize the plugin
      rules: {
+		 year_id:{required:true, number: true },
          admit_year:{required:true, number: true },
+		 year_name:{required:true},
          admisn_no:{required:true },
          admit_date:{required:true },
          name:{required:true },
@@ -140,7 +142,9 @@ $(document).ready(function () {
 
      },
      messages: {
+		   year_id:"Academic Year not enable",
            admit_year: "Enter Admission Year",
+		   year_name:"Academic Year not enable",
            admisn_no: "Enter Admission No",
            admit_date: "Select Admission Date",
            name: "Enter Name",

@@ -29,7 +29,7 @@
             <input type="text" name="year_name"  class="form-control" value="<?php echo date('Y', strtotime($rows->from_month));  echo "-"; echo date('Y', strtotime( $rows->to_month));  ?>" readonly="">
 
         <?php   }else{  ?>
-          <input type="text" name=""  class="form-control" value="" readonly="">
+          <input type="text" name="year_name"  class="form-control" value="" readonly="">
 
       <?php     } ?>
 
