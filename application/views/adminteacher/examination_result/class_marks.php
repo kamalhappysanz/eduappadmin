@@ -21,7 +21,6 @@
 					<form method="post" action="<?php echo base_url(); ?>examinationresult/marks_status" class="form-horizontal" enctype="multipart/form-data" id="markform">
 
 <?php
-
 		$student_array_generate = function($stu,&$student_arr) use ($subject_name,$subject_id)
 		{
 			foreach ($stu as $v) {
@@ -40,8 +39,6 @@
 				}
 			}
 		}
-
-
 ?>
                                 <table class="table table-hover table-striped" id="sum_table">
 								<?php if(!empty($result))
@@ -104,12 +101,10 @@
 													{
                                                       echo $s->marks;
 													//echo '<input style="width:60%;" type="text" required name="marks1" id="tmark" readonly value="'.$s->marks.'" class="form-control"  /></td>';
-
 													}else{
-														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value=""  class="form-control"/>';
+														echo '<input required style="width:60%;" type="text" readonly id="mark" name="marks" class="form-control"/>';
 														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/>';
 													}
-
 												}
 											}
 										echo '<td class="total-combat">
