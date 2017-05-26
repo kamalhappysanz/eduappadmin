@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Exam Mark <button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
+                                <h4 class="title">View Exam Marks<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right" style="margin-top:-10px;">Go Back</button> </h4>
                                 <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
@@ -63,6 +63,7 @@
 									}else{  ?>
 									 <th style="color:red;">Subject Not Found</th>
 									 <?php  }?>
+									  <th style="color:red;">Total</th>
                                     </thead>
 									
                                     <tbody>
@@ -71,11 +72,7 @@
 									{
 										$student_arr = array();
 										$student_array_generate($stu,$student_arr);
-										/* echo '<pre>';
-										print_r($stu);
-										print_r($student_arr);
-										die;
-										 */
+										
 										$i = 1;
 										foreach ($student_arr as $k => $s1)
 										{
@@ -85,25 +82,32 @@
 											$k = 1;
 											foreach ($s1 as $k1 => $s)
 											{
+												'<form name="exam" id="examvalidate">';
 												if(empty($s) === false && $k == 1){
 													echo '<input type="hidden" id="sid" name="sutid[]" value="'.$s->enroll_id.'" />';
-										echo '<input type="hidden" id="cid" name="clsmastid" value="'.$s->class_id.'" />';
+													echo '<input type="hidden" id="cid" name="clsmastid" value="'.$s->class_id.'" />';
 													$k++;
 												}
 												if($status=="Success")
 											   {
-												    echo '<td><input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
+												    echo '<td class="combat"><input type="hidden" required  name="subid" value="'.$k1.'" class="form-control"/>';
 
 													if(!empty($s))
 													{
-														echo '<input style="width:60%;" type="text" required name="marks1" value="'.$s->marks.'" class="form-control" readonly /></td>';
+                                                      echo $s->marks;
+													//echo '<input style="width:60%;" type="text" required name="marks1" id="tmark" readonly value="'.$s->marks.'" class="form-control"  /></td>';
+
 													}else{
-														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value="" class="form-control"/>';
-														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/></td>';
+														echo '<input required style="width:60%;" type="text" id="mark" name="marks" value=""  class="form-control"/>';
+														echo '<input type="hidden" required id="subid" name="subjectid[]" value="'.$k1.'" class="form-control"/>';
 													}
+
 												}
 											}
-											echo '</tr>';
+										echo '<td class="total-combat">
+						                      </td>';
+												'</form>';
+											 echo '</tr>';
 											$i++;
 										}
 									}else{ echo "<p style=text-align:center;color:red;>No Exam Mark Added</p>"; }
@@ -135,6 +139,17 @@ $('#exammenu').addClass('collapse in');
 $('#exam').addClass('active');
 $('#exam3').addClass('active');
 
+$('tr').each(function () {
+       var sum = 0;
+     $(this).find('.combat').each(function () {
+         var combat = $(this).text();
+         if (!isNaN(combat) && combat.length !== 0) {
+             sum += parseFloat(combat);
+         }
+     });
+     $(this).find('.total-combat').html(sum);
+   });
+   
 $('#markform').validate({ // initialize the plugin
         rules: {
             marks1:{required:true },
